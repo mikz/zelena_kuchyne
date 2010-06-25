@@ -1,0 +1,20 @@
+<ul>
+<% last_level = 0
+   opened = 0
+   closed = 0
+  categories.each do |c|
+    level = c.level 
+    (level-last_level).times do %>
+      <li style='list-style-type: none;'>
+        <ul>
+    <%end
+    (last_level-level).times do %>
+        </ul>
+      </li>
+    <%end
+    last_level = level %>
+    <li id="<%=row_id%>_category_id_<%=c.id%>">
+      <a href="#" onclick="choose_category('<%=row_id%>',<%=c.id%>); return false;"><%=c.name%></a>
+    </li>
+  <%end%>
+</ul>

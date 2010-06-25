@@ -1,0 +1,30 @@
+<div id="items_to_load">
+  <table class="admin">
+    <thead>
+      <tr>
+        <td><%= locales[:attr_delivery_man]%></td>
+        <% @items.each_pair do |key,item| %>
+        <td><%= h item[:item].name%></td>
+        <%end%>
+      </tr>
+    </thead>
+    <tbody>
+      <% even = true %>
+      <% @delivery_men.each_pair do |dm,items| %>
+      <tr <%=(even = even.blank?)? 'class="even"' : ''%>>
+        <td><%= dm.name %></td>
+        <% @items.each_pair do |key,item| %>
+          <td><%= format((items[key])? items[key].amount : 0 )%></td>
+        <%end%>
+      </tr>
+      <%end%>
+    </tbody>
+    <tfoot>
+      <tr>
+        <td>Celkem</td>
+        <% @items.each_pair do |key,item| %>
+          <td><%= format(item[:amount])%></td>
+        <%end%>
+      </tr>
+  </table>
+</div>

@@ -1,0 +1,44 @@
+<table class="admin stocktakings">
+  <thead>
+    <tr>
+      <td><%= locales[:attr_ingredient]%></td>
+      <td><%= locales[:current_state]%></td>
+      <td><%= locales[:real_state]%></td>
+      <td><%= locales[:difference]%></td>
+      <td><%= locales[:count_consumption]%></td>
+    </tr>
+  </thead>
+  <tbody>
+    <% tabindex = 0%>
+    <%- @balance.each do |record| -%>
+    <tr id="ingredient_<%=record[:ingredient_id]%>">
+      <td><%= record[:ingredient_name]%></td>
+      <td><input type="hidden" value="<%=record[:amount]%>"/><%= format_amount record[:amount], :unit => record[:ingredient_unit] %></td>
+      <td><input class="real_amount" tabindex="<%=tabindex = tabindex.next%>"/><%= record[:ingredient_unit]%></td>
+      <td><input type="hidden"/><span/></td>
+      <td class="consumption"><input type="checkbox" name="record[ingredients][<%=record[:ingredient_id]%>][consumption]"  value="1"/></td>
+    </tr>
+    <%-end-%>
+  </tbody>
+</table>
+<script type="text/javascript">
+//<![CDATA[
+jQuery(".real_amount").bind("keyup.conversion",function(event){
+  decimal_dot_conversion(this);
+}).bind("keyup.init", function(event){
+  jQuery(this).unbind("keyup.init");
+  var id = parseInt($(this).parent().parent().attr("id").replace(/[^0-9]*/,""));
+  var siblings = $(this).parent().siblings();
+  $("input",siblings.get(1)).attr("name","record[ingredients]["+id+"][current]");
+  $(this).attr("name","record[ingredients]["+id+"][real]");
+  $("input",siblings.get(2)).attr("name","record[ingredients]["+id+"][diff]");
+  $("input", siblings.get(2)).bind("change",$("span", siblings.get(2)), show_difference);
+  $(this).bind("keyup.difference", {current: $("input",siblings.get(1)), real: $(this), diff: $("input", siblings.get(2))}, compute_difference );
+  $(this).trigger("keyup.difference");
+});
+jQuery("#record_new_create_ingredient_consumption").unbind("change").change(function(event) {
+  jQuery("table td.consumption input").attr({checked: this.checked});
+});
+$("#record_new_create_ingredient_consumption").trigger("change");
+//]]>
+</script>

@@ -1,0 +1,29 @@
+item_in_trunk_1:
+  item_id: 4
+  amount: 2
+  delivery_man_id: "406857265" # delivery_boy's id
+  deliver_at: "2010-10-20"
+
+item_in_trunk_2:
+  item_id: 5
+  amount: 3
+  delivery_man_id: "406857265" # delivery_boy's id
+  deliver_at: "2010-10-20"
+
+item_in_trunk_3:
+  item_id: 7
+  amount: 5
+  delivery_man_id: "406857265" # delivery_boy's id
+  deliver_at: "2010-10-20"
+
+item_in_trunk_4:
+  item_id: 4
+  amount: 5
+  delivery_man_id: "852384036" # delivery_girl's id
+  deliver_at: "2010-10-20"
+  
+item_in_trunk_5:
+  item_id: 2
+  amount: 5
+  delivery_man_id: "852384036" # delivery_girl's id
+  deliver_at: "2010-10-20"

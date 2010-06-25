@@ -1,0 +1,14 @@
+.filter_widget_minus {
+  color: #AD1F00;
+  font-weight: bold;
+  margin: 0 0.5em 0 1em;
+}
+
+.filter_widget_plus {
+  color: #435F23;
+  font-weight: bold;
+  margin: 0 0.5em;
+}
+.filter_widget_submit *{
+  margin: 0.25em 1em 0 0;
+}

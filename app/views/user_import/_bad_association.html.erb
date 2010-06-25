@@ -1,0 +1,21 @@
+<div>
+  <fieldset>
+    <legend><%= email %></legend>
+    <div class="links"><%= link_to_remote "spojit cenu objednávek", :url => {:action =>:merge, :what =>  [:cena_objednavek, :objednavek], :ids => imported.map {|u| u.id} }%></div>
+    <p>status: "duplicity"</p>
+      <% imported.each do |i| %>
+      <fieldset class="imported">
+        <div class="links"><%= link_to_remote "smazat", :url => {:action =>:destroy, :id => i.id }%></div>
+        <legend><%=i.loginname%></legend>
+        <p>
+          <%= i.inspect_html %>
+        </p>
+      </fieldset>
+      <% end%>
+      <%  for user in users %>
+        <div id="user_<%=user.id%>">
+         <%=  render :partial => "user_fieldset", :locals => {:user => user}%>
+        </div>
+      <% end %>
+  </fieldset>
+</div>

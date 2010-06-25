@@ -1,0 +1,16 @@
+DROP TYPE IF EXISTS orders_sum CASCADE;
+DROP TYPE IF EXISTS summary CASCADE;
+DROP FUNCTION IF EXISTS get_delivery_bought_ingredients_cost_between(date,date) CASCADE;
+DROP FUNCTION IF EXISTS get_restaurant_bought_ingredients_cost_bewteen(date,date) CASCADE;
+DROP FUNCTION IF EXISTS get_restaurant_cooking_ingredients_cost_bewteen(date,date) CASCADE;
+DROP FUNCTION IF EXISTS get_delivery_cooking_ingredients_cost_bewteen(date,date) CASCADE;
+DROP FUNCTION IF EXISTS get_lost_items_cost_between(date,date) CASCADE;
+DROP FUNCTION IF EXISTS get_delivery_sold_items_sum_between(date,date) CASCADE;
+DROP FUNCTION IF EXISTS get_restaurant_sold_items_sum_between(date,date) CASCADE;
+DROP FUNCTION IF EXISTS get_fuel_sum_between(date,date) CASCADE;
+DROP FUNCTION IF EXISTS get_delivery_expenses_sum_between(date,date) CASCADE;
+DROP FUNCTION IF EXISTS get_office_expenses_sum_between(date,date) CASCADE;
+DROP FUNCTION IF EXISTS get_restaurant_expenses_sum_between(date,date) CASCADE;
+DROP FUNCTION IF EXISTS get_restaurant_sales_sum_between(date,date) CASCADE;
+DROP FUNCTION IF EXISTS get_summary_between(date,date) CASCADE;
+DROP FUNCTION IF EXISTS get_orders_sum_between(date,date) CASCADE;

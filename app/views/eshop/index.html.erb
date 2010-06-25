@@ -1,0 +1,14 @@
+<% content_for :sidebar do %>
+<div id="product_categories">
+<% cache("category_tree_#{params[:category] || 0}") do%>
+      <%=render :partial => "tree"%>
+<%end%>
+</div>
+<% end %>
+<div id="top"><%= will_paginate(@products) %></div>
+<%= render :partial => "category_path", :locals => {:category => @category}%>
+<%- content_for :text_class do -%>eshop<%- end -%>
+<% @products.each do |product| %>
+  <%= render :partial => "product", :locals => {:product => product}%>
+<%end%>
+<div id="bottom"><%= will_paginate(@products) %></div>

@@ -1,0 +1,14 @@
+.meal .meal_flags {
+  position: relative;
+  display: inline;
+  zoom: 1;
+}
+
+.product img {
+  width: expression(Math.min(parseInt(this.clientWidth), 78 ) + "px"); 
+  height: expression(Math.min(parseInt(this.clientHeight), 78 ) + "px"); 
+}
+
+#user_box p {
+  padding-bottom: 0;
+}

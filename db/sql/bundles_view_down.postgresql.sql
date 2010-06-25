@@ -1,0 +1,1 @@
+DROP VIEW IF EXISTS bundles_view CASCADE;

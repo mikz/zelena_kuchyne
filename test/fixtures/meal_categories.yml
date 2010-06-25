@@ -1,0 +1,11 @@
+polevky:
+  name: "polévky"
+
+hlavni_jidla:
+  name: "hlavní jídla"
+
+salaty:
+  name: "saláty"
+
+dezerty:
+  name: "dezerty"

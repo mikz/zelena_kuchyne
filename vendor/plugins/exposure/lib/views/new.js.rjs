@@ -1,0 +1,3 @@
+page.insert_html :top, "records_body", :partial=> 'new'
+page.hide 'record_add'
+page << 'init();'

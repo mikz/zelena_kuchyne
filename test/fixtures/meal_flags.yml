@@ -1,0 +1,9 @@
+<% data = [
+  ["nejprodávanějsí", "jedno z nejoblíbenějších jídel"],
+  ["bez lepku", "jídlo neobsahuje lepek"],
+  ["bez mléka", "jídlo neobsahuje mléčné výrobky"],
+  ["ostré", "jídlo je ostré"],
+  ["novinka", "toto jídlo je novinka"]
+] %>
+
+<%= render_fixtures data, :attributes => ["name", "description"], :name => "meal_flag" %>

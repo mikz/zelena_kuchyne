@@ -1,0 +1,22 @@
+<div class="cooking_item">
+  <p><strong><%= item.name %></strong> - <%= amount %> porcí <span><% item.meal_flags.each {|flag| %><img class="meal_flag" src="<%=flag.icon_path%>" alt="<%= flag.name %>" title="<%=flag.description%>"/><%}%></span></p>
+<% if item.recipe and item.recipe != "<p>&nbsp;</p>" %>  <div class="recipe"><%= item.recipe%></div> <%end%>
+  <p class="ingredients">
+<% ingredients = []
+   spices = []
+    for recipe in item.recipes 
+      unless recipe.ingredient.supply_flag?
+        ingredients.push "<span class='ingredient'>#{recipe.ingredient.name}</span>&nbsp;-&nbsp;<span class='amount'>#{format_float(recipe.amount * amount)}&nbsp;#{recipe.ingredient.unit}</span>" 
+      end
+    end 
+    for spice in item.spices
+      spices.push "<span>#{spice.name}<span>"
+    end
+    %>
+    <%= ingredients.join ", "%>
+  </p>
+  <p class="spices">
+    <%= spices.join ", " %>
+  </p>
+
+</div>

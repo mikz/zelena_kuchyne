@@ -1,0 +1,27 @@
+<table class="admin" id="records">
+  <thead>
+    <% unless (pagination = will_paginate(@records,:container=>false)).nil? %>
+    <tr class="pagination">
+      <td colspan="<%=@options[:columns].size+2%>"><%= pagination %></td>
+    </tr>
+    <% end %>
+    <tr>
+      <td><%= link_to locales["attr_name"], :action => 'index', :order => "name" %></td>
+      <td><%= link_to locales["discount"], :action => 'index', :order => "amount" %></td>
+      <td><%= link_to locales["attr_publish_at"], :action => 'index', :order => "start_at" %></td>
+      <td><%= link_to locales["attr_expire_at"], :action => 'index', :order => "expire_at" %></td>
+      <td><%= link_to locales["note"], :action => 'index', :order => "note" %></td>
+      <td><span id="record_add"><%= smart_link locales[:add], :action => 'new' %></span></td>
+    </tr>
+  </thead>
+  <tbody id="records_body">
+  <% for record in @records %>
+    <tr id="record_<%= record.id %>">
+      <%= render :partial => 'show', :locals => {:record => record} %>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+<% if protect_against_forgery? %> 
+<div style='display: none;' id="authenticity_token"><%= form_authenticity_token %></div> 
+<% end %>

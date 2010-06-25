@@ -1,0 +1,124 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=7"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="description" content="Zelená kuchyně je restaurace s čistě vegetariánskou kuchyní. Jídla vaříme a připravujeme ze zeleniny, obilovin, luštěnin, mléčných výrobků, ovoce, oříšků, medu, bylinek a koření a jiných čistých surovin. " />
+    <meta name="robots" content="all,follow" />
+    <meta name="googlebot" content="index,follow,snippet,archive=" />
+    <link href="<%=url_for(:controller => "menu",:action=>"feed",:format=>"xml")%>" type="application/rss+xml" rel="alternate" title="<%=locales[:meal_rss_title]%>" />
+    <link rel="stylesheet" href="/stylesheets/master.css" type="text/css" media="screen, projection" charset="utf-8" />
+    <link rel="stylesheet" href="/stylesheets/print.css" type="text/css" media="print" charset="utf-8" />
+    <link rel="stylesheet" href="/stylesheets/ui.tabs.css" type="text/css" media="print, projection, screen"/>
+    <% for stylesheet in @stylesheets %>
+      <link rel="stylesheet" href="/stylesheets/<%= stylesheet %>.css" type="text/css" charset="utf-8" />
+    <% end if @stylesheets.is_a? Array %>
+    <!--[if IE]>
+      <link rel="stylesheet" href="/stylesheets/ie.css" type="text/css" media="screen, projection" charset="utf-8" />
+    <![endif]-->
+    <!--[if lte IE 6]>
+      <link rel="stylesheet" href="/stylesheets/ie6.css" type="text/css" media="screen, projection" charset="utf-8" />
+    <![endif]-->
+    <!--[if IE 7]>
+      <link rel="stylesheet" href="/stylesheets/ie7.css" type="text/css" media="screen, projection" charset="utf-8" />
+    <![endif]-->
+    <script type="text/javascript">
+    //<![CDATA[
+      window.lang = "<%= current_user.interface_language %>";
+    //]]>
+    </script>
+    <script src="/javascripts/jquery.js" type="text/javascript"></script>
+    <script src="/javascripts/jquery-ui.js" type="text/javascript"></script>
+    <script src="/javascripts/jrails.js" type="text/javascript"></script>
+    <script src="/javascripts/jquery.form.js" type="text/javascript"></script>
+    <script src="/javascripts/jquery.metadata.js" type="text/javascript"></script>
+    <script src="/javascripts/jquery.validate.js" type="text/javascript"></script>
+    <script src="/javascripts/jquery.cookie.js" type="text/javascript"></script>
+    <% for javascript in @javascripts %>
+    <script src="/javascripts/<%= javascript %>.js" type="text/javascript"></script>
+    <% end if @javascripts.is_a? Array %>
+    <% if current_user.belongs_to_one_of?(:admins, :heads_of_car_pool, :operating_officers, :warehousers, :deliverymen, :chefs) %>
+    <link rel="stylesheet" href="/stylesheets/admin.css" type="text/css" media="screen"/>
+    <script src="/javascripts/admin.js" type="text/javascript"></script>
+    <% end %>
+    <script src="/javascripts/application.js" type="text/javascript"></script>
+    <style type="text/css" media="screen">
+      <%= yield :css %>
+    </style>
+    <script type="text/javascript">
+    //<![CDATA[
+      <%= yield :javascript %>
+        //]]>
+    </script>
+    <script src="/javascripts/localization/messages_<%= current_user.interface_language %>.js" type="text/javascript"></script>
+    <!--[if IE]>
+      <script type="text/javascript" src="/javascripts/ie.js"></script>
+    <![endif]-->
+    <!--[if lte IE 6]>
+      <script type="text/javascript" src="/javascripts/jquery.iefixpng.js"></script>
+    <![endif]-->
+    <title><%= locales['layout_title'] %><%= yield(:title) || '' %></title>
+  </head>
+  <body id="body">
+    <% if current_user.belongs_to_one_of?(:admins, :heads_of_car_pool, :operating_officers, :warehousers, :deliverymen, :chefs) %>
+      <%= render :partial => '/shared/admin_menu' %>
+    <% end %>
+    <div id="header" class="container">
+      <a href="/" id="logo">
+        <span><%= locales[:title]%></span>
+      </a>
+      <div id="sections">
+        <ul>
+          <li id="s_menu"<%= ' class="active"' if active_section == 'menu' %>>
+            <a href="/menu"><span><%= locales[:menu_menus]%></span></a>
+          </li>
+          <li id="s_eshop"<%= ' class="active"' if active_section == 'eshop' %>>
+            <a href="/eshop"><span><%= locales[:menu_eshop]%></span></a>
+          </li>
+          <li id="s_basket"<%= ' class="active"' if active_section == 'basket' %>>
+            <a href="/basket"><span><%= locales[:menu_basket]%></span></a>
+          </li>
+          <% if logged_in? %>
+          <li id="s_orders"<%= ' class="active"' if active_section == 'orders' %>>
+            <a href="/orders/mine"><span><%= locales[:menu_orders]%></span></a>
+          </li>
+          <% end %>
+        </ul>
+      </div>
+    </div><!-- /#sections -->
+    <div id="menu_<%= active_section %>" class="menu container">
+      <div id="menu_pages">
+        <%= snippet 'menu_pages' %>
+      </div>
+      <%= render :partial => "/shared/menu_#{active_section}" %>
+    </div>
+    <div id="contents" class="container">
+      <div id="text" class="<%= yield :text_class %>">
+        <div id="errors" class="errors_inline"></div>
+        <% if flash[:notice] %>
+        <%= render :partial => '/shared/notice', :locals => {:message => flash[:notice]} %>
+        <% end %>
+        <!--[if IE]>
+        <div id="ie_notice" style="display:none;">
+          <h3><%= locales[:notice]%></h3>
+          <p></p>
+          <p><a id="ie_go_away" href="#"><%=locales[:hide_notice]%></a></p>
+        </div>
+        <![endif]-->
+        <%= yield %>
+      </div>
+      <div id="sidebar">
+        <%= render :partial => '/users/signin' %>
+        <%= yield :sidebar %>
+      </div>
+      <div class="clear"></div>
+    </div>
+    <div id="footer" class="container">
+      <%= snippet 'footer' %>
+    </div>
+    <%- if RAILS_ENV == "production" && !current_user.belongs_to_one_of?(:admins, :heads_of_car_pool, :operating_officers, :warehousers, :deliverymen, :chefs) -%>
+      <%= render :partial => '/shared/google_analytics' %>
+      <%= render :partial => '/shared/test_javascript'%>
+    <%- end -%>
+  </body>
+</html>

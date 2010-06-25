@@ -1,0 +1,1 @@
+page.replace_html "message_#{params[:id]}", :partial => "details", :locals => {:message => @message}

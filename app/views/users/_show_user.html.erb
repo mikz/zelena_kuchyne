@@ -1,0 +1,113 @@
+<h1>Uživatel: <%= h user.name %><%- if current_user.belongs_to?("admins")%>
+  <%= link_to "upravit", :action => :edit, :id => user.id%>
+  <%-end-%>
+</h1>
+
+<div id="personal_data" class="user_details">
+  <h2><%= locales['login_data'] %></h2>
+  <dl>
+    <dt><%= locales['user_login'] %></dt> 
+    <dd><%= h user.login %></dd>
+    <dt><%= locales['email'] %></dt> 
+    <dd><%= h user.email %></dd>      
+  </dl>
+  <h2><%= locales['personal_data'] %></h2>
+  <dl>
+    <dt><%= locales['first_name'] %></dt>
+    <dd><%= h user.first_name %></dd>
+    <dt><%= locales['family_name'] %></dt>
+    <dd><%= h user.family_name %></dd>
+    <dt><%= locales['company_name'] %></dt>
+    <dd><%= h user.company_name %></dd>
+    <dt><%= locales['phone_number'] %></dt>
+    <dd><%= h user.phone_number_country_code %> <%= h user.phone_number %></dd>
+    <dt><%= locales['company_registration_no'] %></dt>
+    <dd><%= h user.company_registration_no %></dd>
+    <dt><%= locales['company_tax_no'] %></dt>
+    <dd><%= h user.company_tax_no %></dd>
+  </dl>
+  <h2><%= locales['user_groups'] %></h2>
+  <ul>
+    <% user.groups.each do |group| -%>
+      <li><%= translate_group(group.title) %></li>
+    <%- end%>
+  </ul>
+  <% if user.active_user_discount %>
+  <h2><%= locales['discounts'] %></h2>
+    <p><%= user.active_user_discount.name %> - <%= format_float(user.active_user_discount.amount) %>%</p>
+  <% end%>
+  <% if current_user.belongs_to?("admins") %>
+  <h2><%= locales[:notes].chars.capitalize%></h2>
+  <dl>
+    <% if !user.admin_note.blank? %>
+      <dt><%= locales[:admin_note]%></dt>
+      <dd><%= h user.admin_note%></dd>
+    <% end%>
+  <% end%>
+  </dl>
+  <h2><%= locales['user_groups'] %></h2>
+</div>
+<div id="orders" class="user_details">
+  <h2><%= locales['menu_orders'] %></h2>
+  <p>
+    <%= link_to locales['create_order_for_user'], :controller => 'users', :action => 'create_order', :id => user.id %><br/>  
+    <%= link_to(locales['users_orders'], {:controller => 'orders', :action => 'index', 'filter[][attr]' => 'user_id', 'filter[][op]' => 'e', 'filter[][value]' => user.id, :sum => true, :state => "all_cancelled"}) %>
+  </p>
+  <p>
+    <%= locales[:total_orders_price].chars.capitalize%>: <%= format_currency(user.total_orders_price) %>
+  </p>
+</div>
+<div class="user_details">
+<fieldset id="home_address">
+  <legend><%= locales['home_address'] %></legend>
+    <h2><%= locales['home_address'] %></h2>
+    <dl>
+      <dt><%= locales['first_name'] %></dt>
+      <dd><%= h user.address[:home] ? user.address[:home].first_name : "-" %></dd>
+      <dt><%= locales['family_name'] %></dt>
+      <dd><%= h user.address[:home] ? user.address[:home].family_name : "-" %></dd>
+      <dt><%= locales['company_name'] %></dt>
+      <dd><%= h user.address[:home] ? user.address[:home].company_name : "-" %></dd>
+      <dt><%= locales['street'] %></dt>
+      <dd><%= h user.address[:home] ? user.address[:home].street : "-" %></dd>
+      <dt><%= locales['house_no'] %></dt>
+      <dd><%= h user.address[:home] ? user.address[:home].house_no : "-" %></dd>
+      <dt><%= locales['city'] %></dt>
+      <dd><%= h user.address[:home] ? user.address[:home].city : "-" %></dd>
+      <dt><%= locales['district'] %></dt>
+      <dd><%= h user.address[:home] ? user.address[:home].district : "-" %></dd>
+      <dt><%= locales['zip'] %></dt>
+      <dd><%= h user.address[:home] ? user.address[:home].zip : "-" %></dd>
+      <dt><%= locales['zone'] %></dt>
+      <dd><%= h user.address[:home] && user.address[:home].zone ? user.address[:home].zone.name : "-" %></dd>
+      <%- if current_user.belongs_to?("admins") && user.address[:home] && user.address[:home].zone %>
+      <dt><%= locales['zone_reviewed'] %></dt>
+      <dd><%= format user.address[:home].zone_reviewed %></dd>
+      <%-end-%>
+    </dl>
+    </fieldset>
+    <fieldset id="delivery_address">
+    <legend><%= locales['delivery_address'] %></legend>
+    <h2><%= locales['delivery_address'] %></h2>
+    <dl>
+      <dt><%= locales['first_name'] %></dt>
+      <dd><%= h user.address[:delivery] ? user.address[:delivery].first_name : "-" %></dd>
+      <dt><%= locales['family_name'] %></dt>
+      <dd><%= h user.address[:delivery] ? user.address[:delivery].family_name : "-" %></dd>
+      <dt><%= locales['company_name'] %></dt>
+      <dd><%= h user.address[:delivery] ? user.address[:delivery].company_name : "-" %></dd>
+      <dt><%= locales['street'] %></dt>
+      <dd><%= h user.address[:delivery] ? user.address[:delivery].street : "-" %></dd>
+      <dt><%= locales['house_no'] %></dt>
+      <dd><%= h user.address[:delivery] ? user.address[:delivery].house_no : "-" %></dd>
+      <dt><%= locales['city'] %></dt>
+      <dd><%= h user.address[:delivery] ? user.address[:delivery].city : "-" %></dd>
+      <dt><%= locales['district'] %></dt>
+      <dd><%= h user.address[:delivery] ? user.address[:delivery].district : "-" %></dd>
+      <dt><%= locales['zip'] %></dt>
+      <dd><%= h user.address[:delivery] ? user.address[:delivery].zip : "-" %></dd>
+    </dl>
+  </fieldset>
+</div>
+<%= yield(:close_button)%>
+

@@ -1,0 +1,146 @@
+<% content_for :css do %>
+.fees {
+  width: 550px;
+  text-align: left;
+  margin: 24px;
+  border-collapse: collapse;
+  border: 1px solid #ebbb3c;
+}
+
+.fees a.green {
+  /* color: rgb(99, 140, 51); */
+  color: #435F23;
+}
+.fees a.blue {
+  color: blue;
+}
+.fees a.red {
+  color: rgb(173, 31, 0);
+}
+.fees thead {
+  background: #ebbb3c;
+}
+
+.fees tbody tr {
+  background: #F0F2E0;
+  border-top: 1px solid #638C33;
+}
+
+.fees tbody tr:nth-child(even) {
+  background: #D7DEBB;
+}
+
+.fees td, #fees th {
+  padding: 3px 12px 3px 6px;
+  width: 50%;
+}
+
+.fees caption {
+  display: none;
+}
+
+<% end %>
+<h1>Rozvoz vegetariánských jídel</h1>
+<p>Zelená kuchyně poskytuje v současnosti své služby pouze v Praze.<br />
+Území, na kterém Zelená kuchyně služby poskytuje, je vyznačeno na mapě na stránce <a target="_blank" href="http://www.zelenakuchyne.cz/zony.html">www.zelenakuchyne.cz/zony.html</a>.</p>
+<p>Vždy se snažíme dorazit maximálně s 30minutovou odchylkou od vámi zvoleného času. Dopravu v Praze ale neovlivníme, občas tedy zpoždění nemůžeme zabránit. V takovém případě vám zavoláme nebo pošleme e-mail.</p>
+<p>Pro objednání pokrmů u nás musíte být <a href="http://www.zelenakuchyne.cz/signup">zaregistrovaní</a>. Pak už jen stačí vybrat si z <a href="http://www.zelenakuchyne.cz/menu">menu</a> a objednávku odeslat přímo ze stránek. V případě problémů s elektronickou objednávkou nám můžete zavolat na telefon&#160;<strong>222&#160;220&#160;114</strong>&#160;či napsat na adresu&#160;<a href="mailto:objednavky@zelenakuchyne.cz">objednavky@zelenakuchyne.cz</a>.</p>
+<p>K ceně objednávky účtujeme poplatek za dopravu podle výše objednávky. Platit můžete i stravenkami Ticket Restaurant či Gastropass.</p>
+
+<table class="fees">
+    <caption>Cena dopravy pro zelenou zónu</caption>
+    <thead>
+        <tr>
+            <th>Cena objednávky pro <a class="green" target="_blank" href="http://www.zelenakuchyne.cz/zony.html">zelenou zónu</a></th>
+            <th>Poplatek za dopravu</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>do 99 Kč</td>
+            <td>400 Kč</td>
+        </tr>
+        <tr>
+            <td>100 – 199 Kč</td>
+            <td>250 Kč</td>
+        </tr>
+        <tr>
+            <td>200 – 274 Kč</td>
+            <td>150 Kč</td>
+        </tr>
+        <tr>
+            <td>275 – 349 Kč</td>
+            <td>50 Kč</td>
+        </tr>
+        <tr>
+            <td>nad 350 Kč</td>
+            <td><em>zdarma</em></td>
+        </tr>
+    </tbody>
+</table>
+
+<table class="fees">
+    <caption>Cena dopravy pro modrou zónu</caption>
+    <thead>
+        <tr>
+            <th>Cena objednávky <a class="blue" target="_blank" href="http://www.zelenakuchyne.cz/zony.html">modrou zónu</a></th>
+            <th>Poplatek za dopravu</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>do 99 Kč</td>
+            <td>600 Kč</td>
+        </tr>
+        <tr>
+            <td>100 – 199 Kč</td>
+            <td>400 Kč</td>
+        </tr>
+        <tr>
+            <td>200 – 349 Kč</td>
+            <td>300 Kč</td>
+        </tr>
+        <tr>
+            <td>350 – 499 Kč</td>
+            <td>150 Kč</td>
+        </tr>
+        <tr>
+            <td>nad 500 Kč</td>
+            <td><em>zdarma</em></td>
+        </tr>
+    </tbody>
+</table>
+
+<table class="fees">
+    <caption>Cena dopravy pro červenou zónu</caption>
+    <thead>
+        <tr>
+            <th>Cena objednávky pro <a class="red" target="_blank" href="http://www.zelenakuchyne.cz/zony.html">červenou zónu</a></th>
+            <th>Poplatek za dopravu</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>do 99 Kč</td>
+            <td>800 Kč</td>
+        </tr>
+        <tr>
+            <td>100 – 349 Kč</td>
+            <td>650 Kč</td>
+        </tr>
+        <tr>
+            <td>350 – 499 Kč</td>
+            <td>400 Kč</td>
+        </tr>
+        <tr>
+            <td>500 – 749 Kč</td>
+            <td>250 Kč</td>
+        </tr>
+        <tr>
+            <td>nad 750 Kč</td>
+            <td><em>zdarma</em></td>
+        </tr>
+    </tbody>
+</table>
+<p>S jakýmikoli dotazy se obracejte na&#160;<a href="mailto:info@zelenakuchyne.cz">info@zelenakuchyne.cz</a>.</p>
+<%= render :partial => 'shared/user_sidebar'%>

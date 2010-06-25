@@ -1,0 +1,4 @@
+<% content_for :sidebar do %>
+  <%= calendar_widget :action => 'index', :active_dates => @dates, :updates => '#delivery_men', :date_param => :date, :disable_range => true%>
+<% end %>
+<%= render :partial => "delivery_men"%>

@@ -1,0 +1,1 @@
+DROP VIEW IF EXISTS total_assigned_ordered_meals;

@@ -1,0 +1,15 @@
+<td><%= link_to format( (@options[:title][:proc])? @options[:title][:proc].call(record) : record.send(@options[:title][:name]) ,@options[:title][:options]), :action => 'show', :id => record %>
+<div style='display: none;'>
+<%= [record].to_json(:only => :address) %>
+</div>
+
+<script type="text/javascript">$(function() {  $("a[href^='/suppliers/show/']").tooltip('address'); });</script>
+</td>
+<% for column in @options[:columns] %>
+<% val = record.send(column[:name]) %>
+  <td><%= format((column[:proc].is_a?(Proc))? column[:proc].call(val) : val,column[:options]) %></td>
+<% end %>
+<td>
+  <%= smart_link locales[:edit], :action => 'edit', :id => record %>
+  | <%= smart_link locales[:delete], {:action => 'destroy', :id => record}, :confirm => locales['delete_confirmation'] %>
+</td>

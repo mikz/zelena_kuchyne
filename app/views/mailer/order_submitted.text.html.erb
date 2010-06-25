@@ -1,0 +1,88 @@
+<%= snippet 'order_submitted_mail_header'%>
+<style type="text/css">
+table {
+  border-collapse: collapse;
+  border: 2px solid black;
+  margin-bottom: 2em;
+}
+table td {
+  padding: 0.2em 1.5em;
+  border-top: 1px solid black;
+  text-align: right;
+}
+table thead {
+  font-weight: bold;
+}
+table tr td:first-child {
+  text-align: left;
+}
+.left {
+text-align: left !important;
+}
+</style>
+<table>
+  <thead>
+    <tr>
+      <td><%= locales[:model_meal] %></td>
+      <td><%= locales[:price]%></td>
+      <td><%= locales[:portions]%></td>
+      <td><%= locales[:total_cost]%></td>
+    </tr>
+  </thead>
+  <tbody>
+<% for ordered_item in @order.ordered_items %>
+    <tr>
+      <td><%= ordered_item.item.name %></td>
+      <td><%= format_currency(ordered_item.item.price) %></td>
+      <td><%= format ordered_item.amount %></td>
+      <td><%= format_currency(ordered_item.item.price*ordered_item.amount) %></td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<table>
+  <tbody>
+  <tr>
+    <td><%= locales[:ordered_at]%>:</td><td class="left"><%= format_date Date.today %></td>
+  <tr>
+    <td><%= locales[:order_will_be_delivered_at]%></td><td class="left"><%= format_date_and_time @order.deliver_at %></td>
+  </tr>
+  <tr>
+    <td><%= locales[:order_price]%>:</td><td class="left"><%= format_currency @order.original_price%></td>
+  </tr>
+  <tr>
+    <td><%= locales[:discount].chars.capitalize%>:</td><td class="left"><%= format_currency(@order.original_price - @order.discount_price)%></td>
+  </tr>
+  <tr>
+    <td><%= locales[:delivery_price]%>:</td><td class="left"><%= format_currency @order.delivery_price %></td>
+  </tr>
+  <tr>
+    <td><%= locales[:final_price]%>:</td><td class="left"><%= format_currency @order.price %></td>
+   </tr>
+   </tbody>
+</table>
+
+ 
+
+<p><%= locales[:address_of_delivery]%>:<br/>
+<% unless @address.first_name.blank? or @address.family_name.blank? %>
+<%= h @address.first_name %> <%=h @address.family_name%><br/>
+<%end%>
+<% unless @address.company_name.blank? %>
+<%= h @address.company_name %><br/>
+<%end%>
+<%= @address.output %><br/>
+<%= h @address.zip%>
+<% unless @address.note.blank? %>
+<br/><%= locales[:note].chars.capitalize%>: <%= h @address.note %>
+<% end %>
+</p>
+
+<% unless @order.notice.blank? %>
+<p><%= locales[:note].chars.capitalize%>:<br/>
+<%= h @order.notice %>
+</p>
+<%end%>
+
+<%= snippet 'order_submitted_mail_footer'%>

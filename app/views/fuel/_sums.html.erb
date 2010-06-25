@@ -1,0 +1,22 @@
+<table class="admin">
+  <thead>
+    <tr>
+      <td><%=locales[:attr_registration_no]%></td>
+      <td><%=locales[:driver]%></td>
+      <td><%=locales[:attr_date]%></td>
+      <td><%=locales[:attr_cost]%></td>
+      <td><%=locales[:attr_amount]%></td>
+    </tr>
+  </thead>
+  <tbody>
+    <% @sums.each do |sum|%>
+    <tr>
+      <td><%= format "#{sum.car.registration_no} #{sum.car.note}"%></td>
+      <td><%= format sum.user.login%></td>
+      <td><%= format_date Date.parse(sum[:from])%> až <%= format_date Date.parse(sum[:to])%></td>
+      <td><%= format_currency sum.cost%></td>
+      <td><%= format_amount sum.amount, :unit => locales[:fuel_unit]%></td>
+    </tr>
+    <%end%>
+  </tbody>
+</table>

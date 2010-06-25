@@ -1,0 +1,5 @@
+provozovna:
+  name: "Provozovna"
+  name_abbr: "provoz"
+  address: "U sadu 1, Praha 10"
+  description: "Naše restaurace"

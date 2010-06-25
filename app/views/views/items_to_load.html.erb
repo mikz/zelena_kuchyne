@@ -1,0 +1,4 @@
+<% content_for :sidebar do %>
+  <%= calendar_widget :action => 'items_to_load', :active_dates => @dates, :updates => '#items_to_load', :date_param => :date, :disable_range => true%>
+<% end %>
+<%= render :partial => "items_to_load"%>

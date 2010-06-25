@@ -1,0 +1,8 @@
+page.visual_effect :fade, 'record_new', :duration => 0.3
+page.delay 0.3 do 
+  page << "jQuery('#record_new').cleanupFCKeditor(true);"
+  page.remove 'record_new'
+  page.insert_html :top, 'records_body', :partial => 'record_row', :locals => {:record => @record}
+  page.visual_effect :highlight, "record_#{@record.id}", :color => '#fae6d1'
+end
+page.show 'record_add'

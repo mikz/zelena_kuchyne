@@ -1,0 +1,39 @@
+body, h1, h2, h3, h4, h5, h6, p, div, ul, li, dl, dd, dt, ol, form, table, td, tr, th img, fieldset {
+    margin: 0;
+    padding: 0;
+}
+body {
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 12px;
+    background: #F0F2E0;
+}
+img {
+  border: none;
+}
+
+a {
+  color: #435F23;
+}
+hr {
+  height: 1px;
+  border: none;
+  background-color: #638C33;
+  margin: 5px 0;
+}
+h1 {
+  font-size: 12px;
+  text-transform: none;
+  color: #435f23;
+  padding-top: 24px;
+  padding-bottom: 24px;
+  padding-left: 24px;
+}
+
+h2 {
+  color: #435f23;
+  font-size: 14px;
+  padding-bottom: 0.5em;
+}
+p, ul, h2, h3, h4, h5, h6, ol, dl {
+  padding-left: 24px;
+}

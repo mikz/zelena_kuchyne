@@ -1,0 +1,10 @@
+conversation = render :partial => 'conversation'
+
+page << <<-eos
+if($("#records").hasClass("all")) {
+  $("#record_#{params[:id]}").next().replaceWith(#{conversation.to_json})
+} else {
+  $("#record_#{params[:id]}").next().remove()
+  $("#record_#{params[:id]}").remove()
+}
+eos

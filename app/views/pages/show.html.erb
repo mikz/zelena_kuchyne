@@ -1,0 +1,3 @@
+<h1><%= format( (@options[:title][:proc])? @options[:title][:proc].call(@record) : @record.send(@options[:title][:name]) ,@options[:title][:options]) %></h1>
+<%= @record.send @options[:content_column] %>
+<%= render :partial => 'shared/user_sidebar'%>

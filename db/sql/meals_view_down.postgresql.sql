@@ -1,0 +1,1 @@
+DROP VIEW IF EXISTS meals_view CASCADE;

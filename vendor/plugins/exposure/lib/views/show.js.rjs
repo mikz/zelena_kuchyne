@@ -1,0 +1,8 @@
+begin
+  element = "record_#{@record.id}"
+  page << "jQuery('##{element}').cleanupFCKeditor(true);"
+  page.replace_html element, :partial => 'show', :locals => {:url => {:action => 'update'}, :record => @record}
+  page << "$('##{element}').removeClass('inline_edit');"
+rescue
+  page.alert($!.to_s)
+end

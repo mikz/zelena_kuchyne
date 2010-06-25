@@ -1,0 +1,23 @@
+first_course:
+  meal: gulas
+  menu: pikantni_menu
+
+second_course:
+  meal: zelnacka
+  menu: pikantni_menu
+
+third_course:
+  meal: paprikovy_salat
+  menu: pikantni_menu
+
+fourth_course:
+  meal: pecene_brambory
+  menu: delikatni_menu
+
+fifth_course:
+  meal: smetanova_polevka
+  menu: delikatni_menu
+
+sixth_course:
+  meal: mrkvovy_salat
+  menu: delikatni_menu  

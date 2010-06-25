@@ -1,0 +1,59 @@
+<h1><%= locales[:order] %></h1>
+<%= render :partial => "form" %>
+<h2><%= locales[:add_entry].chars.capitalize%></h2>
+<% form_remote_tag(:url => {:action => 'add_item', :id => @order.order.id}, :html => {:id => 'add_item_form'}) do %>
+  <p>
+    <input type="checkbox" name="products" id="products" title="<%=locales[:include_products]%>" onchange="scheduled_items.load($('#deliver_at_date').val(), '#schedule_item_id', false, this.checked, $('#always_available').get(0).checked);"/>
+    <input type="checkbox" name="always_available" id="always_available" title="<%=locales[:include_always_available]%>" onchange="scheduled_items.load($('#deliver_at_date').val(), '#schedule_item_id', false, $('#products').get(0).checked, this.checked);"/>
+    <select name="item_id" id="schedule_item_id">
+      <optgroup label="<%= locales[:model_meals] %>">
+        <% for meal in @meals %>
+          <option value="<%= meal.item_id %>"><%= meal.name %></option>
+        <% end %>
+      </optgroup>
+      <optgroup label="<%= locales[:model_bundles] %>">
+        <% for bundle in @bundles %>
+          <option value="<%= bundle.item_id %>"><%= bundle.name %></option>
+        <% end %>
+      </optgroup>
+      <optgroup label="<%= locales[:model_menus] %>">
+        <% for menu in @menus %>
+          <option value="<%= menu.item_id %>"><%= menu.name %></option>
+        <% end %>
+      </optgroup>
+    </select>
+    <%= submit_tag locales[:add] %>
+  </p>
+<% end %>
+<h2><%= locales['date_of_delivery'] %></h2>
+<% form_remote_for('deliver_at', :url => {:action => 'set_deliver_at', :id => @order.order.id}, :html => {:id => 'deliver_at_form'}) do |f| %>
+<p>
+  <label for="deliver_at_date"><%= locales['date_of_delivery'] %></label><br/>
+  <%= f.text_field :date, :value => @order.deliver_at.strftime('%Y-%m-%d'), :onchange => "scheduled_items.load(this.value, '#schedule_item_id');", :id => "deliver_at_date" %>
+  <script type="text/javascript">
+    $(function() {
+      scheduled_items.load('<%=  @order.deliver_at.strftime('%Y-%m-%d') %>', '#schedule_item_id', false);
+    });
+  </script>
+</p>
+<p>
+  <label for="deliver_at_time"><%= locales['preferred_time_of_delivery'] %></label><br/>
+  <%= f.text_field :time, :value => @order.deliver_at.strftime('%H:%M') %>
+</p>
+<p>
+  <%= submit_tag "#{locales['save']} #{locales['date_of_delivery'].downcase}"%>
+</p>
+<% end %>
+<% form_remote_for('order', :url => {:action => 'set_notice', :id => @order.order.id}, :html => {:id => 'notice_form'}) do |f| %>
+<p>
+  <label for="order_notice"><%= locales[:note].chars.capitalize %>:</label><br/>
+  <textarea cols="50" rows="2" name="order[notice]" id="order_notice" class="noTinyMCE"><%= @order.notice %></textarea>
+</p>
+<p><%= submit_tag locales['save']%></p>
+<% end%>
+<div id="active_discounts">
+  <%= render :partial => "active_discounts" %>
+</div>
+<p>
+  <%= link_to locales['back_to_listing'], :action => 'index' %>
+</p>

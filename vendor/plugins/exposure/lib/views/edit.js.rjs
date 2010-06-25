@@ -1,0 +1,4 @@
+element = "record_#{@record.id}"
+page.replace_html element, :partial => 'edit'
+page << "$('##{element}').addClass('inline_edit');"
+page << 'init();'

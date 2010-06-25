@@ -1,0 +1,1 @@
+DROP VIEW IF EXISTS poll_answers_view CASCADE;

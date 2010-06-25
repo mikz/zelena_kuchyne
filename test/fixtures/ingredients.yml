@@ -1,0 +1,60 @@
+mrkev:
+  name: "mrkev"
+  supplier: makro
+  unit: "g"
+  cost: 0.0005
+
+alobal:
+  name: "alobal"
+  supplier: ahold
+  unit: "mm"
+  cost: 0.010
+  supply_flag: true
+
+zeli:
+  name: "zelí"
+  supplier: makro
+  unit: "g"
+  cost: 0.0007
+
+paprika_cervena:
+  name: "paprika červená"
+  supplier: makro
+  unit: "g"
+  cost: 0.0009
+
+paprika_mleta:
+  name: "paprika mletá"
+  supplier: ahold
+  unit: "g"
+  cost: 0.0001
+
+smetana:
+  name: "smetana 15%"
+  supplier: makro
+  unit: "ml"
+  cost: 0.001
+
+brambory:
+  name: "brambory"
+  supplier: ahold
+  unit: "g"
+  cost: 0.0003
+
+fazole:
+  name: "fazole"
+  supplier: makro
+  unit: "g"
+  cost: 0.006
+
+mouka:
+  name: "mouka"
+  supplier: makro
+  unit: "g"
+  cost: 0.0003
+
+vejce:
+  name: "vejce"
+  supplier: ahold
+  unit: "ks"
+  cost: 2.5

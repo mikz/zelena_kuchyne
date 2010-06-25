@@ -1,0 +1,66 @@
+<%= render :partial => "users/zone_warning"%>
+<h1><%= locales[:order_price]%></h1>
+<table class="order">
+  <thead>
+    <tr>
+      <td><%= locales[:attr_name]%></td>
+      <td><%= locales[:attr_price]%></td>
+      <td><%= locales[:pieces]%></td>
+      <td><%= locales[:overall]%></td>
+      <td></td>
+    </tr>
+  </thead>
+  <tfoot>
+    <tr class="total <%= cycle("even", "odd") -%>">
+      <td colspan="3"></td>
+      <td><strong><%= format_currency (@basket.price) %></strong></td>
+      <td/>
+    </tr>
+  </tfoot>
+  <tbody>
+  <% for item in @basket.ordered_items %>
+    <tr id="item_<%= item.item.id %>" class="<%= cycle("even", "odd") -%>">
+      <td><%= item.item.name %></td>
+      <td><%= format_currency item.item.price%></td>
+      <td><%= format item.amount %></td>
+      <td><%= format_currency (item.amount * item.item.price) %></td>
+      <td/>
+    </tr>
+  <% end
+  if @basket.original_price != @basket.discount_price %>  
+    <tr class="<%= cycle("even", "odd") -%>">
+      <td><%= locales[:discount]%></td>
+      <td colspan="2"></td>
+      <td><%= format_currency((@basket.original_price - @basket.discount_price)*-1 ) %></td>
+      <td/>
+    </tr>
+    <% end %>
+     <tr class="<%= cycle("even", "odd") -%>">
+      <td><%= @basket.order.delivery_method.basket_name %></td>
+      <td/>
+      <td/>
+      <td id="delivery_fee"><%= format_currency @basket.order.delivery_method.price %></td>
+      <td/>
+    </tr>
+  </tbody>
+</table>
+<h1><%= locales[:delivery_address]%></h1>
+<% unless @address.first_name.blank? or @address.family_name.blank? %>
+<p><strong><%= locales[:name_and_family_name]%></strong>:  <%= @address.first_name %> <%=@address.family_name%></p>
+<%end%>
+<% unless @address.company_name.blank? %>
+<p><strong><%= locales[:company_name]%></strong>: <%= @address.company_name %> </p>
+<%end%>
+<p><strong><%= locales[:delivery_address]%></strong>:  <%= @address.street %> <%= @address.house_no%>, <%= @address.city %> - <%= @address.district%>, <%= @address.zip %></p>
+<h1><%= locales[:preferred_time_of_delivery]%></h1>
+<p><%= locales[:your_order_will_be_delivered_on].gsub('%date', "<strong>#{format_date(@basket.deliver_at)}</strong>") %></p>
+<p><%= locales[:time_of_delivery_approximately].chars.capitalize %>: <strong><%= format @basket.deliver_at%></strong></p>
+<h1><%= locales[:additional_info]%></h1>
+<% form_for "basket", :url => {:controller => :basket, :action => :submit}, :method => :post do |f| %>
+  <p>
+    <label for="order_notice"><%= locales[:note].chars.capitalize %>:</label><br/>
+    <textarea cols="50" rows="2" name="order[notice]" id="order_notice" class="noTinyMCE"><%= @basket.notice %></textarea>
+  </p>
+  <p><input type="submit" name="basket" id="back_to_basket" value="<%=locales[:back_to_basket]%>"/><input type="submit" name="submit" id="submit_order" value="<%=locales[:submit_order]%>"/></p>
+<%end%>
+

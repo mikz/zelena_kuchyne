@@ -1,0 +1,6 @@
+conversation = render :partial => 'conversation'
+
+page << <<-eos
+  $("#record_#{params[:id]} td.mailbox-name").html(#{@mailbox.human_name.to_json})
+  $("#record_#{params[:id]}").next().replaceWith(#{conversation.to_json})
+eos

@@ -1,0 +1,11 @@
+<td><%= link_to record.send(@options[:title][:name]), :action => 'show', :id => record.url %></td>
+<% for column in @options[:columns] %>
+<% val = record.send(column[:name]) %>
+  <td><%= format((column[:proc].is_a?(Proc))? column[:proc].call(val) : val,column[:options]) %></td>
+<% end %>
+<td>
+  <%-  if record.editable? -%>
+  <%= smart_link(locales[:edit], :action => 'edit', :id => record)%>
+  |  <%= smart_link locales[:delete], {:action => 'destroy', :id => record}, :confirm => locales['delete_confirmation'] %>
+  <%-end-%>
+</td>

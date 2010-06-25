@@ -1,0 +1,68 @@
+<h1><%= locales[:order] %></h1>
+<div id="order">
+<table class="order">
+  <thead>
+    <tr>
+      <td><%= locales[:attr_name]%></td>
+      <td class="amount"><%= locales[:pieces]%></td>
+      <td><%= locales[:price]%></td>
+      <td><%= locales[:overall]%></td>
+    </tr>
+  </thead>
+  <tfoot>
+    <tr class="total">
+      <td colspan="3"></td>
+      <td class="amount price"><%= format_currency(@order.price) %></td>
+    </tr>
+  </tfoot>
+  <tbody>
+  <% for item in @order.ordered_items %>
+    <tr>
+      <td><%= item.item.name %></td>
+      <td class="amount"><%= format item.amount %></td>
+      <td class="price"><%= format_currency item.discount_price %></td>
+      <td class="price"><%= format_currency (item.amount * item.discount_price) %></td>
+    </tr>
+  <% end %>
+  <% if @order.delivery_method%>
+  <tr>
+    <td><%= @order.delivery_method.basket_name %></td>
+    <td/>
+    <td/>
+    <td id="delivery_fee"><%= format_currency @order.delivery_method.price %></td>
+  </tr>
+  <% end %>
+  </tbody>
+</table>
+<h1><%= locales[:delivery_address]%></h1>
+<% unless @order.user.delivery_address.first_name.blank? or @order.user.delivery_address.family_name.blank? %>
+<p><%= locales[:name_and_family_name]%>:  <strong><%= h @order.user.delivery_address.first_name %> <%=h @order.user.delivery_address.family_name%></strong></p>
+<%end%>
+<% unless @order.user.delivery_address.company_name.blank? %>
+<p><%= locales[:company_name]%>: <strong><%= h @order.user.delivery_address.company_name %></strong></p>
+<%end%>
+<p><%= locales[:delivery_address]%>:  <strong><%= h @order.user.delivery_address.street %> <%= h @order.user.delivery_address.house_no%>, <%= h @order.user.delivery_address.city %> - <%= h @order.user.delivery_address.district%>, <%= h @order.user.delivery_address.zip %></strong></p>
+<% unless @order.user.delivery_address.note.blank? %>
+<p><%= locales[:note].chars.capitalize%>: <strong><%= h @order.user.delivery_address.note %></strong></p>
+<% end%>
+<% unless @order.user.phone_number.blank? or @order.user.phone_number_country_code.blank? %>
+<p><%= locales[:phone_number].chars.capitalize%>: <strong><%= format_phone_number(@order.user.phone_number, @order.user.phone_number_country_code) %></strong></p>
+<%end%>
+<% unless @order.user.delivery_address.zone.nil?%>
+<p><%= locales[:delivery_zone].chars.capitalize%>: <strong><%= @order.user.delivery_address.zone.name%></strong> <%= "ne" unless @order.user.delivery_address.zone_reviewed? %>ověřena administrátorem.</p>
+<% end%>
+<h1><%= locales[:preferred_time_of_delivery]%></h1>
+<p><%= locales[:your_order_will_be_delivered_on].gsub('%date', "<strong>#{format_date(@order.deliver_at)}</strong>") %></p>
+<p><%= "#{locales[:preferred_time_of_delivery]}: <strong class=\"print_time\">#{format_time(@order.deliver_at)}</strong>" %></p>
+<h1><%= locales[:additional_info]%></h1>
+<p><%= locales[:model_user].chars.capitalize%>: <%= link_to @order.user.name, :controller => "users", :action => "show", :id => @order.user%></p>
+<p class="notice"><%= locales[:note].chars.capitalize%>:<br/><%= h @order.notice %></p>
+<% if !@order.user.admin_note.blank? && current_user.belongs_to?("admins")%>
+<p><%= locales[:admin_note]%>: <strong><%= h @order.user.admin_note%></strong></p>
+<% end%>
+</div>
+<% if @print %>
+<script type="text/javascript">
+  print_and_close();
+</script>
+<% end%>

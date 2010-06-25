@@ -1,0 +1,15 @@
+peter_discount_1:
+  user: peter
+  amount: 0.33
+  name: '33% Sleva pro Petera mezi 1.10.2010 a 31.12.2010'
+  discount_class: 'meal'
+  start_at: 2010-10-01
+  expire_at: 2010-12-31
+  
+peter_discount_2:
+  user: peter
+  amount: 0.22
+  name: '22% Sleva pro Petera mezi 1.7.2010 a 31.7.2010'
+  discount_class: 'meal'
+  start_at: 2010-07-01
+  expire_at: 2010-07-31

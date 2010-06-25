@@ -1,0 +1,1 @@
+DROP TABLE IF EXISTS categorized_products CASCADE;

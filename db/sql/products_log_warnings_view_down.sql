@@ -1,0 +1,1 @@
+DROP VIEW IF EXISTS products_log_warnings_view CASCADE;

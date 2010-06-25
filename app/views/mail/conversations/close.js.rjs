@@ -1,0 +1,9 @@
+page << <<-eos
+if($("#records").hasClass("all")) {
+  $("#record_#{params[:id]}").next().remove()
+  $("#record_#{params[:id]} td:first-child a").removeClass("open")
+} else {
+  $("#record_#{params[:id]}").next().remove()
+  $("#record_#{params[:id]}").remove()    
+}
+eos

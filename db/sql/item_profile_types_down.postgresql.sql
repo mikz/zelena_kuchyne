@@ -1,0 +1,1 @@
+DROP TABLE IF EXISTS item_profile_types CASCADE;

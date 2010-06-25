@@ -1,0 +1,22 @@
+<div class="product">
+<div class="img"><%- if product.image_flag-%><img src="/pictures/item_<%=product.item_id%>.th.jpg" alt="<%= product.name%>"/><%-end-%></div>
+<h1><%= link_to product.name.chars.capitalize, seo_url(product)%></h1>
+<p>
+  <%= locales[:price].chars.capitalize%>: <%= format_currency product.price%><br/>
+  <%- if product.on_stock? -%>
+    <%= locales[:on_stock].chars.capitalize%>: <%= locales[:true].chars.capitalize%>
+  <%-else-%>
+    <%=locales[:term_of_delivery].chars.capitalize%>: <%= format_interval product.term_of_delivery%>
+  <%-end-%>
+</p>
+
+<div class="description"><%= product.short_description%></div>
+<fieldset>
+  <% form_tag :controller => 'basket', :action => 'add_item' do %>
+  <p><input type="text" name="item[amount]" class="amount_input" <%= 'disabled="disabled"' unless product.available?%>/>
+    <input type="hidden" name="item[item_id]" value="<%=product.item_id%>"/>
+  </p>
+  <p><input type="image" value="do košíku" src="/images/form_add_to_basket<%="_gray" unless product.available?%>.gif" <%= 'disabled="disabled"' unless product.available?%>/></p>
+  <%end%>
+</fieldset>
+</div>

@@ -1,0 +1,1 @@
+DROP VIEW IF EXISTS total_scheduled_meals_view CASCADE;

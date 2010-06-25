@@ -1,0 +1,10 @@
+<% data = [
+    ["gulas","sul"],
+    ["gulas","pepr"],
+    ["fazolovy_salat","sul"],
+    ["smetanova_polevka","sul"],
+    ["pecene_brambory","sul"],
+    ["pecene_brambory","pepr"]
+  ] %>
+
+<%= render_fixtures data, :attributes => ["meal", "spice"], :name => "used_spice" %>

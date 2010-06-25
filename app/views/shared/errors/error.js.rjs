@@ -1,0 +1,6 @@
+page.replace_html 'errors', :partial => 'shared/errors/error'
+page.insert_html :before, '#errors > h3', %{<h3 style=""><a href="\#" onclick="jQuery('\#errors').hide('slow');">#{locales['error_ok']}</a></h3>}
+page << 'jQuery("div.error").hide();'
+page << %{jQuery("#errors").css({'display': 'block', 'opacity': '0', 'borderTop': '1px #fff solid'});}
+page << %{jQuery("#text").animate({'minHeight': '250px'}, 'slow');}
+page << %{jQuery("#errors").animate({'opacity': '1'}, 'slow');}

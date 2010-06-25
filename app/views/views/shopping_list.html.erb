@@ -1,0 +1,31 @@
+<% content_for :sidebar do %>
+  <%= calendar_widget :action => 'shopping_list', :active_dates => @dates, :updates => '#shopping_list', :date_param => :date%>
+<% end %>
+
+<% content_for :javascript do %>
+  <% fw_strings = {:val_true => locales['true'], :val_false => locales['false'], :submit => locales['submit'], :show_all => locales['show_all']} %>
+  <%= filter_widget("shopping_list-rules", :url => url_for(params), 
+                                   :wrap => false, 
+                                   :beforeSend => %{function() {$("#shopping_list").html('<p><img src="/images/loading.gif" alt="loading" /></p>');}}, 
+                                   :strings => fw_strings) do |widget| 
+        widget.add_rule("amount", locales[:amount], "numeric")
+        widget.add_rule("total_cost", locales[:total_cost], "numeric")
+        widget.add_rule("cost_per_unit", locales[:cost_per_unit], "numeric")
+        widget.add_rule("supplier_short", locales[:supplier], "enum", @suppliers )
+        widget.add_rule("supply_flag", locales[:attr_supply_flag], "boolean")
+      end %>
+<% end %>
+
+<script type="text/javascript">
+//<![CDATA[
+function update_submit_urls(calendar_url, filter_url) {
+  calendar_widget_url = calendar_url.replace(/&amp;/g, '&');
+  filter_url = filter_url.replace(/&amp;/g, '&');
+  filterWidget("shopping_list-rules").updateOptions({url: filter_url});
+}
+  calendar_widget_url = '<%= url_for params.merge({:date => '__date__'}) %>'.replace(/&amp;/g, '&');
+//]]>
+</script>
+
+<%= render :partial => 'shopping_list'%>
+<p id="shopping_list-rules"></p>

@@ -1,0 +1,10 @@
+<h1><%= format( (@options[:title][:proc])? @options[:title][:proc].call(@record) : @record.send(@options[:title][:name]) ,@options[:title][:options]) %></h1>
+<div class="poll">
+  <dl>
+    <dt><%= @record.question.chars.capitalize%></dt>
+    <%- @record.poll_answers_results.each do |answer|-%>
+    <dd><%= answer.text %><div class="votes">(<%= "#{answer.votes.to_i} #{locales[:votes]}"  %>)</div><div class="result"><div style="width: <%= format answer.percent.to_i%>%;"><span><%= format answer.percent.to_f, :precision => 0%>%</span></div></div></dd>
+    <%-end-%>
+  </dl>
+  <p><%= locales[:overall].chars.capitalize%>: <%= "#{@record.poll_answers_results.first.total_votes.to_i} #{locales[:votes]}"%></p>
+</div>

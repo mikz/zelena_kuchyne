@@ -1,0 +1,9 @@
+DROP FUNCTION IF EXISTS check_item_id_exists() CASCADE;
+DROP FUNCTION IF EXISTS delete_item_profiles() CASCADE;
+DROP FUNCTION IF EXISTS delete_item_discounts() CASCADE;
+DROP FUNCTION IF EXISTS check_item_id_unique() CASCADE;
+DROP FUNCTION IF EXISTS delete_ordered_items() CASCADE;
+DROP FUNCTION IF EXISTS item_price(integer) CASCADE;
+DROP FUNCTION IF EXISTS copy_item_price() CASCADE;
+DROP FUNCTION IF EXISTS copy_item_cost() CASCADE;
+DROP FUNCTION IF EXISTS item_cost(integer) CASCADE;

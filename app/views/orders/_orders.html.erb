@@ -1,0 +1,25 @@
+<div id="orders">
+  <table class="admin <%= "orders-with-state" unless (params[:state] and params[:state] == 'all') %>">
+    <thead>
+      <tr>
+        <td>id</td>
+        <td><%= locales[:attr_user] %></td>
+        <td><%= locales[:attr_address] %></td>
+        <td class=""><%= locales[:attr_zone] %></td>
+        <td><%= locales[:attr_price] %></td>
+        <td><%= locales[:attr_delivery_man] %></td>
+        <td><%= locales[:attr_order_state] %></td>
+        <td class="fullscreen"><%= locales[:date_of_delivery].downcase %></td>
+        <td><%= locales[:attr_deliver_at] %></td>
+        <td></td>
+      </tr>
+    </thead>
+    <tbody>
+    <% for order in @orders %>
+      <% even = (even.nil? || even)? false : true %>
+      <%= render :partial => 'order', :locals => {:order => order, :delivery_men => @delivery_men, :even => even} %>
+    <% end %>
+    </tbody>
+  </table>
+  <%= render :partial => "sum" if @orders_sum%>
+</div>

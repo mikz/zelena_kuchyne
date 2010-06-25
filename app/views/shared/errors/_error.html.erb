@@ -1,0 +1,14 @@
+<%= locales.has_key?("snippet_e_#{@error_name}")? snippet("e_#{@error_name}") :  snippet('e_error')%>
+<%= snippet('report_error') %>
+<% if show_error_details? %>
+  <h3><a href="#" onclick="jQuery('div.error').toggle('slow');"><%= locales['error_details'] %></a></h3>
+  <div class="error">
+    <p><%= @error_message %>(status code was: <%= @status %>);</p>
+    <h4>Trace:</h4>
+    <p class="backtrace">
+      <% for line in @error_trace %>
+        <%= line %><br />
+      <% end %>
+    </p>
+  </div>
+<% end %>

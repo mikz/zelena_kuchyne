@@ -1,0 +1,18 @@
+<div id="cooking">
+<%  @scheduled_menus.each do |k,v|
+  menu = Menu.find_by_item_id k.item_id %>
+  <div class="cooking_menu">
+    <p><strong><%= menu.name %></strong> - <%= k.amount %> porcí</p>
+  <% for meal in v %>
+    <%= render :partial => "cooking_item", :locals => {:item => Meal.find_by_item_id(meal.item_id, :include => [:ingredients]), :amount => meal.amount }%>
+  <% end%>
+  </div>
+  <hr/>
+<%end%>
+<% @scheduled_items.each do |k,v| %>
+  <%= render :partial => "cooking_item", :locals => {:item => Meal.find_by_item_id(v.item_id, :include => [:ingredients]), :amount => v.amount } %>
+<% end %>
+
+
+<%= render :partial => "cooking_ingredients"%>
+</div>

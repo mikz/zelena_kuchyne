@@ -1,0 +1,24 @@
+peter:
+  login: "peter"
+  email: "peter@eskortpraha.cz"
+  password_hash: "6b7ae694a9cefd2ed7bfe70068b91cf48eee043db4fb1bd7bf69c90294d3c886" # 54321
+  salt: "ce60b489bc1c816adc192ab67b833c11d2dff5595d820963491142c03a1d7e53"
+  
+delivery_boy:
+  login: "delivery_boy"
+  email: "imbest@deliveryboys.cz"
+  password_hash: "8876fda6f37bb0ba9fb22a45cadf7cbe7fd378788bc13a6381f175c4a53caf5a" # 12345
+  salt: "11223b0505c11b904ca99e06dcf24ef6877c23ed4bd4e0d5c90e1ae9af166c0d"
+
+delivery_girl:
+  login: "delivery_girl"
+  email: "hottest@hotdeliverygirls.cz"
+  password_hash: "8876fda6f37bb0ba9fb22a45cadf7cbe7fd378788bc13a6381f175c4a53caf5a" # 12345
+  salt: "11223b0505c11b904ca99e06dcf24ef6877c23ed4bd4e0d5c90e1ae9af166c0d"
+
+martin:
+  login: "martin"
+  email: "martin@zelenakuchyne.cz"
+  password_hash: "6420f8e5611cc3d40faa02b368327cf91ba119f8326c8f7ffd12e7f0929bec16" # admin
+  salt: "8cceefafce91ec5445d34586f56e00569fae1464863c54b299d5da3f367fccd9"
+  

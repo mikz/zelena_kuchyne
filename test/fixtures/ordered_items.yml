@@ -1,0 +1,16 @@
+<% data = [
+  [ 8, "order_1", 500, 105 ],
+  [ 9, "order_1", 1, 119 ],
+  [ 2, "order_2", 4, 20 ],
+  [ 4, "order_3", 2, 55 ],
+  [ 7, "order_3", 3, 19 ],
+  [ 4, "order_4", 2, 55 ],
+  [ 2, "order_4", 3, 20 ],
+  [ 4, "order_5", 2, 55 ],
+  [ 7, "order_6", 3, 19 ],
+  [ 7, "order_7", 1, 19 ],
+  [ 4, "order_8", 5, 55 ],
+  [ 5, "order_8", 10, 20 ],
+  [ 7, "order_8", 15, 19 ]
+] %>
+<%= render_fixtures data, :name => "ordered_item", :attributes => ["item_id", "order", "amount","price"] %>

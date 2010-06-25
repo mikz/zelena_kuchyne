@@ -1,0 +1,15 @@
+peter_home:
+  user: peter
+  address_type: "home"
+  city: "Praha"
+  house_no: 46
+  company_name: "Žluťoučká stáj - koně@work a.s."
+  district: "Vinohrady"
+  street: "Jana Masaryka"
+  zip: 12000
+  note: "volejte ségře - 774587452"
+  first_name: "Petr"
+  family_name: "Kůň"
+  zone: zone1
+  
+  

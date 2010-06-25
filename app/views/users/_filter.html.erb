@@ -1,0 +1,11 @@
+<% form_tag url_for(:action => 'index'), :method => :get do -%>
+  <p class="center">
+    <%=locales[:list_only_users].chars.capitalize%> <label for="id"><%=locales[:in_group]%>:</label>
+    <%= select_tag :id, options_from_collection_for_select(@groups, 'system_name', 'title', params[:id]) + 
+    '<option value="" '+ @selected +">#{locales[:list_all]}</option>" %>
+    <label for="q"><%=locales[:containing_text]%>:</label>
+    <%= text_field_tag :q, params[:q], :class => "user_search" %>
+    <%= hidden_field_tag "order", params[:order]%>
+    <%= submit_tag "Zobrazit"%>
+  </p>
+<% end -%>

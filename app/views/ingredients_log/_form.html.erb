@@ -1,0 +1,45 @@
+<%= error_messages_for :record %>
+<% row_id = "record_#{@record.id ? @record.id : 'new'}" %>
+<% remote_form_for :record, :url => url, :html => {:onsubmit => "jQuery(this).update_textareas()"} do |f| %>
+    <p><label for="<%=row_id%>_ingredient_id"><%= locales["ingredient"] %></label><br />
+    <select name="record[ingredient_id]" class="{required: true}" id="<%=row_id%>_ingredient_id">
+      <option value=""></option>
+      <% for ingredient in @ingredients %>
+      <option value="<%=ingredient.id%>" <%=(@record && @record.ingredient && ingredient.id == @record.ingredient.id )? 'selected="selected"' : "" %>><%=ingredient.name%> (<%=ingredient.unit%>)</option>
+      <% end %>
+    </select></p>
+    <p><label for="<%=row_id%>_day"><%= locales["attr_day"] %></label><br />
+    <input type="text" class="datepicker_init {required: true}" name="record[day]" id="<%=row_id%>_day" value="<%= @record.day %>"/></p>
+    <p><label for="<%=row_id%>_day"><%= locales["amount"] %></label><br />
+    <input type="text" name="record[amount]" class="{required: true}" id="<%=row_id%>_amount" value="<%= @record.amount %>"/></p>
+    <p><label for="<%=row_id%>_entry_owner"><%= locales["entry_owner"] %></label><br />
+      <%= select("record", "entry_owner", @record.class.owners, {}, :id => "#{row_id}_entry_owner" ) %>
+    </p>
+    <p><label for="<%=row_id%>_update_ingredient_cost"><%= locales["update_ingredient_cost"] %></label>
+    <input type="checkbox" name="update_ingredient_cost" id="<%=row_id%>_update_ingredient_cost"/></p>
+    <div class="cost_selector">
+        <div>
+          <input type="radio" name="cost[type]" value="auto" <%= 'checked="checked"' if @record.new_record? %> id="<%=row_id%>_auto_cost" onchange="jQuery('.cost_selector input[type=\'text\']').attr('disabled','disabled');">
+          <label for="<%=row_id%>_auto_cost"><%=locales[:auto_cost]%></label>
+        </div>
+        <div>
+          <input type="radio" name="cost[type]" value="total" id="<%=row_id%>_total_cost" onchange="jQuery('#<%=row_id%>_total_cost_value').removeAttr('disabled');jQuery('#<%=row_id%>_unit_cost_value').attr('disabled','disabled');">
+          <label for="<%=row_id%>_total_cost"><%=locales[:total_cost]%></label>
+          <input type="text" id="<%=row_id%>_total_cost_value" name="cost[value]" disabled="disabled" onkeyup="decimal_dot_conversion(this)"></input> <%= locales[:currency_unit]%>
+        </div>
+        <div>
+          <input type="radio" name="cost[type]" value="unit" id="<%=row_id%>_unit_cost" onchange="jQuery('#<%=row_id%>_unit_cost_value').removeAttr('disabled');jQuery('#<%=row_id%>_total_cost_value').attr('disabled','disabled');">
+          <label for="<%=row_id%>_unit_cost"><%=locales[:cost_per_unit]%></label>
+          <input type="text" id="<%=row_id%>_unit_cost_value" name="cost[value]" disabled="disabled" value="<%= @record.ingredient_price%>" onkeyup="decimal_dot_conversion(this)"></input> <%= locales[:currency_unit]%>
+        </div>
+    </div>
+    <div class="clear"/>
+    <p><label for="<%=row_id%>_notes"><%=locales[:note]%></label><br/>
+    <textarea class="noTinyMCE" cols="18" rows="2" name="record[notes]" id="<%=row_id%>_notes"><%=@record.notes%></textarea></p>
+    <p><%= yield(:submit_button) || '<input type="submit" value="' + locales[:submit] + '" />' %></p>
+
+<% end %>
+<script type="text/javascript">
+  $("#<%=row_id%> form").initValidation();
+  $('.datepicker_init').datepicker();
+</script>

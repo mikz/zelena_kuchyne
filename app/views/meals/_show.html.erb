@@ -1,0 +1,18 @@
+<td><%= link_to record.name, :action => 'show', :id => record %><div style='display: none;'>
+    <%= record.ingredients.to_json(:only => :name) %>
+    </div>
+    <script type="text/javascript">$(function() {  $("a[href^='/meals/show/']").tooltip(); });</script>
+</td>
+  <td><%= format_currency(record.price) %></td>
+  <td><%= format_currency(record.cost, :precision => 2) %></td>
+  <td>
+    <% if user = record.last_update_by %>
+    <%= format_date(record.updated_at) %>, <%= user.name %>
+    <% else %>
+    <%= format_date record.updated_at %>
+    <% end %>
+  </td>
+<td>
+  <%= smart_link locales[:edit], :action => 'edit', :id => record %>
+  | <%= smart_link locales[:delete], {:action => 'destroy', :id => record}, :confirm => locales['delete_confirmation'] %>
+</td>

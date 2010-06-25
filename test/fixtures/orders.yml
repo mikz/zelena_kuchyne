@@ -1,0 +1,45 @@
+order_1:
+  user: peter
+  state: basket
+  deliver_at: "2010-10-23 11:30:00"
+
+order_2:
+  user: peter
+  state: order
+  delivery_man: delivery_boy
+  deliver_at: "2010-10-30 14:30:00"
+  
+order_3:
+  user: martin
+  state: expedited
+  delivery_man: delivery_boy
+  deliver_at: "2010-10-30 14:30:00"
+  
+order_4:
+  user: martin
+  state: closed
+  delivery_man: delivery_boy
+  deliver_at: "2010-10-30 14:30:00"
+
+order_5:
+  user: martin
+  state: closed
+  delivery_man: delivery_boy
+  deliver_at: "2010-10-30 14:30:00"
+
+order_6:
+  user: martin
+  state: closed
+  cancelled: true
+  delivery_man: delivery_boy
+  deliver_at: "2010-10-30 14:30:00"
+
+order_7:
+  user: martin
+  state: basket
+  deliver_at: "2010-10-30 11:30:00"
+
+order_8:
+  user: martin
+  state: order
+  deliver_at: "2010-10-20 12:30"

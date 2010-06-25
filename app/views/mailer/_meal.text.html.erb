@@ -1,0 +1,3 @@
+<h4><%= meal.name.chars.capitalize %></h4>
+<p><%= meal.description %></p>
+<p>cena: <strong><%= format_currency(meal.discount_price(:date=>@date, :user => @user), :template => @currency_template) %></strong></p>

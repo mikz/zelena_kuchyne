@@ -1,0 +1,17 @@
+<tr id="record_<%= record.id %>" <%= 'class="unread"' if record.unread %>>
+  <td>
+    <%= link_to "#{record.subject}&nbsp;(#{record.messages.size})", {:controller => '/mail/conversations', :action => 'show', :id => record.id}, {:title => locales[:show_messages], :onclick => 'toggle_conversation(this); return false;', :class => (is_open ? "open" : nil)} %>
+  </td>
+  <td><%= 
+      record.messages.select {|m| m.direction == 'recieved' }.collect do |m|
+        if @contacts[m.from_address]
+          link_to @contacts[m.from_address].name, :controller => '/users', :action => 'show', :id => @contacts[m.from_address].id
+        else
+          m.from_name && m.from_name != '' ? m.from_name : m.from_address
+        end
+      end.uniq.join(', ')
+  %></td>
+  <td><%= format_date(record.updated_at) %></td>
+  <td class="mailbox-name"><%= record.mailbox.human_name %></td>
+  <td><%= record.handler ? record.handler.name : locales[:nobody] %></td>
+</tr>

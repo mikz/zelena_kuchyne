@@ -1,0 +1,2 @@
+class PageHistoriesController < ApplicationController
+end

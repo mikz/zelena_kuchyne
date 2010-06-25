@@ -1,0 +1,106 @@
+body {
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 12pt;
+}
+p {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+h1 {
+  font-size: 18pt;
+}
+h2 {
+  font-size: 16pt;
+}
+#header, .menu, #sidebar, .admin_menu, #footer {
+  display: none !important;
+}
+.meal fieldset {
+  display: none;
+}
+table.admin {
+  width: 100%;
+  border-collapse: collapse;
+}
+table.admin td {
+  padding: 5pt 3pt;
+}
+table.admin td {
+  text-align: right;
+}
+.text.left {
+  text-align: left !important;
+  padding: 3pt 5pt 3pt 0;
+}
+table.admin tr td:first-child{
+  text-align: left !important;
+}
+thead *{
+  font-weight: bold;
+}
+
+tbody td, tfoot td{
+  border-top: 1pt solid black;
+}
+
+select, input {
+  border: none;
+}
+td.amount {
+  color: #AD1F00;
+  padding-left: 15pt;
+  min-width: 95pt;
+  text-align: left;
+}
+td.price {
+  text-align: right;
+}
+
+.print_time {
+  color: blue;
+  font-size: 150%;
+}
+.notice {
+  color: #AD1F00;
+}
+/* export for kitchen */
+.cooking_menu > p > strong{
+  color: #AD1F00;
+}
+
+.cooking_menu .cooking_item {
+  margin-left: 2em;
+}
+.cooking_item {
+  margin-top: 1em;
+}
+#cooking .ingredients, #cooking .spices{
+  margin-left: 1em;
+}
+.cooking_item .ingredient {
+  color: #435F23;
+}
+.cooking_item .amount {
+  color: #AD1F00;
+}
+
+.cooking_item .meal_flag {
+  vertical-align: middle;
+  padding-bottom: 2px;
+  padding-left: 0.25em;
+}
+
+/* bigger font in orders */
+div#order {
+  font-size: 20px;
+}
+div#order table {
+  width: 100%;
+}
+div#order thead {
+  text-align: center;
+}
+div#order td {
+  padding-top: 8pt;
+  padding-bottom: 8pt;
+}

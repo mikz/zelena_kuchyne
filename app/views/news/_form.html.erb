@@ -1,0 +1,20 @@
+<%= error_messages_for :record %>
+<% row_id = "record_#{@record.id ? @record.id : 'new'}" %>
+<% remote_form_for :record, :url => url do |f| %>
+  <p><label for="<%=row_id%>_title"><%= locales[:attr_title] %></label><br />
+  <%= f.text_field :title, :class => '{required: true, minlength: 3}',:id=>"#{row_id}_title" %></p>
+  <p><label for="<%=row_id%>_publish_at"><%= locales[:attr_publish_at] %></label><br />
+  <%= f.text_field :publish_at,:id=>"#{row_id}_publish_at", :class => "{required: true}" %></p>
+  <p><label for="<%=row_id%>_expire_at"><%= locales[:attr_expire_at] %></label><br />
+  <%= f.text_field :expire_at,:id=>"#{row_id}_expire_at" %></p>
+  <p><label for="<%=row_id%>_body"><%= locales[:attr_body] %></label><br />
+  <%= f.text_area :body,:id=>"#{row_id}_body" %></p>
+<p><%= yield(:submit_button) || '<input type="submit" value="' + locales[:submit] + '" />' %></p>
+<% end %>
+<script type="text/javascript">
+  $("form").initValidation();
+  $(function(){
+      $("#<%=row_id%>_publish_at").datepicker();
+      $("#<%=row_id%>_expire_at").datepicker();
+  });
+</script>

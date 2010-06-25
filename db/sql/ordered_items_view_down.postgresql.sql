@@ -1,0 +1,1 @@
+DROP VIEW IF EXISTS ordered_items_view CASCADE;

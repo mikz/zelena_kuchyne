@@ -1,0 +1,10 @@
+<%- remote_form_for :poll, poll, :url => {:controller => :polls, :action => :vote, :id => poll.id} do |f| -%>
+<%= render :partial => "polls/message", :locals => {:message => message ||= nil, :error => error ||= nil} %>
+<dl>
+  <dt><%= poll.question.chars.capitalize%></dt>
+  <%- poll.poll_answers.each do |answer|-%>
+  <dd><%= (poll.poll_type == "single")? render_single_poll(answer) : render_multi_poll(answer)%></dd>
+  <%-end-%>
+</dl>
+<p><input type="submit" value="<%=locales[:submit]%>" name="commit"/></p>
+<%-end-%>

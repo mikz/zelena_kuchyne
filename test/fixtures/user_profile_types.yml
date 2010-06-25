@@ -1,0 +1,84 @@
+pagination_setting:
+  data_type: "hidden"
+  name: "pagination_setting"
+  visible:   false
+  editable:  false
+  required:  false
+
+interface_language:  
+    name: "interface_language"
+    data_type:  "hidden"
+    visible:    false
+    editable:   false
+    required:   false
+
+first_name:
+    name: "first_name"
+    data_type:  "text_field"
+    visible:    true
+    editable:   true
+    required:   true
+
+family_name:
+    name: "family_name"
+    data_type:  "text_field"
+    visible:    true
+    editable:   true
+    required:   true
+
+phone_number:
+    name: "phone_number"
+    data_type:  "text_field"
+    visible:    true
+    editable:   true
+    required:   true
+
+company_name:
+    name: "company_name"
+    data_type:  "text_field"
+    visible:    true
+    editable:   true
+    required:   false
+
+company_registration_no:
+    name: "company_registration_no"
+    data_type:  "text_field"
+    visible:    true
+    editable:   true
+    required:   false
+
+company_tax_no:
+    name: "company_tax_no"
+    data_type:  "text_field"
+    visible:    true
+    editable:   true
+    required:   false
+
+phone_number_country_code:
+    name: "phone_number_country_code"
+    data_type:  "text_field"
+    visible:    true
+    editable:   true
+    required:   true
+
+tomorrow_menu_by_mail:
+    name: "tomorrow_menu_by_mail"
+    data_type:  "checkbox"
+    visible:    true
+    editable:   true
+    required:   false
+
+delivery_man_color:
+    name: "delivery_man_color"
+    data_type:  "text_field"
+    visible:    false
+    editable:   true
+    required:   false
+
+preferred_delivery_method_id:
+    name: "preferred_delivery_method_id"
+    data_type:  "hidden"
+    visible:    false
+    editable:   false
+    required:   false
+

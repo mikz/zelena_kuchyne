@@ -1,0 +1,1 @@
+DROP VIEW IF EXISTS menus_view CASCADE;

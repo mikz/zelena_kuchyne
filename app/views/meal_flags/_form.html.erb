@@ -1,0 +1,31 @@
+<%= error_messages_for :record %>
+<% row_id = "record_#{@record.id ? @record.id : 'new'}" %>
+<% remote_form_for :record, :url => url do |f| %>
+  <p><label for="<%=row_id%>_name"><%= locales[:attr_name] %></label><br />
+  <%= f.text_field :name, :id=>"#{row_id}_name", :class => "{required: true, minlength: 2}"%></p>
+  <p><label for="<%=row_id%>_description"><%= locales[:attr_description] %></label><br />
+  <%= f.text_field :description, :id=>"#{row_id}_description"%></p>
+  <div class="picture">
+    <img src="/meal_flags/<%= @record.id %>.th.jpg" alt="<%= @record.name %>" />
+  </div>
+  <p class="uploader"><label for="<%= row_id %>_record_picture"><%= locales['upload_new_picture'] %></label><br />
+  <input type="file" name="image_file" id="<%= row_id %>_record_picture" /></p>
+  
+  <p><%= yield(:submit_button) || '<input type="submit" value="' + locales[:submit] + '" />' %></p>
+<% end %>
+<script type="text/javascript">
+$("form").initValidation();
+var row_color = $('#record_<%= @record.id %>').hasClass('even') ? 'D7DEBB' : 'f0f2e0';
+
+$('.uploader').jqUploader({
+   src: "/javascripts/flash_upload/jqUploader.swf",
+   uploadScript: "<%= url_for(:controller => 'images', :action => 'create', :id => session.session_id) %>",
+   allowedExtDescr: "Images (*.jpg; *.jpeg; *.gif)",
+   allowedExt: "jpg|JPG|jpeg|JPEG|gif|GIF",
+   background: row_color,
+   endMessage: "<%= locales['picture_uploaded'] %>",
+   validFileMessage: "<%= locales['picture_valid'] %>",
+   progressMessage: "<%= locales['picture_being_uploaded'] %>",
+   hideSubmit: false
+ });
+ </script>

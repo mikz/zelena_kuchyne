@@ -1,0 +1,50 @@
+<dl id="menu_menu">
+  <dt><%= link_to locales['menu_menu'], :controller => 'menu' %></dt>
+</dl><!--
+<dl id="menu_eshop">
+  <dt><%= link_to locales['menu_eshop'], '#' %></dt>
+  <dd><%= link_to locales['menu_product_categories'], '#' %></dd>
+</dl>-->
+<% if current_user.basket %>
+<dl id="menu_basket">
+  <dt><%= link_to locales['menu_basket'], :controller => 'basket' %></dt>
+</dl>
+<% end %>
+<% unless current_user.orders.find(:all, :conditions => "state != 'basket'").empty? %>
+<dl id="menu_orders">
+  <dt><%= link_to locales['menu_orders'], :controller => 'orders', :action => 'mine' %></dt>
+</dl>
+<% end %>
+<% if current_user.belongs_to?(:admins) %>
+  <dl id="menu_admin">
+    <dt><%= link_to 'Admin', '#' %></dt>
+    <dd class="menu_section"><span><%= locales[:menu_restaurant] %></span></dd>
+    <dd><%= link_to locales[:menu_meals], :controller => 'meals' %></dd>
+    <dd><%= link_to locales[:menu_spices], :controller => 'spices' %></dd>
+    <dd><%= link_to locales[:menu_suppliers], :controller => 'suppliers' %></dd>
+    <dd><%= link_to locales[:menu_ingredients], :controller => 'ingredients' %></dd>
+    <dd><%= link_to locales[:menu_meal_categories], :controller => 'meal_categories' %></dd>
+    <dd><%= link_to locales[:menu_menus], :controller => 'menus' %></dd>
+    <dd><%= link_to locales[:menu_schedule], :controller => 'schedule' %></dd>
+    <dd><%= link_to locales[:menu_orders], :controller => 'orders' %></dd>
+    <!--<dd class="menu_section"><span><%= locales[:menu_eshop] %></span></dd>
+    <dd><%= link_to locales[:menu_products], :controller => 'products' %></dd>
+    <dd><%= link_to locales[:menu_product_categories], :controller => 'product_categories' %></dd>
+    <dd><%= link_to locales[:menu_orders], :controller => 'orders' %></dd>-->
+    <dd class="menu_section"><span><%= locales[:menu_application] %></span></dd>
+    <dd><%= link_to locales[:menu_pages], :controller => 'pages' %></dd>
+    <dd><%= link_to locales[:menu_news], :controller => 'news' %></dd>
+    <dd><%= link_to locales[:menu_snippets], :controller => 'snippets' %></dd>
+    <dd><%= link_to locales[:menu_users], :controller => 'users' %></dd>
+    <dd class="menu_section"><span><%= locales[:menu_analysis] %></span></dd>
+    <!--<dd><%= link_to locales[:menu_expenses] %></dd>-->
+    <dd><%= link_to locales[:menu_shopping_list], :controller => 'views', :action => 'shopping_list' %></dd>
+    <dd><%= link_to locales[:menu_stock], :controller => 'views', :action => 'stock' %></dd>
+  </dl>
+<% end %>
+<% if flash[:notice] %>
+  <dl id="menu_notice">
+    <dt><%= link_to 'Zprávy', '#' %></dt>
+    <dd><p><%= flash[:notice] %></p></dd>
+  </dl>
+<% end %>

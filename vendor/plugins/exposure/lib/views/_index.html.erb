@@ -1,0 +1,33 @@
+<table class="admin" id="records">
+  <thead>
+    <% unless (pagination = paginate(@records,:container=>false)).nil? %>
+    <tr class="pagination">
+      <td colspan="<%=@options[:columns].size+2%>"><%= pagination %></td>
+    </tr>
+    <% end %>
+    <tr>
+      <td><%= link_to locales["attr_#{@options[:title][:name]}"], :action => 'index', :order => @options[:title][:order] || @options[:title][:name] %></td>
+    <% for column in @options[:columns] %>
+      <td><%= link_to locales[(column[:locale])? column[:locale] : "attr_#{column[:name]}"], :action => 'index', :order => column[:order] || column[:name] %></td>
+    <% end %>
+      <td><span id="record_add"><%= smart_link locales[:add], :action => 'new' %></span></td>
+    </tr>
+  </thead>
+  <% unless pagination.blank? %>
+  <tfoot>
+    <tr class="pagination">
+      <td colspan="<%=@options[:columns].size+2%>"><%= pagination %></td>
+    </tr>
+  </tfoot>
+  <% end%>
+  <tbody id="records_body">
+  <% for record in @records %>
+    <tr id="record_<%= record.id %>">
+      <%= render :partial => 'show', :locals => {:record => record} %>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+<% if protect_against_forgery? %> 
+<div style='display: none;' id="authenticity_token"><%= form_authenticity_token %></div> 
+<% end %>

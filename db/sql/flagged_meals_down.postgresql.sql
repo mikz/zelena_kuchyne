@@ -1,0 +1,1 @@
+DROP TABLE IF EXISTS flagged_meals CASCADE;

@@ -1,0 +1,63 @@
+<div class="box" id="main_box">
+  <h1><%= locales[:title]%></h1>
+  <a id="restaurace_photo" href="/images/restaurace_full.jpg" style="float:right"><img src="/images/restaurace_250.jpg" alt="Fotografie restaurace (interiér)" title="Interiér Zelené kuchyně" /></a>
+  <%=snippet("welcome")%>
+</div>
+<div class="box">
+  <h3><%= locales[:where_you_can_find_us]%></h3>
+  <div id="map">
+    <img src="/images/map.png" width="350" height="300" alt="Milíčova 5, Praha 3-Žižkov"/>
+    <br/>
+    <a href="http://maps.google.com/maps?f=q&amp;source=embed&amp;hl=cs&amp;geocode=&amp;q=mil%C3%AD%C4%8Dova+5&amp;sll=50.082315,14.463329&amp;sspn=0.041307,0.071754&amp;ie=UTF8&amp;ll=50.085055,14.450369&amp;spn=0.00413,0.006437&amp;z=16" rel="external">Zobrazit větší mapu</a>
+  </div>
+  <%= snippet "restaurant_vcard"%>
+  <p><%= locales[:opening_hours]%>: <!--[if IE]><nobr><![endif]--><strong><%= snippet "opening_hours" %></strong><!--[if IE]></nobr><![endif]--></p>
+  <%= snippet 'delivery_vcard'%>
+</div>
+<% content_for :javascript do %>
+  jQuery(function(){
+    jQuery('#restaurace_photo').lightBox();
+    $("#map img").replaceWith('<iframe width="350" height="300" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=cs&amp;geocode=&amp;q=mil%C3%AD%C4%8Dova+5&amp;sll=50.082315,14.463329&amp;sspn=0.041307,0.071754&amp;ie=UTF8&amp;ll=50.085055,14.450369&amp;spn=0.00413,0.006437&amp;z=16&amp;output=embed"></iframe>');
+  });
+<% end %>
+<%= render :partial => 'shared/user_sidebar'%>
+<% content_for :css do %>
+  #text p {
+    margin-bottom: 12px;
+  }
+  
+  #map {
+    float: right;
+    border: 3px #A8BB76 solid;
+    margin: 0 18px 6px 6px;
+  }
+  
+  h1 {
+    font-size: 16px;
+  }
+  
+  .box {
+    clear: both;
+    border-top: 1px #A8BB76 solid;
+    padding: 12px 0;
+  }
+  #main_box {
+    border-top-style: none;
+  }
+  #text h3 {
+    font-size: 14px;
+    color: #435F23;
+    margin-bottom: 12px;
+  }
+  
+  #text small {
+    color: #666;
+  }
+  
+  #text .box img {
+    border: 3px #A8BB76 solid;
+    margin: 0 18px 6px 6px;
+  }
+
+
+<% end %>

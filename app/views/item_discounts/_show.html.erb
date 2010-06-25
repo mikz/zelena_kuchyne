@@ -1,0 +1,9 @@
+<td><%= link_to record.name, :action => 'show', :id => record %></td>
+<td><%=format_float record.amount%> %</td>
+<td><%=format_date record.start_at%></td>
+<td><%=format_date record.expire_at%></td>
+<td><%=record.note%></td>
+<td>
+  <%= smart_link locales[:edit], :action => 'edit', :id => record %>
+  | <%= smart_link locales[:delete], {:action => 'destroy', :id => record}, :confirm => locales['delete_confirmation'] %>
+</td>

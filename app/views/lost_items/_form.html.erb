@@ -1,0 +1,29 @@
+<% row_id = "lost_item_#{@record.new_record? ?  'new' : @record.id}" 
+   remote_form_for 'record', :url => {:action => (@record.new_record?)? 'create' : 'update', :id => @record.id }, :html => {:id => row_id} do |f|%>
+   <%= validation_error_for @record %>
+  <p><label for="<%=row_id%>_lost_at"><%= locales[:attr_scheduled_for] %></label><br />
+    <%= f.text_field :lost_at, :id => row_id+"_lost_at", :class => "{required: true}", :onchange => "scheduled_items.load(this.value, '##{row_id}_item_id');" %>
+  </p>
+  <p>
+    <label for="<%=row_id%>_item_id"><%= locales[:item] %></label><br />
+    <select name="record[item_id]" id="<%=row_id%>_item_id" class="{required: true}">
+      <option></option>
+        <% if @record.item %>
+          <option value="<%= @record.item.item_id %>" selected="selected"><%= @record.item.name %></option>
+        <% end %>
+      </optgroup>
+    </select>
+  </p>
+  <p><label for="<%=row_id%>_user"><%= locales["attr_user"] %></label><br />
+  <input id="<%=row_id%>_user" value="<%= @record.user.login if @record.user %>" class="{required: true}" type="text" size="30" name="record[user]"/><% if @record.new_record? %><span class="add_user"><a href="#" onclick="lost_items.add_user(this);">+</a></span><%end%></p>
+  <p><label for="<%=row_id%>_amount"><%= locales[:amount] %></label><br />
+  <%= f.text_field :amount, :id => row_id + "_amount", :class => "{required: true, min: 0}" %>
+  <p><%= yield :submit_button%></p>
+<% end %>
+<script type="text/javascript">
+$(function(){
+    $("#<%=row_id%>").initValidation();
+    $("#<%=row_id%>_lost_at").datepicker();
+    $("#<%=row_id%>_user").autocomplete('/users/find/');
+});
+</script>

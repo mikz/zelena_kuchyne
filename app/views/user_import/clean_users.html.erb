@@ -1,0 +1,7 @@
+<%= render :partial => "menu"%>
+<h1>Promazání uživatelů</h1>
+<ul>
+  <li><strong>původní počet uživatelů</strong> - <%= @old_records.size%></li>
+  <li><strong>smazáno uživatelů</strong> - <%= @old_records.size - @new_records.size%></li>
+  <li><strong>nyní uživatelů</strong> - <%= @new_records.size%></li>
+</ul>

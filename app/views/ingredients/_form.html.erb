@@ -1,0 +1,22 @@
+<%= error_messages_for :record %>
+<% remote_form_for :record, :url => url, :html => {:onsubmit => "jQuery(this).update_textareas()"} do |f| %>
+  <% row_id = "record_#{@record.id ? @record.id : 'new'}" %>
+  <p><label for="<%=row_id%>_name"><%= locales[:attr_name] %></label><br />
+  <%= f.text_field :name, :class => '{required: true, minlength: 2}', :id=>"#{row_id}_name" %></p>
+  <p><label for="<%=row_id%>_unit"><%= locales[:attr_unit] %></label><br />
+  <%= f.text_field :unit, :class => '{required: true, minlength: 1}', :id=>"#{row_id}_unit" %></p>
+  <p><label for="<%=row_id%>_cost"><%= locales[:attr_cost] %></label><br />
+  <%= f.text_field :cost, :class => '{required: true, minlength: 1, number: true}', :onkeyup=>"decimal_dot_conversion(this)", :id=>"#{row_id}_cost" %></p>
+  <p><label for="<%=row_id%>_code"><%= locales[:attr_code] %></label><br />
+  <%= f.text_field :code, :id=>"#{row_id}_code" %></p>
+  <p><label for="<%=row_id%>_supplier_id"><%= locales[:attr_supplier_id] %></label><br />
+  <select id="<%=row_id%>_supplier_id" name="record[supplier_id]">
+    <% for supplier in @suppliers %>
+      <option value="<%= supplier.id %>"<%= ' selected="selected"' if @record.supplier_id == supplier.id %>><%= supplier.name_abbr %></option>
+    <% end %>
+  </select></p>
+  <p><label for="<%=row_id%>_supply_flag"><%= locales[:attr_supply_flag] %></label><br />
+  <%= f.check_box :supply_flag, :id=>"#{row_id}_supply_flag" %></p>
+  <p><%= yield(:submit_button) || '<input type="submit" value="' + locales[:submit] + '" />' %></p>
+<% end %>
+<script type="text/javascript">$("form").initValidation();</script>

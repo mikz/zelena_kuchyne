@@ -1,0 +1,15 @@
+<%= snippet 'tomorrow_menu_mail_header'%>
+<% for menu in @menus %>
+  <h3><%= menu.name.chars.capitalize %></h3>
+  <% for meal in menu.meals %>
+    <%= render :partial => 'meal', :locals => {:meal => meal} %>
+  <% end %>
+  <h4><%= locales[:whole_menu]%></h4>
+  <p><%= locales[:price]%>: <strong><%= format_currency(menu.discount_price(:date => @date, :user => @user), :template => @currency_template) %></strong></p>
+<% end 
+   for category in @categories %>
+  <h3><%= category.name.chars.capitalize %></h3>
+  <% for meal in category.meals %>
+    <%= render :partial => 'meal', :locals => {:meal => meal} %>
+  <% end 
+   end %>

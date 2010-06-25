@@ -1,0 +1,19 @@
+<ul class="message-menu">
+  <% unless params[:controller] == 'mail/messages' && params[:action] == 'show' -%>
+    <li><%= smart_link locales[:close], :controller => '/mail/messages', :action => 'show', :id => message.id %></li>
+    <% if message.conversation.flag_closed -%>
+      <li>
+        <em><%= locales[:conversation_closed] %></em>
+      </li>
+    <% else -%>  
+      <% if can_reply_to(message) && message.direction == 'recieved' -%>
+        <li><%= smart_link locales[:reply], :controller => '/mail/messages', :action => 'reply', :id => message.id  %></li>
+        <% if message.flag_new -%>
+        <li><%= smart_link locales[:mark_read], :controller => '/mail/messages', :action => 'toggle_read', :id => message.id %></li>
+        <% else -%>
+        <li><%= smart_link locales[:mark_unread], :controller => '/mail/messages', :action => 'toggle_read', :id => message.id %></li>  
+        <% end -%>
+      <% end -%>
+    <% end -%>
+  <% end -%>
+</ul>

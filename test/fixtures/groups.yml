@@ -1,0 +1,24 @@
+admins:
+  title: "admins"
+  system_name: "admins"
+  default_group: false
+
+chefs:
+  title: "chefs"
+  system_name: "chefs"
+  default_group: false
+
+sales:
+  title: "sales"
+  system_name: "sales"
+  default_group: false
+
+delivery_men:
+  title: "delivery men"
+  system_name: "deliverymen"
+  default_group: false
+  
+customers:
+  title: "customers"
+  system_name: "customers"
+  default_group: true

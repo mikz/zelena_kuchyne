@@ -1,0 +1,16 @@
+<tr class="conversation-note-editor">
+  <td colspan="4">
+    <p>
+      <strong><%= locales[:note]%>:</strong> 
+      <% form_remote_tag :url => {:controller => '/mail/conversations', :action => 'update_note', :id => id} do -%>
+        <p>
+        <%= text_area_tag :note, note %>
+        </p>
+        <p>
+        <%= submit_tag locales[:save] %>
+        <%= link_to_remote locales[:cancel], :url => {:controller => '/mail/conversations', :action => 'show_note', :id => id} %>
+        </p>
+      <% end -%>
+    </p>
+  </td>
+</tr>

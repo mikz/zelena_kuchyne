@@ -1,0 +1,54 @@
+<% content_for :sidebar do %>
+  <%= calendar_widget :action => 'index', :active_dates => @days, :updates => '#orders', :date_param => :date %>
+<% end %>
+
+<%  content_for :javascript do %>
+<%  fw_strings = {:val_true => locales['true'], :val_false => locales['false'], :submit => locales['submit'], :show_all => locales['show_all']} 
+    delivery_men_hash = {"null" => locales[:none_assigned] }
+    @delivery_men.each { |d|
+      delivery_men_hash[d.id] = d.name
+    }  %>
+<%= filter_widget("order-rules", :url => url_for(params), 
+                                   :wrap => false, 
+                                   :beforeSend => %{function() {$("#orders").html('<p><img src="/images/loading.gif" alt="loading" /></p>');}}, 
+                                   :strings => fw_strings) do |widget| 
+        widget.add_rule("price", locales[:attr_price], "numeric")
+        widget.add_rule("paid", locales[:attr_order_paid], "boolean")
+        widget.add_rule("state", locales[:attr_order_state], "enum", {'order' => locales[:order_status_order], 'expedited' => locales[:order_status_expedited], 'closed' => locales[:order_status_closed]})
+        widget.add_rule("delivery_man_id", locales[:attr_delivery_man], "enum", delivery_men_hash)
+      end %>
+<% end %>
+
+<script type="text/javascript">
+//<![CDATA[
+  orders_state_url = '<%= url_for params.merge({:state => '__state__'}) %>'.replace(/&amp;/g, '&');
+  calendar_widget_url = '<%= url_for params.merge({:date => '__date__'}) %>'.replace(/&amp;/g, '&');
+//]]>
+</script>
+
+<ul class="ui-tabs-nav">
+<li id="order-tab-order" <%= 'class="ui-tabs-selected"' if (params[:state] == 'order' || params[:state].nil?) %>>
+    <%= link_to_function locales['order_status_order_pl'], "list_by_state('order')" %>
+  </li>
+  <li id="order-tab-expedited" <%= 'class="ui-tabs-selected"' if params[:state] == 'expedited'%>>
+    <%= link_to_function locales['order_status_expedited_pl'], "list_by_state('expedited')" %>
+  </li>
+  <li id="order-tab-closed" <%= 'class="ui-tabs-selected"' if params[:state] == 'closed'%>>
+    <%= link_to_function locales['order_status_closed_pl'], "list_by_state('closed')" %>
+  </li>
+  <li id="order-tab-all" <%= 'class="ui-tabs-selected"' if params[:state] == 'all'%>>
+    <%= link_to_function locales['order_status_all'], "list_by_state('all')" %>
+  </li>
+  <li id="order-tab-all_cancelled" <%= 'class="ui-tabs-selected"' if params[:state] == 'all_cancelled'%>>
+    <%= link_to_function locales['order_status_all_cancelled'], "list_by_state('all_cancelled')" %>
+  </li>
+  <li id="order-tab-cancelled" <%= 'class="ui-tabs-selected"' if params[:state] == 'selected'%>>
+    <%= link_to_function locales['order_cancelled_pl'], "list_by_state('cancelled')" %>
+  </li>
+</ul>
+
+<%= render :partial => 'orders' %>
+<p>
+  <%= locales[:order_rules]%>
+</p>
+<p id="order-rules"></p>

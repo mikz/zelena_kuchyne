@@ -1,0 +1,2 @@
+page.replace "#message_#{@message.id} ul.message-menu", :partial => '/mail/messages/message_menu', :locals => {:message => @message}
+page.replace "#record_#{@conversation.id}", :partial => '/mail/conversations/show', :locals => {:record => @conversation, :is_open => true}

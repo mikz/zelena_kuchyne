@@ -1,0 +1,9 @@
+pikantni_menu:
+  item_id: 8
+  name: "pikantní menu"
+  price: 105
+
+delikatni_menu:
+  item_id: 9
+  name: "delikátní menu"
+  price: 119

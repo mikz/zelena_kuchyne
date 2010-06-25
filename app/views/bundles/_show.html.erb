@@ -1,0 +1,16 @@
+<td><%= link_to record.send(@options[:title][:name]), :action => 'show', :id => record %></td>
+<td><%= record.meal.name%></td>
+<td><%= format record.amount%></td>
+<td><%= format_currency record.price %></td>
+<td><%= format_currency record.cost %></td>
+<td>
+  <% if user = record.last_update_by %>
+  <%= format_date(record.updated_at) %>, <%= user.name %>
+  <% else %>
+  <%= format_date record.updated_at %>
+  <% end %>
+</td>
+<td>
+  <%= smart_link locales[:edit], :action => 'edit', :id => record %>
+  | <%= smart_link locales[:delete], {:action => 'destroy', :id => record }, :confirm => locales['delete_confirmation'] %>
+</td>

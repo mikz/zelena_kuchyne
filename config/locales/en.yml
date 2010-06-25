@@ -1,0 +1,131 @@
+#-- layout texts --
+layout_title: Zelená kuchyně
+layout_subtitle: meals delivery service, Indian vegetable cuisine, vegetarian meals, healthy food
+username: user
+password: password
+signup: sign up
+signup_completed: You've been signed up.
+signin: sign in
+signout: sign out
+user: user
+edit_my_profile: edit my profile
+#-- interface texts --
+submit_order: submit my order
+order_submitted: your order has been submitted for processing
+price_of_the_whole_menu: Price of the entire menu
+order_the_whole_menu: order the menu
+add_to_basket: add to basket
+price: price
+speciality_of_the_day: speciality of the day
+always_available: permanent offer
+todays_menu: Today's menu
+menu_for_the_day: Menu for the day
+ingredient: ingredient
+amount: amount
+time_of_delivery_is_approximate: Time of delivery is approximate.
+delivery_fee: delivery fee
+unit: unit
+cost_per_unit: cost per unit
+total_cost: total
+supplier: supplier
+update_successful: record was updated successfully
+create_successful: a new record was successfully created
+signed_in: you are now logged in
+signed_out: you have been logged out
+true: yes
+false: no
+null: (unknown)
+next_page: next
+previous_page: previous
+delete_confirmation: Are you sure you want to delete this?
+add: add
+edit: edit
+delete: delete
+close: close
+save: save
+cancel: cancel
+submit: submit
+agenda: agenda
+week: week
+month: month
+meals: meals
+menus: menus
+item: item
+schedule: schedule
+#-- menu_links
+menu_menu: Menu
+menu_basket: Košík
+menu_restaurant: Restaurant
+menu_meals: Meals
+menu_suppliers: Suppliers
+menu_ingredients: Ingredients
+menu_meal_categories: Categories
+menu_menus: Menus
+menu_schedule: Schedule
+menu_eshop: Eshop
+menu_products: Products
+menu_product_categories: Categories
+menu_application: Application
+menu_pages: Pages
+menu_snippets: Snippets
+menu_users: Users
+menu_orders: Orders
+menu_analysis: Analysis
+menu_expenses: Expenses
+menu_shopping_list: Shopping List
+menu_stock: Stock
+#-- models --
+model_recipes: ingredients
+model_meal: meal
+model_meals: meals
+model_menu: menu
+model_menus: menus
+#-- model attributes --
+attr_title: title
+attr_name: name
+attr_name_abbr: abbreviation
+attr_address: address
+attr_scheduled_for: date
+attr_supplier_id: supplier
+attr_cost: cost
+attr_price: price
+attr_unit: amount per unit
+attr_body: body
+attr_url: url
+attr_menu_item: linked from main menu
+attr_description: description
+attr_category: category
+attr_login: login
+attr_always_available: always on sale
+#-- settings for decimal formats, currency symbols, and such --
+delimiter: ',&nbsp;'
+decimal: '.'
+currency: '%number CZK'
+date: '%month_name %day, %year'
+month_1: January
+month_2: February
+month_3: March
+month_4: April
+month_5: May
+month_6: June
+month_7: July
+month_8: August
+month_9: September
+month_10: October
+month_11: November
+month_12: December
+weekdays: [Po, Út, St, Čt, Pá, So, Ne]
+forgotten_password_sent: forgotten_password_sent
+#-- errors --
+error: Whoops!
+report_error: If you're utterly convinced that this is our fault and you really want to complain to someone you can send a threatening email to our administrator.
+error_details: Details
+e_error: There's been a cock-up
+e_error_text: An error must've occured while we were processing your request, and this wasn't really expected by anyone, which makes it an unexpected error, and that's why you wound up here and not where you wanted to be.
+e_unknown_action: Wrong way
+e_unknown_action_text: Nothing to see here, move along.
+e_record_not_found: You're in the wrong place
+e_record_not_found_text: Hey, everybody's looking for something these days. It's just you that's out of luck.
+e_access_denied: Access Granted!
+e_access_denied_text: Just kidding, it was denied. If I were you, I'd <strong>slowly</strong> reach for that Back button...
+# admin menu

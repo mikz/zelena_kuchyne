@@ -1,0 +1,1 @@
+DROP VIEW IF EXISTS ingredients_log_view CASCADE;

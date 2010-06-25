@@ -1,0 +1,18 @@
+<div id="list">
+  <table class="admin">
+    <thead>
+      <tr>
+        <td><%= locales[:model_meal] %></td>
+        <td><%= locales[:attr_scheduled_for] %></td>
+        <td><%= locales[:model_user] %></td>
+        <td><%= locales[:amount] %></td>
+        <td><span id="record_add"><%= smart_link locales[:add], {:action => "new" } %></span></td>
+      </tr>
+    </thead>
+    <tbody id="records_body">
+    <% for item in @lost_items%>
+      <tr id="record_<%=item.id%>"><%= render :partial => "show", :locals => {:record => item}%></tr>
+    <% end%>
+    </tbody>
+  </table>
+</div>

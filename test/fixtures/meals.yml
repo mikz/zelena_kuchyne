@@ -1,0 +1,55 @@
+pecene_brambory:
+  item_id: 1
+  name: "pečené brambory"
+  meal_category: hlavni_jidla
+  price: 50
+
+smetanova_polevka:
+  item_id: 2
+  name: "smetanová polévka"
+  meal_category: polevky
+  price: 20
+
+fazolovy_salat:
+  item_id: 3
+  name: "fazolový salát"
+  meal_category: salaty
+  price: 15
+  
+gulas:
+  item_id: 4
+  name: "guláš"
+  meal_category: hlavni_jidla
+  price: 55
+
+zelnacka:
+  item_id: 5
+  name: "zelňačka"
+  meal_category: polevky
+  price: 20
+
+mrkvovy_salat:
+  item_id: 6
+  name: "mrkvový salát"
+  meal_category: polevky
+  price: 15
+  
+paprikovy_salat:
+  item_id: 7
+  name: "paprikový salát"
+  meal_category: polevky
+  price: 19
+
+buggy_meal:
+  item_id: 404
+  name: "same id as delikatni_menu.item_id"
+  id: 8
+  meal_category: polevky
+  price: 20
+
+halusky:
+  item_id: 10
+  name: "halušky se zelím"
+  meal_category: hlavni_jidla
+  restaurant_flag: true
+  price: 100

@@ -1,0 +1,8 @@
+<% for user in @users %>
+  <%= render :partial => "manual_match", :locals => {:user => user}%>
+<% end %>
+<script type="text/javascript">
+$(function() {
+  $("input.userpicker").autocomplete('/users/find/', {limit: 20});
+});
+</script>

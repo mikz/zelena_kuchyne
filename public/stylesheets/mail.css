@@ -1,0 +1,136 @@
+table.mail tbody tr > td:first-child > a {
+  font-weight: normal;
+  color: #000;
+}
+
+table.mail tbody tr.unread {
+  font-weight: bold;
+}
+
+table.mail tbody tr > td:first-child > a {
+  text-decoration: none;
+}
+
+table.mail tbody tr.unread > td:first-child > a {
+  font-weight: bold;
+}
+
+table.conversation {
+  border: none;
+}
+
+table.admin td.conversation {
+  padding: 0;
+  padding-left: 2em;
+}
+
+table.admin td.conversation table {
+  border: none;
+  border-left: 1px solid #638C33;
+  margin: 0;
+}
+
+table.admin td.conversation table thead tr {
+  text-align: left;
+  background: #ebbb3c;
+}
+
+table.admin td.conversation table thead th {
+  padding: 3px 0 3px 5px;
+}
+
+#text div.mail-message h3 {
+  margin: 1em 0 0 0;
+  padding-left: 10px;
+  font-size: 150%;
+}
+
+#text div.mail-message dl {
+  margin: 0.5em 0 0 0;
+  padding: 0;
+  padding-left: 10px;
+}
+
+div.mail-message dt {
+  font-weight: bold;
+  display: inline;
+}
+
+div.mail-message dd {
+  display: inline;
+  margin: 0 2em 0 0;
+}
+
+#text ul.message-menu {
+  padding: 0;
+  margin-top: 0.3em;
+  margin-bottom: 0.3;
+  padding-left: 10px;
+}
+
+ul.message-menu li {
+  list-style-type: none;
+  display: inline;
+  margin-right: 1em;
+}
+
+#text div.message-body {
+  margin: 1em 10px;
+  border-left: 2px solid #638C33;
+  padding: 1em 1em;
+  bacground-color: #fff;
+}
+
+table.admin tr.conversation-note td {
+  font-weight: normal;
+  padding: 1em 0;
+}
+
+table.admin thead tr.conversation-menu > td a {
+  font-weight: normal;
+  text-decoration: underline;
+  color: #000;
+}
+
+table.admin tr.conversation-menu td form {
+  display: inline;
+}
+
+table.admin tr.conversation-menu td form div {
+  display: inline;
+}
+
+table.admin tr.message-reply td {
+  padding-left: 1em;
+}
+
+#text table.admin tr.message-reply h3 {
+  padding-left: 0;
+  margin-bottom: 0.3em;
+}
+
+#text table.admin tr.message-reply p {
+  padding-left: 0;
+}
+
+table.admin tr.message-reply td form {
+  padding-left: 0;
+}
+
+table.admin tr.message-reply textarea {
+  width: 40em;
+  height: 10em;  
+}
+
+table.admin tr.conversation-note-editor > td {
+  padding-left: 1em;
+}
+
+table.admin tr.conversation-note-editor > td * {
+  padding-left: 0;
+}
+
+table.admin tr.conversation-note-editor > td textarea {
+  width: 40em;
+  height: 3em;  
+}

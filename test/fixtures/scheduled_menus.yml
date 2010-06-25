@@ -1,0 +1,19 @@
+today_menu:
+  menu: delikatni_menu
+  scheduled_for: "2010-10-23"
+  amount: 50
+
+tommorow_menu:
+  menu: pikantni_menu
+  scheduled_for: "2010-10-23"
+  amount: 70
+
+scheduled_menu_1:
+  menu: pikantni_menu
+  scheduled_for: "2010-10-20"
+  amount: 20
+
+scheduled_menu_2:
+  menu: delikatni_menu
+  scheduled_for: "2010-10-20"
+  amount: 50

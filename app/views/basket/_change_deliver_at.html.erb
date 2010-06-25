@@ -1,0 +1,1 @@
+<input type="text" name="basket[deliver_at]" value="<%=format_date(@basket.deliver_at)%>" id="deliver_at_input"/><input type="button" onclick="if(!confirm('<%=locales[:date_change_confirmation]%>')){return;}; jQuery.getScript('/basket/set_deliver_on?deliver_on='+jQuery('#deliver_at_input').val());" value="<%= locales[:save].chars.capitalize %>"/>

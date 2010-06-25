@@ -1,0 +1,14 @@
+<%= error_messages_for :record %>
+<% row_id = "record_#{@record.id ? @record.id : 'new'}" %>
+<% remote_form_for :record, :url => url, :html => {:onsubmit => "jQuery(this).update_textareas()"} do |f| %>
+  <p><label for="<%=row_id%>_name"><%= locales[:attr_name] %></label><br />
+  <%= f.text_field :name, :id=> "#{row_id}_name", :class => '{required: true, minlength: 2}' %></p>
+  <p><label for="<%=row_id%>supplier_id"><%= locales[:attr_supplier_id] %></label><br />
+  <select id="<%=row_id%>_supplier_id" name="record[supplier_id]">
+    <% for supplier in @suppliers %>
+      <option value="<%= supplier.id %>"<%= ' selected="selected"' if @record.supplier_id == supplier.id %>><%= supplier.name_abbr %></option>
+    <% end %>
+  </select>
+  <p><%= yield(:submit_button) || '<input type="submit" value="' + locales[:submit] + '" />' %></p>
+<% end %>
+<script type="text/javascript">$("form").initValidation();</script>

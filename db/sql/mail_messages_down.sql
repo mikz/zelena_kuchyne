@@ -1,0 +1,2 @@
+DROP TYPE IF EXISTS message_direction CASCADE;
+DROP TABLE IF EXISTS mail_messages CASCADE;

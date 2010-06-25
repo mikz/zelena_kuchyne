@@ -1,0 +1,17 @@
+<%- if @basket.user.delivery_address.has_zone? %>
+  <%- unless @basket.user.delivery_address.zone_reviewed? %>
+  <div id="zone_review_warning" class="zone-warning">
+    <h1>Zóna nebyla zkontrolována administrátorem.</h1>
+    <p>
+      Vaše doručovací adresa má nastavenou zónu č. <%= @basket.user.delivery_address.zone.number %>. Toto nastavení zatím nebylo zkontrolováno administrátorem. Pokud při odeslání objednávky bude zjištěno, že vaše adresa spadá do jiné zóny, tak bude přenastavena. Když se tak stane, bude vás kontaktovat personál a sdělí Vám novou cenu objednávky. Že jste zónu vypnili správně si můžete zkontrolovat dle <%= link_to "mapy", "/zony.html", :popup => true%>.
+    </p>
+  </div>
+  <%-end-%>
+<%-else-%>
+<div id="zone_missing_error" class="zone-error">
+  <h1>Vaše adresa nemá přiřazenou zónu rozvozu.</h1>
+  <p>
+    U vaší adresy chybí vyplněná zóna. Bez ní nemůžeme přijmou Vaší objednávku. Zónu si můžete nastavit v&nbsp;<%= link_to "registračních údajích", :controller => "/users", :action => :edit, :id => current_user.id%>. Zónu zjistíte na naší <%= link_to "mapě", "/zony.html", :popup => true%>.
+  </p>
+</div>
+<%- end -%>

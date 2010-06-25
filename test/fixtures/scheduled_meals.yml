@@ -1,0 +1,19 @@
+scheduled_meal_1:
+  meal: fazolovy_salat
+  scheduled_for: "2010-10-23"
+  amount: 10
+
+scheduled_meal_2: 
+  meal: smetanova_polevka
+  scheduled_for: "2010-10-30"
+  amount: 15
+  
+scheduled_meal_3:
+  meal: gulas
+  scheduled_for: "2010-10-30"
+  amount: 15
+  
+scheduled_meal_4:
+  meal: paprikovy_salat
+  scheduled_for: "2010-10-30"
+  amount: 15

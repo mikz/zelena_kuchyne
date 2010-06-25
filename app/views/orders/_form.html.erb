@@ -1,0 +1,65 @@
+<% form_remote_tag :url => {:action => 'update', :id => @order.order.id}, :html => {:id => "record_#{@order.order.id}"} do %>
+  <table class="order">
+    <thead>
+     <tr>
+        <td><%=locales[:attr_name]%></td>
+        <td><%=locales[:attr_price]%></td>
+        <td><%=locales[:pieces]%></td>
+        <td><%=locales[:overall]%></td>
+        <td></td>
+      </tr>
+    </thead>
+    <tbody id="order-tbody">
+    <% for item in @order.ordered_items %>
+      <tr id="item_<%= item.id %>" class="ordered_item">
+        <td><%= item.item.name %></td>
+        <td><%= format_currency item.discount_price %></td>
+        <td>
+          <input type="text" value="<%= format item.amount %>" name="amount[<%= item.item.id %>]" />
+        </td>
+        <td class="item-price"><%= format_currency (item.amount * item.discount_price) %></td>
+        <td><%= smart_link locales[:delete], :action => 'remove_item', :id => @order.id, :item_id => item.id %></td>
+      </tr>
+    <% end %>
+    <%if @order.delivery_method %>
+     <tr>
+      <td><%= @order.delivery_method.name %></td>
+      <td/>
+      <td/>
+      <td id="delivery_fee"><%= format_currency @order.delivery_method.price %></td>
+      <td/>
+    </tr>
+    <% end%>
+    <tr class="delivery_method">
+      <td>způsob dodání</td>
+      <td colspan="3"><%= @order.user.delivery_address.to_s%></td>
+      <td class="<%= 'zone-error' unless @order.user.delivery_address.zone_reviewed? %>"><%= @order.user.delivery_address.zone.name if @order.user.delivery_address.zone %></td>
+    </tr>
+    <% for zone in @zones %>
+    <tr>
+      <td colspan="5"><%= link_to_function zone.name do |page|
+        page << %{jQuery(".zone_#{zone.id}").toggle();}
+      end %>
+      </td>
+    </tr>
+      <% for delivery_method in zone.delivery_methods %>
+      <tr class="zone_<%=zone.id%> <%= "hidden" unless zone.delivery_method_ids.include?(@order.delivery_method_id)%>">
+        <td>
+          <input type="radio" name="delivery_method_id" value="<%=delivery_method.id%>" id="delivery_method_id_<%=delivery_method.id%>" <%= "checked=\"checked\"" if(delivery_method.id == @order.delivery_method_id) %>/>
+          <label for="delivery_method_id_<%=delivery_method.id%>"><%= delivery_method.name %></label>
+        </td>
+        <td><%= format_currency delivery_method.price %></td>
+        <td colspan="3"/>
+      </tr>
+      <% end%>
+    <% end %>
+    </tbody>
+    <tfoot>
+    <tr class="total" id="orders-total">
+      <td colspan="3"></td>
+      <td id="order-total"><%= format_currency @order.price %></td>
+      <td><input type="submit" value="<%= locales[:update_order] %>"/></td>
+    </tr>
+    </tfoot>
+  </table>
+<% end %>

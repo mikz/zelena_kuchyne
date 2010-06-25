@@ -1,0 +1,9 @@
+<td><%= link_to record.name, :action => 'show', :id => record %></td>
+<td><%= record.basket_name %></td>
+<td><%= format_currency(record.price) %></td>
+<td><%= format_currency(record.minimal_order_price) %></td>
+<td><%= record.zone.name %></td>
+<td>
+  <%= smart_link locales[:edit], :action => 'edit', :id => record %>
+  | <%= smart_link locales[:delete], {:action => 'destroy', :id => record}, :confirm => locales['delete_confirmation'] %>
+</td>

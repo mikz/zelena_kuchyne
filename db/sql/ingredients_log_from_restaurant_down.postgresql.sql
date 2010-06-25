@@ -1,0 +1,1 @@
+DROP TABLE IF EXISTS ingredients_log_from_restaurant CASCADE;

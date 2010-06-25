@@ -1,0 +1,33 @@
+<%= render :partial => "filter"%>
+<table class="admin" id="users">
+  <thead>
+    <% unless (pagination = will_paginate(@records,:container=>false)).nil? %>
+    <tr class="pagination">
+      <td colspan="8"><%= pagination %></td>
+    </tr>
+    <% end %>
+    <tr>
+      <td><%= link_to locales['attr_login'], :action => 'index', :order => 'login' %></td>
+      <td><%= locales['attr_name'] %></td>
+      <td><%= locales['attr_delivery_address'] %></td>
+      <td class=""><%= locales[:attr_zone] %></td>
+      <td class="fullscreen"><%= locales['attr_groups'] %></td>
+      <td><%= locales['attr_email'] %></td>
+      <td><%= link_to locales['attr_spent_money'], :action => 'index', :order => 'spent_money' %></td>
+      <td><%= link_to locales['discount'], :action => 'index', :order => 'user_discount' %></td>
+      <td></td>
+    </tr>
+  </thead>
+  <% if pagination%>
+  <tfoot>
+    <tr class="pagination">
+      <td colspan="8"><%= pagination %></td>
+    </tr>
+  </tfoot>
+  <% end%>
+  <tbody>
+  <% for user in @users %>
+    <%= render :partial => 'show', :locals => {:user => user} %>
+  <% end %>
+  </tbody>
+</table>

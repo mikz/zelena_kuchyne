@@ -1,0 +1,11 @@
+<% for poll in @polls %>
+<div class="story">
+  <div class="poll" id="poll_<%=poll.id%>">
+    <%- if poll.can_vote? current_user -%>
+      <%= render :partial => "polls/poll", :locals => {:poll => poll}%>
+    <%-else-%>
+      <%= render :partial => "polls/result", :locals => {:poll => poll}%>
+    <%-end-%>
+  </div>
+</div>
+<% end%>

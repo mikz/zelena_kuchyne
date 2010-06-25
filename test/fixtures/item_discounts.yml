@@ -1,0 +1,4 @@
+<% data = [
+  [2, "15% sleva na polivku...", "2010-10-01", "2010-10-31", 0.15],
+] %>
+<%= render_fixtures data, :name => "item_discount", :attributes => ["item_id", "name", "start_at", "expire_at", "amount"] %>

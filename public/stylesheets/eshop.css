@@ -1,0 +1,132 @@
+/* eshop */
+
+.product {
+  float: left;
+  width: 262px;
+  height: 203px;
+  border-right: 1px solid #c0c0ba;
+  border-bottom: 1px solid #c0c0ba;
+  margin: 30px 0 0 19px;
+  padding: 0 10px 23px 0;
+}
+
+.product .img {
+  width: 79px;
+  height: 79px;
+  margin: 0 1em 0.5em 0;
+  float: left;
+}
+.product img {
+  display: block;
+  max-width: 78px;
+  max-height: 78px;
+  border: 1px solid #435f23;
+}
+#standalone.product {
+  height: auto;
+  width: auto;
+  margin-right: 1em;
+  margin-bottom: 1.5em;
+  border: none;
+  float: none;
+}
+#standalone.product .description {
+  height: auto;
+  padding-bottom: 1em;
+}
+#standalone.product .categories {
+  margin-bottom: 3em;
+}
+#standalone.product .category_path {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+.product h1 {
+  color: #ad1f00 !important;
+  height: 4.3em;
+  padding: 0;
+}
+.product h1 * {
+  color: #ad1f00 !important;
+}
+.product .description {
+  height: 88px;
+  clear: both;
+  overflow: auto;
+}
+.product p {
+  padding-left: 0 !important;
+}
+.product fieldset {
+  float: right;
+  border: none;
+  clear: both;
+  padding-top: 0.5em;
+}
+
+.product .amount_input {
+  width: 28px;
+  padding-top: 4px;
+  text-align: center;
+  border: 1px solid #638c33;
+  background: #dee4c6;
+  color: #435f23;
+  margin-right: 10px;
+}
+.product fieldset p {
+  float: left;
+}
+.category_path {
+  margin: 3em 0 0 19px;
+  font-weight: bold;
+}
+
+.category_path li, .category_path ul{
+  display: inline;
+  padding-left: 0 !important;
+}
+.category_path li a {
+  padding: 0 4px 0 1px;
+  text-transform: uppercase;
+}
+.category_path ul a, .category_path ul{
+  color: #435f23;
+}
+.category_path ul ul a, .category_path ul ul{
+  color: #ad1f00;
+}
+
+#product_categories {
+  width: 213px;
+  margin-left: 77px;
+}
+#product_categories ul {
+  padding-left: 0;
+  list-style-image: url('/images/category_closed.png');
+}
+
+#product_categories li.empty_list {
+  list-style-type: none !important;
+  list-style-image: none !important;
+}
+#product_categories li.opened_list {
+  list-style-image: url('/images/category_opened.png');
+}
+#product_categories ul a {
+  color: #2c4510;
+}
+#product_categories ul ul a {
+  color: #ad1f00;
+}
+
+#top, #bottom{
+  clear: both;
+}
+#bottom {
+  margin-bottom: -7px;
+  padding-top: 2em;
+}
+.pagination {
+  background: #638c33;
+  padding: 2px 0;
+}

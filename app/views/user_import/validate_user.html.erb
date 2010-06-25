@@ -1,0 +1,9 @@
+<%= render :partial => "menu"%>
+<h1><%= @user.login %> (<%= @user.name %>)</h1>
+<%= render :partial => "user_import_info", :locals => {:user => @user_import}%>
+<div id="user">
+  <% content_for :submit_button do %>
+    <input type="submit" value="uložit"%> <%= link_to_remote "přeskočit", :url => { :action => :skip, :id => @user_import.id } %>
+  <% end %>
+  <%= render :partial => "users/form", :locals => {:url => {:controller => :user_import, :action => :save, :user_id => @user.id, :user_import_id => @user_import.id } }%>
+</div>

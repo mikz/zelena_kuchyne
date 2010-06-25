@@ -1,0 +1,13 @@
+<div id="user_import_<%=user.iduziv%>" class="manual_match">
+  <fieldset>
+    <legend><%= user.loginname %></legend>
+    <div class="links"><%= link_to_remote "schovat", :url => {:action => :hide_user, :id => user.iduziv} %></div>
+    <%= render :partial => "user_import_info", :locals => {:user => user}%>
+    <div id="match_user_<%=user.iduziv%>" class="match_user">
+        <% remote_form_for "user", :url => {:action => :assoc_user, :id => user.iduziv} do |f| %>
+          <label>uživatel: <input type="text" class="userpicker" name="user"/></label>
+          <input type="submit" value="ok"/>
+        <% end%>
+    </div>
+  </fieldset>
+</div>

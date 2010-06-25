@@ -1,0 +1,6 @@
+page.replace "message_#{params[:id]}", :partial => "/mail/conversations/message", :locals => {:message => @message, :hide => true}
+page << <<-eos
+if($("#message_#{params[:id]}").next().hasClass("message-reply")) {
+  $("#message_#{params[:id]}").next().remove();
+}
+eos

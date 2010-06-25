@@ -1,0 +1,6 @@
+lost_meal_1:
+  item_id: 2
+  user: peter
+  amount: 3
+  lost_at: "2010-10-30 11:00:00"
+  cost: 7.5

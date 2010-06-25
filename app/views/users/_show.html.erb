@@ -1,0 +1,27 @@
+<tr id="user_<%= user.id %>">
+  <td><%= link_to user.login, :action => 'show', :id => user.id %></td>
+  <td><%= user.name %></td>
+  <td class="<%= 'zone-error' unless user.address.zone and user.address.zone_reviewed? %>"><%= user.delivery_address %></td>
+  <td class="<%= 'zone-error' unless user.address.zone and user.address.zone_reviewed? %>">
+    <%-if user.address.zone%>
+      <%= user.address.zone.name%>
+      <% unless user.address.zone_reviewed? %>
+      <br/><%= link_to_remote locales[:zone_reviewed].downcase,  :url => {:controller => "users", :action => "set_zone", :id => user.id, :from => "users", :zone => {:zone_reviewed => true}} %>
+      <%-end-%>
+    <%-else-%>
+      <% form_remote_tag :url => {:action => :set_zone, :id => user.id, :controller => "users", :from => "users"} do %>
+        <select name="zone[zone_id]" class="zone" id="user_<%=user.id%>_user_zone_id" onchange='confirm("Opravdu chcete uživateli nastavit zónu?") && this.form.onsubmit();'>
+            <option/>
+          <%- @zones.each do |zone|%>
+            <option value="<%= zone.id %>" <%= 'disabled="disabled"' if zone.hidden? %>><%=h zone.name%></option>
+          <%-end%>
+        </select>
+      <%end%>
+    <%-end-%>
+  </td>
+  <td class="fullscreen"><%= translate_roles user.roles %></td>
+  <td><%= user.email %></td>
+  <td><%= format_currency(user.spent_money) %></td>
+  <td><%= format_percent(user.user_discount) if user.user_discount %></td>
+  <td><%= link_to locales[:edit], :action => 'edit', :id => user.id %></td>
+</tr>

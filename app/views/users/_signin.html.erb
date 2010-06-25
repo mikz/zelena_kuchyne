@@ -1,0 +1,29 @@
+<div id="user_box" class="sidebar_box">
+  <h3><%= locales[:signin].chars.capitalize%></h3>
+  <fieldset>
+  <% unless logged_in? %>
+    <% form_remote_tag(:html => {:action => '/signin', :id => 'user_form'}, :url => '/signin') do %>
+      <p>
+        <label for="user_login" class="fleft"><%= locales['username'] %>:</label>
+        <input type="text" tabindex="1" name="user[login]" id="user_login" class="fright"/>
+      </p>
+      <p>
+        <label for="user_password" class="fleft"><%= locales['password'] %>:</label>
+        <input type="image" tabindex="3" value="<%= locales['signin'] %>" src="/images/form_ok.gif" class="fright" id="submit"/>
+        <input type="password" tabindex="2" name="user[password]" id="user_password" class="fright"/>
+      </p>
+      <p>
+        <%= link_to locales['signup'], {:action => 'new', :controller => 'users'},:class=>"fleft"%>
+        <%= link_to locales['forgotten_password'], {:action => 'forgotten_password', :controller => 'users'},:class=>"fright"%>
+      </p>
+    <% end %>
+  <% else %>
+    <p>
+      <%= locales['user'] %>: <%= current_user.name %>
+    </p>
+    <p><%= link_to_remote locales['signout'], :url => '/signout', :html => {:href => '/signout'} %>
+      | <%= link_to locales['edit_my_profile'], {:controller => 'users', :action => 'edit', :id => current_user} %>
+    </p>
+  <% end %>
+  </fieldset>
+</div>

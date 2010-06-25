@@ -1,0 +1,15 @@
+<%= render :partial => "menu"%>
+<h1>Stav uživatelů</h1>
+<ul>
+  <li>uživatelů v databázi - <%= @users.size%></li>
+  <li>importovaných uživatelů - <%= @imported_users.size %></li>
+  <li>asociovaných importovaných uživatelů - <%= @valid.size %></li>
+  <li>uživatelů se stejným emailem - <%= @bad_associations.size%></li>
+  <li>aktualizovaných uživatelů - <%= @updated_users.size%></li>
+</ul>
+<% if @bad_associations.size > 0 %>
+<h1>Duplicitní uživatelé</h1>
+<% @bad_associations.each_pair do |email, data| %>
+  <%= render :partial => "bad_association", :locals => {:imported => data[:imports], :email => email, :users => data[:users]}%>
+<% end%>
+<%end%>

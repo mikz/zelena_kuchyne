@@ -1,0 +1,27 @@
+<table class="admin">
+  <thead>
+    <tr>
+      <td><%=locales[:attr_registration_no]%></td>
+      <td><%=locales[:driver]%></td>
+      <td><%=locales[:attr_date]%></td>
+      <td><%=locales[:attr_beginning]%></td>
+      <td><%=locales[:attr_ending]%></td>
+      <td><%=locales[:attr_private_distance]%></td>
+      <td><%=locales[:attr_business_distance]%></td>
+    </tr>
+  </thead>
+  <tbody>
+    <% @sums.each do |sum|%>
+    <tr>
+      <td><%= format "#{sum.car.registration_no} #{sum.car.note}"%></td>
+      <td><%= format sum.user.login%></td>
+      <td><%= format_date Date.parse(sum[:from])%> až <%= format_date Date.parse(sum[:to])%></td>
+      <td><%= format_distance sum.beginning_in_kilometers%></td>
+      <td><%= format_distance sum.ending_in_kilometers%></td>
+      <td><%= format_distance sum.private_distance_in_kilometers%></td>
+      <td><%= format_distance sum.business_distance_in_kilometers%></td>
+    </tr>
+    <%end%>
+  </tbody>
+</table>
+    

@@ -1,0 +1,7 @@
+recipe:
+  name: "recipe"
+  data_type: "text_area"
+
+description:
+  name: "description"
+  data_type: "text_area"

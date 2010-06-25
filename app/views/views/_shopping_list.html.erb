@@ -1,0 +1,42 @@
+<div id="shopping_list">
+  <table class="admin">
+    <thead>
+      <tr>
+        <td><%= link_to locales[:ingredient], :order => "name" %></td>
+        <td><%= link_to locales[:attr_code], :order => "code" %></td>
+        <td class="text right"><%= link_to locales[:amount], :order => "amount" %></td>
+        <td class="text left"><%= link_to locales[:unit], :order => "unit" %></td>
+        <td class="text right"><%= link_to locales[:total_cost], :order => "total_cost" %></td>
+        <td class="text right"><%= link_to locales[:amount_with_consumption], :order => "amount" %></td>
+        <td class="text left"><%= link_to locales[:unit], :order => "unit" %></td>
+        <td class="text right"><%= link_to locales[:total_cost], :order => "total_cost_with_consumption" %></td>
+        <td><%= link_to locales[:supplier], :order => "supplier_short"  %></td>
+      </tr>
+    </thead>
+    <tfoot>
+      <tr>
+        <td colspan="3"/>
+        <td class="text right">Celkem</td>
+        <td class="text right"><%= format_currency @total_cost.sum.to_f %></td>
+        <td colspan="2" class="text right">Celkem</td>
+        <td class="text right"><%= format_currency @total_cost.sum_with_consumption.to_f %></td>
+        <td/>
+      </tr>
+    </tfoot>
+    <tbody>
+    <% for item in @list %>
+      <tr>
+        <td><%= format item.name %></td>
+        <td><%= format item.code %></td>
+        <td class="text right"><%= format item.amount %></td>
+        <td class="text left"><%= format item.unit %></td>
+        <td class="text right"><%= format_currency item.total_cost %></td>
+        <td class="text right"><%= format item.amount_with_consumption, :precision => 0 %></td>
+        <td class="text left"><%= format item.unit %></td>
+        <td class="text right"><%= format_currency item.total_cost_with_consumption %></td>
+        <td><%= format item.supplier_short %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>

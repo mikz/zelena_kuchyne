@@ -1,0 +1,48 @@
+<%= error_messages_for :record %>
+<% row_id = "record_#{@record.id ? @record.id : 'new'}" %>
+<% remote_form_for :record, :url => url do |f| %>
+  <p><label for="<%=row_id%>_name"><%= locales["attr_name"] %></label><br />
+  <%= f.text_field :name, :id=> "#{row_id}_name",:class=>"{required: true,minlength: 3, maxlength: 50}" %></p>
+  <p>
+    <label for="<%=row_id%>_item_id"><%= locales[:item] %></label><br />
+    <select name="record[item_id]" id="<%=row_id%>_item_id">
+      <option></option>
+      <optgroup label="<%= locales[:model_meals] %>">
+        <% for meal in @meals %>
+          <option value="<%= meal.item_id %>" <%= "selected='selected'" if meal.item_id == @record.item_id%>><%= meal.name %></option>
+        <% end %>
+      </optgroup>
+      <optgroup label="<%= locales[:model_bundles] %>">
+        <% for bundle in @bundles %>
+          <option value="<%= bundle.item_id %>" <%= "selected='selected'" if bundle.item_id == @record.item_id%>><%= bundle.name %></option>
+        <% end %>
+      </optgroup>
+      <optgroup label="<%= locales[:model_menus] %>">
+        <% for menu in @menus %>
+          <option value="<%= menu.item_id %>" <%= "selected='selected'" if menu.item_id == @record.item_id%>><%= menu.name %></option>
+        <% end %>
+      </optgroup>
+      <optgroup label="<%= locales[:model_products] %>">
+        <% for product in @products %>
+          <option value="<%= product.item_id %>" <%= "selected='selected'" if product.item_id == @record.item_id%>><%= product.name %></option>
+        <% end %>
+      </optgroup>
+    </select>
+  </p>
+  <p><label for="<%=row_id%>_amount"><%= locales["discount_in_percent"] %></label><br />
+  <input id="<%=row_id%>_amount" onkeyup="decimal_dot_conversion(this)" type="text" value="<%=format_float @record.amount%>" class="{number: true, max: 100, min: 0 }" size="30" name="record[amount]"/></p>
+  <p><label for="<%=row_id%>_start_at"><%= locales["attr_publish_at"] %></label><br />
+  <%= f.text_field :start_at, :id=> "#{row_id}_start_at",:class=>"{required: true, min_date: '#{Date.today.to_s}', max_date: '##{row_id}_expire_at'}" %></p>
+  <p><label for="<%=row_id%>_expire_at"><%= locales["attr_expire_at"] %></label><br />
+  <%= f.text_field :expire_at, :id=> "#{row_id}_expire_at",:class=>"{required: true, min_date: '##{row_id}_start_at'}" %></p>
+  <p><label for="<%=row_id%>_note"><%= locales["note"] %></label><br />
+  <%= f.text_field :note, :id=> "#{row_id}_note",:class=>"{maxlength: 50}" %></p>
+  <p><%= yield(:submit_button) || '<input type="submit" value="' + locales[:submit] + '" />' %></p>
+<% end %>
+<script type="text/javascript">
+$("form").initValidation();
+$(function(){
+  $("#<%=row_id%>_start_at").datepicker();
+  $("#<%=row_id%>_expire_at").datepicker();
+});
+</script>

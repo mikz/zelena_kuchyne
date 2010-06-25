@@ -1,0 +1,32 @@
+<%= error_messages_for :record %>
+<%- row_id = "record_#{@record.id ? @record.id : 'new'}" -%>
+<%- remote_form_for :record, :url => url, :html => {:onsubmit => "jQuery(this).update_textareas()"} do |f| -%>
+  <%= validation_error_for @record %>
+    <p><label for="<%=row_id%>_question"><%= locales["attr_question"] %></label><br />
+    <%= f.send :text_field, :question, :id=> "#{row_id}_question" %></p>
+    <p><label for="<%=row_id%>_poll_type"><%= locales["attr_type"] %></label><br />
+    <input type="radio" id="<%=row_id%>_poll_type_single" name="record[poll_type]" value="single"/><label for="<%=row_id%>_poll_type_single"><%=locales[:poll_type_single]%></label><br/>
+    <input type="radio" id="<%=row_id%>_poll_type_multi" name="record[poll_type]" value="multi"/><label for="<%=row_id%>_poll_type_multi"><%=locales[:poll_type_multi]%></label></p>
+    <p><label for="<%=row_id%>_poll_answers"><%= locales["attr_poll_answers"] %></label><br />
+    <div class="poll_answers"><input type="text" name="record[answers][]" id="<%=row_id%>_poll_answers" class="poll_answer"/></div></p>
+    <p><label for="<%=row_id%>_active"><%= locales["attr_active"] %></label><br />
+    <%= f.send :check_box, :active, :id=> "#{row_id}_active" %></p>
+  <p><%= yield(:submit_button) || '<input type="submit" value="' + locales[:submit] + '" />' %></p>
+<% end %>
+<script type="text/javascript">$("form").initValidation();
+$(function() {
+  var input = '<input type="text" name="record[answers][]" class="poll_answer"/>';
+  var add = '<a href="#" class="poll_answer add">+</a>';
+  var del = '<a href="#" class="poll_answer del">-</a>';
+  var add_func = function() {
+    var div = $("<div class=\"poll_answers\">"+input+add+del+"</div>");
+    $("a.add",div).click(add_func);
+    $("a.del",div).click(del_func);
+    $(this).parent("div").after(div);
+  }
+  var del_func = function() {
+    $(this).parent("div").remove();
+  }
+  $("#<%=row_id%>_poll_answers").parent("div").append($(add).click(add_func));
+});
+</script>

@@ -1,0 +1,13 @@
+<tr class="message-reply" id="reply_to_<%= @message.id %>">
+  <td colspan="4">
+    <h3>Re: <%= @message.subject %></h3>
+    <% form_remote_tag :url => {:controller => '/mail/messages', :action => 'reply'}, :html => {:class => 'message-body'} do |f| %>
+      <p>
+        <%= text_area_tag 'repy[body]', format_reply(@message) %>
+      </p>
+      <p>
+        <%= submit_tag locales[:send] %> <%= link_to_function locales[:cancel], "$('#reply_to_#{@message.id}').remove()" %>
+      </p>
+    <% end %>
+  </td>
+</tr>

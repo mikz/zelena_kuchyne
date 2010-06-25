@@ -1,0 +1,21 @@
+<% form_for "item_in_trunk", :url => {:action => :add_item}, :method => :post do  |f| %>
+<p><input type="text" name="item_in_trunk[amount]" id="item_in_trunk_<%=delivery_man.id%>_amount" size="3"/><label for="item_in_trunk_<%=delivery_man.id%>_amount"><%= locales[:amount]%></label>
+<select name="item_in_trunk[item_id]" id="item_in_trunk_<%=delivery_man.id%>_item_id">
+  <optgroup label="<%=locales[:meals]%>">
+  <% for scheduled in @scheduled_meals %>
+    <option value="<%= scheduled.item.item_id %>"><%= scheduled.item.name %></option>
+  <% end %>
+  </optgroup>
+  <optgroup label="<%=locales[:menus]%>">
+  <% for scheduled in @scheduled_menus %>
+  <% end if @scheduled_menus%>
+  </optgroup>
+</select>
+<input type="submit" value="<%= locales[:add] %>"/>
+</p>
+<p>
+  
+  <input type="hidden" value="<%=delivery_man.id%>" name="item_in_trunk[delivery_man_id]"/>
+  <input type="hidden" value="<%=@date.scheduled_for%>" name="item_in_trunk[deliver_at]"/>
+</p>
+<% end %>

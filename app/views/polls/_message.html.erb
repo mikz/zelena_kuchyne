@@ -1,0 +1,4 @@
+<%- message ||= nil
+unless message.nil? -%>
+<h4 class="<%= "error" if error %>"><%=message%></h4>
+<%-end-%>

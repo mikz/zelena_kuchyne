@@ -1,0 +1,6 @@
+page.replace "records", :partial => "index"
+page << <<-eos
+$("ul.ui-tabs-nav li").removeClass('ui-tabs-selected');
+$("#mail-tab-#{params[:category]}").addClass('ui-tabs-selected');
+$("#records").attr("class", "admin mail #{params[:category]}");
+eos

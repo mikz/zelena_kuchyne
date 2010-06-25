@@ -1,0 +1,9 @@
+<td><%= format_date record.date%></td>
+<td><%= format "#{record.car.registration_no} #{record.car.note}" %></td>
+<td><%= format record.user_login %></td>
+<td><%= format_currency record.cost%></td>
+<td><%= format record.amount%><%= locales[:fuel_unit]%></td>
+<td>
+  <%= smart_link locales[:edit], :action => 'edit', :id => record %>
+  | <%= smart_link locales[:delete], {:action => 'destroy', :id => record}, :confirm => locales['delete_confirmation'] %>
+</td>

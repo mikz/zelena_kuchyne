@@ -1,0 +1,12 @@
+<td><%= link_to record.user.login, :controller => "users", :action => "show", :id => record.user %></td>
+<td><%= record.user.name %></td>
+<td><%=record.name%></td>
+<td><%=format_float record.amount%> %</td>
+<td><%=format_date record.start_at %></td>
+<td><%=format_date record.expire_at if record.expire_at%></td>
+<td><%=format locales["model_#{record.discount_class}"]%></td>
+<td><%=record.note%></td>
+<td>
+  <%= smart_link locales[:edit], :action => 'edit', :id => record %>
+  | <%= smart_link locales[:delete], {:action => 'destroy', :id => record}, :confirm => locales['delete_confirmation'] %>
+</td>

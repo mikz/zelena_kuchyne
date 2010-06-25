@@ -1,0 +1,42 @@
+<% content_for :javascript do %>
+  <% fw_strings = {:val_true => locales['true'], :val_false => locales['false'], :submit => locales['submit'], :show_all => locales['show_all']} %>
+  <%= filter_widget("meals-rules", :url => url_for(params), 
+                                   :wrap => false, 
+                                   :beforeSend => %{function() {$("#records").html('<p><img src="/images/loading.gif" alt="loading" /></p>');}}, 
+                                   :strings => fw_strings) do |widget| 
+        widget.add_rule("price", locales[:price], "numeric")
+        widget.add_rule("meal_category_id", locales[:attr_category], "enum", @categories)
+        widget.add_rule("restaurant_flag", locales[:attr_restaurant_flag], "boolean")
+        widget.add_rule("ingredients.id", locales[:contains_ingredient], "autocomplete","/ingredients/search")
+      end %>
+<% end %>
+
+<%= render :partial=>"index"%>
+
+<p id="meals-rules"></p>
+<script type="text/javascript">
+  $(function(){
+    $.extend($.Autocompleter.defaults, {
+    formatItem: function(row, i, max, term) {
+       if(row.first_name && row.id) {
+         term += " | " +row.name;
+       }
+       return term;
+     },
+
+     dataType: "json",
+     parse: function(data) {
+       data = eval(data);
+       parsed = [];
+       for (i in data) {
+         parsed[parsed.length] = {
+           data: data[i],
+           value: data[i].name,
+           result: data[i].id
+         }
+       }
+       return parsed;
+     }
+   })
+  });
+</script>

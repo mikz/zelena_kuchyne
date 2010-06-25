@@ -1,0 +1,64 @@
+<div>
+  <h1><%= delivery_man.name %></h1>
+  <% form_for "item_in_trunk", :url => {:action => :update_items}, :method => :post do  |f| %>
+  <p><input type="hidden" name="item_in_trunk[scheduled_for]" value="<%=@date.scheduled_for.to_s%>"/>
+  <input type="hidden" name="item_in_trunk[delivery_man_id]" value="<%=delivery_man.id%>"/></p>
+  <table class="admin">
+    <thead>
+      <tr>
+        <td><%=locales[:customer]%></td>
+        <td><%=locales[:attr_deliver_at]%></td><% @scheduled_items.each do |si| %>
+        <td class="need_info with_lines"><span class="hidden_info"><%= si.item.name %></span></td><%end%>
+        <td><%=locales[:attr_price]%></td>
+      </tr>
+    </thead>
+    <tfoot>
+      <tr>
+        <td colspan="<%= @scheduled_items.length + 1%>"/>
+        <td><%= locales[:overall].chars.capitalize%></td>
+        <td><%= format_currency delivery_man.sum_price(@date.scheduled_for)%></td>
+      </tr>
+    </tfoot>
+    <tbody><% for order in delivery_man.orders_for_date(@date) %>
+      <tr>
+        <td class="need_info"><%= order.user.login%><br/><span class="hidden_info"><%= order.user.name %><br/><%= order.user.delivery_address.output%><br/><%= order.notice%></span></td>
+        <td><%= format order.deliver_at%></td><% @scheduled_items.each do |si| %>
+        <td class="with_lines"><% val = nil; order.ordered_items.each { |oi| val = oi.amount if oi.item_id == si.item_id } %><%= val || 0 %></td><%end%>
+        <td><%= format_currency order.price%></td>
+      </tr><%end%>      
+    </tbody>
+  </table>
+  <table class="admin">
+    <thead>
+      <tr>
+        <td><%= locales[:attr_name]%></td>
+        <td><%= locales[:attr_scheduled_amount]%></td>
+        <td><%= locales[:along]%></td>
+        <td><%= locales[:in_orders]%></td>
+        <td><%= locales[:additional]%></td>
+        <td><%= locales[:attr_amount_left]%></td>
+      </tr>
+    </thead>
+    <tfoot>
+      <tr>
+        <td colspan="4"/>
+        <td><input type="submit" value="<%=locales[:save]%>"/></td>
+      </tr>
+    </tfoot>
+    <tbody>
+  <% for item in delivery_man.delivery_items @date%>
+    <tr>
+      <td><%= item.item.name %></td>
+      <td><%= item.scheduled_amount %></td>
+      <td><%= item.amount %></td>
+      <td><%= item.in_orders %></td>
+      <td><%= (item.additional > 0) ? "<input type='text' size='3' name='item_in_trunk[ids][#{item.item_id}][amount]' value='#{item.additional}'/>" : "0"  %></td>
+      <td><%= item.amount_left_without_trunk if item.meal_flag%></td>
+    </tr>
+  <% end %>
+    </tbody>
+
+  </table>
+  <%end%>
+  <%= render :partial => "add_item", :locals => {:delivery_man => delivery_man} %>
+</div>

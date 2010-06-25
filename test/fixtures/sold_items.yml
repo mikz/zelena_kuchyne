@@ -1,0 +1,6 @@
+sold_meal_1:
+  item_id: 2
+  user: peter
+  amount: 2
+  sold_at: "2010-10-30 11:10:00"
+  price: 25

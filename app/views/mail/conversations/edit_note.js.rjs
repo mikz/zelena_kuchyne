@@ -1,0 +1,13 @@
+note = render :partial => 'edit_note', :locals => {:note => @conversation.note, :id => @conversation.id}
+note = note.to_json
+
+page << <<-eos
+  if((note = $("#conversation_#{params[:id]} tr.conversation-note")).length != 0) {
+    note.replaceWith(#{note});
+  } else {
+    if($("#conversation_#{params[:id]} tr.conversation-note-editor").length == 0) {
+      $("#conversation_#{params[:id]} tr.conversation-menu").after(#{note});      
+    }
+  }
+eos
+

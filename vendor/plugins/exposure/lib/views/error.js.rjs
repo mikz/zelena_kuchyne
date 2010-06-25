@@ -1,0 +1,4 @@
+elem = "validation_error_#{@record.id ? @record.id : 'new'}"
+page.replace_html elem,  @record.errors.to_json
+page << "$('\##{elem}').formatError();"
+page.visual_effect :appear, elem

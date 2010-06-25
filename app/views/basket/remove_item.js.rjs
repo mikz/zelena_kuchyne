@@ -1,0 +1,8 @@
+page.visual_effect :fade, "item_#{params[:id]}", :duration => 0.3
+page.delay 0.4 do
+  if(@basket and @basket.ordered_items.size > 0)
+        page.replace_html "order", :partial => "order"
+  else
+    page << "window.location.reload();"
+  end
+end

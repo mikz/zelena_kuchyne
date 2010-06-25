@@ -1,0 +1,1 @@
+DROP FUNCTION IF EXISTS ingredient_cost(integer) CASCADE;

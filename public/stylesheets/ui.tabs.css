@@ -1,0 +1,90 @@
+/* Caution! Ensure accessibility in print and other media types... */
+@media projection, screen { /* Use class for showing/hiding tab content, so that visibility can be better controlled in different media types... */
+    .ui-tabs-hide {
+        display: none;
+    }
+}
+
+/* Hide useless elements in print layouts... */
+@media print {
+    .ui-tabs-nav {
+        display: none;
+    }
+}
+
+.ui-tabs-nav {
+    padding-left: 12px;
+    border-bottom: 1px #336601 solid;
+    height: 23px;
+}
+
+.ui-tabs-selected a {
+    font-weight: bold;
+    color: #000 !important;
+    background: #D7DEBB !important;
+}
+
+.ui-tabs-selected {
+    border-left: 1px #638C33 solid;
+    border-right: 1px #638C33 solid;
+}
+
+.ui-tabs-nav li {
+    background: #638C33;
+    display: block;
+    float: left;
+    padding-top: 4px;
+    height: 20px;
+    line-height: 24px;
+    margin: 0;
+    margin-right: 12px;
+}
+
+.ui-tabs-nav li a {
+    display: block;
+    color: #fff;
+    height: 20px;
+    line-height: 20px;
+    text-decoration: none;
+    padding-left: 6px;
+    padding-right: 6px;
+}
+
+.ui-tabs-nav a:hover {
+    background: none;
+    color: #fff;
+}
+
+#tab_titles {
+    height: 24px;
+    background: #638C33;
+}
+
+#tab_titles a {
+    color: #fff;
+    display: block;
+    height: 20px;
+    line-height: 20px;
+    text-decoration: none;
+    padding-left: 6px;
+    padding-right: 6px;
+}
+
+#tab_titles a:hover {
+    background: none;
+    color: #fff;
+}
+
+h4.tab_title {
+    float: left;
+    padding-top: 4px;
+    height: 20px;
+    line-height: 24px;
+    margin: 0;
+    margin-left: 12px;
+}
+
+#tab_titles h4.active_tab a {
+    background: #fff;
+    color: #336601;
+}

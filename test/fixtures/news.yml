@@ -1,0 +1,24 @@
+news_1:
+  title: "Úchvatná novinka"
+  body: "Jo jo, úchvatná..."
+  
+news_2:
+  title: "Úchvatná novinka"
+  body: "Jo jo, úchvatná..."
+    
+news_3:
+  title: "Úchvatná novinka"
+  body: "Jo jo, úchvatná..."
+  
+news_4:
+  title: "Historická novinka"
+  body: "Zcela zastaralá, leč stále úchvatná..."
+  publish_at: '1900-01-01'
+  expire_at: '1910-01-01'
+    
+news_5:
+  title: "Sci-fi novinka z budoucnosti"
+  body: "Jak se má vaše létající auto?"
+  publish_at: '2050-01-01'
+  expire_at: '2050-02-01'
+  

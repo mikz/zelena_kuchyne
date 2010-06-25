@@ -1,0 +1,20 @@
+default_language:
+  key: 'default_language'
+  value: 'cs'
+
+delivery_from:
+  key: 'delivery_from'
+  value: '10:30'
+
+delivery_to:
+  key: 'delivery_to'
+  value: '15:30'
+
+delivery_step:
+  key: 'delivery_step'
+  value: '1800'
+
+default_pagination:
+  key: 'default_pagination'
+  value: '30'
+  

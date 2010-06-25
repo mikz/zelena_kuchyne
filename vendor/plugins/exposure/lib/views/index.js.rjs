@@ -1,0 +1,3 @@
+page.replace "records", :partial => "index"
+page << "var calendar_widget_url = #{url_for(params.merge({'date' => '__date__'})).gsub('&amp;', '&').inspect};" if @options[:calendar_widget]
+page << "filterWidget('records-rules').updateOptions({url: #{url_for(params.delete_if {|key,val| key == 'filter'}).gsub('&amp;', '&').inspect}});" if @options[:filter_widget]

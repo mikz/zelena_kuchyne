@@ -1,0 +1,8 @@
+  <td><%= record.item.name %></td>
+  <td><%= format_date record.lost_at %></td>
+  <td><%= record.user.name %></td>
+  <td><%= format record.amount%></td>
+  <td>
+  <%= smart_link locales[:edit], :action => 'edit', :id => record %>
+  | <%= smart_link locales[:delete], {:action => 'destroy', :id => record}, :confirm => locales['delete_confirmation'] %>
+</td>

@@ -1,0 +1,23 @@
+<% data = [
+  ["pecene_brambory", "brambory", 90],
+  ["pecene_brambory", "zeli", 50],
+  ["pecene_brambory", "smetana", 30],
+  ["smetanova_polevka", "smetana", 100],
+  ["smetanova_polevka", "mouka", 20],
+  ["smetanova_polevka", "vejce", 1],
+  ["fazolovy_salat", "fazole", 50],
+  ["fazolovy_salat", "zeli", 10],
+  ["gulas", "paprika_mleta", 1],
+  ["gulas", "paprika_cervena", 30],
+  ["gulas", "brambory", 20],
+  ["gulas", "fazole", 10],
+  ["zelnacka", "zeli", 30],
+  ["zelnacka", "paprika_mleta", 1],
+  ["mrkvovy_salat", "mrkev", 20],
+  ["paprikovy_salat", "paprika_cervena", 25],
+  ["halusky", "brambory", 100],
+  ["halusky", "zeli", 50],
+  ["halusky", "mouka", 25]
+  
+] %>
+<%= render_fixtures data, :attributes => ["meal", "ingredient", "amount"], :name => "recipe" %>

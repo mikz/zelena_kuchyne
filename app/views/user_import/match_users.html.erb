@@ -1,0 +1,5 @@
+<%= render :partial => "menu"%>
+<h1>Asociace importovaných uživatelů s uživateli databázi</h1>
+<% for imported in @users %>
+  <%= render :partial => "user", :locals => {:imported => imported}%>
+<% end%>

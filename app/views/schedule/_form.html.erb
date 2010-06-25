@@ -1,0 +1,36 @@
+<% id = scheduled.send "#{what}_id" if scheduled && what
+oid = scheduled.oid if scheduled
+row_id = "record_#{what}_#{scheduled.oid}" if id 
+row_id = row_id || "record_new" %>
+<td colspan="8">
+<% form_remote_tag :url => {:action => 'schedule_item', :id => oid, :what=> what} do %>
+  <p><label for="schedule_date"><%= locales[:attr_scheduled_for] %></label><br />
+  <input value="<%= date || Date.today %>" <%= "readonly='readonly'" if id %> type="text" name="schedule[date]" id="schedule_date" /></p>
+  <p>
+    <label for="schedule_item_id"><%= locales[:item] %></label><br />
+    <select name="schedule[item_id]" id="schedule_item_id" <%= "disabled='disabled'" if id %>>
+      <option></option>
+      <optgroup label="<%= locales[:model_meals] %>">
+        <% for meal in @meals %>
+          <option value="meal:<%= meal.id %>" <%= "selected='selected'" if meal.id == id && what == "meal"%>><%= meal.name %></option>
+        <% end %>
+      </optgroup>
+      <optgroup label="<%= locales[:model_bundles] %>">
+        <% for bundle in @bundles %>
+          <option value="bundle:<%= bundle.id %>" <%= "selected='selected'" if bundle.id == id && what == "bundle"%>><%= bundle.name %></option>
+        <% end %>
+      </optgroup>
+      <optgroup label="<%= locales[:model_menus] %>">
+        <% for menu in @menus %>
+          <option value="menu:<%= menu.id %>" <%= "selected='selected'" if menu.id == id && what == "menu"%>><%= menu.name %></option>
+        <% end %>
+      </optgroup>
+    </select>
+  </p>
+  <p><label for="schedule_amount"><%= locales[:amount] %></label><br />
+  <input type="text" name="schedule[amount]" id="schedule_amount" value="<%= scheduled.amount if scheduled%>"/></p>
+  <p><label for="schedule_invisible"><%= locales[:attr_invisible] %></label><br />
+  <input type="checkbox" name="schedule[invisible]" id="schedule_invisible" value="1" <%= 'checked="checked"' if scheduled && scheduled.invisible?%>/></p>
+  <p><input type="submit" value="<%= locales[:schedule] %>" /><%= yield :cancel_button%></p>
+<% end %>
+</td>

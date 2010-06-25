@@ -1,0 +1,1 @@
+DROP VIEW IF EXISTS expense_categories_by_day_view CASCADE;

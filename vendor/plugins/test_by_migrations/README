@@ -1,0 +1,8 @@
+= test by migrations
+This tiny plugin changes the behavior of rails to generate test database using migrations instead of cloning the structure of the development database, if schema format is set to :ruby.
+
+This comes in particularly handy when your database contains relations that ActiveRecord doesn't understand (like foreign key constraints, views, stored procedures, etc.) and, at the same time, cannot be recreated from an SQL dump. Common reasons why a database cannot be recreated from an SQL dump include:
+
+- It contains relations that are actually declared on some kind of a database template, and are therefore copied to every new database automatically, which means they are already present when the restore utility attempts to create them, which causes an error.
+- There are some basic values that need to be placed in the database when it is created that cannot be recreated as fixtures. A good example of this is random data generated using custom code, such as encryption vectors. A good example of data that can be recreated as fixtures, but doing so breaks the DRY principle are values in enum tables.
+- Migrations do something other than just create the database - this bootstrap functionality may initialization of a file-based repository or interacting with external utilities, such as cron or NFS.

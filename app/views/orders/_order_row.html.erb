@@ -1,0 +1,9 @@
+<tr id="item_<%= item.id %>" class="ordered_item">
+  <td><%= item.item.name %></td>
+  <td><%= format_currency(item.discount_price) %></td>
+  <td>
+    <input type="text" value="<%= format item.amount %>" name="amount[<%= item.item.id %>]" />
+  </td>
+  <td class="item-price"><%= format_currency (item.amount * item.discount_price) %></td>
+  <td><%= smart_link locales[:delete], :action => 'remove_item', :id => @order.id, :item_id => item.id %></td>
+</tr>

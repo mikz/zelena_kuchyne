@@ -1,0 +1,6 @@
+troje_brambory:
+  name: "Troje brambory"
+  meal: pecene_brambory
+  amount: 3
+  price: 140
+  item_id: 11

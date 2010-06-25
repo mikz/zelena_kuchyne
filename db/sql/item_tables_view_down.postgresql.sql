@@ -1,0 +1,1 @@
+DROP VIEW IF EXISTS item_tables_view CASCADE;

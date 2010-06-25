@@ -1,0 +1,5 @@
+<fieldset class="user">
+  <div class="links"><%= link_to_remote "info", :url => {:action =>:show_user, :id => user.id }%> | <%= link_to_remote "upravit", :url => {:action =>:edit_user, :id => user.id }%></div>
+  <legend><%=user.name%></legend>
+  <p><%= h user.inspect%></p>
+</fieldset>

@@ -1,0 +1,37 @@
+<%= render :partial => "users/zone_warning"%>
+<h1><%=locales[:order]%></h1>
+<% form_remote_tag :url => {:action => 'submit'} do %>
+  <div id="order">
+    <%= render :partial => "order" %>
+  </div>
+<% if !@delivery[:disabled]%>
+<h1><%= locales[:preferred_time_of_delivery] %></h1>
+<div id="change_deliver_at" style="display: none;"></div>
+<p><%= locales[:your_order_will_be_delivered_on].gsub('%date', "<strong id='deliver_at'>#{format_date(@basket.deliver_at)} #{smart_link locales[:change].chars.capitalize, {:action => "change_deliver_on"}, :id => "deliver_at_link"}</strong>") %></p>
+  <p>
+    <label for="time_of_delivery"><%= locales[:preferred_time_of_delivery] %>:</label>
+    <select name="order[time_of_delivery]" id="time_of_delivery" class="time_field" <%= 'disabled="disabled"' if @delivery[:disabled] %>>
+      <%= time_of_delivery_options %>
+    </select>
+  </p>  
+  <p><%= locales[:time_of_delivery_is_approximate] %></p>
+  <p><%= locales[:time_of_delivery_range].gsub("%from",@delivery[:from_orig]).gsub("%to",@delivery[:to_orig])%></p>
+  <p><%=locales[:user_agreement]%>:</p>
+  <div id="user_agreement"><%= snippet 'user_agreement' %></div>
+  <p id="confirm_agreement"><input type="checkbox" id="order_confirmed" name="order[confirmed]"/><label for="order_confirmed"><%=locales[:accept_agreement]%></label></p>
+  <div id="submit_confirmation" style='display: none;'>
+    <ul>
+      <li><%= locales[:delivery_fee].chars.capitalize%>: <strong></strong>.</li>
+      <li><%= locales[:time_of_delivery_range].gsub("%from","<strong>#{@delivery[:from_orig]}</strong>").gsub("%to","<strong>#{@delivery[:to_orig]}</strong>").chars.capitalize%></li>
+      <li><%= locales[:time_of_delivery_approximately].chars.capitalize %>: <strong></strong>.</li>
+    </ul>
+    <p><%=locales[:have_to_accept_agreement]%></p>
+    <p>Pokračovat ? <button disabled="disabled" class="confirm_yes"><%= locales[:true]%></button><button class="confirm_no"><%= locales[:false]%></button></p>
+  </div>
+  <p id="validate_order"><input type="submit" name="validate" value="<%= locales[:validate_order] %>" <%= "disabled='disabled'" if @basket.disabled? %>/></p>
+<%else%>
+  <h1><%= locales[:you_cannot_order_for_today]%></h1>
+  <p><%= locales[:your_order_will_be_delivered_on].gsub('%date', "<strong id='deliver_at'>#{format_date(@basket.deliver_at)} #{smart_link locales[:change].chars.capitalize, {:action => "change_deliver_on"}, :id => "deliver_at_link"}</strong>") %></p>
+<%end%>
+<% end %>
+<%= render :partial => 'shared/user_sidebar'%>

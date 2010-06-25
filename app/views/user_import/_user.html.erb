@@ -1,0 +1,10 @@
+<div>
+  <fieldset>
+    <legend><%= (imported.valid?)? "#{imported.user.name} (#{imported.user.login})" : imported.loginname %></legend>
+    <p>status: <%= (imported.valid?)? "ok" : "error" %></p>
+    <% unless imported.valid? %>
+    <p><%= error_messages_for :object => imported %></p>
+    <%= imported.inspect_html %>
+    <% end%>
+  </fieldset>
+</div>

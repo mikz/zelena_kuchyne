@@ -1,0 +1,24 @@
+<div id="stock">
+  <table class="admin">
+    <thead>
+      <tr>
+        <td><%= locales[:model_meal] %></td>
+        <td><%= locales[:attr_scheduled_for] %></td>
+        <td><%= locales[:attr_scheduled_amount] %></td>
+        <td><%= locales[:attr_ordered_amount] %></td>
+        <td><%= locales[:attr_amount_left] %></td>
+      </tr>
+    </thead>
+    <tbody>
+    <% for item in @list %>
+      <tr>
+        <td><%= item.name %></td>
+        <td><%= format item.scheduled_for %></td>
+        <td><%= format item.scheduled_amount %></td>
+        <td><%= format item.ordered_amount %></td>
+        <td><%= format item.amount_left %></td>
+      </tr>
+    <% end%>
+    </tbody>
+  </table>
+</div>

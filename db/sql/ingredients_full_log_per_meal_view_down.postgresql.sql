@@ -1,0 +1,1 @@
+DROP VIEW IF EXISTS ingredients_full_log_per_meal_view CASCADE;

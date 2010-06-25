@@ -1,0 +1,5 @@
+<% content_for :sidebar do %>
+  <%= calendar_widget :action => 'cooking', :active_dates => @dates, :updates => '#cooking', :date_param => :date%>
+<% end %>
+
+<%= render :partial => 'cooking'%>

@@ -1,0 +1,1 @@
+DROP VIEW IF EXISTS lost_items_view CASCADE;

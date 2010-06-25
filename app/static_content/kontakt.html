@@ -1,0 +1,36 @@
+<% content_for :css do %>
+  address {
+    font-style: normal;
+  }
+  
+  #map {
+    float: right;
+    border: 3px #A8BB76 solid;
+    margin: 0 18px 6px 6px;
+  }
+<% end %>
+<h1>Kontakt</h1>
+<div id="map">
+  <iframe width="350" height="300" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=cs&amp;geocode=&amp;q=mil%C3%AD%C4%8Dova+5&amp;sll=50.082315,14.463329&amp;sspn=0.041307,0.071754&amp;ie=UTF8&amp;ll=50.085055,14.450369&amp;spn=0.00413,0.006437&amp;z=16&amp;output=embed"></iframe>
+  <br/>
+  <a href="http://maps.google.com/maps?f=q&amp;source=embed&amp;hl=cs&amp;geocode=&amp;q=mil%C3%AD%C4%8Dova+5&amp;sll=50.082315,14.463329&amp;sspn=0.041307,0.071754&amp;ie=UTF8&amp;ll=50.085055,14.450369&amp;spn=0.00413,0.006437&amp;z=16">Zobrazit větší mapu</a>
+</div>
+<address>
+  <p class="vcard"> 
+      <span class="fn org">Restaurace <strong>Zelená kuchyně</strong></span><br/>
+      <span class="adr">
+        <strong class="street-address">Milíčova 5</strong>,
+        <span class="locality">Praha 3–Žižkov</span>,
+        <span class="postal-code">130 00</span>
+      </span>
+  </p>
+  <p>Otevírací doba: <!--[if IE]><nobr><![endif]--><strong>Po&nbsp;&ndash;&nbsp;Pá:&nbsp;11:00&nbsp;&ndash;&nbsp;20:00</strong><!--[if IE]></nobr><![endif]--></p>
+  <p>Zelená kuchyně, spol. s.r.o.<br/>
+    Pod vilami 857/9, Praha 4, 140 00<br/>
+    IČ: 27369404</p>
+  <p><small>(objednávky, rezervace)</small><br/>
+    E: <a href="mailto:objednavky@zelenakuchyne.cz">objednavky@zelenakuchyne.cz</a><br/></p>
+  <p>T: <strong>+420&nbsp;222&nbsp;220&nbsp;114</strong><br/>
+    E: <a href="mailto:info@zelenakuchyne.cz">info@zelenakuchyne.cz</a></p>
+</address>
+<%= render :partial => 'shared/user_sidebar'%>

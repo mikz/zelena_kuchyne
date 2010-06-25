@@ -1,0 +1,18 @@
+<% if category %>
+  <% cache("category_sub_#{category.id || 0}") do%>
+    <div class="category_path">
+      <ul>
+        <% count = 0 %>
+        <li><%= link_to locales[:menu_eshop], url_for(:controller => :eshop)%>&gt;<ul>
+      <% category.self_and_ancestors.each do |c| %>
+        <li><%=link_to c.name, url_for(:controller => :eshop, :category => c.id) %>
+        <% count = count +1; unless count == category.self_and_ancestors.length %>
+          &gt;<ul>
+        <% end %>
+      <%end%>
+      <% count.times { %>  </li></ul> <% } %>
+        </li>
+      </ul>
+    </div>
+  <%end%>
+<%end%>

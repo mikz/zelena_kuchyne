@@ -1,0 +1,8 @@
+<% data = [
+  ["peter", "customers"],
+  ["martin", "admins"],
+  ["martin", "customers"],
+  ["delivery_boy", "delivery_men"],
+  ["delivery_girl", "delivery_men"]
+] %>
+<%= render_fixtures data, :name => "membership", :attributes => ["user", "group"] %>

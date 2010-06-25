@@ -1,0 +1,21 @@
+<% content_for :javascript do %>
+  <% fw_strings = {:val_true => locales['true'], :val_false => locales['false'], :submit => locales['submit'], :show_all => locales['show_all']} %>
+  <%= filter_widget("records-rules", :url => url_for(params),
+                                   :wrap => false,
+                                   :beforeSend => %{function() {$("#records").html('<p><img src="/images/loading.gif" alt="loading" /></p>');}},
+                                   :strings => fw_strings) do |widget|
+        widget.add_rule("amount", locales[:amount], "numeric")
+        widget.add_rule("premise_id", locales[:attr_premise], "enum", @premises)
+        widget.add_rule("users.login", locales[:attr_buyer_login], "string")
+        widget.add_rule("restaurant_sales.price", locales[:attr_price], "numeric")
+        widget.add_rule("meals.meal_category_id", locales[:attr_category], "enum", @meal_categories)
+      end %>
+<% end %>
+<% if @options[:calendar_widget] %>
+<% content_for :sidebar do %>
+  <%= calendar_widget :action => 'index', :active_dates => @options[:dates_proc].call, :updates => '#index', :date_param => :date%>
+<% end %>
+<% end%>
+
+<%= render :partial => "index" %>
+<p id="records-rules"></p>

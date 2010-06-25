@@ -1,0 +1,51 @@
+.meal .meal_flags {
+  position: relative;
+  display: inline;
+  zoom: 1;
+}
+
+.product img {
+  width: expression(Math.min(parseInt(this.clientWidth), 78 ) + "px"); 
+  height: expression(Math.min(parseInt(this.clientHeight), 78 ) + "px"); 
+}
+
+#user_box p {
+  padding-bottom: 0;
+}
+
+body {
+  background-image: none;
+  background-color: #BEE0F5;
+}
+
+#contents {
+  background-image: url('/images/contents_bg_ie6.gif');
+}
+
+.menu {
+  background: url('/images/menu_bg_green_ie6.gif') top;
+}
+
+#main_menu {
+  background: url('/images/menu_bg_green_ie6.gif');
+}
+
+#menu_eshop {
+  background: url('/images/menu_bg_red_ie6.gif');
+}
+
+#menu_basket {
+  background: url('/images/menu_bg_orange_ie6.gif');
+}
+
+#menu_orders {
+  background: url('/images/menu_bg_gray_ie6.gif');
+}
+
+.story {
+  margin-left: -9px;
+}
+
+#map {
+  margin-right: 9px;
+}

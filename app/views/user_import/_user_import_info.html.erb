@@ -1,0 +1,27 @@
+<div class="user_import">
+  <h2><%= user.loginname %></h2>
+  <ul>
+    <li><strong><%=locales[user.translate_attributes[:loginname]]%></strong>: <%=user.loginname_fix%></li>
+    <li><strong><%=locales[user.translate_attributes[:passwduziv]]%></strong>: <%=user.passwduziv%></li>
+    <li><strong><%=locales[user.translate_attributes[:email]]%></strong>: <%=user.email_fix%></li>
+    <li><strong><%=locales[user.translate_attributes[:telefon]]%></strong>: <%=user.telefon_fix%></li>
+    <li><strong><%=locales[user.translate_attributes[:jmeno]]%></strong>: <%=user.jmeno_fix%></li>
+    <li><strong><%=locales[user.translate_attributes[:prijmeni]]%></strong>: <%=user.prijmeni_fix%></li>
+    <li><strong><%=locales[user.translate_attributes[:adresa]]%></strong>: <%=user.adresa_fix%></li>
+    <li><strong><%=locales[user.translate_attributes[:mesto]]%></strong>: <%=user.mesto_fix%></li>
+    <li><strong><%=locales[user.translate_attributes[:psc]]%></strong>: <%=user.psc%></li>
+    <li><strong><%=locales[user.translate_attributes[:dodani]]%></strong>: <%=format (user.dodani==1)%></li>
+    <li><strong><%=locales[user.translate_attributes[:jmenodod]]%></strong>: <%=user.jmenodod_fix%></li>
+    <li><strong><%=locales[user.translate_attributes[:prijmenidod]]%></strong>: <%=user.prijmenidod_fix%></li>
+    <li><strong><%=locales[user.translate_attributes[:adresadod]]%></strong>: <%=user.adresadod_fix%></li>
+    <li><strong><%=locales[user.translate_attributes[:mestodod]]%></strong>: <%=user.mestodod_fix%></li>
+    <li><strong><%=locales[user.translate_attributes[:pscdod]]%></strong>: <%=user.pscdod_fix%></li>
+    <li><strong><%=locales[user.translate_attributes[:firma]]%></strong>: <%=user.firma_fix%></li>
+    <li><strong><%=locales[user.translate_attributes[:ico]]%></strong>: <%=user.ico%></li>
+    <li><strong><%=locales[user.translate_attributes[:dic]]%></strong>: <%=user.dic%></li>
+    <li><strong><%=locales[user.translate_attributes[:objednavek]]%></strong>: <%=user.objednavek%></li>
+    <li><strong><%=locales[user.translate_attributes[:cena_objednavek]]%></strong>: <%= format_currency user.cena_objednavek%></li>
+    <li><strong><%=locales[user.translate_attributes[:last_order]]%></strong>: <% if user.last_order %><%= format_date user.last_order%> <%= format_time user.last_order%><% end %></li>
+    <li><strong><%=locales[user.translate_attributes[:sleva]]%></strong>: <%=user.sleva%>%</li>
+  </ul>
+</div>

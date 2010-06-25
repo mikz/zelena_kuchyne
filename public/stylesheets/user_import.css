@@ -1,0 +1,40 @@
+div.links {
+  float: right;
+  border: 1px solid black;
+  padding: 3px 5px;
+  margin: 0 2px 2px 2px;
+}
+div fieldset {
+  margin: 2px 3px 10px 5px;
+  padding-bottom: 3px;
+}
+div fieldset fieldset {
+  margin: 2px 5px;
+  clear: both;
+}
+div fieldset fieldset p {
+  padding-left: 1em !important;
+}
+fieldset.user {
+  margin-top: 1em;
+}
+fieldset legend {
+  font-weight: bold;
+}
+div#user {
+  float: right;
+  width: 300px;
+}
+div.user_import {
+  float: left;
+  width: 300px;
+}
+div#userform div {
+  width: 270px;
+}
+div.manual_match div.user_import {
+  float: left;
+}
+div.manual_match {
+  clear: both;
+}

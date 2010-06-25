@@ -1,0 +1,30 @@
+<table class="admin mail" id="records">
+  <thead>
+    <% unless (pagination = paginate(@records,:container=>false)).nil? %>
+    <tr class="pagination">
+      <td colspan="<%=@options[:columns].size+2%>"><%= pagination %></td>
+    </tr>
+    <% end %>
+    <tr>
+      <td><%= locales["attr_#{@options[:title][:name]}"] %></td>
+    <% for column in @options[:columns] %>
+      <td><%= locales[(column[:locale])? column[:locale] : "attr_#{column[:name]}"] %></td>
+    <% end %>
+    </tr>
+  </thead>
+  <% unless pagination.blank? %>
+  <tfoot>
+    <tr class="pagination">
+      <td colspan="<%=@options[:columns].size+2%>"><%= pagination %></td>
+    </tr>
+  </tfoot>
+  <% end%>
+  <tbody id="records_body">
+  <% for record in @records %>
+    <%= render :partial => 'show', :locals => {:record => record, :is_open => false} %>
+  <% end %>
+  </tbody>
+</table>
+<% if protect_against_forgery? %> 
+<div style='display: none;' id="authenticity_token"><%= form_authenticity_token %></div> 
+<% end %>

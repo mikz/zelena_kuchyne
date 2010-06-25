@@ -1,0 +1,84 @@
+<div id="agenda">
+  <table class="admin">
+    <thead>
+      <tr>
+        <td><%= locales[:model_meal] %></td>
+        <td><%= locales[:attr_scheduled_for] %></td>
+        <td><%= locales[:attr_scheduled_amount] %></td>
+        <td><%= locales[:attr_ordered_amount] %></td>
+        <td><%= locales[:attr_lost_amount] %></td>
+        <td><%= locales[:attr_sold_amount] %></td>
+        <td><%= locales[:attr_amount_left] %></td>
+        <td><span id="record_add"><%= smart_link locales[:schedule], {:action => "new" , :date =>  (@days.first) ? @days.first.scheduled_for : Date.today} %></span></td>
+      </tr>
+    </thead>
+    <tbody id="records_body">
+      <% for day in @days 
+          used = []
+          if day.scheduled_menus.length > 0 
+            for menu in day.scheduled_menus %>
+            <tr id="record_menu_<%=menu.oid%>" class="scheduled_menu">
+              <td><span><%= menu.menu.name %><%if menu.created_at < menu.menu.updated_at%></span><span class="warning" title="<%=locales[:menu_was_changed]%>">!</span><%end%></td>
+              <td><%= format menu.scheduled_for %></td>
+              <td><%= format menu.amount %></td>
+              <td colspan="4"/>
+              <td><%= smart_link locales[:edit], {:action => 'edit', :what => "menu", :id => menu.oid, :date => menu.scheduled_for } %> <%= smart_link locales[:delete], {:action => 'deschedule_menu', :id => menu.menu_id, :date => menu.scheduled_for } %></td>
+            </tr>
+          <%  for stock in day.stock 
+                if menu.menu.meal_ids.include? stock.meal_id %>
+              <tr class="scheduled_menu_meal record_menu_<%=menu.oid%>">
+                <td><%= stock.name %></td>
+                <td><%= format stock.scheduled_for %></td>
+                <td><%= format stock.scheduled_amount %></td>
+                <td><%= format stock.ordered_amount %></td>
+                <td><%= format stock.lost_amount %></td>
+                <td><%= format stock.sold_amount %></td>
+                <td><%= format stock.amount_left %></td>
+                <td/>
+              </tr>
+            <%  end
+             end
+           end
+        end
+        if day.scheduled_bundles.length > 0
+          for bundle in day.scheduled_bundles 
+            for stock in day.stock 
+              if bundle.bundle.meal_id == stock.meal_id %>
+                <tr id="record_bundle_<%=bundle.oid%>" class="scheduled_meal">
+                  <td><%= bundle.bundle.name %></td>
+                  <td><%= format bundle.scheduled_for %></td>
+                  <td><%= format (stock.scheduled_amount/bundle.bundle.amount).floor %></td>
+                  <td><%= format (stock.ordered_amount/bundle.bundle.amount).floor %></td>
+                  <td colspan="2"/>
+                  <td><%= format (stock.amount_left/bundle.bundle.amount).floor%></td>
+                  <td><%= smart_link locales[:edit], {:action => 'edit', :what => "bundle", :id => bundle.oid, :date => bundle.scheduled_for } %> <%= smart_link locales[:delete], {:action => 'deschedule_bundle', :id => bundle.bundle_id, :date => bundle.scheduled_for } %></td>
+                </tr>
+<%            end
+            end
+          end
+        end
+        if day.scheduled_meals.length > 0
+          for meal in day.scheduled_meals
+            for stock in day.stock 
+              if meal.meal_id == stock.meal_id %>
+                <tr id="record_meal_<%=meal.oid%>" class="scheduled_meal">
+                  <td><%= stock.name %><%if meal.created_at < meal.meal.updated_at%></span><span class="warning" title="<%=locales[:meal_was_changed]%>">!</span><%end%></td>
+                  <td><%= format stock.scheduled_for %></td>
+                  <td><%= format stock.scheduled_amount %></td>
+                  <td><%= format stock.ordered_amount %></td>
+                  <td><%= format stock.lost_amount %></td>
+                  <td><%= format stock.sold_amount %></td>
+                  <td><%= format stock.amount_left %></td>
+                  <td><%= smart_link locales[:edit], :action => 'edit', :id => meal.oid, :what => "meal", :date => stock.scheduled_for %> <%= smart_link locales[:delete], :action => 'deschedule_meal', :id => stock.meal_id, :date => stock.scheduled_for %></td>
+                </tr>
+          <%  end
+            end
+          end
+        end%>        
+        <tr class="day_divide">
+          <td colspan="8"/>
+        </tr>
+      <% end%>
+    </tbody>
+  </table>
+</div>

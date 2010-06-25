@@ -1,0 +1,1 @@
+DROP VIEW IF EXISTS ingredients_per_day_view CASCADE;

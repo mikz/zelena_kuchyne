@@ -1,0 +1,20 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+peter_first_name:
+  user: peter
+  user_profile_type: first_name
+  field_body: "Peter"
+
+peter_family_name:
+  user: peter
+  user_profile_type: family_name
+  field_body: "Kůň"
+
+peter_company_name:
+  user: peter
+  user_profile_type: company_name
+  field_body: "Žluťoučká stáj"
+
+peter_company_reg_no:
+  user: peter
+  user_profile_type: company_registration_no
+  field_body: "1234567"
