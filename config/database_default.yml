@@ -1,26 +1,18 @@
-development:
+login: &login
   adapter: postgresql
-  encoding: utf8
-  database: zelenakuchyne_test
-  username: zelenakuchyne
+  username: postgres
   password: 
   host: localhost
 
-# Warning: The database defined as 'test' will be erased and
-# re-generated from your development database when you run 'rake'.
-# Do not set this db to the same as development or production.
+development:
+  <<: *login
+  database: zelena_kuchyne_dev
+
 test:
-  adapter: postgresql
-  encoding: utf8
-  database: zelenakuchyne_test
-  username: zelenakuchyne
-  password: 
-  host: localhost
+  <<: *login
+  database: zelena_kuchyne_test
 
 production:
-  adapter: postgresql
-  encoding: utf8
-  database: zelenakuchyne
-  username: zelenakuchyn
-  password: 
-  host: localhost
+  <<: *login
+  database: zelena_kuchyne
+ 

@@ -61,6 +61,6 @@ Rails::Initializer.run do |config|
   config.gem "jrails"
 end
 
-#require "debugging" if Rails.env.development?
+require "debugging" if Rails.env.development?
 
 Log = RAILS_DEFAULT_LOGGER

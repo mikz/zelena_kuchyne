@@ -1,0 +1,2 @@
+module DialyMenusHelper
+end

@@ -229,6 +229,10 @@ class User < ActiveRecord::Base
     end
   end
   
+  def last_name
+    self.family_name
+  end
+  
   def delivery_address
     arr = {}
     for address in self.addresses

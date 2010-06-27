@@ -1,0 +1,2 @@
+module DialyMenuScheduledsHelper
+end

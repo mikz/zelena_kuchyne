@@ -29,7 +29,8 @@
     <dd><%= link_to locales[:admin_news], :controller => '/news' -%></dd>
     <dd><%= link_to locales[:admin_snippets], :controller => '/snippets' -%></dd>
     <dd><%= link_to locales[:admin_polls], :controller => '/polls' -%></dd>
-    <dd><%= link_to locales[:admin_import], :controller => '/import' -%></dd>
+    <dd><%= link_to locales[:admin_dialy_menus], :controller => '/dialy_menus' -%></dd>
+    <dd><%= link_to locales[:admin_category_order], :controller => '/meal_category_orders' -%></dd>
   </dl>
 <%-end-%>
 <%-if current_user.belongs_to_one_of? :admins, :warehousers, :deliverymen, :operating_officers, :chefs -%>

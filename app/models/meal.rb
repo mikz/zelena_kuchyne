@@ -13,6 +13,7 @@ class Meal < Item
   has_many :bundles
   has_many :stock
   belongs_to :meal_category
+  alias_attribute :category, :meal_category
   
   def save_spices(used_spices)
     q = ''
@@ -29,7 +30,9 @@ class Meal < Item
       self.connection.execute q
     end
   end
-  
+  def description
+    read_profile(:description)
+  end
   def discount_price options={}
     options[:meals] = true
     @discount_price = super options

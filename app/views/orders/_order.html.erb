@@ -1,7 +1,9 @@
 <tr id="order_<%= order.id %>" class="order"<%= " style='background: #{order.delivery_man.delivery_man_color} !important;'" if order.delivery_man and order.delivery_man.delivery_man_color%>> 
   <td><%= order.id %></td>
   <td><%= link_to order.user.name, :controller => :users, :action => :show, :id => order.user.id %></td>
-  <td class="<%= 'zone-error' unless order.user.delivery_address.zone and order.user.delivery_address.zone_reviewed? %>"><%= order.user.delivery_address.output %></td>
+  <td class="<%= 'zone-error' unless order.user.delivery_address.zone and order.user.delivery_address.zone_reviewed? %> address">
+    <%= order.user.delivery_address.output %>
+  </td>
   <td class="<%= 'zone-error' unless order.user.delivery_address.zone and order.user.delivery_address.zone_reviewed? %>">
     <%-if order.user.delivery_address.zone%>
       <%= order.user.delivery_address.zone.name%>
@@ -26,7 +28,7 @@
       <select name="delivery_man_id" onchange='this.form.onsubmit();'>
         <option value="null"><%= locales[:none_assigned] %></option>
         <% for dude in delivery_men %>
-          <option<%= ' selected="selected"' if order.delivery_man and order.delivery_man.id == dude.id %> value="<%= dude.id %>"><%= dude.name %></option>
+          <option<%= ' selected="selected"' if order.delivery_man and order.delivery_man.id == dude.id %> value="<%= dude.id %>"><%= dude.label %></option>
         <% end %>
       </select>
     </p>
@@ -51,5 +53,8 @@
   </td>
   <td class="fullscreen"><%= format order.deliver_at.to_date %></td>
   <td><%= format order.deliver_at %></td>
-  <td><%= link_to locales['show'], :action => 'show', :id => order.id %> | <%= link_to locales['edit'], :action => 'edit', :id => order.id %> | <%=link_to "<img src='/images/print.png' alt='#{locales[:print]}'/>", {:action => :show, :id => order.id, :print => true },:popup =>['print', 'height=300,width=300']%></td>
+  <td>
+  <%= link_to image_tag('open.png'), :action => 'show', :id => order.id %>
+  <%= link_to image_tag('edit.png'), :action => 'edit', :id => order.id %>
+  <%=link_to "<img src='/images/print.png' alt='#{locales[:print]}'/>", {:action => :show, :id => order.id, :print => true },:popup =>['print', 'height=300,width=300']%></td>
 </tr>

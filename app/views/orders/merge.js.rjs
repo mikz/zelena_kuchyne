@@ -1,6 +1,8 @@
 page.replace "order_#{@order.id}", :partial => 'order', :locals => {:order => @order.order_view, :delivery_men => @delivery_men, :even => false}
 page.visual_effect :highlight, "order_#{@order.id}"
 page.visual_effect :fade, "#orders .orders-with-state #order_#{@other_order.id}"
+page << "init_draggable_orders('#order_#{@order.id}');"
+page << "init_address_helpers('#order_#{@order.id}');"
 page.delay 0.3 do
   page.remove "#orders .orders-with-state #order_#{@other_order.id}"
   page.visual_effect :highlight, "order-tab-#{@other_order.state}", :duration => 0.5

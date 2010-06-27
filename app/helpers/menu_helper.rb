@@ -41,7 +41,7 @@ module MenuHelper
     end
   
     # the chosen month
-    last_day = date.end_of_month
+    last_day =  [options[:last_day], date.end_of_month].max
     day = date.beginning_of_month
     while day <= last_day do
      classes = []
@@ -62,9 +62,8 @@ module MenuHelper
        calendar << "</tr><tr>" unless day == last_day+1
      end
     end
-  
-    # after the month
-    day = date.next_month.beginning_of_month
+    
+      # after the month
     until column == 7 do
       calendar << "<td class=\"calendar_inactive\">#{day.day}</td>"
       day += 1

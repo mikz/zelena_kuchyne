@@ -587,6 +587,8 @@ admin_zones: Zóny
 today_menu: Dnešní menu
 tomorrow_menu: Zítřejší menu
 dialy_offer: Denní nabídka
+admin_dialy_menus: Denní menu
+admin_category_order: Pořadí kategorií
 # users 
 containing_text: obsahující text
 list_all: vypsat všechny

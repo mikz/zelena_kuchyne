@@ -350,7 +350,9 @@ h2 {
   background: #d12700;
   color: #000 !important;
 }
-
+.calendar_active {
+  background: #F0F2E0;
+}
 .calendar a {
   color: #000;
 }
@@ -488,6 +490,12 @@ h2 {
   text-transform: uppercase;
 }
 
+.dialy_menu fieldset {
+  clear: both;
+}
+.dialy_menu table.admin {
+  border: none;
+}
 .story {
   background: #ebbb3c;
   /*background: #C1CE9E;*/
@@ -628,12 +636,20 @@ table.order tr.delivery_method {
 table.order tr.hidden {
   display: none;
 }
-.even, #contents table tr.even, #contents table tbody tr:nth-child(even) {
+.even, #contents table tr.even, #contents table.admin tbody tr:nth-child(even) {
   background: #D7DEBB;
 }
 
 table.order td {
   padding: 3px 0pt 3px 5px;
+}
+
+table.admin tbody tr,table.order tbody tr {
+  background: #F0F2E0;
+}
+
+table.admin tbody a,table.order tbody a {
+  color: #455F23;
 }
 
 table.order tbody tr,table.order tfoot tr {
@@ -660,13 +676,6 @@ table.admin tbody tr > td:first-child a, table.order tbody tr > td:first-child{
   font-weight: bold;
 }
 
-table.admin tbody tr,table.order tbody tr {
-  background: #F0F2E0;
-}
-
-table.admin tbody a,table.order tbody a {
-  color: #455F23;
-}
 
 table.admin .with_lines {
   border-left: 1px solid black;
@@ -928,6 +937,9 @@ label.formError {
 #orders table p {
   padding-left: 0;
 }
+#orders table td:first-child {
+  cursor: move;
+}
 
 /** news **/
 div.news {
@@ -1121,4 +1133,20 @@ a.poll_answer.del {
 .zone-error a {
   color: white !important;
   font-weight: bold;
+}
+#address_helper a {
+  display: block;
+  height: 16px;
+  width: 16px;
+  margin: 0.25em;
+}
+#address_helper img {
+}
+
+table.sortable {
+  counter-reset: position;
+}
+table.sortable tbody tr td:first-child:before {
+  content: counter(position)".";
+  counter-increment: position;
 }

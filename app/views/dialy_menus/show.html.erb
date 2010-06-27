@@ -1,0 +1,15 @@
+<h1>Zelená kuchyně</h1>
+<h2>vegetariánské menu</h2>
+<h3><%= format @record.date %></h3>
+<p>dnes nabízíme:</p>
+<div id="dialy_menu">
+<%- @hash.each do |category, meals|%>
+  <h1><%= h category.name%></h1>
+  <%-meals.each do |meal|%>
+    <h2><%= h meal.name%> <strong class="price"><%= format_currency meal.price%></strong></h2>
+    <%- if meal.respond_to?(:description)%>
+      <%= meal.description%>
+    <%-end-%>
+  <%- end -%>
+<%- end-%>
+</div>

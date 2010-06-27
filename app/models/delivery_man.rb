@@ -21,6 +21,10 @@ class DeliveryMan < User
     super(args.first, options)
   end
   
+  def label
+    self.last_name
+  end
+  
   def delivery_items date
     DeliveryItem.find :all, :conditions => ["scheduled_for::date =  ? AND delivery_man_id = ?",date,self.id], :include => [:item]
   end

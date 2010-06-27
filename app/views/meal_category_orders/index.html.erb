@@ -1,0 +1,37 @@
+<%- form_for :categories, @categories, :url => {:action => :update} do |f|-%>
+<table class="admin sortable">
+  <thead>
+    <tr>
+      <td>pořadí</td>
+      <td>kategorie</td>
+    </tr>
+  </thead>
+  <tbody>
+    <%- @categories.each do |mc|-%>
+    <tr>
+      <td><%= hidden_field_tag "categories[#{mc.id}]", mc.order, :class => "position"%></td>
+      <td><%=h mc.category.name%></td>
+    </tr>
+    <%- end-%>
+  </tbody>
+</table>
+<p>
+  <%= f.submit "Uložit"%>
+</p>
+<%- end -%>
+<script type="text/javascript">
+$(function(){
+  $("table.sortable").bind("recount", function(){
+    var i = 0;
+    $(this).find("tbody tr").each(function(){
+      $(this).find(".position").val(i);
+      ++i;
+    });
+  }).find("tbody tr").dragrow({
+    onDrop: function(row){
+      row.closest("table").trigger("recount");
+    }
+  }).end().trigger("recount");
+})
+</script>
+

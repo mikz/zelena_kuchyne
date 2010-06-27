@@ -6,8 +6,8 @@ class Page < ActiveRecord::Base
   attr_protected :editable
   protected
   def create_page_history
-    if self.url_changed?
-      self.page_histories.create(:url => self.url_was)
+    if self.url_changed? 
+      self.page_histories.create(:url => self.url_was) unless self.url_was.blank?
     end
   end
   

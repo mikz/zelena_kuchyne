@@ -3,7 +3,7 @@ FCKConfig.DefaultLanguage     =  window.top.lang;
 
 
 FCKConfig.ToolbarSets["Default"] = [
-	['Undo','Redo'], ['Bold','Italic','Underline','StrikeThrough','-','Subscript','Superscript'],
+	['Undo','Redo'], ['Paste', 'PasteText', 'PasteWord'], ['Bold','Italic','Underline'],
 	['OrderedList','UnorderedList','-','Outdent','Indent','Blockquote'],
 	['JustifyLeft','JustifyCenter','JustifyRight','JustifyFull'],["SelectAll", "RemoveFormat"],
 	['Link','Unlink','Anchor'],

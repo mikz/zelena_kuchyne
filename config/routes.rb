@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :meal_category_orders
+
   map.root :controller => 'welcome'
   
   map.signin 'signin', :controller => 'users', :action => 'signin'
@@ -19,6 +21,8 @@ ActionController::Routing::Routes.draw do |map|
   map.connect ':controller/:action.:format'
   map.connect ':controller/:action/:id'
   map.connect ':controller/:action/:id.:format'
+  
+  map.connect "dnesni_menu", :controller => "dialy_menus", :action => "show", :id => nil
   
   map.page ':id', :controller => 'pages', :action => 'show'
 end

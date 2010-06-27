@@ -1,0 +1,1 @@
+DROP TABLE IF EXISTS dialy_menus CASCADE;

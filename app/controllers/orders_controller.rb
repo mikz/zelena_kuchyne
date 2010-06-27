@@ -44,7 +44,7 @@ class OrdersController < ApplicationController
         render :update do |page|
           page.replace 'orders', :partial => 'orders'
           page << "update_submit_urls('#{url_for(params.merge({'state' => '__state__'})).sub('&amp;', '&')}', '#{url_for(params.merge({'date' => '__date__'})).sub('&amp;', '&')}', '#{url_for(params.delete_if {|key,val| key == 'filter'}).sub('&amp;', '&')}');"
-          page << "init_draggable_orders();"
+          page << "init_draggable_orders(); init_address_helpers();"
         end
       end
       format.html do

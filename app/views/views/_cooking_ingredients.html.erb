@@ -4,7 +4,6 @@
       <tr>
         <td><%= locales[:attr_name]%></td>
         <td class="text right"><%= locales[:amount]%></td>
-        <td class="text right"><%= locales[:amount_with_consumption]%></td>
       </tr>
     </thead>
     <tbody>
@@ -13,7 +12,6 @@
       <tr>
         <td><%= ingredient.name%></td>
         <td class="text right"><%= format ingredient.amount%> <%=ingredient.unit%></td>
-        <td class="text right"><span class="consumption"><%= format ingredient[:amount_with_consumption], :precision => 0%> <%=ingredient.unit%></span></td>
       </tr>
   <% end %>
     </tbody>

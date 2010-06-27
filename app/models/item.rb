@@ -60,6 +60,7 @@ class Item < ActiveRecord::Base
 
   def read_profile(attr)
     list = ItemProfileType.cached_list
+    attr = attr.to_s
     @profiles = {} unless(@profiles.is_a? Hash)
     if(@profiles[list[attr]])
       return @profiles[list[attr]]

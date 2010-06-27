@@ -4,7 +4,7 @@ class MenuController < ApplicationController
   before_filter :load_sidebar_content, :except => [:feed]
   
   def index
-    @days = Day.find :all
+    @days ||= Day.find :all, :conditions => ["scheduled_for >= ?", Date.today]
     @date = params[:id] ? Date.parse(params[:id]) : Date.today
     
     show
@@ -75,7 +75,7 @@ class MenuController < ApplicationController
   def load_sidebar_content
     @polls ||= Poll.find_all_by_active true, :include => [:poll_votes, :poll_answers_results], :order => "created_at DESC"
     @news ||= News.valid_news :order => 'publish_at DESC, id DESC', :limit => 5
-    @days ||= Day.find :all
+    @days ||= Day.find :all, :conditions => ["scheduled_for >= ?", Date.today]
     @date ||= params[:id] ? Date.parse(params[:id]) : Date.today
   end
 end
