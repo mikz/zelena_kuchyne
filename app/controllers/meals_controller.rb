@@ -1,5 +1,5 @@
 class MealsController < ApplicationController
-  before_filter(:only => [:edit, :index, :show]) { |c| c.must_belong_to_one_of(:admins, :warehousers, :operating_officers, :chefs)}
+  before_filter(:only => [:edit, :index]) { |c| c.must_belong_to_one_of(:admins, :warehousers, :operating_officers, :chefs)}
   before_filter(:except => [:edit, :index, :show]) { |c| c.must_belong_to_one_of(:admins)}
   
   exposure :columns => [:price, :cost, :updated_at]
@@ -111,4 +111,11 @@ class MealsController < ApplicationController
     
     
   end #def
+  
+  def show
+    @record = Meal.find params[:id]
+    
+    @scheduled = ScheduledItem.all :conditions => ["scheduled_for >= current_date AND item_id = ?", @record.item_id]
+    super
+  end
 end

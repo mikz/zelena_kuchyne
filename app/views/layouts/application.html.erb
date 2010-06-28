@@ -1,11 +1,17 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:og="http://opengraphprotocol.org/schema/"
+      xmlns:fb="http://www.facebook.com/2008/fbml">
   <head>
     <meta http-equiv="X-UA-Compatible" content="IE=7"/>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta name="description" content="Zelená kuchyně je restaurace s čistě vegetariánskou kuchyní. Jídla vaříme a připravujeme ze zeleniny, obilovin, luštěnin, mléčných výrobků, ovoce, oříšků, medu, bylinek a koření a jiných čistých surovin. " />
     <meta name="robots" content="all,follow" />
     <meta name="googlebot" content="index,follow,snippet,archive=" />
+    <meta property="fb:admins" content="1134815611"/>
+    <meta property="fb:page_id" content="132981152507"/>
+    <meta property="og:site_name" content="Zeleká kuchyně – vegetariánská restaurace"/>
+    <%= yield(:og) || render(:partial => "shared/og") %>
     <link href="<%=url_for(:controller => "menu",:action=>"feed",:format=>"xml")%>" type="application/rss+xml" rel="alternate" title="<%=locales[:meal_rss_title]%>" />
     <link rel="stylesheet" href="/stylesheets/master.css" type="text/css" media="screen, projection" charset="utf-8" />
     <link rel="stylesheet" href="/stylesheets/print.css" type="text/css" media="print" charset="utf-8" />
@@ -63,6 +69,7 @@
     <% if current_user.belongs_to_one_of?(:admins, :heads_of_car_pool, :operating_officers, :warehousers, :deliverymen, :chefs) %>
       <%= render :partial => '/shared/admin_menu' %>
     <% end %>
+    <%= render :partial => "shared/fb"%>
     <div id="header" class="container">
       <a href="/" id="logo">
         <span><%= locales[:title]%></span>
