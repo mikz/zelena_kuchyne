@@ -1150,3 +1150,12 @@ table.sortable tbody tr td:first-child:before {
   content: counter(position)".";
   counter-increment: position;
 }
+#dialy_menu h2 {
+  float: left;
+}
+#dialy_menu .price {
+  float: right;
+}
+#dialy_menu p {
+  clear: left;
+}
