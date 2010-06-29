@@ -14,13 +14,13 @@ class DialyMenusController < ApplicationController
       @record ||= DialyMenu.find(params[:id])
 
       @hash = ActiveSupport::OrderedHash.new
-      @record.meals.each do |meal|
-        @hash[meal.category] ||= []
-        @hash[meal.category] << meal
-      end
       @record.entries.each do |entry|
         @hash[entry.category] ||= []
         @hash[entry.category] << entry
+      end
+      @menu = {}
+      @hash.each do |category, entries|
+        @menu[category] = entries.any? &:in_menu?
       end
     end
     
@@ -28,23 +28,15 @@ class DialyMenusController < ApplicationController
       @record = DialyMenu.find(params[:id])
       @record.attributes = params[:record]
       
-      disabled = []
-      params[:scheduled].reject! { |key, val|
-        val.to_i == 0 && disabled.push(key)
-      } unless params[:scheduled].blank?
-
-      @record.disabled.clear
-      disabled.each do |item_id|
-        @record.disabled.build :item_id => item_id.to_i
-      end
-      
       entries = @record.entries.index_by &:id
       
       delete = []
       params[:entries].each_pair do |id, attrs|
         destroy = attrs.delete(:_destroy).to_i == 1
+        DEBUG{%w{destroy id}}
         
         if entry = entries[id.to_i]
+          DEBUG{%w{entry}}
           if destroy
             delete << entry
           else

@@ -3,13 +3,27 @@
 <h3><%= format @record.date %></h3>
 <p>dnes nabízíme:</p>
 <div id="dialy_menu">
+<%- menu = nil%>
 <%- @hash.each do |category, meals|%>
+  <%- if menu.nil? && meals.any?(&:in_menu?) &&  @record.menu_price? -%>
+    <%-menu = true%>
+    <div id="menu">
+  <%-end-%>
+  <%- if menu && !meals.any?(&:in_menu?)-%>
+    <%- menu = false%>
+    <h2 class="whole_menu">Celé menu</h2><strong class="price"><%= format_currency @record.menu_price%></strong>
+    </div>
+  <%-end-%>
   <h1><%= h category.name%></h1>
+  <%- last = nil %>
   <%-meals.each do |meal|%>
-    <h2><%= h meal.name%> <strong class="price"><%= format_currency meal.price%></strong></h2>
-    <%- if meal.respond_to?(:description)%>
-      <%= meal.description%>
+    <%-if !meal.in_menu? && last && last.in_menu?  %>
+      <hr/>
     <%-end-%>
+    <h2><%= h meal.name%></h2><strong class="price"><%= format_currency meal.price%></strong>
+    <p><%= meal.description%></p>
+    <%- last = meal%>
   <%- end -%>
+
 <%- end-%>
 </div>

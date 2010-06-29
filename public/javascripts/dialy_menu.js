@@ -10,7 +10,7 @@ jQuery.fn.extend({
         var sample = $this.find("tr.sample");
         if(!sample.length)
           return;
-
+          
         $this.data("sample", sample.clone());
         sample.remove();
         
@@ -28,8 +28,10 @@ jQuery.fn.extend({
       
       $this.find(".destroy").live("click", function(){
         var input = $(this).next();
-        $(this).closest("tr").fadeOut(function(){
-          $(this).hide();
+        var tr = $(this).closest("tr");
+        var both = $([tr[0], tr.next()[0]]);
+        both.fadeOut(function(){
+          both.hide();
           input.val(1);
         });
         return false;

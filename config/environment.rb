@@ -59,6 +59,7 @@ Rails::Initializer.run do |config|
   config.gem 'will_paginate'
   config.gem "fastercsv"
   config.gem "jrails"
+  config.gem "sanitize"
 end
 
 require "debugging" if Rails.env.development?

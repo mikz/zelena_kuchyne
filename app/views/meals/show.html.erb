@@ -1,0 +1,23 @@
+<% content_for :og do %>
+<%= content_tag 'meta', nil, :property => "og:title", :content => @record.name%>
+<%= content_tag 'meta', nil, :property => "og:image", :content => item_image(@record.item_id) if @record.image_flag?%>
+<%= content_tag 'meta', nil, :property => "og:type", :content => 'article' %>
+<%= content_tag 'meta', nil, :property => "og:description", :content => strip_tags(@record.description) %>
+<%end%>
+
+<h1><%= @record.name%></h1>
+<%= @record.description%>
+
+<dl class="show">
+  <dt>Cena:</dt>
+  <dd><%= format_currency @record.price%></dd>
+  <dt>Naplánováno na:</dt>
+  <dd><%- unless @scheduled.blank? %>
+    <%= @scheduled.collect { |s|
+      link_to format(s.date), :controller => :menu, :id => s.date
+    }.to_sentence %>
+    <%-else-%>
+    bohužel zatím nemáme
+    <%-end-%>
+  </dd>
+</dl>

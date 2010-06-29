@@ -1,1 +1,0 @@
-DROP TABLE IF EXISTS dialy_menu_scheduled CASCADE;

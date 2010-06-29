@@ -1150,3 +1150,28 @@ table.sortable tbody tr td:first-child:before {
   content: counter(position)".";
   counter-increment: position;
 }
+#dialy_menu h2 {
+  float: left;
+}
+#dialy_menu .price {
+  float: right;
+}
+#dialy_menu p {
+  clear: left;
+}
+
+.meal .fb_like {
+  padding-left: 24px;
+}
+dl.show {
+  margin-top: 1em;
+}
+dl.show dt {
+  font-weight: bold;
+  float: left;
+  clear: left;
+}
+dl.show dd {
+  float: left;
+  margin-left: .5em;
+}
