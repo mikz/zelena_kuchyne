@@ -3,6 +3,8 @@ task :bootstrap => ["bootstrap:default"]
 
 # SILENCE!! You heard me??!!
 def silent(&block)
+  return yield if ENV['VERBOSE']
+
   `stty -echo`
   begin
     silence_stream(STDERR) do
@@ -170,13 +172,13 @@ SQL
     db_config = ActiveRecord::Base.configurations[RAILS_ENV]
     backup_file = Time.now.strftime("backup_%Y%m%d%H%M%S.sql")
     pg_dump = nil
-    ["/usr/local/pgsql/bin/pg_dump",%x{which pg_dump}.strip].each do |pg|
+    ["/usr/lib/postgresql/8.3/bin/pg_dump","/usr/local/pgsql/bin/pg_dump",%x{which pg_dump}.strip].each do |pg|
       pg_dump ||= pg if File.exists? pg    
     end
     if !pg_dump
       fail "ERROR: pg_dump binary not found"
     end
-    print "Creating backup to '#{backup_file}'\n"
+    print "Creating backup of #{RAILS_ENV} environment to '#{backup_file}'\n"
     command = %{#{pg_dump} -T schema_migrations #{"-p #{db_config['port']} " if db_config['port']} -h #{db_config["host"]} -U #{db_config["username"]} --verbose --data-only --column-inserts --disable-triggers #{db_config["database"]} -f #{backup_file}}
     silent do
       %x{#{command}}
