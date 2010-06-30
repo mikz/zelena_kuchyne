@@ -163,7 +163,7 @@ h2 {
   height: 34px;
 }
 
-.menu {
+.menu.container {
   background: url('/images/menu_bg_green.png') top;
   height: 37px;
   line-height: 36px;
@@ -408,7 +408,7 @@ h2 {
   border-color: #767676;
   background: #F5F5F5;
 }
-.meal {
+.menus .meal {
   border-top: 1px #000 dotted;
   padding-left: 124px;
   padding-top: 6px;
@@ -420,13 +420,13 @@ h2 {
 .disabled .meal {
   background: url('/images/meal_bg_gray.gif') repeat-x;
 }
-.meal .img {
+.menus .meal .img {
   width: 120px;
   margin-left: -120px;
   float: left;
   margin-bottom: 2px;
 }
-.meal .img img {
+.menus .meal .img img {
   max-width: 120px;
 }
 .meal_text {
@@ -438,53 +438,53 @@ h2 {
   height: 50px;
 }
 
-.meal .amount_input {
+.menus .meal .amount_input {
   width: 24px;
   padding-top: 3px;
   height: 19px;
   text-align: center;
 }
 
-* html .meal {
+* html .menus .meal {
   height: 84px;
 }
 
-.meal h3 {
+.menus .meal h3 {
   font-size: 12px;
   color: #435f23;
 }
 
-.meal form {
+.menus .meal form {
   height: 34px;
   overflow: hidden;
 }
 
-.meal fieldset {
+.menus .meal fieldset {
   float: right;
   border: none;
 }
 
-.meal fieldset p {
+.menus .meal fieldset p {
   float: left;
   margin-right: 12px;
 }
 
-.meal form p {
+.menus .meal form p {
   float: left;
 }
 
-.meal .meal_flags {
+.menus .meal .meal_flags {
   width: 124px;
   margin-left: -124px;
   float: left;
 }
-.meal .meal_flag {
+.menus .meal .meal_flag {
   float: right;
   padding-left: 0.25em;
   position: relative;
 }
 
-.meal .meal_text .soldout {
+.menus .meal .meal_text .soldout {
   color: #AD1F00;
   margin-left: 1em;
   text-transform: uppercase;
@@ -1150,15 +1150,6 @@ table.sortable tbody tr td:first-child:before {
   content: counter(position)".";
   counter-increment: position;
 }
-#dialy_menu h2 {
-  float: left;
-}
-#dialy_menu .price {
-  float: right;
-}
-#dialy_menu p {
-  clear: left;
-}
 
 .meal .fb_like {
   padding-left: 24px;
@@ -1174,4 +1165,37 @@ dl.show dt {
 dl.show dd {
   float: left;
   margin-left: .5em;
+}
+
+/** dialy menu **/
+#dialy_menu {
+  padding-right: 24px;
+}
+#dialy_menu h1 {
+  font-size: 125%;
+  padding: 0.5em 24px;
+  margin-top: 0.5em;
+}
+#dialy_menu h2 {
+  float: left;
+  padding-bottom: 0.25em;
+  color: black;
+}
+#dialy_menu .price {
+  float: right;
+}
+#dialy_menu .note {
+  margin-right: 1em;
+  float: right;
+}
+#dialy_menu p {
+  clear: left;
+}
+#dialy_menu .meal {
+  margin-bottom: 1em;
+}
+#dialy_menu  hr {
+  clear: both;
+  margin: 1em auto;
+  width: 66%;
 }

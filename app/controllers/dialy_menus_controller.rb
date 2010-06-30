@@ -1,7 +1,7 @@
 class DialyMenusController < ApplicationController
     include_stylesheets 'jquery-ui'
     include_javascripts 'dialy_menu'
-    before_filter { |c| c.must_belong_to_one_of(:admins)}
+    before_filter(:except => [:show]) { |c| c.must_belong_to_one_of(:admins)}
     before_filter :load
     exposure :title => 'date'
     
@@ -13,14 +13,25 @@ class DialyMenusController < ApplicationController
       
       @record ||= DialyMenu.find(params[:id])
 
-      @hash = ActiveSupport::OrderedHash.new
+      @entries = ActiveSupport::OrderedHash.new
       @record.entries.each do |entry|
-        @hash[entry.category] ||= []
-        @hash[entry.category] << entry
+        @entries[entry.category] ||= []
+        @entries[entry.category] << entry
       end
-      @menu = {}
-      @hash.each do |category, entries|
-        @menu[category] = entries.any? &:in_menu?
+      
+      @categories = {}
+      @entries.each do |category, entries|
+        @categories[:first] ||= category if entries.any?(&:in_menu?)
+        @categories[:last] = category if entries.any?(&:in_menu?)
+      end
+      respond_to do |format|
+        format.html
+        format.xml {
+          render :xml => @entries.to_xml
+        }
+        format.json {
+          render :json => @entries.to_json
+        }
       end
     end
     
@@ -33,10 +44,8 @@ class DialyMenusController < ApplicationController
       delete = []
       params[:entries].each_pair do |id, attrs|
         destroy = attrs.delete(:_destroy).to_i == 1
-        DEBUG{%w{destroy id}}
         
         if entry = entries[id.to_i]
-          DEBUG{%w{entry}}
           if destroy
             delete << entry
           else
