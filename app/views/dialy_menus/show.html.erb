@@ -7,7 +7,6 @@
   <%- @entries.each do |category, meals|%>
     <%- if category == @categories[:first]%>
       <%- menu = true %>
-      <hr/>
     <%-end-%>
       <h1><%= h category.name%></h1>
       <%- last = nil %>
