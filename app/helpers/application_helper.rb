@@ -2,7 +2,7 @@
 module ApplicationHelper
   
   def czech_typo(text)
-    text.gsub(/(\s[ksvzouai])\s/i, '\\1&nbsp;')
+    (h text).gsub(/(\s[ksvzouai])\s/i, '\\1&nbsp;')
   end
   
   def show_error_details?

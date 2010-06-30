@@ -1,0 +1,32 @@
+<div id="dialy_menu">
+  <div class="title">
+  <h1>Zelená kuchyně</h1>
+  <h2>Vegetariánské menu na&nbsp;</h2>
+  <h3><%= format menu.date %></h3>
+  <p>Dnes nabízíme:</p>
+  </div>
+  <%- opened = nil%>
+  <%- entries.each do |category, meals|%>
+    <%- if category == categories[:first]%>
+      <%- opened = true %>
+    <%-end-%>
+    <h1><%= h category.name%></h1>
+    <%- last = nil %>
+    <%-meals.each do |meal|%>
+      <div class="meal <%= meal.in_menu? ? 'menu' : 'entry'%>">
+        <h2><%= czech_typo(meal.name)%></h2>
+        <%- if prices %><strong class="price"><%= format_currency meal.price%></strong><%-end-%>
+        <%-if opened && !meal.in_menu?%>
+        <em class="note">není součástí menu</em>
+        <%-end-%>
+        <p><%= czech_typo(meal.description)%></p>
+      </div>
+    <%- end -%>
+    <%- if category == categories[:last]%>
+      <h2 class="whole_menu">Celé menu</h2><strong class="price"><%= format_currency menu.menu_price%></strong>
+      <div class="clearfix">&nbsp;</div>
+      <hr/>
+      <%- opened = false %>
+    <%-end-%>
+  <%- end-%>
+</div>

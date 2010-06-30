@@ -121,6 +121,27 @@ class ApplicationController < ActionController::Base
     end
   end
   
+  def load_dialy_menu id=nil
+    if id
+      menu = DialyMenu.find(id)
+    else
+      menu = DialyMenu.first(:conditions=>"date = current_date")
+    end
+    return nil unless menu
+    
+    entries = ActiveSupport::OrderedHash.new
+    menu.entries.each do |entry|
+      entries[entry.category] ||= []
+      entries[entry.category] << entry
+    end
+    categories = {}
+    entries.each do |category, meals|
+      categories[:first] ||= category if meals.any?(&:in_menu?)
+      categories[:last] = category if meals.any?(&:in_menu?)
+    end
+    [menu, entries, categories]
+  end
+  
   # Provides version string
   def version
     'HEAD'

@@ -1186,6 +1186,7 @@ dl.show dd {
 }
 #dialy_menu .note {
   margin-right: 1em;
+  margin-left: 3em;
   float: right;
 }
 #dialy_menu p {
@@ -1198,4 +1199,14 @@ dl.show dd {
   clear: both;
   margin: 1em auto;
   width: 66%;
+}
+.sidebar_box #dialy_menu {
+  padding: 0;
+}
+.sidebar_box #dialy_menu .title {
+  display: none;
+}
+.sidebar_box #dialy_menu h1 {
+  font-size: 110%;
+  padding: 0.5em 0;
 }

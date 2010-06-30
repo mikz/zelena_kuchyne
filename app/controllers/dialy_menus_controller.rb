@@ -6,24 +6,9 @@ class DialyMenusController < ApplicationController
     exposure :title => 'date'
     
     def show
-      unless params[:id]
-        @record = DialyMenu.first(:conditions=>["date = ?", Date.today])
-        raise ActiveRecord::RecordNotFound.new unless @record
-      end
+      @record, @entries, @categories = load_dialy_menu(params[:id])
+      raise ActiveRecord::RecordNotFound.new unless @record
       
-      @record ||= DialyMenu.find(params[:id])
-
-      @entries = ActiveSupport::OrderedHash.new
-      @record.entries.each do |entry|
-        @entries[entry.category] ||= []
-        @entries[entry.category] << entry
-      end
-      
-      @categories = {}
-      @entries.each do |category, entries|
-        @categories[:first] ||= category if entries.any?(&:in_menu?)
-        @categories[:last] = category if entries.any?(&:in_menu?)
-      end
       respond_to do |format|
         format.html
         format.xml {
@@ -102,4 +87,5 @@ class DialyMenusController < ApplicationController
     def load
       @categories = MealCategory.all
     end
+
 end
