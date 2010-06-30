@@ -1210,3 +1210,9 @@ dl.show dd {
   font-size: 110%;
   padding: 0.5em 0;
 }
+table.admin tbody td textarea {
+  max-width: 80%;
+}
+table#records {
+  position: relative;
+}
