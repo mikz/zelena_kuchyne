@@ -1,3 +1,9 @@
+* {
+  line-height: 1.1;
+}
+body {
+  color: black;
+}
 .meal .meal_flags {
   position: relative;
   display: inline;
@@ -12,17 +18,22 @@
 #user_box p {
   padding-bottom: 0;
 }
-
+p {
+  color: black;
+  line-height: 1.5;
+  font-weight: normal;
+}
 body {
   background-image: none;
   background-color: #BEE0F5;
+  color: black;
 }
 
 #contents {
   background-image: url('/images/contents_bg_ie6.gif');
 }
 
-.menu {
+.menubar {
   background: url('/images/menu_bg_green_ie6.gif') top;
 }
 
@@ -48,4 +59,7 @@ body {
 
 #map {
   margin-right: 9px;
+}
+hr {
+  position: relative;
 }

@@ -163,7 +163,7 @@ h2 {
   height: 34px;
 }
 
-.menu.container {
+.menubar {
   background: url('/images/menu_bg_green.png') top;
   height: 37px;
   line-height: 36px;
@@ -180,12 +180,12 @@ h2 {
   padding-right: 24px;
 }
 
-.menu a {
+.menubar a {
   color: #fff;
   text-decoration: none;
 }
 
-.menu a:hover {
+.menubar a:hover {
   text-decoration: underline;
 }
 

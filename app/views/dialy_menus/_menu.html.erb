@@ -9,6 +9,9 @@
   <%- entries.each do |category, meals|%>
     <%- if category == categories[:first]%>
       <%- opened = true %>
+      <%- unless category == entries.first.first%>
+      <hr/>
+      <%-end-%>
     <%-end-%>
     <h1><%= h category.name%></h1>
     <%- last = nil %>
@@ -25,7 +28,9 @@
     <%- if category == categories[:last]%>
       <h2 class="whole_menu">Celé menu</h2><strong class="price"><%= format_currency menu.menu_price%></strong>
       <div class="clearfix">&nbsp;</div>
+      <%- unless category == entries.last.first%>
       <hr/>
+      <%-end-%>
       <%- opened = false %>
     <%-end-%>
   <%- end-%>
