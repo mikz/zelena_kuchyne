@@ -184,6 +184,10 @@ class User < ActiveRecord::Base
     end
   end
   
+  def admin?
+    self.belongs_to? :admins
+  end
+  
   def belongs_to_one_of?(*groups)
     groups.each do |g|
       return true if belongs_to? g

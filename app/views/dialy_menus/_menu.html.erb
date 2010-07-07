@@ -1,37 +1,41 @@
 <div id="dialy_menu">
+  <div class="head"></div>
+  
+  <div class="body">
   <div class="title">
-  <h1>Zelená kuchyně</h1>
-  <h2>Vegetariánské menu na&nbsp;</h2>
-  <h3><%= format menu.date %></h3>
-  <p>Dnes nabízíme:</p>
+    <h1>Vegetariánské menu na&nbsp;<%= format menu.date %></h1>
   </div>
   <%- opened = nil%>
   <%- entries.each do |category, meals|%>
-    <%- if category == categories[:first]%>
+    <%- if category == categories[:first] and prices%>
       <%- opened = true %>
       <%- unless category == entries.first.first%>
       <hr/>
       <%-end-%>
     <%-end-%>
-    <h1><%= h category.name%></h1>
+    <h1 class="category"><%= h category.name%></h1>
     <%- last = nil %>
     <%-meals.each do |meal|%>
       <div class="meal <%= meal.in_menu? ? 'menu' : 'entry'%>">
-        <h2><%= czech_typo(meal.name)%></h2>
+        <h2 class="name"><%= czech_typo(meal.name)%></h2>
         <%- if prices %><strong class="price"><%= format_currency meal.price%></strong><%-end-%>
         <%-if opened && !meal.in_menu?%>
         <em class="note">není součástí menu</em>
         <%-end-%>
-        <p><%= czech_typo(meal.description)%></p>
+        <p class="description"><%= czech_typo(meal.description)%></p>
       </div>
     <%- end -%>
-    <%- if category == categories[:last]%>
-      <h2 class="whole_menu">Celé menu</h2><strong class="price"><%= format_currency menu.menu_price%></strong>
-      <div class="clearfix">&nbsp;</div>
+    <%- if category == categories[:last] and prices%>
+      <div class="whole_menu">
+        <h2 class="name">Celé menu</h2><strong class="price"><%= format_currency menu.menu_price%></strong>
+        <div class="clearfix">&nbsp;</div>
+      </div>
       <%- unless category == entries.last.first%>
       <hr/>
       <%-end-%>
       <%- opened = false %>
     <%-end-%>
   <%- end-%>
+  </div>
+  <div class="footer"></div>
 </div>

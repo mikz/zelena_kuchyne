@@ -22,7 +22,7 @@ ActionController::Routing::Routes.draw do |map|
   map.connect ':controller/:action/:id'
   map.connect ':controller/:action/:id.:format'
   
-  map.connect "dnesni_menu", :controller => "dialy_menus", :action => "show", :id => nil
+  map.connect "dnesni_menu_restaurace", :controller => "dialy_menus", :action => "show", :id => nil
   
   map.page ':id', :controller => 'pages', :action => 'show'
 end

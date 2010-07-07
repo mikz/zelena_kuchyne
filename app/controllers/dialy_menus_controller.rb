@@ -7,7 +7,8 @@ class DialyMenusController < ApplicationController
     
     def show
       @record, @entries, @categories = load_dialy_menu(params[:id])
-      raise ActiveRecord::RecordNotFound.new unless @record
+      
+      return render :action => "not_found" unless @record
       
       respond_to do |format|
         format.html

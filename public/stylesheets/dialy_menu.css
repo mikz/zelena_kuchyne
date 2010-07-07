@@ -1,0 +1,82 @@
+body {
+  padding: 0;
+  margin: 0;
+}
+#dialy_menu {
+  font-family: Arial;
+  letter-spacing: 1.2;
+  font-size: 10pt;
+  margin-left: -13pt;
+}
+#dialy_menu .head {
+  background: transparent url(/images/dialy_menu_head_s.png) top left no-repeat;
+  height: 187px;
+  width: 100%;
+  margin-bottom: -5pt;
+}
+#dialy_menu .body {
+  background: transparent url(/images/dialy_menu_body_s.png) top left repeat-y;
+  padding: 10pt 55pt 10pt 80pt;
+}
+#dialy_menu .footer {
+  height: 50pt;
+  background: transparent url(/images/dialy_menu_foot_s.png) top left no-repeat;
+  width: 100%;
+  height: 30px;
+  margin-top: -3pt;
+}
+#dialy_menu h1 {
+  font-size: 12pt;
+  color: #638C33;
+}
+#dialy_menu .title h1 {
+  text-align: center;
+  text-transform: uppercase;
+  margin-bottom: 1em;
+  margin-top: 0.5em;
+}
+#dialy_menu .category {
+  margin-top: 1.25em;
+  margin-bottom: 0;
+}
+#dialy_menu .name {
+  font-size: 12pt;
+  margin: 0;
+  float: left;
+  line-height: 1;
+}
+#dialy_menu .meal {
+  margin-top: 0.15em;
+}
+#dialy_menu .meal + .meal {
+  margin-top: 0.75em;
+}
+#dialy_menu .price {
+  float: right;
+  font-size: 12pt;
+}
+#dialy_menu .note {
+  margin-right: 1em;
+  float: right;
+}
+#dialy_menu p {
+  clear: left;
+  margin-left: 0.05em;
+  letter-spacing: .2px;
+  max-width: 87%;
+}
+#dialy_menu .whole_menu {
+  margin-top: 1em;
+}
+#dialy_menu  hr {
+  clear: both;
+  margin: 1em auto;
+  width: 66%;
+  background: #638C33;
+  height: 1pt;
+  border: none;
+}
+.clearfix {
+  clear: both;
+  height: 0;
+}

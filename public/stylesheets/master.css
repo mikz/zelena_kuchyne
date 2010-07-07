@@ -280,6 +280,10 @@ h2 {
   background: url('/images/button_red_active.png');
 }
 
+#s_restaurant a {
+  background: url('/images/button_blue.png');
+}
+
 #s_basket a {
   background: url('/images/button_orange.png');
 }
@@ -1171,6 +1175,9 @@ dl.show dd {
 #dialy_menu {
   padding-right: 24px;
 }
+#dialy_menu .title{
+  color: #435f23;
+}
 #dialy_menu h1 {
   font-size: 125%;
   padding: 0.5em 24px;
@@ -1200,6 +1207,9 @@ dl.show dd {
   margin: 1em auto;
   width: 66%;
 }
+#dialy_menu .whole_menu {
+  margin: 0.5em 0;
+}
 .sidebar_box #dialy_menu {
   padding: 0;
 }
@@ -1215,4 +1225,8 @@ table.admin tbody td textarea {
 }
 table#records {
   position: relative;
+}
+h4.dialy_menu {
+  text-transform: uppercase;
+  text-align: center;
 }

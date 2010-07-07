@@ -11,8 +11,8 @@
   <% if @dialy_menu && @dialy_entries && @dialy_categories %>
   <div id="news_box" class="sidebar_box">
     <div class="story">
-      <h4>Dnešní menu restaurace</h4>
-      <%= render :partial => "dialy_menus/menu", :locals => {:prices => true, :entries => @dialy_entries, :categories => @dialy_categories, :menu => @dialy_menu}%>
+      <h4 class="dialy_menu">Dnešní menu restaurace</h4>
+      <%= render :partial => "dialy_menus/menu", :locals => {:prices => false, :entries => @dialy_entries, :categories => @dialy_categories, :menu => @dialy_menu}%>
     </div>
   </div>
   <% end %>

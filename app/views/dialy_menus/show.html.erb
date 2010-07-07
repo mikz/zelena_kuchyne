@@ -1,1 +1,4 @@
-<%= render :partial => "menu", :locals => {:prices => true, :entries => @entries, :categories => @categories, :menu => @record}%>
+<% content_for :head do %>
+  <link rel="stylesheet" href="/stylesheets/dialy_menu.css" type="text/css" media="print" charset="utf-8" />
+<% end %>
+<%= render :partial => "menu", :locals => {:prices => current_user.admin?, :entries => @entries, :categories => @categories, :menu => @record}%>
