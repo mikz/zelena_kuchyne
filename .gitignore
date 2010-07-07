@@ -2,3 +2,7 @@
 */.DS_Store
 config/database.yml
 db/schema.rb
+backup_*.sql
+backup_*.sql.bz2
+tmp/*
+log/*.log
