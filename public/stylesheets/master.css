@@ -1190,6 +1190,7 @@ dl.show dd {
 }
 #dialy_menu .price {
   float: right;
+  clear: right;
 }
 #dialy_menu .note {
   margin-right: 1em;
