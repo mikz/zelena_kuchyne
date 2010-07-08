@@ -44,6 +44,7 @@ body {
   margin: 0;
   float: left;
   line-height: 1;
+  max-width: 87%;
 }
 #dialy_menu .meal {
   margin-top: 0.15em;

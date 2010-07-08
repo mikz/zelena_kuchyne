@@ -1192,6 +1192,10 @@ dl.show dd {
   float: right;
   clear: right;
 }
+#dialy_menu .name {
+  line-height: 1;
+  max-width: 87%;
+}
 #dialy_menu .note {
   margin-right: 1em;
   margin-left: 3em;
@@ -1199,6 +1203,9 @@ dl.show dd {
 }
 #dialy_menu p {
   clear: left;
+  margin-left: 0.05em;
+  letter-spacing: .2px;
+  max-width: 87%;
 }
 #dialy_menu .meal {
   margin-bottom: 1em;
