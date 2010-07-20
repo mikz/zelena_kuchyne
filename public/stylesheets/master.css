@@ -1195,6 +1195,7 @@ dl.show dd {
 #dialy_menu .name {
   line-height: 1;
   max-width: 87%;
+  font-size: 14px;
 }
 #dialy_menu .note {
   margin-right: 1em;

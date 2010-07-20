@@ -342,6 +342,8 @@ class OrdersController < ApplicationController
     @news ||= News.valid_news :order => 'publish_at DESC, id DESC', :limit => 5
     @days ||= Day.find :all
     @date ||= params[:id] ? Date.parse(params[:id]) : Date.today
+    
+    @dialy_menu, @dialy_entries, @dialy_categories = load_dialy_menu
   end
   def load_zones
     @zones = Zone.find :all, :order => "name ASC", :include => [:delivery_methods]
