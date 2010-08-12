@@ -3,7 +3,7 @@
 <% end %>
 
 <%  content_for :javascript do %>
-<%  fw_strings = {:val_true => locales['true'], :val_false => locales['false'], :submit => locales['submit'], :show_all => locales['show_all']} 
+<%  fw_strings = {:val_true => locales['true'], :val_false => locales['false'], :submit => locales['submit'], :show_all => locales['show_all'], :formats => {'xls' => locales['download'] + " XLS"}} 
     delivery_men_hash = {"null" => locales[:none_assigned] }
     @delivery_men.each { |d|
       delivery_men_hash[d.id] = d.name

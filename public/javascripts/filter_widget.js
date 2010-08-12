@@ -14,8 +14,12 @@ filterWidget.prototype = {
       val_true: "true",
       val_false: "false",
       submit: "Submit Query",
-      show_all: "Show all"
-    }
+      show_all: "Show all",
+      formats: {
+        xls: 'Download XLS'
+      }
+    },
+    date: null
   },
   
   init: function(form, options) {
@@ -45,7 +49,7 @@ filterWidget.prototype = {
     if(typeof(this.form.data("rules")) == "undefined") {
       $.extend(this.options, options);
       
-      var formHtml = '<form id="'+formID+'" class="filter_widget" onsubmit="filterWidget(this).send(); return false;"><p class="filter_widget_submit"><input type="submit" value="'+ this.options.strings.submit +'" /><a href="#" onclick="filterWidget(this).reset(); return false;">'+  this.options.strings.show_all+'</a></p></form>';
+      var formHtml = '<form id="'+formID+'" class="filter_widget" onsubmit="filterWidget(this).send(); return false;"><p class="filter_widget_submit"><input type="submit" value="'+ this.options.strings.submit +'" /><a href="#" onclick="filterWidget(this).reset(); return false;">'+  this.options.strings.show_all+'</a><a href="#" onclick="return filterWidget(this).download(\'xls\');">'+this.options.strings.formats.xls+'</a></p></form>';
       this.form.replaceWith(formHtml);
       this.form = $("#"+formID);
       
@@ -80,7 +84,22 @@ filterWidget.prototype = {
             dataType: 'script', 
             url: this.options.url});
   },
-  
+  download: function(format) {
+    var inputs = '';
+    var data = $(this.form).serializeArray();
+    data.push({name: "format", value: format});
+    data.push({name: "authenticity_token", value: window.authenticity_token});
+    console.log(data);
+    var params = $.param(data);
+    jQuery.each(params.split('&'), function(){ 
+      var pair = this.split('=');
+      inputs+='<input type="hidden" name="'+ pair[0] +'" value="'+ pair[1] +'" />'; 
+    });
+    //send request
+    var form = jQuery('<form action="'+ this.options.url +'" method="post">'+inputs+'</form>');
+    form.appendTo('body').submit().remove();
+    return false;
+  },
   addRule: function(ruleName, label, type, values) {
     if(this.types.indexOf(type) != -1) {
       if(typeof(this.rules[ruleName]) != "undefined") {

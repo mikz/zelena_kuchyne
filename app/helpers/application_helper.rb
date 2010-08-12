@@ -1,6 +1,11 @@
 # Methods added to this helper will be available to all templates in the application.
 module ApplicationHelper
   
+  def button_tag content = nil, options = {}, submit = true, &block
+    options = {:type => "submit"}.merge(options) if submit
+    content_tag :button, (block_given?)? block : content, options
+  end
+  
   def czech_typo(text)
     (h text).gsub(/(\s[ksvzouai])\s/i, '\\1&nbsp;').gsub(/\s([\-\–])/, '&nbsp;\\1')
   end

@@ -25,6 +25,10 @@ class UsersView < ActiveRecord::Base
     end
   end
   
+  def zone_name
+    self.address.zone.name if address && address.zone
+  end
+  
   def delivery_address
     %{#{self.street} #{self.house_no} <br/>
       #{self.city}, #{self.district}} if self.street and self.house_no and self.city and self.district

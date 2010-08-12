@@ -1239,3 +1239,9 @@ h4.dialy_menu {
   text-transform: uppercase;
   text-align: center;
 }
+#text form p.search {
+  padding-left: 6px;
+}
+#text.fullscreen form p.search {
+  text-align: center;
+}

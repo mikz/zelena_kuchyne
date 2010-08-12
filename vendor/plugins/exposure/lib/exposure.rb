@@ -106,6 +106,7 @@ module Exposure
         format f, :xml do
           render :xml => @records
         end
+        saved_formats f
       end
     end
     
@@ -118,6 +119,7 @@ module Exposure
         format f, :js do
           render
         end
+        saved_formats f
       end
     end
     
@@ -133,6 +135,7 @@ module Exposure
         format f, :xml do
           render :xml => @record
         end
+        saved_formats f
       end
     end
     
@@ -145,6 +148,7 @@ module Exposure
         format f, :html do
           render :action => 'index'
         end
+        saved_formats f
       end
     end
     
@@ -160,6 +164,7 @@ module Exposure
         format f, :js do
           render
         end
+        saved_formats f
       end
     end
     
@@ -183,6 +188,7 @@ module Exposure
               end
             end
           end
+          saved_formats f
         end
       else
         respond_to do |f|
@@ -195,6 +201,7 @@ module Exposure
           format f, :js do
             render :action => 'error'
           end
+          saved_formats f
         end
       end
     end
@@ -211,6 +218,7 @@ module Exposure
         format f, :js do
           render
         end
+        saved_formats f
       end
     end
     
@@ -232,6 +240,7 @@ module Exposure
               render :update do |page|
                 page.redirect_to :action => 'index'
           end
+          saved_formats f
         end
           end
         end
@@ -246,6 +255,7 @@ module Exposure
           format f, :js do
             render :action => 'error'
           end
+          saved_formats f
         end
       end
     end
@@ -262,6 +272,12 @@ module Exposure
       if options[:formats].include? format
         responder.send format, &block
       end
+    end
+    
+    def saved_formats responder
+      @formats.each_pair do |format, block|
+        responder.send format, block
+      end unless @formats.blank?
     end
 
     def execute_procs

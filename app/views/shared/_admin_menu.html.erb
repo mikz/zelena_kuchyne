@@ -2,6 +2,9 @@
   <span id="admin_title">&hellip;admin</span>
 </div>
 <div id="admin_menu" class="admin_menu">
+  <%- if protect_against_forgery? -%> 
+  <script type="text/javascript">window.authenticity_token = <%= form_authenticity_token.inspect %>;</script>
+  <%-end-%>
 <%-if current_user.belongs_to_one_of? :admins, :warehousers, :operation_chefs, :chefs-%>
   <dl>
     <dt><%= locales[:admin_delivery]%></dt>

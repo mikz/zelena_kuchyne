@@ -89,3 +89,10 @@ module LocalesSystem
     end
   end
 end
+
+
+class ActiveRecord::Base
+  def human_attribute_name(attribute_key_name) #:nodoc:
+    attribute_key_name.to_s.humanize
+  end
+end

@@ -124,6 +124,14 @@ class UsersController < ApplicationController
       @selected = 'selected="selected"'
     end
     @groups = Group.find :all
+    
+    
+    respond_to do |format|
+      format.html
+      format.xls do
+        send_data @users.to_xls(:only => [:login, :name, :email, :spent_money, :user_discount], :methods => [:zone_name, :delivery_address]), :filename => 'users.xls'
+      end
+    end
   end
   
   def new

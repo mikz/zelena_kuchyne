@@ -104,6 +104,7 @@ restore: obnovit
 submit: odeslat
 show: zobrazit
 show_all: zobrazit vše
+download: stáhnout
 agenda: agenda
 week: týden
 month: měsíc
@@ -592,7 +593,7 @@ admin_category_order: Pořadí kategorií
 # users 
 containing_text: obsahující text
 list_all: vypsat všechny
-list_only_users: vypsat pouze uživatele
+list_only_users: vypsat uživatele
 in_group: ve skupině
 snippet_forgotten_password_dialog: 'zapomenuté heslo'
 snippet_welcome: 'info na úvodní stránce'

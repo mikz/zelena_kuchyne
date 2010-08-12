@@ -50,6 +50,9 @@ class OrdersController < ApplicationController
       format.html do
         render
       end
+      format.xls do
+        send_data @orders.to_xls(:only => [], :methods => [:id, 'user.delivery_address.output', 'user.delivery_address.zone.name', 'order.delivery_man.name', :cancelled?, :deliver_at]), :filename => "orders.xls"
+      end
     end
   end
   
