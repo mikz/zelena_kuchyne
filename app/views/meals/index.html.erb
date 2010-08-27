@@ -1,5 +1,5 @@
 <% content_for :javascript do %>
-  <% fw_strings = {:val_true => locales['true'], :val_false => locales['false'], :submit => locales['submit'], :show_all => locales['show_all']} %>
+  <% fw_strings = {:val_true => locales['true'], :val_false => locales['false'], :submit => locales['submit'], :show_all => locales['show_all'], :formats => {'xls' => locales['download'] + " XLS"}}  %>
   <%= filter_widget("meals-rules", :url => url_for(params), 
                                    :wrap => false, 
                                    :beforeSend => %{function() {$("#records").html('<p><img src="/images/loading.gif" alt="loading" /></p>');}}, 

@@ -1,5 +1,5 @@
 <%  content_for :javascript do %>
-<%  fw_strings = {:val_true => locales['true'], :val_false => locales['false'], :submit => locales['submit'], :show_all => locales['show_all']}    
+<%  fw_strings = {:val_true => locales['true'], :val_false => locales['false'], :submit => locales['submit'], :show_all => locales['show_all'], :formats => {'xls' => locales['download'] + " XLS"}}    
   categories_hash = {"null" => locales[:none_assigned] }
   @categories.each { |d|
     categories_hash[d.id] = d.name
