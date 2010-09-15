@@ -20,6 +20,7 @@ class User < ActiveRecord::Base
   attr_accessor :basket
   
   before_save :encrypt_password
+  before_validation :disable_addresses
   after_create :add_default_groups
   after_save   :update_profiles, :update_groups, :create_addresses, :save_addresses
   
@@ -131,7 +132,6 @@ class User < ActiveRecord::Base
   end
   
   def set_address(type, data)
-    return if type == 'delivery' && !activate_delivery_address
     for address in self.addresses
       if address.address_type == type
         address.attributes = data
@@ -144,11 +144,11 @@ class User < ActiveRecord::Base
   end
   
   def activate_delivery_address=(val)
-    @activate_delivery_address = val
+    @activate_delivery_address = !val.blank? && val.to_i == 1
   end
   
   def activate_delivery_address
-    return (@activate_delivery_address.is_a? String)? @activate_delivery_address == "on" : @activate_delivery_address
+    @activate_delivery_address
   end
   
   def update_profiles
@@ -291,6 +291,12 @@ class User < ActiveRecord::Base
   
   protected
   
+  def disable_addresses
+    self.addresses.each do |address|
+      address.disabled = !activate_delivery_address if address.address_type == 'delivery'
+    end
+  end
+  
   def add_default_groups
     default_groups = Group.find(:all, :conditions => 'default_group = true')
     self.groups << default_groups
@@ -305,7 +311,7 @@ class User < ActiveRecord::Base
   
   def save_addresses
     for address in self.addresses
-      address.save
+      address.disabled ? address.destroy : address.save
     end
     update_basket
   end

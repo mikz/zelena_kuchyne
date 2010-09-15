@@ -18,12 +18,12 @@
     </ul>
     <p class="required<%=' formError' if (@user.errors["user_password"]) %>">
         <label for="user_password"><%= locales['password'] %></label><span class="hint"> ( <%= locales[:minimal_length_is_x_characters].gsub("%n","5")%> )</span><br />
-        <%= f.password_field :password, :class => "{password: true, minlength: 5, maxlength: 32}" %>
+        <%= f.password_field :password, :class => "{password: true, minlength: 5, maxlength: 32}", :autocomplete => "off" %>
         <%= "<label for='user_password' class='formError'>#{@user.errors["user_password"]}</label>" if (@user.errors["user_password"]) %>
     </p>
     <p class="required<%=' formError' if (@user.errors["user_password_confirmation"]) %>">
         <label for="user_password_confirmation"><%= locales['user_password_confirmation'] %></label><br />
-        <%= f.password_field :password_confirmation, :class => '{equalTo: "#user_password"}' %>
+        <%= f.password_field :password_confirmation, :class => '{equalTo: "#user_password"}', :autocomplete => "off" %>
         <%= "<label for='user_password_confirmation' class='formError'>#{@user.errors["user_password_confirmation"]}</label>" if (@user.errors["user_password_confirmation"]) %>
     </p>
     <p class="required<%=' formError' if (@user.errors["user_email"]) %>">
@@ -177,7 +177,7 @@
     </p>
     
     <p>
-      <input type="checkbox" name="user[activate_delivery_address]" id="activate_delivery_address" onclick='jQuery("#delivery_address").activate("slow");' <%= @user.address[:delivery] ? 'checked="checked"' : "" %>/>
+      <input type="checkbox" name="user[activate_delivery_address]" id="activate_delivery_address" onclick='jQuery("#delivery_address").activate("slow");' <%= @user.address[:delivery] ? 'checked="checked"' : "" %> value="1"/>
       <label for="activate_delivery_address"><%= locales['activate_delivery_address'] %></label>
     </p>
     

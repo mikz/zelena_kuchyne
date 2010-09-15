@@ -148,7 +148,8 @@ class UsersController < ApplicationController
   end
   
   def create
-    @user = User.new(params[:user])
+    @user = User.new params[:user]
+    
     @groups = Group.find :all
     @country_codes = CountryCode.find :all, :select => "code", :group => "code", :order => "code"
     @user.user_agreement =  (params[:user].delete("user_agreement") == "on")
@@ -240,6 +241,7 @@ class UsersController < ApplicationController
       @user.imported_orders_price = params[:user]["imported_orders_price"]
       @user.admin_note = params[:user]["admin_note"]
     end
+    
     if(@user.update_attributes(params[:user]) && @user.errors.empty?)
       respond_to do |format|
         format.html do

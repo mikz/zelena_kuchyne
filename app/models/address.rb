@@ -19,6 +19,9 @@ class Address < ActiveRecord::Base
   validates_length_of :note, :maximum => 100, :too_long => "Maximální délka je %d znaků. ", :allow_blank => true, :allow_nil => true
   validates_presence_of :zone_id, :message => %{Musíte vybrat zónu, kam vaše adresa patří dle <a href="/zony.html">mapy</a>.}
   after_save :check_orders_zone
+  before_save proc{false }, :if => :disabled?
+  attr_accessor :disabled
+  
   PROTECTED_ATTRIBUTES = [:street, :house_no, :city, :district, :zip, :zone_id]
   
   def has_zone
@@ -26,11 +29,14 @@ class Address < ActiveRecord::Base
   end
   
   def validate
+    errors.clear && return if disabled
+    
     validate_address if validate?
     
     PROTECTED_ATTRIBUTES.each do |attr|
       errors.add(attr, "Nelze změnit, když je adresa ověřena administrátorem.") if self.send("#{attr}_changed?")
     end if zone_reviewed? # && !UserSystem.current_user.belongs_to?("admins")
+    
   end
   
   def fixme= val
@@ -40,6 +46,11 @@ class Address < ActiveRecord::Base
   def dont_validate= val
     @dont_validate = val
   end
+  
+  def disabled?
+    !@disabled.blank?
+  end
+  
   
   def validate?
     return !(@dont_validate)
