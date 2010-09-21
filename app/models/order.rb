@@ -30,6 +30,7 @@ class Order < ActiveRecord::Base
         self.ordered_items.each do |oi|
           error ||= !oi.save!
         end
+        error ||= !self.update_delivery_method(true)
         raise if error
       end
     rescue Exception => e
