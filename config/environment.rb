@@ -60,6 +60,8 @@ Rails::Initializer.run do |config|
   config.gem "fastercsv"
   config.gem "jrails"
   config.gem "sanitize"
+  
+  config.active_record.schema_format = :sql
 end
 
 require "debugging" if Rails.env.development?
