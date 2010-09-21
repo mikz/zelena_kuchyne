@@ -5,6 +5,8 @@
   <%= f.text_field :name, :id=>"#{row_id}_name", :class => "{required: true, minlength: 2}"%></p>
   <p><label for="<%=row_id%>_description"><%= locales[:attr_description] %></label><br />
   <%= f.text_field :description, :id=>"#{row_id}_description"%></p>
+  <p><%= label_tag "#{row_id}_in_dialy_menu", locales[:attr_in_dialy_menu]%><br/>
+    <%= f.check_box :in_dialy_menu, :id=>"#{row_id}_in_dialy_menu"%></p>
   <div class="picture">
     <img src="/meal_flags/<%= @record.id %>.th.jpg" alt="<%= @record.name %>" />
   </div>

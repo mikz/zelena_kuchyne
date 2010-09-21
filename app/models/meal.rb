@@ -14,6 +14,7 @@ class Meal < Item
   has_many :stock
   belongs_to :meal_category
   alias_attribute :category, :meal_category
+  alias_attribute :flags, :meal_flags
   
   def save_spices(used_spices)
     q = ''

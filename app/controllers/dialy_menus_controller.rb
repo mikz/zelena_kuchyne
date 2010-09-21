@@ -91,6 +91,7 @@ class DialyMenusController < ApplicationController
     private
     def load
       @categories = MealCategory.all
+      @flags = MealFlag.all_in_dialy_menu
     end
 
 end

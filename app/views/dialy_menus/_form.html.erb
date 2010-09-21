@@ -45,7 +45,16 @@
               </select>
             </td>
             <td><%= check_box_tag "entries[#{entry.id}][in_menu]", 1, entry.in_menu?%><%= hidden_field_tag "entries[#{entry.id}][in_menu]", 0 %></td>
-            <td rowspan="2"><a href="#" class="destroy">smazat</a><%= hidden_field_tag "entries[#{entry.id}][_destroy]" %></td>
+            <td rowspan="3"><a href="#" class="destroy">smazat</a><%= hidden_field_tag "entries[#{entry.id}][_destroy]" %></td>
+          </tr>
+          <tr>
+            <td colspan="4">
+              <% @flags.each do |flag| %>
+              <%= label_tag "entries_#{entry.id}_meal_flag_ids_#{flag.id}", flag_image(flag), :title => flag.description %>
+              <%= check_box_tag "entries[#{entry.id}][meal_flag_ids][]", flag.id, entry.meal_flags.include?(flag), :id => "entries_#{entry.id}_meal_flag_ids_#{flag.id}"%>
+              <% end %>
+              <%= hidden_field_tag "entries[#{entry.id}][meal_flag_ids][]", ""%>
+            </td>
           </tr>
           <tr>
             <td colspan="4"><%= text_area_tag "entries[#{entry.id}][description]", entry.description, :rows =>  2, :cols => 70, :maxlength => 200%></td>

@@ -1,2 +1,0 @@
-module MealCategoriesHelper
-end

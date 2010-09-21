@@ -269,6 +269,7 @@ order_status_all_cancelled: všechny a zrušené
 order_cancelled: zrušena
 order_cancelled_pl: zrušené
 #-- model attributes --
+attr_in_dialy_menu: zobrazit v denním menu
 attr_zone: zóna
 attr_question: otázka
 attr_answer_count: počet odpovědí

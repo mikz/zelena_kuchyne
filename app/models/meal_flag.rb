@@ -2,6 +2,8 @@ class MealFlag < ActiveRecord::Base
   has_many :flagged_meals
   has_many :meals, :through => :flagged_meals
   
+  
+  
   def save_image image
     inpath = %{#{RAILS_ROOT}/tmp/upload/#{current_user.id}/#{image}}
     outpath = %{#{RAILS_ROOT}/public/pictures/meal_flags_#{self.id}.jpg}
@@ -12,5 +14,11 @@ class MealFlag < ActiveRecord::Base
     %x{mv #{inpath} #{outpath}}
     self.icon_path = "/pictures/meal_flag_#{@record.id}.th.jpg"
     self.save
+  end
+  
+  class << self
+    def all_in_dialy_menu
+      find(:all, :conditions => ["in_dialy_menu = ?", true])
+    end
   end
 end
