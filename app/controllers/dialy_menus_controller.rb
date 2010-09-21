@@ -4,7 +4,11 @@ class DialyMenusController < ApplicationController
     before_filter(:except => [:show]) { |c| c.must_belong_to_one_of(:admins)}
     before_filter :load
     exposure :title => 'date'
-    
+
+    def index
+      @records = DialyMenu.paginate(:page => params[:page], :order => params[:order] || "date DESC")
+    end
+
     def show
       @record, @entries, @categories = load_dialy_menu(params[:id])
       
