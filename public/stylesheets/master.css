@@ -1245,3 +1245,17 @@ h4.dialy_menu {
 #text.fullscreen form p.search {
   text-align: center;
 }
+#dialy_menu img.flag {
+  margin-top: -5px;
+  vertical-align: middle;
+}
+#dialy_menu .legend {
+  padding-top: 1em;
+  width: 100%;
+  max-width: 100%;
+  display: table;
+}
+#dialy_menu .legend .entry {
+  display: table-cell;
+  text-align: center;
+}

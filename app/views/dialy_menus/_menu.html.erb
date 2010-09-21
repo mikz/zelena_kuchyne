@@ -6,6 +6,7 @@
     <h1>Vegetariánské menu na&nbsp;<%= format menu.date %></h1>
   </div>
   <%- opened = nil%>
+  <%- legend = nil%>
   <%- entries.each do |category, meals|%>
     <%- if category == categories[:first] and prices%>
       <%- opened = true %>
@@ -17,7 +18,7 @@
     <%- last = nil %>
     <%-meals.each do |meal|%>
       <div class="meal <%= meal.in_menu? ? 'menu' : 'entry'%>">
-        <h2 class="name"><%= czech_typo(meal.name)%></h2>
+        <h2 class="name"><%= czech_typo(meal.name)%> <%= meal.flags.collect{|f|legend ||= true; flag_image(f)}.join("&nbsp;")%></h2>
         <%- if prices %><strong class="price"><%= format_currency meal.price%></strong><%-end-%>
         <%-if opened && !meal.in_menu?%>
         <em class="note">není součástí menu</em>
@@ -36,6 +37,14 @@
       <%- opened = false %>
     <%-end-%>
   <%- end-%>
+  <%- if legend%>
+  <p class="legend">
+    <% @flags.each do |flag| %>
+      <span class='entry'><%=flag_image(flag)%> &ndash; <%=h flag.description%></span>
+    <%- end %>
+  </p>
+  <%-end%>
   </div>
+
   <div class="footer"></div>
 </div>

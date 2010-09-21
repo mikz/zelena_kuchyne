@@ -8,6 +8,8 @@ class DialyMenuEntry < ActiveRecord::Base
   validates_numericality_of :price
   validates_length_of :name, :within => 1..255
   
+  alias_attribute :flags, :meal_flags
+  
   def meal= meal
     %w{name price category}.each do |attr|
       self.send "#{attr}=", meal.send(attr)

@@ -43,8 +43,14 @@ body {
   font-size: 12pt;
   margin: 0;
   float: left;
-  line-height: 1;
+  line-height: 22px;
   max-width: 87%;
+}
+#dialy_menu .name img{
+  margin-left: 1em;
+}
+#dialy_menu .name img + img{
+  margin-left: 0;
 }
 #dialy_menu .meal {
   margin-top: 0.15em;
@@ -77,6 +83,20 @@ body {
   background: #638C33;
   height: 1pt;
   border: none;
+}
+#dialy_menu img.flag {
+  margin-top: -5px;
+  vertical-align: middle;
+}
+#dialy_menu .legend {
+  padding-top: 1em;
+  width: 100%;
+  max-width: 100%;
+  display: table;
+}
+#dialy_menu .legend .entry {
+  display: table-cell;
+  text-align: center;
 }
 .clearfix {
   clear: both;
