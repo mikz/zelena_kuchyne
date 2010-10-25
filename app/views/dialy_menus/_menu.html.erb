@@ -41,7 +41,7 @@
   <p class="legend">
     <% @flags.each do |flag| %>
       <span class='entry'><%=flag_image(flag)%> &ndash; <%=h flag.description%></span>
-    <%- end %>
+    <%- end if @flags %>
   </p>
   <%-end%>
   </div>
