@@ -16,12 +16,14 @@ class DialyMenusController < ApplicationController
       
       respond_to do |format|
         format.html
+        format.js
         format.xml {
           render :xml => @entries.to_xml
         }
         format.json {
           render :json => @entries.to_json
         }
+        
       end
     end
     
