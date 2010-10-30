@@ -457,6 +457,7 @@ snippet_order_submitted_mail_header: hlavička emailu objednávka odeslána
 snippet_order_submitted_mail_footer: patička emailu objednávka odeslána
 snippet_tomorrow_menu_mail_header: hlavička emailu s zítřejším menu
 snippet_forgotten_password: zapomenuté heslo
+snippet_dialy_menu_footer: patička denního menu
 #summary
 summary: Souhrn výnosů
 average_day: Průměrný den
