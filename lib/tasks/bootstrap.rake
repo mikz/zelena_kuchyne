@@ -170,7 +170,8 @@ SQL
   desc "Create backup of database with pg_dump"
   task :backup => ["#{RAILS_ROOT}/config/database.yml", :environment] do
     db_config = ActiveRecord::Base.configurations[RAILS_ENV]
-    backup_file = Time.now.strftime("backup_%Y%m%d%H%M%S.sql")
+    backup_file = File.join(ENV['DIR'] || '.', Time.now.strftime("backup_%Y%m%d%H%M%S.sql"))
+    verbose = ENV['VERBOSE']
     pg_dump = nil
     ["/usr/lib/postgresql/8.3/bin/pg_dump","/usr/local/pgsql/bin/pg_dump",%x{which pg_dump}.strip].each do |pg|
       pg_dump ||= pg if File.exists? pg    
@@ -180,11 +181,21 @@ SQL
     end
     print "Creating backup of #{RAILS_ENV} environment to '#{backup_file}'\n"
     command = %{#{pg_dump} -T schema_migrations #{"-p #{db_config['port']} " if db_config['port']} -h #{db_config["host"]} -U #{db_config["username"]} --verbose --data-only --column-inserts --disable-triggers #{db_config["database"]} -f #{backup_file}}
-    silent do
+    
+    verbose ? %x{#{command}} :  silent do
       %x{#{command}}
     end
+
     print "Backup created\n"
     @backup_file = backup_file
+    
+    if ENV['MAILTO']
+      %x{bzip2 #{backup_file.inspect}}
+      @backup_file << ".bz2"
+      mutt = "mutt"
+      mutt << " -s #{ENV['SUBJECT']}" if ENV['SUBJECT']
+      %x{#{mutt} -a #{@backup_file.inspect} #{ENV['MAILTO'].inspect} < /dev/null}
+    end
   end
   
   desc "Update to HEAD and reload db (backup, migrate to V=0, svn up, migrate, load backup)"
