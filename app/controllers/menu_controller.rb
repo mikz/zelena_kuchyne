@@ -22,9 +22,12 @@ class MenuController < ApplicationController
   end
   
   def show
-    @categories = MealCategory.find :all, :include => [{:meals => :scheduled_meals}], :conditions => "meals.always_available = true OR scheduled_meals.scheduled_for = '#{@date.to_s}' AND scheduled_meals.invisible = false"
-    @scheduled_bundles = ScheduledBundle.find :all, :conditions => ["scheduled_bundles.scheduled_for = ? AND scheduled_bundles.invisible = false", @date.to_s], :include => [{:bundle => {:meal => :meal_category}}]
     @menus = Menu.find :all, :include => [:scheduled_menus, :meals], :conditions => "scheduled_menus.scheduled_for = '#{@date.to_s}' AND scheduled_menus.invisible = false"
+    
+    @categories = MealCategory.find :all, :include => [{:meals => :scheduled_meals}], :conditions => ["meals.always_available = true OR scheduled_meals.scheduled_for = '#{@date.to_s}' AND scheduled_meals.invisible = false AND meals.id NOT IN (?)", @menus.map{|m| m.meals.map(&:id)}.flatten.uniq]
+    @scheduled_bundles = ScheduledBundle.find :all, :conditions => ["scheduled_bundles.scheduled_for = ? AND scheduled_bundles.invisible = false", @date.to_s], :include => [{:bundle => {:meal => :meal_category}}]
+    
+    
     ids = []
     @scheduled = []
     @menus.each do |menu|
