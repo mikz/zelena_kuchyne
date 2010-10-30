@@ -3,7 +3,7 @@ class UserProfileType < ActiveRecord::Base
   after_destroy :clean_cache
   
   def clean_cache
-    self.cached_list = nil
+    @cached_list = nil
   end
   
   def self.cached_list

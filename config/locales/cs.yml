@@ -604,3 +604,6 @@ snippet_opening_hours: otevírací doba
 # welcome
 where_you_can_find_us: Kde nás najdete?
 opening_hours: Otevírací doba
+# limiting delivery methods
+delivery_time_limit_from: Počáteční hodnota doby doručení
+delivery_time_limit_to: Konečná hodnota doby doručení 

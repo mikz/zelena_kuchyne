@@ -24,7 +24,7 @@ class Configuration
       :to => Time.parse(self.delivery_to),
       :to_orig => self.delivery_to,
       :step => self.delivery_step.to_i,
-      :last => Time.parse(self.delivery_to) - 2*self.delivery_step.to_i
+      :last => 2*self.delivery_step.to_i
     }
     return @delivery
   end

@@ -282,6 +282,22 @@ class User < ActiveRecord::Base
     @total_orders_price
   end
   
+  def delivery_times_limit
+    limit = {}
+    unless delivery_time_limit_from.blank?
+      limit[:from_orig] = delivery_time_limit_from
+      limit[:from] = Time.parse(limit[:from_orig])
+    end
+    unless delivery_time_limit_to.blank?
+      limit[:to_orig] = delivery_time_limit_to
+      limit[:to] = Time.parse(limit[:to_orig])
+    end
+    limit
+  end
+  
+  def limited_delivery_times?
+    !delivery_time_limit_from.blank? || !delivery_time_limit_to.blank?
+  end
   
   # generates random password with default lenght 8 characters
   def self.random_password(size = 8)

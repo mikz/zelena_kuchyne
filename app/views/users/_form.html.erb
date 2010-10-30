@@ -284,6 +284,17 @@
       <%= option_groups_from_collection_for_select @zones, :delivery_methods, :name, :id, :name, @user.preferred_delivery_method_id.to_i%>
     </select>
   </p>
+  
+  <p>
+    <label for="user_delivery_time_limit_from"><%= locales[:delivery_time_limit_from]%></label><br/>
+    <%= text_field_tag "user[delivery_time_limit_from]", @user.delivery_time_limit_from %>
+  </p>
+
+  <p>
+    <label for="user_delivery_time_limit_to"><%= locales[:delivery_time_limit_to]%></label><br/>
+    <%= text_field_tag "user[delivery_time_limit_to]", @user.delivery_time_limit_to %>
+  </p>
+  
   <% if @user.belongs_to?('deliverymen') %>
     <p>
       <label for="user_delivery_man_color"><%= locales[:delivery_man_color]%></label><br/>

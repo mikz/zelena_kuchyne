@@ -124,10 +124,18 @@ class Order < ActiveRecord::Base
     end
   end
     
-  def self.delivery_times(order_time, time_now)
+  def self.delivery_times(order_time, time_now, user = nil)
+    
     delivery = Configuration.delivery
     delivery[:steps] ||= []
-    if (Date.parse(order_time.to_s) == Date.parse(time_now.to_s) && time_now > delivery[:last]) || Date.parse(order_time.to_s) < Date.parse(time_now.to_s)
+    
+    if user && user.limited_delivery_times?
+      delivery.merge! user.delivery_times_limit
+    end
+    
+    last = delivery[:to] - delivery[:last]
+    
+    if (Date.parse(order_time.to_s) == Date.parse(time_now.to_s) && time_now > last) || Date.parse(order_time.to_s) < Date.parse(time_now.to_s)
       delivery[:disabled] = true
       return delivery
     else
@@ -148,7 +156,7 @@ class Order < ActiveRecord::Base
   end
   
   def delivery_times(time_now = Time.now)
-    self.class.delivery_times(self.deliver_at, time_now)
+    self.class.delivery_times(self.deliver_at, time_now, self.user)
   end
   
   def ordered_items_recursive_ids
