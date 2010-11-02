@@ -5,7 +5,7 @@
     <link><%=url_for(:only_path => false)%></link>
     <description><%= locales[:motto]%></description>
     <language><%= current_user.interface_language%></language>
-    <%-@scheduled_items.each_pair do |day, items|-%>
+    <%-@scheduled_items.each do |day, items|-%>
     <item>
       <title><%=format_date_with_weekday(day)%></title>
       <description><![CDATA[
@@ -13,21 +13,23 @@
           <h3><%=menu.name%></h3>
           <%-menu.meals.each do |meal|-%>
           <h4><%=meal.name%></h4>
-          <p><%=meal.description%></p>
+          <%= meal_flags(meal, false) %>
+          <%=meal.description%>
           <%-end-%>
         <%-end-%>
         <%-items[:categories].each_pair do |category, meals|-%>
           <h3><%=category.name%></h3>
           <%-meals.each do |meal|-%>
           <h4><%=meal.name%></h4>
-          <p><%= meal.description%></p>
+          <%= meal_flags(meal, false) %>
+          <%= meal.description%>
           <%-end-%>
         <%-end-%>
         ]]>
       </description>
       <pubDate><%=Time.parse(day.to_s).rfc822%></pubDate>
-      <link><%=url_for(:action => "index", :id => day.to_s, :only_path => false)%></link>
-      <guid isPermalink="true"><%=url_for(:action => "index", :id => day.to_s, :only_path => false)%></guid>
+      <link><%=menu_url(day)%></link>
+      <guid isPermalink="true"><%=menu_url(day)%></guid>
     </item>
     <%-end-%>
   </channel>

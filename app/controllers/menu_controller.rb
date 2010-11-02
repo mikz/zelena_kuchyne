@@ -73,18 +73,21 @@ class MenuController < ApplicationController
   end
   
   def feed
-    @scheduled_items = {}
-    @days = Day.find(:all, :conditions => ["scheduled_for >= ?", Date.today]).each do |day|
+    @scheduled_items = ActiveSupport::OrderedHash.new
+    @days = Day.find(:all, :conditions => ["scheduled_for >= ?", Date.today], :order => "scheduled_for").each do |day|
       @scheduled_items[day.scheduled_for] = {:categories => {}, :menus => []}
     end
+    dates = @days.collect &:scheduled_for
+    DEBUG {%w{@days dates}}
     
-    @categories = MealCategory.find :all, :include => [{:meals => :scheduled_meals}], :conditions => "meals.always_available = true OR scheduled_meals.scheduled_for = '#{@date.to_s}' AND scheduled_meals.invisible = false"
-    @scheduled_bundles = ScheduledBundle.find :all, :conditions => ["scheduled_bundles.scheduled_for = ? AND scheduled_bundles.invisible = false", @date.to_s], :include => [{:bundle => {:meal => :meal_category}}]
-    @menus = Menu.find :all, :include => [:scheduled_menus, :meals], :conditions => "scheduled_menus.scheduled_for = '#{Date.today.to_s}' AND scheduled_menus.invisible = false"
+    @categories = MealCategory.find :all, :include => [{:meals => :scheduled_meals}], :conditions => ["scheduled_meals.scheduled_for IN (?) AND scheduled_meals.invisible = false", dates]
+    @scheduled_bundles = ScheduledBundle.find :all, :conditions => ["scheduled_bundles.scheduled_for IN (?) AND scheduled_bundles.invisible = false", dates], :include => [{:bundle => {:meal => :meal_category}}]
+    @menus = Menu.find :all, :include => [:scheduled_menus, :meals], :conditions => ["scheduled_menus.scheduled_for IN (?) AND scheduled_menus.invisible = false", dates]
 
     @categories.each do |category|
       category.meals.each do |meal|
         meal.scheduled_meals.each do |scheduled|
+          DEBUG {%w{scheduled}}
           @scheduled_items[scheduled.scheduled_for][:categories][category] ||= []
           @scheduled_items[scheduled.scheduled_for][:categories][category] << meal
         end

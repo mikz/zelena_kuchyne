@@ -1,5 +1,5 @@
 ActionController::Routing::Routes.draw do |map|
-  map.resources :menu, :only => [:show]
+  map.resources :menu, :only => [:show], :collection => [:feed]
 
   map.root :controller => 'welcome'
   
