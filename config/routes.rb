@@ -1,5 +1,5 @@
 ActionController::Routing::Routes.draw do |map|
-  map.resources :meal_category_orders
+  map.resources :menu, :only => [:show]
 
   map.root :controller => 'welcome'
   

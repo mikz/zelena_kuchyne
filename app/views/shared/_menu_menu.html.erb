@@ -1,2 +1,2 @@
 <%= link_to locales[:today_menu], '/menu' %> |
-<%= link_to locales[:tomorrow_menu], :controller => 'menu', :action => 'index', :id => Date.tomorrow.to_s %>
+<%= link_to locales[:tomorrow_menu], menu_path(Date.tomorrow) %>

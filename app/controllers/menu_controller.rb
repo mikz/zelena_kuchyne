@@ -4,24 +4,17 @@ class MenuController < ApplicationController
   before_filter :load_sidebar_content, :except => [:feed]
   
   def index
-    @days ||= Day.find :all, :conditions => ["scheduled_for >= ?", Date.today]
     @date = params[:id] ? Date.parse(params[:id]) : Date.today
     
-    show
+    url = params[:format].blank? ? menu_path(@date) : formatted_menu_path(@date, params[:format])
     
-    @delivery = Order.delivery_times(@date, Time.now)
-    if @date < Date.today
-      render :action => "unavailable"
-    else
-      if @scheduled_bundles.empty? && @scheduled.empty?
-        render :action => "no_scheduled_meals"
-      else
-        render :action => 'show'
-      end
-    end
+    redirect_to url, :status => :temporary_redirect
   end
   
   def show
+    @days ||= Day.find :all, :conditions => ["scheduled_for >= ?", Date.today]
+    @date = params[:id] ? Date.parse(params[:id]) : Date.today
+    
     @menus = Menu.find :all, :include => [:scheduled_menus, :meals], :conditions => "scheduled_menus.scheduled_for = '#{@date.to_s}' AND scheduled_menus.invisible = false"
     
     @categories = MealCategory.find :all, :include => [{:meals => :scheduled_meals}], :conditions => ["meals.always_available = true OR scheduled_meals.scheduled_for = '#{@date.to_s}' AND scheduled_meals.invisible = false AND meals.id NOT IN (?)", @menus.map{|m| m.meals.map(&:id)}.flatten.uniq]
@@ -30,6 +23,7 @@ class MenuController < ApplicationController
     
     ids = []
     @scheduled = []
+    
     @menus.each do |menu|
       @scheduled << menu
       menu.meals.each do |meal|
@@ -46,6 +40,35 @@ class MenuController < ApplicationController
     Stock.find(:all, :conditions => ["meal_id IN (?) AND scheduled_for = ? AND amount_left <= 0", ids, @date]).each { |stock|
       @sold_out[stock.meal_id] = stock
     }
+    
+    
+    @delivery = Order.delivery_times(@date, Time.now)
+    respond_to do |format|
+      if @date < Date.today
+        format.html {
+          render :action => "unavailable", :status => :unprocessable_entity
+        }
+        format.json {
+          render :status => :unprocessable_entity
+        }
+      else
+        if @scheduled_bundles.empty? && @scheduled.empty?
+          format.html {
+            render :action => "no_scheduled_meals"
+          }
+          format.json {
+            render :status => :not_found
+          }
+        else
+          format.html {
+            render :action => 'show'
+          }
+          format.json {
+            render :json => @scheduled.to_json(:only =>  [:price, :name, :image_flag, :item_id, :item_type])
+          }
+        end
+      end
+    end
   end
   
   def feed
