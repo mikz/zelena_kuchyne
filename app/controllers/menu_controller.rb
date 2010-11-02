@@ -78,7 +78,6 @@ class MenuController < ApplicationController
       @scheduled_items[day.scheduled_for] = {:categories => {}, :menus => []}
     end
     dates = @days.collect &:scheduled_for
-    DEBUG {%w{@days dates}}
     
     @categories = MealCategory.find :all, :include => [{:meals => :scheduled_meals}], :conditions => ["scheduled_meals.scheduled_for IN (?) AND scheduled_meals.invisible = false", dates]
     @scheduled_bundles = ScheduledBundle.find :all, :conditions => ["scheduled_bundles.scheduled_for IN (?) AND scheduled_bundles.invisible = false", dates], :include => [{:bundle => {:meal => :meal_category}}]
@@ -87,7 +86,6 @@ class MenuController < ApplicationController
     @categories.each do |category|
       category.meals.each do |meal|
         meal.scheduled_meals.each do |scheduled|
-          DEBUG {%w{scheduled}}
           @scheduled_items[scheduled.scheduled_for][:categories][category] ||= []
           @scheduled_items[scheduled.scheduled_for][:categories][category] << meal
         end
