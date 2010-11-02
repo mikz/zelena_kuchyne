@@ -22,17 +22,17 @@ class MenuController < ApplicationController
     
     
     ids = []
-    @scheduled = []
+    scheduled = {:meals => [], :menus => []}
     
     @menus.each do |menu|
-      @scheduled << menu
+      scheduled[:menus] << menu
       menu.meals.each do |meal|
-       ids << meal.id
+        ids << meal.id
       end
     end
     @categories.each do |category|
       category.meals.each do |meal|
-        @scheduled << meal unless meal.always_available?
+        scheduled[:meals] << meal unless meal.always_available?
         ids << meal.id
       end
     end
@@ -52,7 +52,7 @@ class MenuController < ApplicationController
           render :status => :unprocessable_entity
         }
       else
-        if @scheduled_bundles.empty? && @scheduled.empty?
+        if @scheduled_bundles.empty? && scheduled[:meals].empty?
           format.html {
             render :action => "no_scheduled_meals"
           }
@@ -64,7 +64,8 @@ class MenuController < ApplicationController
             render :action => 'show'
           }
           format.json {
-            render :json => @scheduled.to_json(:only =>  [:price, :name, :image_flag, :item_id, :item_type])
+            @scheduled = scheduled
+            render
           }
         end
       end

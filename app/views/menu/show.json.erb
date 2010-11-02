@@ -1,0 +1,16 @@
+<%- meal_opts = {
+  :only => [:price, :name, :image_flag, :item_id],
+  :methods => [:description],
+  :include => {
+    :meal_flags => {
+      :only => [:name, :icon_path, :description]
+    },
+    :meal_category => {
+      :only => [:name]
+    }
+  }
+} -%>
+{
+  meals: <%= @scheduled[:meals].to_json(meal_opts)%>,
+  menus: <%= @scheduled[:menus].to_json(:only => [:name, :price, :image_flag, :item_id], :include => {:meals => meal_opts}) %>
+}
