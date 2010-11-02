@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rss version="2.0">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
+    <atom:link href="<%=formatted_feed_menu_url()%>" rel="self" type="application/rss+xml" />
     <title><%= locales[:title]%></title>
     <link><%=url_for(:only_path => false)%></link>
     <description><%= locales[:motto]%></description>
@@ -27,7 +28,7 @@
       </description>
       <pubDate><%=Time.parse(day.to_s).rfc822%></pubDate>
       <link><%=menu_url(day)%></link>
-      <guid isPermalink="true"><%=menu_url(day)%></guid>
+      <guid><%=menu_url(day)%></guid>
     </item>
     <%-end-%>
   </channel>
