@@ -15,9 +15,9 @@ class MenuController < ApplicationController
     @days ||= Day.find :all, :conditions => ["scheduled_for >= ?", Date.today]
     @date = params[:id] ? Date.parse(params[:id]) : Date.today
     
-    @menus = Menu.find :all, :include => [:scheduled_menus, :meals], :conditions => "scheduled_menus.scheduled_for = '#{@date.to_s}' AND scheduled_menus.invisible = false"
+    @menus = Menu.find :all, :include => [:scheduled_menus, {:meals => {:meal_category => :order}}], :conditions => "scheduled_menus.scheduled_for = '#{@date.to_s}' AND scheduled_menus.invisible = false", :order => "meal_category_order.order_id ASC"
     
-    @categories = MealCategory.find :all, :include => [{:meals => :scheduled_meals}], :conditions => ["meals.always_available = true OR scheduled_meals.scheduled_for = '#{@date.to_s}' AND scheduled_meals.invisible = false AND meals.id NOT IN (?)", @menus.map{|m| m.meals.map(&:id)}.flatten.uniq]
+    @categories = MealCategory.find :all, :include => [{:meals => :scheduled_meals}, :order], :conditions => ["meals.always_available = true OR scheduled_meals.scheduled_for = '#{@date.to_s}' AND scheduled_meals.invisible = false AND meals.id NOT IN (?)", @menus.map{|m| m.meals.map(&:id)}.flatten.uniq], :order => "meal_category_order.order_id ASC"
     @scheduled_bundles = ScheduledBundle.find :all, :conditions => ["scheduled_bundles.scheduled_for = ? AND scheduled_bundles.invisible = false", @date.to_s], :include => [{:bundle => {:meal => :meal_category}}]
     
     
@@ -75,13 +75,13 @@ class MenuController < ApplicationController
   def feed
     @scheduled_items = ActiveSupport::OrderedHash.new
     @days = Day.find(:all, :conditions => ["scheduled_for >= ?", Date.today], :order => "scheduled_for").each do |day|
-      @scheduled_items[day.scheduled_for] = {:categories => {}, :menus => []}
+      @scheduled_items[day.scheduled_for] = {:categories => ActiveSupport::OrderedHash.new, :menus => []}
     end
     dates = @days.collect &:scheduled_for
     
-    @categories = MealCategory.find :all, :include => [{:meals => :scheduled_meals}], :conditions => ["scheduled_meals.scheduled_for IN (?) AND scheduled_meals.invisible = false", dates]
+    @categories = MealCategory.find :all, :include => [{:meals => :scheduled_meals}, :order], :conditions => ["scheduled_meals.scheduled_for IN (?) AND scheduled_meals.invisible = false", dates], :order => "meal_category_order.order_id ASC"
     @scheduled_bundles = ScheduledBundle.find :all, :conditions => ["scheduled_bundles.scheduled_for IN (?) AND scheduled_bundles.invisible = false", dates], :include => [{:bundle => {:meal => :meal_category}}]
-    @menus = Menu.find :all, :include => [:scheduled_menus, :meals], :conditions => ["scheduled_menus.scheduled_for IN (?) AND scheduled_menus.invisible = false", dates]
+    @menus = Menu.find :all, :include => [:scheduled_menus, {:meals => {:meal_category => :order}}], :conditions => ["scheduled_menus.scheduled_for IN (?) AND scheduled_menus.invisible = false", dates], :order => "meal_category_order.order_id ASC"
 
     @categories.each do |category|
       category.meals.each do |meal|

@@ -17,7 +17,7 @@
           <%=meal.description%>
           <%-end-%>
         <%-end-%>
-        <%-items[:categories].each_pair do |category, meals|-%>
+        <%-items[:categories].each do |category, meals|-%>
           <h3><%=category.name%></h3>
           <%-meals.each do |meal|-%>
           <h4><%=meal.name%><%= meal_flags(meal, false) %></h4>
