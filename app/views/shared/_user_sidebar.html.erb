@@ -5,7 +5,7 @@
     <%= draw_calendar_switch(
       :scheduled_days => @days.collect {|day| day.scheduled_for },
       :date => @date, :url_options => {:controller => 'menu', :action => :show},
-      :last_day => @days.last.scheduled_for
+      :last_day => @days.last ? @days.last.scheduled_for : nil
     ) %>
   </div>
   <% if @dialy_menu && @dialy_entries && @dialy_categories %>

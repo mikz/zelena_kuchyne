@@ -12,7 +12,7 @@ class MenuController < ApplicationController
   end
   
   def show
-    @days ||= Day.find :all, :conditions => ["scheduled_for >= ?", Date.today]
+    @days = Day.find :all, :conditions => ["scheduled_for >= ?", Date.today]
     @date = params[:id] ? Date.parse(params[:id]) : Date.today
     
     @menus = Menu.find :all, :include => [:scheduled_menus, {:meals => {:meal_category => :order}}], :conditions => "scheduled_menus.scheduled_for = '#{@date.to_s}' AND scheduled_menus.invisible = false", :order => "meal_category_order.order_id ASC"

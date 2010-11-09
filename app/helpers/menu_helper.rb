@@ -41,7 +41,7 @@ module MenuHelper
     end
   
     # the chosen month
-    last_day =  [options[:last_day], date.end_of_month].max
+    last_day =  [options[:last_day], date.end_of_month].compact.max
     day = date.beginning_of_month
     while day <= last_day do
      classes = []
