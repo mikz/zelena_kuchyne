@@ -610,3 +610,4 @@ delivery_time_limit_from: Počáteční hodnota doby doručení
 delivery_time_limit_to: Konečná hodnota doby doručení 
 
 print_menus: Vybrat menu k tisku
+attr_facebook: facebook tlačítko

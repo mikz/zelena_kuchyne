@@ -3,6 +3,8 @@
   <% row_id = "record_#{@record.id ? @record.id : 'new'}" %>
   <p><label for="<%=row_id%>_name"><%= locales[:attr_name] %></label><br />
   <%= f.text_field :name, :class => '{required: true, minlength: 2}', :id=>"#{row_id}_name" %></p>
+  <p><label for="<%=row_id%>_name"><%= locales[:attr_facebook]%></label><br/>
+  <%= f.check_box :facebook, :id=>"#{row_id}_facebook" %></p>
 <p><%= yield(:submit_button) || '<input type="submit" value="' + locales[:submit] + '" />' %></p>
 <% end %>
 <script type="text/javascript">$("form").initValidation();</script>
