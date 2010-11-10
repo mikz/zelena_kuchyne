@@ -2,16 +2,16 @@
 
   <h1><%=format_date_with_weekday(day)%></h1>
   <%-items[:menus].each do |menu|-%>
-    <h2><%=menu.name%></h3>
+    <h2><%=menu.name%>&nbsp;&ndash; <%= format_currency menu.price%></h2>
     <%-menu.meals.each do |meal|-%>
-    <h3><%=meal.name%><%= meal_flags(meal, false) %></h4>
+    <h3><%=meal.name%>&nbsp;&ndash; <%= format_currency meal.price%> <%= meal_flags(meal, false) %></h3>
     <%=meal.description%>
     <%-end-%>
   <%-end-%>
   <%-items[:categories].each do |category, meals|-%>
-    <h2><%=category.name%></h3>
+    <h2><%=category.name%></h2>
     <%-meals.each do |meal|-%>
-    <h3><%=meal.name%><%= meal_flags(meal, false) %></h4>
+    <h3><%=meal.name%>&nbsp;&ndash; <%= format_currency meal.price%><%= meal_flags(meal, false) %></h3>
     <%= meal.description%>
     <%-end-%>
   <%-end-%>

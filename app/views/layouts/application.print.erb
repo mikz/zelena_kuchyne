@@ -40,9 +40,11 @@
       }
       h2 {
         margin-bottom: 0.5em;
+        font-size: 140%;
       }
       h3 {
         margin-bottom: 0.5em;
+        font-size: 115%;
       }
       h3 img {
         vertical-align: middle;
@@ -63,10 +65,10 @@
     //<![CDATA[
       <%= yield :javascript %>
       $(function(){
-        window.print();
-        setTimeout(function(){
-          //window.history.back();
-        }, 100);
+//          window.print();
+          setTimeout(function(){
+            //window.history.back();
+          }, 100);
       });
         //]]>
     </script>
