@@ -1,4 +1,5 @@
 class EshopController < ApplicationController
+  before_filter{ |c| c.must_belong_to_one_of(:admins)}
   active_section "eshop"
   include_stylesheets 'eshop'
   
