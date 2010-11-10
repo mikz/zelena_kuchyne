@@ -1259,3 +1259,6 @@ h4.dialy_menu {
   display: table-cell;
   text-align: center;
 }
+.print_menus {
+  margin-left: 2em;
+}
