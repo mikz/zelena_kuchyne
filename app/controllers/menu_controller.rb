@@ -11,6 +11,27 @@ class MenuController < ApplicationController
     redirect_to url, :status => :temporary_redirect
   end
   
+  
+  def print
+    @days = Day.find(:all, :conditions => ["scheduled_for >= ?", Date.today]).collect &:scheduled_for
+    
+    @selected = []
+
+    if params[:selected] && params[:selected][:days]
+      @selected = params[:selected][:days].collect{|d| Date.parse(d) }
+    end
+    
+    respond_to do |format|
+      format.html {
+
+      }
+      format.print {
+        load_all_scheduled_for ["scheduled_for IN (?)", @selected]
+      }
+      
+    end
+  end
+  
   def show
     @days = Day.find :all, :conditions => ["scheduled_for >= ?", Date.today]
     @date = params[:id] ? Date.parse(params[:id]) : Date.today
@@ -73,8 +94,26 @@ class MenuController < ApplicationController
   end
   
   def feed
+    load_all_scheduled_for 
+    
+    respond_to do |format|
+      format.xml
+    end
+  end
+  
+  protected
+  def load_sidebar_content
+    @polls ||= Poll.find_all_by_active true, :include => [:poll_votes, :poll_answers_results], :order => "created_at DESC"
+    @news ||= News.valid_news :order => 'publish_at DESC, id DESC', :limit => 5
+    @days ||= Day.find :all, :conditions => ["scheduled_for >= ?", Date.today]
+    @date ||= params[:id] ? Date.parse(params[:id]) : Date.today
+    
+    @dialy_menu, @dialy_entries, @dialy_categories = load_dialy_menu
+  end
+  
+  def load_all_scheduled_for conditions = ["scheduled_for >= ?", Date.today]
     @scheduled_items = ActiveSupport::OrderedHash.new
-    @days = Day.find(:all, :conditions => ["scheduled_for >= ?", Date.today], :order => "scheduled_for").each do |day|
+    @days = Day.find(:all, :conditions => conditions, :order => "scheduled_for").each do |day|
       @scheduled_items[day.scheduled_for] = {:categories => ActiveSupport::OrderedHash.new, :menus => []}
     end
     dates = @days.collect &:scheduled_for
@@ -99,18 +138,5 @@ class MenuController < ApplicationController
     @scheduled_bundles.each do |scheduled|
       @scheduled_items[scheduled.scheduled_for][:categories][scheduled.bundle.meal.meal_category] << scheduled.bundle
     end
-    respond_to do |format|
-      format.xml
-    end
-  end
-  
-  protected
-  def load_sidebar_content
-    @polls ||= Poll.find_all_by_active true, :include => [:poll_votes, :poll_answers_results], :order => "created_at DESC"
-    @news ||= News.valid_news :order => 'publish_at DESC, id DESC', :limit => 5
-    @days ||= Day.find :all, :conditions => ["scheduled_for >= ?", Date.today]
-    @date ||= params[:id] ? Date.parse(params[:id]) : Date.today
-    
-    @dialy_menu, @dialy_entries, @dialy_categories = load_dialy_menu
   end
 end

@@ -1,0 +1,10 @@
+<h1>Tisk menu na vybrané dny</h1>
+<% form_tag({:format => :print}, :method => :post)do %>
+<p>Vyberte dny, pro které chcete vytisknou menu. Pro vaše pohodlí jsme již vybrali všechny dny, na které máme naplánováno.</p>
+<ul>
+  <%- @days.each do |d|%>
+    <li><%= check_box_tag "selected[days][]", d, true, :id => "selected_days_#{d}"%> <%= label_tag "selected_days_#{d}", format(d)%></li>
+  <%-end-%>
+</ul>
+<p><%= submit_tag "Připravit k tisku"%></p>
+<%end%>

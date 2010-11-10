@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:og="http://opengraphprotocol.org/schema/"
+      xmlns:fb="http://www.facebook.com/2008/fbml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=7"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link rel="stylesheet" href="/stylesheets/print.css" type="text/css" media="print" charset="utf-8" />
+    <link rel="stylesheet" href="/stylesheets/ui.tabs.css" type="text/css" media="print, projection, screen"/>
+    <% for stylesheet in @stylesheets %>
+      <link rel="stylesheet" href="/stylesheets/<%= stylesheet %>.css" type="text/css" charset="utf-8" />
+    <% end if @stylesheets.is_a? Array %>
+    <!--[if IE]>
+      <link rel="stylesheet" href="/stylesheets/ie.css" type="text/css" media="screen, projection" charset="utf-8" />
+    <![endif]-->
+    <!--[if lte IE 6]>
+      <link rel="stylesheet" href="/stylesheets/ie6.css" type="text/css" media="screen, projection" charset="utf-8" />
+    <![endif]-->
+    <!--[if IE 7]>
+      <link rel="stylesheet" href="/stylesheets/ie7.css" type="text/css" media="screen, projection" charset="utf-8" />
+    <![endif]-->
+    <script src="/javascripts/jquery.js" type="text/javascript"></script>
+    <style type="text/css" media="print, projection, screen">
+      <%= yield :css %>
+      #logo {
+        display: block;
+        width: 186px;
+        height: 74px;
+        background: url('/images/logo_bg.gif');
+      }
+
+      #logo span {
+        display: none;
+      }
+      p {
+        margin: 0 0 1em 0;
+      }
+      h1 {
+        margin: 2em 0 0.5em;
+      }
+      h2 {
+        margin-bottom: 0.5em;
+      }
+      h3 {
+        margin-bottom: 0.5em;
+      }
+      h3 img {
+        vertical-align: middle;
+        margin-top: -3px;
+        margin-left: 0.5em;
+      }
+      h1, h2, h3, p {
+        page-break-inside: avoid;
+      }
+      
+      .page-break	{ display:none; }
+      
+
+      .page-break	{ display:block; page-break-before:always; }
+      
+    </style>
+    <script type="text/javascript">
+    //<![CDATA[
+      <%= yield :javascript %>
+      $(function(){
+        window.print();
+        setTimeout(function(){
+          //window.history.back();
+        }, 100);
+      });
+        //]]>
+    </script>
+    <title><%= locales['layout_title'] %><%= yield(:title) || '' %></title>
+    <%= yield(:head) %>
+  </head>
+  <body id="body">
+    <div id="header" class="container">
+      <a href="/" id="logo">
+        <span><%= locales[:title]%></span>
+      </a>
+    </div>
+    <div id="contents" class="container">
+      <div id="text" class="<%= yield :text_class %>">
+        <div id="errors" class="errors_inline"></div>
+        <% if flash[:notice] %>
+        <%= render :partial => '/shared/notice', :locals => {:message => flash[:notice]} %>
+        <% end %>
+        <%= yield %>
+      </div>
+      <div class="clear"></div>
+    </div>
+  </body>
+</html>
