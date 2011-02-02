@@ -295,6 +295,13 @@
     <%= text_field_tag "user[delivery_time_limit_to]", @user.delivery_time_limit_to %>
   </p>
   
+  <p>
+    <label for="user_mass_menu"><%= locales[:mass_menu]%></label><br/>
+    <%= check_box_tag "user[mass_menu]", "1", @user.mass_menu %>
+    <%= hidden_field_tag "user[mass_menu]", "0"%>
+    
+  </p>
+  
   <% if @user.belongs_to?('deliverymen') %>
     <p>
       <label for="user_delivery_man_color"><%= locales[:delivery_man_color]%></label><br/>

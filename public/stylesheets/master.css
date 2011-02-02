@@ -1262,3 +1262,49 @@ h4.dialy_menu {
 .print_menus {
   margin-left: 2em;
 }
+
+table.menu caption {
+  font-size: 125%;
+}
+table.menu caption, table.menu thead td {
+  background: #ebbb3c;
+  font-weight: bold;
+}
+table.menu {
+  width: 100%;
+  border: 1px solid #ebbb3c;
+}
+table.menu h6 {
+  font-size: 1em;
+}
+table.menu tr {
+  background: #F0F2E0;
+  border-top: 1px solid #638C33;
+}
+table.menu td {
+  line-height: 18px;
+  padding: 2px;
+}
+table.menu td:last-child {
+  width: 10%;
+  text-align: right;
+}
+table.menu td:first-child {
+  width: 64%;
+  text-align: left;
+}
+table.menu td.price {
+  text-align: right;
+  width: 10%;
+}
+
+table.menu input[type='text'] {
+  width: 3em;
+}
+table.menu + p {
+  margin-bottom: 1.5em;
+}
+.mass_menu .submit {
+  margin: 1.5em 0;
+  text-align: right;
+}

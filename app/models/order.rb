@@ -134,7 +134,7 @@ class Order < ActiveRecord::Base
     end
     
     last = delivery[:to] - delivery[:last]
-    
+    DEBUG {%w{order_time time_now user}}
     if (Date.parse(order_time.to_s) == Date.parse(time_now.to_s) && time_now > last) || Date.parse(order_time.to_s) < Date.parse(time_now.to_s)
       delivery[:disabled] = true
       return delivery

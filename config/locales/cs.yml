@@ -611,3 +611,5 @@ delivery_time_limit_to: Konečná hodnota doby doručení
 
 print_menus: Vybrat menu k tisku
 attr_facebook: facebook tlačítko
+
+mass_menu: Hromadná objednávka

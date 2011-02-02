@@ -1,0 +1,44 @@
+
+- form_tag :mass_menu, :url => confirm_mass_menu_path, {:class => :mass_menu} do |f|
+  - @orders.each do |order|
+    %table.order.menu
+      %caption= format_date_with_weekday(order.date)
+      %thead
+        %tr
+          %td= locales[:attr_name]
+          %td.price= locales[:attr_price]
+          %td.price= locales[:pieces]
+          %td.price= locales[:overall]
+          %td
+      %tfoot
+        %tr{:class => [:total, cycle(:even, :odd)]}
+          %td{:colspan=>3}
+          %td.price
+            %strong= format_currency order.price
+          %td
+      %tbody
+        - if order.ordered_items.empty?
+          %tr
+            %td{:colspan => 5} Na tento den není žádná objednávka.
+        - else
+          - for item in order.ordered_items
+            %tr{:id => "item_#{item.item.id}", :class => cycle(:even, :odd)}
+              %td= item.item.name
+              %td.price= format_currency item.item.price
+              %td.price= format item.amount
+              %td.price= format_currency (item.amount * item.item.price)
+              %td
+          - if order.original_price != order.discount_price
+            %tr{:class => cycle(:even,:odd)}
+              %td= locales[:discount]
+              %td{:colspan=>2}
+              %td.price= format_currency(-1*(order.original_price - order.discount_price) )
+              %td
+          %tr{:class => cycle(:even, :odd)}
+            %td= order.delivery_method.basket_name
+            %td{:colspan=>2}
+            %td.price{:id => "order_#{order.id}_delivery_fee"}
+              = format_currency order.delivery_method.price
+            %td
+  %p.submit
+    = submit_tag "Závazně odeslat objednávky", :confirm => "Opravdu chcete odeslat objednávky?\n\nTato akce nelze vrátit zpět."

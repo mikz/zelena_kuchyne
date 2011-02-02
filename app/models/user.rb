@@ -124,11 +124,12 @@ class User < ActiveRecord::Base
   end
   
   def set_profile(attr, value)
-
     list = UserProfileType.cached_list
     @profiles = {} unless(@profiles.is_a? Hash)
     @profiles[list[attr]] = value
-    @profiles_changed ||= []; @profiles_changed.push list[attr]
+    @profiles_changed ||= [];
+    @profiles_changed.push list[attr]
+    @profiles_changed.uniq!
   end
   
   def set_address(type, data)
@@ -149,6 +150,14 @@ class User < ActiveRecord::Base
   
   def activate_delivery_address
     @activate_delivery_address
+  end
+  
+  def mass_menu
+    read_profile('mass_menu') == 't'
+  end
+
+  def mass_menu= val
+    set_profile('mass_menu', (val.to_s.to_i == 1 || val == true)? true : false )
   end
   
   def update_profiles

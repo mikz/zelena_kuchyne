@@ -1,5 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
   map.resources :menu, :only => [:show], :collection => [:feed, :print]
+  map.resource :mass_menu, :member => {:confirm => :post}, :only => [:show, :create], :controller => :mass_menu
 
   map.root :controller => 'welcome'
   

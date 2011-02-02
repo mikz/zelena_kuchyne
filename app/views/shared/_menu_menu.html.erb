@@ -1,3 +1,6 @@
 <%= link_to locales[:today_menu], '/menu' %> |
 <%= link_to locales[:tomorrow_menu], menu_path(Date.tomorrow) %>
 <%= link_to locales[:print_menus], formatted_print_menu_path(:format => :html), :class=> "print_menus"%>
+<%- if current_user && current_user.mass_menu %>
+  | <%= link_to locales[:mass_menu], "/mass_menu" %>
+<%-end-%>

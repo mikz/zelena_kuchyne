@@ -32,6 +32,10 @@ class OrderView < ActiveRecord::Base
     self
   end
   
+  def date
+    deliver_at.to_date
+  end
+  
   def delivery_method_name
     self.delivery_method_without_autoload.name if self.delivery_method_without_autoload
   end
