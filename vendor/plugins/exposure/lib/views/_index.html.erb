@@ -6,9 +6,9 @@
     </tr>
     <% end %>
     <tr>
-      <td><%= link_to t("attr_#{@options[:title)[:name]}"], :action => 'index', :order => @options[:title][:order] || @options[:title][:name] %></td>
+      <td><%= link_to t("attr_#{@options[:title][:name]}"), :action => 'index', :order => @options[:title][:order] || @options[:title][:name] %></td>
     <% for column in @options[:columns] %>
-      <td><%= link_to t((column[:locale))? column[:locale] : "attr_#{column[:name]}"], :action => 'index', :order => column[:order] || column[:name] %></td>
+      <td><%= link_to t(column[:locale] ? column[:locale] : "attr_#{column[:name]}"), :action => 'index', :order => column[:order] || column[:name] %></td>
     <% end %>
       <td><span id="record_add"><%= smart_link t(:add), :action => 'new' %></span></td>
     </tr>

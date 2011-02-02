@@ -16,6 +16,10 @@ class ItemProfileType < ActiveRecord::Base
     @cached_list
   end
   
+  def self.cached_writers
+    @cached_writers ||= cached_list.keys.map{|k| k + "="}
+  end
+  
   def self.cached_list=(cached_list)
     @cached_list = cached_list
   end

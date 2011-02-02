@@ -6,9 +6,9 @@
     </tr>
     <% end %>
     <tr>
-      <td><%= t("attr_#{@options[:title)[:name]}"] %></td>
+      <td><%= t("attr_" << @options[:title][:name]) %></td>
     <% for column in @options[:columns] %>
-      <td><%= t((column[:locale))? column[:locale] : "attr_#{column[:name]}"] %></td>
+      <td><%= t(column[:locale] ? column[:locale] : "attr_#{column[:name]}") %></td>
     <% end %>
     </tr>
   </thead>

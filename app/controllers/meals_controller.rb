@@ -78,7 +78,7 @@ class MealsController < ApplicationController
   end
   
   def update
-    @record = MealComputed.find_by_id params[:id], :include => :recipes
+    @record = Meal.find_by_id params[:id], :include => :recipes
     params[:record]["meal_flag_ids"] ||= []
     if(@record.update_attributes(params['record']))
       @record.spice_ids = params['used_spice_ids']
@@ -103,7 +103,7 @@ class MealsController < ApplicationController
     
     super
 
-    return unless @record.errors.empty?
+#    return unless @record.errors.empty?
 
     if(params['image_file'])
       @record.save_image params['image_file']

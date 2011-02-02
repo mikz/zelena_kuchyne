@@ -6,7 +6,7 @@
     </tr>
     <% end %>
     <tr>
-      <td><%= link_to t("attr_#{@options[:title)[:name]}"], :action => 'index', :order => @options[:title][:name] %></td>
+      <td><%= link_to t("attr_" << @options[:title][:name]), :action => 'index', :order => @options[:title][:name] %></td>
       <td><%= link_to t("model_meal"), :action => 'index', :order => "meal_id" %></td>
       <td><%= link_to t("amount"), :action => 'index', :order => "amount" %></td>
       <td><%= link_to t("attr_price"), :action => 'index', :order => "price" %></td>

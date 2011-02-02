@@ -38,9 +38,10 @@ class Item < ActiveRecord::Base
     end
     return @item_id
   end
-
+  
   def method_missing(method, *args)
     attr = method.to_s
+    DEBUG {%w{attr}}
     if attr.last == "?"
       attr = attr.chop
       if ItemProfileType.cached_list.has_key? attr
@@ -57,7 +58,15 @@ class Item < ActiveRecord::Base
       end
     end
   end
-
+  
+  def respond_to_with_profiles?(*args)
+    return true if ItemProfileType.cached_list.has_key?  args.first.to_s
+    return true if ItemProfileType.cached_writers.include?  args.first.to_s
+    
+    respond_to_without_profiles?(*args)
+  end
+  alias_method_chain :respond_to?, :profiles
+  
   def read_profile(attr)
     list = ItemProfileType.cached_list
     attr = attr.to_s
