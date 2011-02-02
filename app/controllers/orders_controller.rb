@@ -156,7 +156,7 @@ class OrdersController < ApplicationController
       format.js {
         if  @order.save_without_validation
           render :update do |page|
-            page << "ajax_message(#{locales[:update_successful].chars.capitalize.to_s.inspect});"
+            page << "ajax_message(#{t(:update_successful).mb_chars.capitalize.to_s.inspect});"
             if @order.ordered_items.empty?
               page.visual_effect :fade, "text .order .ordered_item"
               page.delay 0.3 do 
@@ -170,7 +170,7 @@ class OrdersController < ApplicationController
           end
         else
           render :update do |page|
-            page << "ajax_message(#{locales[:error].chars.capitalize.to_s.inspect});"
+            page << "ajax_message(#{t(:error).mb_chars.capitalize.to_s.inspect});"
           end
         end
       }
@@ -232,7 +232,7 @@ class OrdersController < ApplicationController
       respond_to do |format|
         format.js do
           render :update do |page|
-            page << "ajax_message(#{locales[:error].chars.capitalize.to_s.inspect});"
+            page << "ajax_message(#{t(:error).mb_chars.capitalize.to_s.inspect});"
             page.visual_effect :Shake, 'add_item_form', :times => 2
           end
         end
@@ -276,12 +276,12 @@ class OrdersController < ApplicationController
     
         respond_to do |format|
           format.html do
-            flash[:notice] = locales[:order_updated]
+            flash[:notice] = t(:order_updated)
             redirect_to :back
           end
           format.js do
             render :update do |page|
-              page << "ajax_message(#{locales[:update_successful].chars.capitalize.to_s.inspect});"
+              page << "ajax_message(#{t(:update_successful).mb_chars.capitalize.to_s.inspect});"
               page.replace_html "record_#{params[:id]}", :partial => "form"
               page.visual_effect :highlight, "record_#{params[:id]}"
               page << "update_active_discounts(#{params[:id]})"
@@ -291,12 +291,12 @@ class OrdersController < ApplicationController
       else
         respond_to do |format|
           format.html do
-            flash[:notice] = locales[:order_updated]
+            flash[:notice] = t(:order_updated)
             redirect_to :back
           end
           format.js do
             render :update do |page|
-              page << "ajax_message(#{locales[:update_successful].chars.capitalize.to_s.inspect});"
+              page << "ajax_message(#{t(:update_successful).mb_chars.capitalize.to_s.inspect});"
               page.replace_html 'order-total', format_currency(0)
               page.visual_effect :highlight, "order-total"
             end
@@ -307,7 +307,7 @@ class OrdersController < ApplicationController
       respond_to do |format|
         format.js do
           render :update do |page|
-            page << "ajax_message(#{locales[:error].chars.capitalize.to_s.inspect});"
+            page << "ajax_message(#{t(:error).mb_chars.capitalize.to_s.inspect});"
           end
         end
       end
@@ -325,7 +325,7 @@ class OrdersController < ApplicationController
           end
         else
           render :update do |page|
-            page << "ajax_message(#{locales[:error].chars.capitalize.to_s.inspect});"
+            page << "ajax_message(#{t(:error).mb_chars.capitalize.to_s.inspect});"
           end
         end
       }

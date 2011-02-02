@@ -6,8 +6,8 @@
     </tr>
     <% end %>
     <tr>
-      <td><%= link_to locales["ingredient"], :action => 'balance', :order => "i.name ASC" %></td>
-      <td><%= link_to locales["amount"], :action => 'balance', :order => "amount" %></td>
+      <td><%= link_to t("ingredient"), :action => 'balance', :order => "i.name ASC" %></td>
+      <td><%= link_to t("amount"), :action => 'balance', :order => "amount" %></td>
     </tr>
   </thead>
   <tbody id="records_body">

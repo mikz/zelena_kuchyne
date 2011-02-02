@@ -1,13 +1,13 @@
 <%= error_messages_for :record %>
 <% row_id = "record_#{@record.id ? @record.id : 'new'}" %>
 <% remote_form_for :record, :url => url do |f| %>
-  <p><label for="<%=row_id%>_title"><%= locales[:attr_title] %></label><br />
+  <p><label for="<%=row_id%>_title"><%= t(:attr_title) %></label><br />
   <%= f.text_field :title, :id=> "#{row_id}_title", :class => '{maxlength: 80}' %></p>
-  <p><label for="<%=row_id%>_url"><%= locales[:attr_url] %></label><br />
+  <p><label for="<%=row_id%>_url"><%= t(:attr_url) %></label><br />
   <%= f.text_field :url, :id=> "#{row_id}_url", :class => '{required: true, maxlength: 50, minlength: 2}' %></p>
-  <p><label for="<%=row_id%>_body"><%= locales[:attr_body] %></label><br />
+  <p><label for="<%=row_id%>_body"><%= t(:attr_body) %></label><br />
   <%= f.text_area :body, :id=> "#{row_id}_body", :class => '' %></p>¨
   <%= render :partial => "page_histories/page_histories", :locals => {:page_histories => @record.page_histories}%>
-<p><%= yield(:submit_button) || '<input type="submit" value="' + locales[:submit] + '" />' %></p>
+<p><%= yield(:submit_button) || '<input type="submit" value="' + t(:submit) + '" />' %></p>
 <% end %>
 <script type="text/javascript">$("form").initValidation();</script>

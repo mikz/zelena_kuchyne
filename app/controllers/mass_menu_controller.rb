@@ -56,7 +56,7 @@ class MassMenuController < ApplicationController
       end
     end
     
-    flash[:notice] = locales[:order_submitted].chars.capitalize
+    flash[:notice] = t(:order_submitted).mb_chars.capitalize
     
     redirect_to "/"
   end

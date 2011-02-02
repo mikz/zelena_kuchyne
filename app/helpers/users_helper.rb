@@ -1,7 +1,7 @@
 module UsersHelper
   def translate_group group_name
     group_name = group_name.strip.gsub(" ","_")
-    locales["group_#{group_name}".to_sym]
+    t("group_#{group_name}".to_sym)
   end
   
   def translate_roles roles
@@ -20,7 +20,7 @@ module UsersHelper
     #end) unless address.zone
     review = %{
       <br/>
-      #{link_to_remote locales[:zone_reviewed].downcase,
+      #{link_to_remote t(:zone_reviewed).downcase,
           :url => {:controller => "users", :action => "set_zone", :id => user.id, :zone => {:zone_reviewed => true}}}
     } if address.zone && !address.zone_reviewed?
     %{

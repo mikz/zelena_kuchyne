@@ -5,5 +5,5 @@
     <input type="text" value="<%= format item.amount %>" name="amount[<%= item.item.id %>]" />
   </td>
   <td class="item-price"><%= format_currency (item.amount * item.discount_price) %></td>
-  <td><%= smart_link locales[:delete], :action => 'remove_item', :id => @order.id, :item_id => item.id %></td>
+  <td><%= smart_link t(:delete), :action => 'remove_item', :id => @order.id, :item_id => item.id %></td>
 </tr>

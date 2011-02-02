@@ -23,10 +23,10 @@ text-align: left !important;
 <table>
   <thead>
     <tr>
-      <td><%= locales[:model_meal] %></td>
-      <td><%= locales[:price]%></td>
-      <td><%= locales[:portions]%></td>
-      <td><%= locales[:total_cost]%></td>
+      <td><%= t(:model_meal) %></td>
+      <td><%= t(:price)%></td>
+      <td><%= t(:portions)%></td>
+      <td><%= t(:total_cost)%></td>
     </tr>
   </thead>
   <tbody>
@@ -44,28 +44,28 @@ text-align: left !important;
 <table>
   <tbody>
   <tr>
-    <td><%= locales[:ordered_at]%>:</td><td class="left"><%= format_date Date.today %></td>
+    <td><%= t(:ordered_at)%>:</td><td class="left"><%= format_date Date.today %></td>
   <tr>
-    <td><%= locales[:order_will_be_delivered_at]%></td><td class="left"><%= format_date_and_time @order.deliver_at %></td>
+    <td><%= t(:order_will_be_delivered_at)%></td><td class="left"><%= format_date_and_time @order.deliver_at %></td>
   </tr>
   <tr>
-    <td><%= locales[:order_price]%>:</td><td class="left"><%= format_currency @order.original_price%></td>
+    <td><%= t(:order_price)%>:</td><td class="left"><%= format_currency @order.original_price%></td>
   </tr>
   <tr>
-    <td><%= locales[:discount].chars.capitalize%>:</td><td class="left"><%= format_currency(@order.original_price - @order.discount_price)%></td>
+    <td><%= t(:discount).mb_chars.capitalize%>:</td><td class="left"><%= format_currency(@order.original_price - @order.discount_price)%></td>
   </tr>
   <tr>
-    <td><%= locales[:delivery_price]%>:</td><td class="left"><%= format_currency @order.delivery_price %></td>
+    <td><%= t(:delivery_price)%>:</td><td class="left"><%= format_currency @order.delivery_price %></td>
   </tr>
   <tr>
-    <td><%= locales[:final_price]%>:</td><td class="left"><%= format_currency @order.price %></td>
+    <td><%= t(:final_price)%>:</td><td class="left"><%= format_currency @order.price %></td>
    </tr>
    </tbody>
 </table>
 
  
 
-<p><%= locales[:address_of_delivery]%>:<br/>
+<p><%= t(:address_of_delivery)%>:<br/>
 <% unless @address.first_name.blank? or @address.family_name.blank? %>
 <%= h @address.first_name %> <%=h @address.family_name%><br/>
 <%end%>
@@ -75,12 +75,12 @@ text-align: left !important;
 <%= @address.output %><br/>
 <%= h @address.zip%>
 <% unless @address.note.blank? %>
-<br/><%= locales[:note].chars.capitalize%>: <%= h @address.note %>
+<br/><%= t(:note).mb_chars.capitalize%>: <%= h @address.note %>
 <% end %>
 </p>
 
 <% unless @order.notice.blank? %>
-<p><%= locales[:note].chars.capitalize%>:<br/>
+<p><%= t(:note).mb_chars.capitalize%>:<br/>
 <%= h @order.notice %>
 </p>
 <%end%>

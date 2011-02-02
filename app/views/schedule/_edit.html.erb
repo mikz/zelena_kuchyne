@@ -1,5 +1,5 @@
 <% content_for :cancel_button do %>
-  <a href="#" onclick="$('#<%=element%>_edit').effect('fade',{},300);$('#<%=element%>').show();$('.<%=element%>').show(); setTimeout('$(\'#<%=element%>_edit\').remove();', 300);"><%= locales[:cancel] %></a>
+  <a href="#" onclick="$('#<%=element%>_edit').effect('fade',{},300);$('#<%=element%>').show();$('.<%=element%>').show(); setTimeout('$(\'#<%=element%>_edit\').remove();', 300);"><%= t(:cancel) %></a>
 <% end %>
 <tr id="<%=element%>_edit" class="inline_edit">
   <%= render :partial => "form", :locals => {:date => date, :scheduled => scheduled, :what => what }%>

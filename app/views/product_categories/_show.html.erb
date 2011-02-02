@@ -3,6 +3,6 @@
   <td><%= format(record.send(column[:name])) %></td>
 <% end %>
 <td>
-  <%= smart_link(locales[:edit], {:action => 'edit', :id => record}, :html => {:onclick => "if(!check_opened(event)) {return false;}"}) %>
-  | <%= smart_link locales[:delete], {:action => 'destroy', :id => record}, :confirm => locales['delete_confirmation'] %>
+  <%= smart_link(t(:edit), {:action => 'edit', :id => record}, :html => {:onclick => "if(!check_opened(event)) {return false;}"}) %>
+  | <%= smart_link t(:delete), {:action => 'destroy', :id => record}, :confirm => t('delete_confirmation') %>
 </td>

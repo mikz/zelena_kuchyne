@@ -1,11 +1,11 @@
-<h1><%= locales['your_orders'] %></h1>
+<h1><%= t('your_orders') %></h1>
 <table class="admin">
   <thead>
   <tr>
-    <td><%= link_to locales[:order_number], :order => "id" %></td>
-    <td><%= link_to locales[:attr_price], :order => "price" %></td>
-    <td><%= link_to locales[:attr_order_state], :order => "state" %></td>
-    <td><%= link_to locales[:attr_deliver_at], :order => "deliver_at" %></td>
+    <td><%= link_to t(:order_number), :order => "id" %></td>
+    <td><%= link_to t(:attr_price), :order => "price" %></td>
+    <td><%= link_to t(:attr_order_state), :order => "state" %></td>
+    <td><%= link_to t(:attr_deliver_at), :order => "deliver_at" %></td>
   </tr>
   </thead>
   <tbody>

@@ -45,14 +45,14 @@
                 %td
                   = text_field_tag "mass_menu[#{date.to_s}][#{meal.item_id}]"
       %p
-        %label{:for => "mass_menu_#{date}_time_of_delivery"}= locales[:preferred_time_of_delivery]
+        %label{:for => "mass_menu_#{date}_time_of_delivery"}= t(:preferred_time_of_delivery)
         %select{:name => "mass_menu[#{date}][time_of_delivery]", :id => "mass_menu_#{date}_time_of_delivery", :class => "time_filed"}
           = time_of_delivery_options(@delivery[date][:steps])
-  %p= locales[:time_of_delivery_is_approximate]
-  %p= locales[:user_agreement]
+  %p= t(:time_of_delivery_is_approximate)
+  %p= t(:user_agreement)
   #user_agreement= snippet 'user_agrement'
   %p#confirm_agreement
     %input#order_confirmed{:type=>"checkbox", :name=>"order[confirmed]"}
-    %label{:for => "order_confirmed"}=locales[:accept_agreement]
+    %label{:for => "order_confirmed"}=t(:accept_agreement)
   %p.submit
     = f.submit "Pokračovat k potvrzení objednávky", :confirm => "Opravdu pokračovat k potvrzení objednávky?\n\nTento krok nebude možné vrátit."

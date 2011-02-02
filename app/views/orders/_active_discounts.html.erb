@@ -1,36 +1,36 @@
-<h2><%= locales[:active_discounts]%></h2>
+<h2><%= t(:active_discounts)%></h2>
 <table class="admin">
   <thead>
     <tr>
-      <td><%=locales[:attr_discount_class]%></td>
-      <td><%= locales[:attr_from]%></td>
-      <td><%= locales[:attr_to]%></td>
-      <td><%= locales[:condition]%></td>
-      <td><%= locales[:value]%></td>
+      <td><%=t(:attr_discount_class)%></td>
+      <td><%= t(:attr_from)%></td>
+      <td><%= t(:attr_to)%></td>
+      <td><%= t(:condition)%></td>
+      <td><%= t(:value)%></td>
     </tr>
   </thead>
   <tbody>
   <% @order.active_discounts[:user_discounts].each do |ud| %>
     <tr>
-      <td><%= locales[:model_user_discount] %></td>
+      <td><%= t(:model_user_discount) %></td>
       <td><%= format_date(ud.start_at)%>
       <td><%= format_date(ud.expire_at) if ud.expire_at %></td>
-      <td><%= locales[:model_user] %>: <%= format ud.user.login%> </td>
+      <td><%= t(:model_user) %>: <%= format ud.user.login%> </td>
       <td><%= format_amount(ud.amount, :unit => "%")%></td>
     </tr>
   <%end%>
   <% @order.active_discounts[:item_discounts].each do |id| %>
-      <td><%= locales[:model_user_discount] %></td>
+      <td><%= t(:model_user_discount) %></td>
       <td><%= format_date(id.start_at)%>
       <td><%= format_date(id.expire_at) if id.expire_at %></td>
-      <td><%= locales[:model_item] %>: <%= format id.item.name%> </td>
+      <td><%= t(:model_item) %>: <%= format id.item.name%> </td>
       <td><%= format_amount(id.amount, :unit => "%")%></td>
   <%end%>
   <% @order.active_discounts[:wholesale_discounts].each do |wd| %>
-      <td><%= locales[:model_wholesale_discount] %></td>
+      <td><%= t(:model_wholesale_discount) %></td>
       <td><%= format_date(wd.start_at)%>
       <td><%= format_date(wd.expire_at) if wd.expire_at %></td>
-      <td><%= locales[:model_user] %>: <%= format wd.user.login%> </td>
+      <td><%= t(:model_user) %>: <%= format wd.user.login%> </td>
       <td><%= format_currency(wd.discount_price)%></td>
   <%end%>
   </tbody>

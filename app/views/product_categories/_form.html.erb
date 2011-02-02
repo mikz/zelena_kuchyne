@@ -1,16 +1,16 @@
 <%= error_messages_for :record %>
 <% row_id = "record_#{@record.id ? @record.id : 'new'}" %>
 <% remote_form_for :record, :url => url do |f| %>  
-  <p><label for="<%=row_id%>_name"><%= locales[:attr_name] %></label><br />
+  <p><label for="<%=row_id%>_name"><%= t(:attr_name) %></label><br />
   <%= f.text_field :name, :id=> "#{row_id}_name", :class => '{required: true, minlength: 2}' %>
-  <p><label for="<%=row_id%>_description"><%= locales[:attr_description] %></label><br />
+  <p><label for="<%=row_id%>_description"><%= t(:attr_description) %></label><br />
   <%= f.text_area :description, :id=> "#{row_id}_description", :class => '{required: false }' %>
   <input type="hidden" name="record[parent_id]" id="<%=row_id%>_parent_id" value="<%=@record.parent_id%>"/>
   <input type="hidden" name="record[id]" value="<%= @record.id%>"/></p>
   <div>
     <%= render :partial => "list", :locals => { :row_id => row_id, :categories => @product_categories, :js => "set_parent_id" } %>
   </div>
-<p><%= yield(:submit_button) || '<input type="submit" value="' + locales[:submit] + '" />' %></p>
+<p><%= yield(:submit_button) || '<input type="submit" value="' + t(:submit) + '" />' %></p>
 <% end %>
 <script type="text/javascript">
  //<![CDATA[

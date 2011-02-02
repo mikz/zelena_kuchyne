@@ -38,7 +38,7 @@ class Expense < ActiveRecord::Base
 
   def self.expense_owners
     ["delivery","restaurant","office"].collect { |item|
-      [LocalesSystem.locales["expense_owner_#{item}"], item]
+      [I18n.t("expense_owner_#{item}"), item]
     }
   end
   

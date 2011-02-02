@@ -6,7 +6,7 @@
     <%-if user.address.zone%>
       <%= user.address.zone.name%>
       <% unless user.address.zone_reviewed? %>
-      <br/><%= link_to_remote locales[:zone_reviewed].downcase,  :url => {:controller => "users", :action => "set_zone", :id => user.id, :from => "users", :zone => {:zone_reviewed => true}} %>
+      <br/><%= link_to_remote t(:zone_reviewed).downcase,  :url => {:controller => "users", :action => "set_zone", :id => user.id, :from => "users", :zone => {:zone_reviewed => true}} %>
       <%-end-%>
     <%-else-%>
       <% form_remote_tag :url => {:action => :set_zone, :id => user.id, :controller => "users", :from => "users"} do %>
@@ -23,5 +23,5 @@
   <td><%= user.email %></td>
   <td><%= format_currency(user.spent_money) %></td>
   <td><%= format_percent(user.user_discount) if user.user_discount %></td>
-  <td><%= link_to locales[:edit], :action => 'edit', :id => user.id %></td>
+  <td><%= link_to t(:edit), :action => 'edit', :id => user.id %></td>
 </tr>

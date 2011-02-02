@@ -3,36 +3,36 @@
   <%= render :partial => "unavailable"%>
 <%-else-%>
   <% if @date == Date.today %>
-    <h1><%= locales[:todays_menu] %></h1>
+    <h1><%= t(:todays_menu) %></h1>
     <%- else -%>
-    <h1><%= locales[:menu_for_the_day] %>: <%= format @date %></h1>
+    <h1><%= t(:menu_for_the_day) %>: <%= format @date %></h1>
   <%- end -%>
 <%-end-%>
 <div class="menus<%=" disabled" if @delivery[:disabled]%>">
 <% for menu in @menus 
   sold_out = nil %>
-  <h2><%= menu.name.chars.capitalize %></h2>
+  <h2><%= menu.name.mb_chars.capitalize %></h2>
   <% for meal in menu.meals 
   sold_out = @sold_out.has_key?(meal.id) || sold_out %>
     <%= render :partial => 'meal', :locals => {:meal => meal, :sold_out => @sold_out.has_key?(meal.id)} %>
   <% end %>
   
   <div class="meal">
-    <div class="meal_text"><h3><%= locales[:whole_menu]%><span class="soldout"><%= locales[:sold_out] if sold_out%></span></h3></div>
+    <div class="meal_text"><h3><%= t(:whole_menu)%><span class="soldout"><%= t(:sold_out) if sold_out%></span></h3></div>
     <% form_tag :controller => 'basket', :action => 'add_item' do %>
-      <p class="price"><%= locales[:price] %>: <strong><%= format_currency(menu.discount_price :date => @date)%></strong></p>
+      <p class="price"><%= t(:price) %>: <strong><%= format_currency(menu.discount_price :date => @date)%></strong></p>
       <fieldset>
         <input type="hidden" name="item[item_id]" value="<%= menu.item_id %>" />
         <input type="hidden" name="item[deliver_on]" value="<%= @date %>" />
-        <p><label for="item_<%= menu.item_id %>_amount"><%= locales[:portions]%>:</label>
+        <p><label for="item_<%= menu.item_id %>_amount"><%= t(:portions)%>:</label>
         <input class="amount_input" <%='disabled="disabled"' if sold_out || @delivery[:disabled]%> type="text" name="item[amount]" id="item_<%= menu.item_id %>_amount" /></p>
-        <p><input type="image" src="/images/form_add_to_basket<%= "_gray" if sold_out || @delivery[:disabled]%>.gif" <%= 'disabled="disabled"' if sold_out || @delivery[:disabled]%> value="<%= locales[:to_basket]%>" /></p>
+        <p><input type="image" src="/images/form_add_to_basket<%= "_gray" if sold_out || @delivery[:disabled]%>.gif" <%= 'disabled="disabled"' if sold_out || @delivery[:disabled]%> value="<%= t(:to_basket)%>" /></p>
       </fieldset>
     <% end %>
   </div>
 <% end %>
 <% for category in @categories %>
-  <h2><%= category.name.chars.capitalize %></h2>
+  <h2><%= category.name.mb_chars.capitalize %></h2>
   <% for meal in category.meals %>
     <%= render :partial => 'meal', :locals => {:meal => meal, :sold_out => @sold_out.has_key?(meal.id)} %>
   <% end %>

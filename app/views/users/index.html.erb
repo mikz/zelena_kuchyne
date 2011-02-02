@@ -7,14 +7,14 @@
     </tr>
     <% end %>
     <tr>
-      <td><%= link_to locales['attr_login'], :action => 'index', :order => 'login' %></td>
-      <td><%= locales['attr_name'] %></td>
-      <td><%= locales['attr_delivery_address'] %></td>
-      <td class=""><%= locales[:attr_zone] %></td>
-      <td class="fullscreen"><%= locales['attr_groups'] %></td>
-      <td><%= locales['attr_email'] %></td>
-      <td><%= link_to locales['attr_spent_money'], :action => 'index', :order => 'spent_money' %></td>
-      <td><%= link_to locales['discount'], :action => 'index', :order => 'user_discount' %></td>
+      <td><%= link_to t('attr_login'), :action => 'index', :order => 'login' %></td>
+      <td><%= t('attr_name') %></td>
+      <td><%= t('attr_delivery_address') %></td>
+      <td class=""><%= t(:attr_zone) %></td>
+      <td class="fullscreen"><%= t('attr_groups') %></td>
+      <td><%= t('attr_email') %></td>
+      <td><%= link_to t('attr_spent_money'), :action => 'index', :order => 'spent_money' %></td>
+      <td><%= link_to t('discount'), :action => 'index', :order => 'user_discount' %></td>
       <td></td>
     </tr>
   </thead>

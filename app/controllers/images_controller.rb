@@ -36,11 +36,11 @@ class ImagesController < ApplicationController
         end
       else
         response[:errno] = 1
-        response[:errmsg] = locales[:e_missing_file]
+        response[:errmsg] = t(:e_missing_file)
       end
     else
       response[:errno] = 1
-      response[:errmsg] = locales[:e_not_authorized]
+      response[:errmsg] = t(:e_not_authorized)
     end
     render :text => %{
     <script type="text/javascript">

@@ -20,8 +20,8 @@ namespace :mailer do
     silence_stream(STDERR) do
       for user in users
         @fc.current_user =  user
-        @locales[user.interface_language] = @fc.locales unless @locales.has_key? user.interface_language
-        Mailer.deliver_tomorrow_menu(user, @menus, @categories, :currency_template => @locales[user.interface_language][:currency])
+        @t(user.interface_language) = @fc.locales unless @locales.has_key? user.interface_language
+        Mailer.deliver_tomorrow_menu(user, @menus, @categories, :currency_template => @t(user.interface_language)[:currency])
         i += 1
         percent = (i.to_f/size)*100
         print "#{i} of #{size} users done (#{percent}%)\t Mail sent to '#{user.login}'\n"

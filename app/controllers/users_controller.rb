@@ -19,7 +19,7 @@ class UsersController < ApplicationController
       end
       respond_to do |format|
         format.html do
-          flash[:notice] = locales[:signed_in]
+          flash[:notice] = t(:signed_in)
           redirect_to :back
         end
         format.js do
@@ -34,7 +34,7 @@ class UsersController < ApplicationController
     else
       respond_to do |format|
         format.html do
-          flash[:notice] = locales[:bad_login]
+          flash[:notice] = t(:bad_login)
           redirect_to :back
         end
         format.js do
@@ -53,7 +53,7 @@ class UsersController < ApplicationController
     reset_session
     respond_to do |format|
       format.html do
-        flash[:notice] = locales[:signed_out]
+        flash[:notice] = t(:signed_out)
         redirect_to :back
       end
       format.js do
@@ -162,7 +162,7 @@ class UsersController < ApplicationController
       end
       respond_to do |format|
         format.html do
-          flash[:notice] = locales[:signup_completed]
+          flash[:notice] = t(:signup_completed)
           redirect_back_or_default '/'
         end
         format.xml do
@@ -382,7 +382,7 @@ class UsersController < ApplicationController
       else
         respond_to do |format|
           format.html do
-            flash[:notice] = locales[:problem_when_generating_password]
+            flash[:notice] = t(:problem_when_generating_password)
             redirect_to :back
           end
         end

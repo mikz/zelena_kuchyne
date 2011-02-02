@@ -1,39 +1,39 @@
 <%= error_messages_for :record %>
 <% row_id = "record_#{@record.id ? @record.id : 'new'}" %>
 <% remote_form_for :record, :url => url, :html => {:onsubmit => "jQuery(this).update_textareas()"} do |f| %>
-    <p><label for="<%=row_id%>_product_id"><%= locales["model_product"] %></label><br />
+    <p><label for="<%=row_id%>_product_id"><%= t("model_product") %></label><br />
     <select name="record[product_id]" class="{required: true}" id="<%=row_id%>_product_id">
       <option value=""></option>
       <% for product in @products %>
       <option value="<%=product.id%>" <%=(@record && @record.product && product.id == @record.product_id )? 'selected="selected"' : "" %>><%=product.name%></option>
       <% end %>
     </select></p>
-    <p><label for="<%=row_id%>_day"><%= locales["attr_day"] %></label><br />
+    <p><label for="<%=row_id%>_day"><%= t("attr_day") %></label><br />
     <input type="text" class="datepicker_init {required: true}" name="record[day]" id="<%=row_id%>_day" value="<%= @record.day %>"/></p>
-    <p><label for="<%=row_id%>_day"><%= locales["amount"] %></label><br />
+    <p><label for="<%=row_id%>_day"><%= t("amount") %></label><br />
     <input type="text" name="record[amount]" class="{required: true}" id="<%=row_id%>_amount" value="<%= @record.amount %>"/></p>
-    <p><label for="<%=row_id%>_update_product_cost"><%= locales["update_product_cost"] %></label>
+    <p><label for="<%=row_id%>_update_product_cost"><%= t("update_product_cost") %></label>
     <input type="checkbox" name="_update_product_cost" id="<%=row_id%>__update_product_cost"/></p>
     <div class="cost_selector">
         <div>
           <input type="radio" name="cost[type]" value="auto" <%= 'checked="checked"' if @record.new_record? %> id="<%=row_id%>_auto_cost" onchange="jQuery('.cost_selector input[type=\'text\']').attr('disabled','disabled');">
-          <label for="<%=row_id%>_auto_cost"><%=locales[:auto_cost]%></label>
+          <label for="<%=row_id%>_auto_cost"><%=t(:auto_cost)%></label>
         </div>
         <div>
           <input type="radio" name="cost[type]" value="total" id="<%=row_id%>_total_cost" onchange="jQuery('#<%=row_id%>_total_cost_value').removeAttr('disabled');jQuery('#<%=row_id%>_unit_cost_value').attr('disabled','disabled');">
-          <label for="<%=row_id%>_total_cost"><%=locales[:total_cost]%></label>
-          <input type="text" id="<%=row_id%>_total_cost_value" name="cost[value]" disabled="disabled" onkeyup="decimal_dot_conversion(this)"></input> <%= locales[:currency_unit]%>
+          <label for="<%=row_id%>_total_cost"><%=t(:total_cost)%></label>
+          <input type="text" id="<%=row_id%>_total_cost_value" name="cost[value]" disabled="disabled" onkeyup="decimal_dot_conversion(this)"></input> <%= t(:currency_unit)%>
         </div>
         <div>
           <input type="radio" name="cost[type]" value="unit" id="<%=row_id%>_unit_cost" onchange="jQuery('#<%=row_id%>_unit_cost_value').removeAttr('disabled');jQuery('#<%=row_id%>_total_cost_value').attr('disabled','disabled');">
-          <label for="<%=row_id%>_unit_cost"><%=locales[:cost_per_unit]%></label>
-          <input type="text" id="<%=row_id%>_unit_cost_value" name="cost[value]" disabled="disabled" value="<%= @record.product_cost%>" onkeyup="decimal_dot_conversion(this)"></input> <%= locales[:currency_unit]%>
+          <label for="<%=row_id%>_unit_cost"><%=t(:cost_per_unit)%></label>
+          <input type="text" id="<%=row_id%>_unit_cost_value" name="cost[value]" disabled="disabled" value="<%= @record.product_cost%>" onkeyup="decimal_dot_conversion(this)"></input> <%= t(:currency_unit)%>
         </div>
     </div>
     <div class="clear"/>
-    <p><label for="<%=row_id%>_notes"><%=locales[:note]%></label><br/>
+    <p><label for="<%=row_id%>_notes"><%=t(:note)%></label><br/>
     <textarea class="noTinyMCE" cols="18" rows="2" name="record[note]" id="<%=row_id%>_notes"><%=@record.note%></textarea></p>
-    <p><%= yield(:submit_button) || '<input type="submit" value="' + locales[:submit] + '" />' %></p>
+    <p><%= yield(:submit_button) || '<input type="submit" value="' + t(:submit) + '" />' %></p>
 
 <% end %>
 <script type="text/javascript">

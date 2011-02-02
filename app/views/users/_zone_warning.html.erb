@@ -1,4 +1,4 @@
-<%- if @basket.user.delivery_address.has_zone? %>
+<%- if @basket.user.delivery_address && @basket.user.delivery_address.has_zone? %>
   <%- unless @basket.user.delivery_address.zone_reviewed? %>
   <div id="zone_review_warning" class="zone-warning">
     <h1>Zóna nebyla zkontrolována administrátorem.</h1>

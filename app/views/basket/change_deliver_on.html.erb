@@ -2,11 +2,11 @@
   <%= draw_calendar_switch(:scheduled_days => @days.collect {|day| day.scheduled_for }, :date => @date) %>
 <% end %>
 
-<h1><%= locales[:change_deliver_date]%></h1>
+<h1><%= t(:change_deliver_date)%></h1>
 <% form_for :basket, :url => url_for(:action => :set_deliver_on), :html => {:method => :post} do |f|%>
 <p>
   <input type="hidden" name="deliver_on" value="<%=@date.to_s%>"/>
-  <%= locales[:your_order_will_be_delivered_on].gsub('%date', "<strong id='deliver_at'>#{format_date(@date)}</strong>") %> 
-  <%=f.submit locales[:save].chars.capitalize %>  
+  <%= t(:your_order_will_be_delivered_on).gsub('{date}', "<strong id='deliver_at'>#{format_date(@date)}</strong>") %> 
+  <%=f.submit t(:save).mb_chars.capitalize %>  
 </p>
 <% end%>

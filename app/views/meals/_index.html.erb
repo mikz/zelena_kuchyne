@@ -6,11 +6,11 @@
     </tr>
     <% end %>
     <tr>
-      <td><%= link_to locales[:attr_name], :action => 'index', :order => 'name' %></td>
-      <td><%= link_to locales[:attr_price], :action => 'index', :order => 'price' %></td>
-      <td><%= link_to locales[:cost], :action => 'index', :order => 'cost' %></td>
-      <td><%= locales[:attr_updated_at]%></td>
-      <td><span id="record_add"><%= smart_link locales[:add], :action => 'new' %></span></td>
+      <td><%= link_to t(:attr_name), :action => 'index', :order => 'name' %></td>
+      <td><%= link_to t(:attr_price), :action => 'index', :order => 'price' %></td>
+      <td><%= link_to t(:cost), :action => 'index', :order => 'cost' %></td>
+      <td><%= t(:attr_updated_at)%></td>
+      <td><span id="record_add"><%= smart_link t(:add), :action => 'new' %></span></td>
     </tr>
   </thead>
   <tbody id="records_body">

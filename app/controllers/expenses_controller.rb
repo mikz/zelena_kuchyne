@@ -10,7 +10,7 @@ class ExpensesController < ApplicationController
     :columns => [
       {:name => :price, :options => { :formatter => :currency } },
       {:name => :bought_at, :options => {:formatter => :date} },
-      {:name => :expense_owner, :proc => Proc.new{|e|LocalesSystem.locales["expense_owner_#{e}"]}},
+      {:name => :expense_owner, :proc => Proc.new{|e|I18n.t("expense_owner_#{e}")}},
       {:name => :expense_category, :proc => Proc.new{|c| c.name }, :order => "expense_categories.name", :locale => "attr_category"},
       :user_login
     ],

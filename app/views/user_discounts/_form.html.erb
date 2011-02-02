@@ -2,23 +2,23 @@
 <% row_id = "record_#{@record.id ? @record.id : 'new'}" %>
 <% remote_form_for :record, :url => url do |f| %>
   <%= validation_error_for @record %>
-  <p><label for="<%=row_id%>_user"><%= locales["attr_user"] %></label><br />
+  <p><label for="<%=row_id%>_user"><%= t("attr_user") %></label><br />
   <input id="<%=row_id%>_user" value="<%= @record.user.login if @record.user %>" class="{required: true}" type="text" size="30" name="record[user]"/></p>
-  <p><label for="<%=row_id%>_name"><%= locales["attr_name"] %></label><br />
+  <p><label for="<%=row_id%>_name"><%= t("attr_name") %></label><br />
   <%= f.text_field :name, :id=> "#{row_id}_name",:class=>"{required: true, minlength: 3, maxlength: 50}" %></p>
-  <p><label for="<%=row_id%>_amount"><%= locales["discount_in_percent"] %></label><br />
+  <p><label for="<%=row_id%>_amount"><%= t("discount_in_percent") %></label><br />
   <input id="<%=row_id%>_amount" onkeyup="decimal_dot_conversion(this)" type="text" value="<%=format_float @record.amount%>" class="{number: true, max: 100, min: 0 }" size="30" name="record[amount]"/></p>
-  <p><label for="<%=row_id%>_discount_class_meal"><%= locales["attr_discount_class"] %> - <%= locales[:model_meal]%></label><br />
+  <p><label for="<%=row_id%>_discount_class_meal"><%= t("attr_discount_class") %> - <%= t(:model_meal)%></label><br />
   <%= f.radio_button :discount_class, "meal", :id=> "#{row_id}_discount_class_meal" %></p>
-  <p><label for="<%=row_id%>_discount_class_product"><%= locales["attr_discount_class"] %> - <%=locales[:model_product]%></label><br />
+  <p><label for="<%=row_id%>_discount_class_product"><%= t("attr_discount_class") %> - <%=t(:model_product)%></label><br />
   <%= f.radio_button :discount_class, "product", :id=> "#{row_id}_discount_class_product" %></p>
-  <p><label for="<%=row_id%>_start_at"><%= locales["attr_publish_at"] %></label><br />
+  <p><label for="<%=row_id%>_start_at"><%= t("attr_publish_at") %></label><br />
   <%= f.text_field :start_at, :id=> "#{row_id}_start_at", :class=>"{required: true, min_date: '#{Date.today.to_s}', max_date: '##{row_id}_expire_at'}" %></p>
-  <p><label for="<%=row_id%>_expire_at"><%= locales["attr_expire_at"] %></label><br />
+  <p><label for="<%=row_id%>_expire_at"><%= t("attr_expire_at") %></label><br />
   <%= f.text_field :expire_at, :id=> "#{row_id}_expire_at",:class=>"{min_date: '##{row_id}_start_at}'}" %></p>
-  <p><label for="<%=row_id%>_note"><%= locales["note"] %></label><br />
+  <p><label for="<%=row_id%>_note"><%= t("note") %></label><br />
   <%= f.text_field :note, :id=> "#{row_id}_note",:class=>"{maxlength: 50}" %></p>
-  <p><%= yield(:submit_button) || '<input type="submit" value="' + locales[:submit] + '" />' %></p>
+  <p><%= yield(:submit_button) || '<input type="submit" value="' + t(:submit) + '" />' %></p>
 <% end %>
 <script type="text/javascript">
 $("form").initValidation();

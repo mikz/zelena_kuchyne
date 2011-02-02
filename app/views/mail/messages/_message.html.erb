@@ -1,9 +1,9 @@
 <dl>
-  <dt><%= locales[:attr_from]%>:</dt>
+  <dt><%= t(:attr_from)%>:</dt>
   <dd><%= message.from_address %></dd>
-  <dt><%= locales[:mail_to]%>:</dt>
+  <dt><%= t(:mail_to)%>:</dt>
   <dd><%= message.to_address %></dd>
-  <dt><%= locales[:recieved]%>:</dt>
+  <dt><%= t(:recieved)%>:</dt>
   <dd><%= format_date(message.created_at)+' '+format_time(message.created_at) %></dd>
 </dl>
 <h3><%= message.subject %></h3>

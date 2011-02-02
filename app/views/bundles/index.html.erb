@@ -6,13 +6,13 @@
     </tr>
     <% end %>
     <tr>
-      <td><%= link_to locales["attr_#{@options[:title][:name]}"], :action => 'index', :order => @options[:title][:name] %></td>
-      <td><%= link_to locales["model_meal"], :action => 'index', :order => "meal_id" %></td>
-      <td><%= link_to locales["amount"], :action => 'index', :order => "amount" %></td>
-      <td><%= link_to locales["attr_price"], :action => 'index', :order => "price" %></td>
-      <td><%= link_to locales["cost"], :action => 'index', :order => "cost" %></td>
-      <td><%= link_to locales[:attr_updated_at], :action => 'index', :order => "updated_at" %></td>
-      <td><span id="record_add"><%= smart_link locales[:add], :action => 'new' %></span></td>
+      <td><%= link_to t("attr_#{@options[:title)[:name]}"], :action => 'index', :order => @options[:title][:name] %></td>
+      <td><%= link_to t("model_meal"), :action => 'index', :order => "meal_id" %></td>
+      <td><%= link_to t("amount"), :action => 'index', :order => "amount" %></td>
+      <td><%= link_to t("attr_price"), :action => 'index', :order => "price" %></td>
+      <td><%= link_to t("cost"), :action => 'index', :order => "cost" %></td>
+      <td><%= link_to t(:attr_updated_at), :action => 'index', :order => "updated_at" %></td>
+      <td><span id="record_add"><%= smart_link t(:add), :action => 'new' %></span></td>
     </tr>
   </thead>
   <tbody id="records_body">

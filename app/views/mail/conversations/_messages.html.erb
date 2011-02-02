@@ -4,14 +4,14 @@
     <tr class="conversation-menu">
       <td colspan="4">
       <% if @conversation.flag_closed -%>
-        <%= locales[:conversation_closed] %> <%= smart_link locales[:reopen_conversation], {:action => 'reopen', :id => @conversation.id} -%>
+        <%= t(:conversation_closed) %> <%= smart_link t(:reopen_conversation), {:action => 'reopen', :id => @conversation.id} -%>
       <% else -%>
-        <%= smart_link locales[:close_conversation], {:action => 'close', :id => @conversation.id}, :confirm => locales[:confirm_close_conversation] -%>
-      | <%= smart_link locales[:note], :action => 'edit_note', :id => @conversation.id  %>
-      | <%= smart_link locales[:spam], :action => 'mark_as_spam', :id => @conversation.id %> |
+        <%= smart_link t(:close_conversation), {:action => 'close', :id => @conversation.id}, :confirm => t(:confirm_close_conversation) -%>
+      | <%= smart_link t(:note), :action => 'edit_note', :id => @conversation.id  %>
+      | <%= smart_link t(:spam), :action => 'mark_as_spam', :id => @conversation.id %> |
       
         <% form_remote_tag :url => {:controller => '/mail/conversations', :action => 'move', :id => @conversation.id} do -%>
-          <%= label_tag('to', link_to_function(locales[:move_to], '$(this).parents("form").get(0).onsubmit()'), :confirm => locales[:confirm_move_conversation]) %>
+          <%= label_tag('to', link_to_function(t(:move_to), '$(this).parents("form").get(0).onsubmit()'), :confirm => t(:confirm_move_conversation)) %>
           <%= select_tag('to', options_for_select(@mailboxes.delete_if {|k,v| v == @conversation.mailbox_id}))%>
         <% end -%>
       <% end -%>
@@ -22,10 +22,10 @@
       <%= render :partial => 'note', :locals => {:note => @conversation.note, :id => @conversation.id} %>
     <% end %>
     <tr>
-       <th><%= locales[:attr_from] %></th>
-       <th><%= locales[:attr_subject] %></th>
-       <th><%= locales[:body] %></th>
-       <th><%= locales[:recieved] %></th>
+       <th><%= t(:attr_from) %></th>
+       <th><%= t(:attr_subject) %></th>
+       <th><%= t(:body) %></th>
+       <th><%= t(:recieved) %></th>
      </tr>
    </thead>
    <tbody>

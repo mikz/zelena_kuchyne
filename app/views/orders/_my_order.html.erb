@@ -1,6 +1,6 @@
 <tr id="order_<%= order.id %>" <%= (even = (even.nil? || even)? false : true)? 'class="even"':'' %>>
   <td><%= link_to order.id, {:action => "show", :id => order.id} %></td>
   <td><%= format_currency order.price %></td>
-  <td><%= locales["order_status_#{order.state}"] %></td>  
+  <td><%= t("order_status_#{order.state}") %></td>  
   <td><%= format_date(order.deliver_at) %> <%= format_time(order.deliver_at) %></td>
 </tr>

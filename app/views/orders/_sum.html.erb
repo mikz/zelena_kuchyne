@@ -1,10 +1,10 @@
 <table class="admin <%= "orders-with-state" unless (params[:state] and params[:state] == 'all') %>">
   <thead>
     <tr>
-      <td><%= locales[:attr_user] %></td>
-      <td><%= locales[:attr_price] %></td>
-      <td><%= locales[:from] %></td>
-      <td><%= locales[:to] %></td>
+      <td><%= t(:attr_user) %></td>
+      <td><%= t(:attr_price) %></td>
+      <td><%= t(:from) %></td>
+      <td><%= t(:to) %></td>
     </tr>
   </thead>
   <tbody>

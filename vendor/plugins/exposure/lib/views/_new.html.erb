@@ -1,6 +1,6 @@
 <% content_for :submit_button do %>
-  <input type="submit" value="<%= locales[:add] %>" />
-  <a href="#" onclick="$('#record_new').effect('fade',{},300);$('#record_add').show(); setTimeout('$(\'#record_new\').remove();', 300);"><%= locales[:cancel] %></a>
+  <input type="submit" value="<%= t(:add) %>" />
+  <a href="#" onclick="$('#record_new').effect('fade',{},300);$('#record_add').show(); setTimeout('$(\'#record_new\').remove();', 300);"><%= t(:cancel) %></a>
 <% end %>
 <tr id="record_new" class="inline_edit">
   <td colspan="<%= @options[:columns].length + 2 %>">

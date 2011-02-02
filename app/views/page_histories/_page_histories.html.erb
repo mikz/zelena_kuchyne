@@ -1,5 +1,5 @@
 <%-if  page_histories && page_histories.size > 0 %>
-<p><%= locales[:old_links]%>:</p>
+<p><%= t(:old_links)%>:</p>
 <ul>
   <%- for history in page_histories -%>
   <li><input type="hidden" name="record[page_history_ids][]" value="<%=history.id%>"/><%= url_for :id => history.url, :controller => "pages", :action=> "show", :only_path => false %> <a href="#" onclick="$(this).parent().hide('slow').remove(); return false;">X</a></li>

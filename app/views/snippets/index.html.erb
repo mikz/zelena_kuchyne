@@ -2,9 +2,9 @@
 <table class="admin" id="records">
   <thead>
     <tr>
-      <td><%= link_to locales["attr_#{@options[:title][:name]}"], :action => 'index', :order => @options[:title][:name] %></td>
+      <td><%= link_to t("attr_#{@options[:title)[:name]}"], :action => 'index', :order => @options[:title][:name] %></td>
     <% for column in @options[:columns] %>
-      <td><%= link_to locales["attr_#{column}"], :action => 'index', :order => column %></td>
+      <td><%= link_to t("attr_#{column}"), :action => 'index', :order => column %></td>
     <% end %>
       <td><%= link_to 'Smazat snippets cache', :action => 'delete_snippets_cache' %></td>
     </tr>

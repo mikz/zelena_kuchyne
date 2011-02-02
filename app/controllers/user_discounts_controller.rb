@@ -38,11 +38,11 @@ class UserDiscountsController < ApplicationController
       @record.reload
       respond_to do |f|
         format f, :html do
-          flash[:notice] = locales[:user_discount_cancelled]
+          flash[:notice] = t(:user_discount_cancelled)
           redirect_to :action => 'index'
         end
         format f, :js do
-          flash[:notice] = locales[:user_discount_cancelled]
+          flash[:notice] = t(:user_discount_cancelled)
           render :action => "show"
         end
       end

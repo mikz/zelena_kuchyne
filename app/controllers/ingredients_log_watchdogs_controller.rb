@@ -9,7 +9,7 @@ class IngredientsLogWatchdogsController < ApplicationController
     ],
     :form_fields => [
       { :name => :ingredient, :type => :select, :data_proc => Proc.new {Ingredient.find(:all,:order => "name ASC").collect{|i| [ i.name, i.id ] } } },
-      { :name => :operator, :type => :select, :data_proc => Proc.new{[['e','='],['lt','<'],['gt','>'],['ltoe','<='],['gtoe','>='],['ne','!=']].collect{|o| [LocalesSystem.locales["operator_#{o.first}"],o.last] }} },
+      { :name => :operator, :type => :select, :data_proc => Proc.new{[['e','='],['lt','<'],['gt','>'],['ltoe','<='],['gtoe','>='],['ne','!=']].collect{|o| [I18n.t("operator_#{o.first}"),o.last] }} },
       { :name => :value, :type => :text_field}
     ]
   )

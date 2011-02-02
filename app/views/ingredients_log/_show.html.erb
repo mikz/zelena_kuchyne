@@ -5,6 +5,6 @@
 <td><%= format_currency record[:total_cost] %></td>
 <td><%= record.notes if record.notes %></td>
 <td><% if record.id %>
-  <%= smart_link locales[:edit], :action => 'edit', :id => record %>
-| <%= smart_link locales[:delete], {:action => 'destroy', :id => record}, :confirm => locales['delete_confirmation'] %>
+  <%= smart_link t(:edit), :action => 'edit', :id => record %>
+| <%= smart_link t(:delete), {:action => 'destroy', :id => record}, :confirm => t('delete_confirmation') %>
 <%end%></td>

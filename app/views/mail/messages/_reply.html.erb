@@ -6,7 +6,7 @@
         <%= text_area_tag 'repy[body]', format_reply(@message) %>
       </p>
       <p>
-        <%= submit_tag locales[:send] %> <%= link_to_function locales[:cancel], "$('#reply_to_#{@message.id}').remove()" %>
+        <%= submit_tag t(:send) %> <%= link_to_function t(:cancel), "$('#reply_to_#{@message.id}').remove()" %>
       </p>
     <% end %>
   </td>

@@ -1,7 +1,7 @@
 <% content_for :sidebar do %>
   <%= render :partial => 'polls/sidebar_box'%>
   <div id="calendar_box" class="sidebar_box">
-    <h3><%= locales[:dialy_offer]%></h3>
+    <h3><%= t(:dialy_offer)%></h3>
     <%= draw_calendar_switch(
       :scheduled_days => @days.collect {|day| day.scheduled_for },
       :date => @date, :url_options => {:controller => 'menu', :action => :show},

@@ -1,11 +1,11 @@
 <% row_id = "sold_item_#{@record.new_record? ?  'new' : @record.id}" 
    remote_form_for 'record', :url => {:action => (@record.new_record?)? 'create' : 'update', :id => @record.id }, :html => {:id => row_id} do |f|%>
    <%= validation_error_for @record %>
-  <p><label for="<%=row_id%>_sold_at"><%= locales[:attr_scheduled_for] %></label><br />
+  <p><label for="<%=row_id%>_sold_at"><%= t(:attr_scheduled_for) %></label><br />
     <%= f.text_field :sold_at, :id => row_id+"_sold_at", :class => "{required: true}", :onchange => "scheduled_items.load(this.value, '##{row_id}_item_id');" %>
   </p>
   <p>
-    <label for="<%=row_id%>_item_id"><%= locales[:item] %></label><br />
+    <label for="<%=row_id%>_item_id"><%= t(:item) %></label><br />
     <select name="record[item_id]" id="<%=row_id%>_item_id" class="{required: true}">
       <option></option>
         <% if @record.item %>
@@ -13,9 +13,9 @@
         <% end %>
     </select>
   </p>
-  <p><label for="<%=row_id%>_user"><%= locales["attr_user"] %></label><br />
+  <p><label for="<%=row_id%>_user"><%= t("attr_user") %></label><br />
   <input id="<%=row_id%>_user" value="<%= @record.user.login if @record.user %>" class="{required: true}" type="text" size="30" name="record[user]"/></p>
-  <p><label for="<%=row_id%>_amount"><%= locales[:amount] %></label><br />
+  <p><label for="<%=row_id%>_amount"><%= t(:amount) %></label><br />
   <%= f.text_field :amount, :id => row_id + "_amount", :class => "{required: true, min: 1}" %>
   <p><%= yield :submit_button%></p>
 <% end %>

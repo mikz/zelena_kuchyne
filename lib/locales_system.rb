@@ -7,7 +7,7 @@ module LocalesSystem
     for language in languages
       path = "#{RAILS_ROOT}/config/locales/#{language}.yml"
       data = YAML::load(File.open(path))
-      @locales[language] = LocalesHash.new data
+      @t(language) = LocalesHash.new data
     end
     
     base.helper_method :locales
@@ -20,7 +20,7 @@ module LocalesSystem
     end
   
     def language_exists?(language)
-      if @locales[language]
+      if @t(language)
         true
       else
         false
@@ -28,7 +28,7 @@ module LocalesSystem
     end
   
     def locales
-      return @locales[interface_language]
+      return @t(interface_language)
     end
   end
   

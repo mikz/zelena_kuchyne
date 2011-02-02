@@ -42,7 +42,7 @@ class IngredientsLogEntry < ActiveRecord::Base
 
   def self.owners
     ["delivery","restaurant"].collect { |item|
-      [LocalesSystem.locales["ingredients_log_owner_#{item}"], item]
+      [I18n.t("ingredients_log_owner_#{item}"), item]
     }
   end
 end

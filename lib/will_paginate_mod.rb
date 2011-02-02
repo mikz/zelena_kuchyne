@@ -6,7 +6,7 @@ module WillPaginateMod
   module WillPaginateDefaults
     
     def will_paginate(collection = nil, options = {})
-      options.merge!({:next_label => LocalesSystem.locales['next_page'], :prev_label => LocalesSystem.locales['previous_page']})
+      options.merge!({:next_label => I18n.t('next_page'), :prev_label => I18n.t('previous_page')})
       super(collection, options)
     end    
   end

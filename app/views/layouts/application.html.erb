@@ -12,7 +12,7 @@
     <meta property="fb:page_id" content="132981152507"/>
     <meta property="og:site_name" content="Zelená kuchyně – vegetariánská restaurace"/>
     <%= yield(:og) || render(:partial => "shared/og") %>
-    <link href="<%=url_for(:controller => "menu",:action=>"feed",:format=>"xml")%>" type="application/rss+xml" rel="alternate" title="<%=locales[:meal_rss_title]%>" />
+    <link href="<%=url_for(:controller => "menu",:action=>"feed",:format=>"xml")%>" type="application/rss+xml" rel="alternate" title="<%=t(:meal_rss_title)%>" />
     <link rel="stylesheet" href="/stylesheets/master.css" type="text/css" media="screen, projection" charset="utf-8" />
     <link rel="stylesheet" href="/stylesheets/print.css" type="text/css" media="print" charset="utf-8" />
     <link rel="stylesheet" href="/stylesheets/ui.tabs.css" type="text/css" media="print, projection, screen"/>
@@ -63,7 +63,7 @@
     <!--[if lte IE 6]>
       <script type="text/javascript" src="/javascripts/jquery.iefixpng.js"></script>
     <![endif]-->
-    <title><%= locales['layout_title'] %><%= yield(:title) || '' %></title>
+    <title><%= t('layout_title') %><%= yield(:title) || '' %></title>
     <%= yield(:head) %>
   </head>
   <body id="body">
@@ -73,22 +73,22 @@
     <%= render :partial => "shared/fb"%>
     <div id="header" class="container">
       <a href="/" id="logo">
-        <span><%= locales[:title]%></span>
+        <span><%= t(:title)%></span>
       </a>
       <div id="sections">
         <ul>
           <li id="s_menu"<%= ' class="active"' if active_section == 'menu' %>>
-            <a href="/menu"><span><%= locales[:menu_menus]%></span></a>
+            <a href="/menu"><span><%= t(:menu_menus)%></span></a>
           </li>
           <li id="s_restaurant"<%= ' class="active"' if active_section == 'restaurant' %>>
-            <a href="/restaurace"><span><%= locales[:menu_restaurant]%></span></a>
+            <a href="/restaurace"><span><%= t(:menu_restaurant)%></span></a>
           </li>
           <li id="s_basket"<%= ' class="active"' if active_section == 'basket' %>>
-            <a href="/basket"><span><%= locales[:menu_basket]%></span></a>
+            <a href="/basket"><span><%= t(:menu_basket)%></span></a>
           </li>
           <% if logged_in? %>
           <li id="s_orders"<%= ' class="active"' if active_section == 'orders' %>>
-            <a href="/orders/mine"><span><%= locales[:menu_orders]%></span></a>
+            <a href="/orders/mine"><span><%= t(:menu_orders)%></span></a>
           </li>
           <% end %>
         </ul>
@@ -108,9 +108,9 @@
         <% end %>
         <!--[if IE]>
         <div id="ie_notice" style="display:none;">
-          <h3><%= locales[:notice]%></h3>
+          <h3><%= t(:notice)%></h3>
           <p></p>
-          <p><a id="ie_go_away" href="#"><%=locales[:hide_notice]%></a></p>
+          <p><a id="ie_go_away" href="#"><%=t(:hide_notice)%></a></p>
         </div>
         <![endif]-->
         <%= yield %>

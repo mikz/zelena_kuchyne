@@ -4,7 +4,7 @@ module CalendarWidgetHelper
     today = Date.today
     year = options[:year] || today.year
     month = options[:month] || today.month
-    weekdays = options[:weekdays] || locales[:weekdays]
+    weekdays = options[:weekdays] || t(:weekdays)
     
     args = params.clone
     args.merge!(options[:params] || {})
@@ -13,7 +13,7 @@ module CalendarWidgetHelper
     
     names = []
     1.upto 12 do |i|
-      names.push(locales["month_#{i}"])
+      names.push(t("month_#{i}"))
     end
     
     script = %{<script type="text/javascript">
@@ -32,7 +32,7 @@ module CalendarWidgetHelper
     
     calendar = "<table class=\"calendar\" id=\"calendar_widget\">"
     calendar << "<thead><tr class=\"calendar_header\"><td><a href=\"#\" onclick=\"draw_previous_month(); return false;\">&lt;</a></td>"
-    calendar << "<td colspan=\"5\" ><span id=\"calendar_title\">#{locales["month_#{month}"]} #{year}</span><br/><a href=\"#\" onclick=\"draw_month_today();\" id=\"calendar_back_to_today\">(dnes)</a></td>"
+    calendar << "<td colspan=\"5\" ><span id=\"calendar_title\">#{t("month_#{month}")} #{year}</span><br/><a href=\"#\" onclick=\"draw_month_today();\" id=\"calendar_back_to_today\">(dnes)</a></td>"
     calendar << "<td><a href=\"#\" onclick=\"draw_next_month(); return false;\">&gt;</a></td>"
     calendar << "</tr></thead>"
     calendar << "<tbody id=\"calendar_body\"><tr><td colspan=\"7\"/></tr></tbody></table>"

@@ -4,6 +4,6 @@
 <td><%=format_date record.expire_at%></td>
 <td><%=record.note%></td>
 <td>
-  <%= smart_link locales[:edit], :action => 'edit', :id => record %>
-  | <%= smart_link locales[:delete], {:action => 'destroy', :id => record}, :confirm => locales['delete_confirmation'] %>
+  <%= smart_link t(:edit), :action => 'edit', :id => record %>
+  | <%= smart_link t(:delete), {:action => 'destroy', :id => record}, :confirm => t('delete_confirmation') %>
 </td>

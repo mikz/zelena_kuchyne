@@ -1,13 +1,13 @@
 <%= error_messages_for :record %>
 <% remote_form_for :record, :url => url do |f| %>
   <% row_id = "record_#{@record ? @record.id : 'new'}" %>
-  <p><label for="<%=row_id%>_name"><%= locales["attr_name"] %></label><br />
+  <p><label for="<%=row_id%>_name"><%= t("attr_name") %></label><br />
   <%= f.text_field :name, :id=> "#{row_id}_name", :class=>"{required: true, minlength: 1, maxlength: 100}" %></p>
-  <p><label for="<%=row_id%>_price"><%= locales["attr_price"] %></label><br />
+  <p><label for="<%=row_id%>_price"><%= t("attr_price") %></label><br />
   <%= f.text_field :price, :id=> "#{row_id}_price" %></p>
-  <p><label for="<%=row_id%>_amount"><%= locales["amount"] %></label><br />
+  <p><label for="<%=row_id%>_amount"><%= t("amount") %></label><br />
   <%= f.text_field :amount, :id=> "#{row_id}_amount" %></p>
-  <p><label for="<%=row_id%>_meal_id"><%=locales[:model_meal]%></label><br/>
+  <p><label for="<%=row_id%>_meal_id"><%=t(:model_meal)%></label><br/>
     <select name="record[meal_id]" id="<%=row_id%>_meal_id">
       <option value=""></option>
       <% for meal in @meals %>
@@ -15,6 +15,6 @@
       <% end %>
     </select>
   </p>
-<p><%= yield(:submit_button) || '<input type="submit" value="' + locales[:submit] + '" />'%></p>
+<p><%= yield(:submit_button) || '<input type="submit" value="' + t(:submit) + '" />'%></p>
 <%end %>
 <script type="text/javascript">$("form").initValidation();</script>

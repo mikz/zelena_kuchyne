@@ -2,15 +2,15 @@
 <% row_id = "record_#{@record.id ? @record.id : 'new'}" %>
 <% remote_form_for :record, :url => url do |f| %>
   <%= validation_error_for @record %>
-  <p><label for="<%=row_id%>_date"><%= locales[:attr_date] %></label><br />
+  <p><label for="<%=row_id%>_date"><%= t(:attr_date) %></label><br />
   <%= f.text_field :date, :class => '{required: true}',:id=>"#{row_id}_date", :disabled => !@record.new_record? %></p>
-  <p><label for="<%=row_id%>_create_ingredient_consumptions"><%= locales[:create_ingredient_consumptions] %></label><br />
+  <p><label for="<%=row_id%>_create_ingredient_consumptions"><%= t(:create_ingredient_consumptions) %></label><br />
   <%= f.check_box :create_ingredient_consumptions,:id=>"#{row_id}_create_ingredient_consumption", :disabled => !@record.new_record? %></p>
   <div id="<%=row_id%>_ingredients">
   <%= render :partial => "ingredients", :locals => {:row_id => row_id} if @balance%>
   <%= render :partial => "log", :locals => {:row_id => row_id} unless @record.new_record? %>
   </div>
-<p><%= yield(:submit_button) || '<input type="submit" value="' + locales[:submit] + '" />'%></p>
+<p><%= yield(:submit_button) || '<input type="submit" value="' + t(:submit) + '" />'%></p>
 <% end %>
 <script type="text/javascript">
 //<![CDATA[

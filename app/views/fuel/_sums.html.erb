@@ -1,11 +1,11 @@
 <table class="admin">
   <thead>
     <tr>
-      <td><%=locales[:attr_registration_no]%></td>
-      <td><%=locales[:driver]%></td>
-      <td><%=locales[:attr_date]%></td>
-      <td><%=locales[:attr_cost]%></td>
-      <td><%=locales[:attr_amount]%></td>
+      <td><%=t(:attr_registration_no)%></td>
+      <td><%=t(:driver)%></td>
+      <td><%=t(:attr_date)%></td>
+      <td><%=t(:attr_cost)%></td>
+      <td><%=t(:attr_amount)%></td>
     </tr>
   </thead>
   <tbody>
@@ -15,7 +15,7 @@
       <td><%= format sum.user.login%></td>
       <td><%= format_date Date.parse(sum[:from])%> až <%= format_date Date.parse(sum[:to])%></td>
       <td><%= format_currency sum.cost%></td>
-      <td><%= format_amount sum.amount, :unit => locales[:fuel_unit]%></td>
+      <td><%= format_amount sum.amount, :unit => t(:fuel_unit)%></td>
     </tr>
     <%end%>
   </tbody>

@@ -2,5 +2,5 @@
   <%= calendar_widget :action => 'index', :active_dates => @dates, :updates => '#delivery_men', :date_param => :date, :disable_range => true%>
 <% end %>
 <div id="delivery_men">
-  <p><%= locales[:dont_have_any_scheduled_meals]%></p>
+  <p><%= t(:dont_have_any_scheduled_meals)%></p>
 </div>

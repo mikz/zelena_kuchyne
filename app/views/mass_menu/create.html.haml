@@ -5,10 +5,10 @@
       %caption= format_date_with_weekday(order.date)
       %thead
         %tr
-          %td= locales[:attr_name]
-          %td.price= locales[:attr_price]
-          %td.price= locales[:pieces]
-          %td.price= locales[:overall]
+          %td= t(:attr_name)
+          %td.price= t(:attr_price)
+          %td.price= t(:pieces)
+          %td.price= t(:overall)
           %td
       %tfoot
         %tr{:class => [:total, cycle(:even, :odd)]}
@@ -30,7 +30,7 @@
               %td
           - if order.original_price != order.discount_price
             %tr{:class => cycle(:even,:odd)}
-              %td= locales[:discount]
+              %td= t(:discount)
               %td{:colspan=>2}
               %td.price= format_currency(-1*(order.original_price - order.discount_price) )
               %td

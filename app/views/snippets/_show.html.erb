@@ -1,5 +1,5 @@
-<td><%= link_to locales["snippet_#{record.name}"], :action => 'show', :id => record.id %></td>
+<td><%= link_to t("snippet_#{record.name}"), :action => 'show', :id => record.id %></td>
 <td>
-  <%= smart_link locales[:edit], :action => 'edit', :id => record.id %>
-  | <%= smart_link locales[:delete], {:action => 'destroy', :id => record.id}, :confirm => locales['delete_confirmation'] %>
+  <%= smart_link t(:edit), :action => 'edit', :id => record.id %>
+  | <%= smart_link t(:delete), {:action => 'destroy', :id => record.id}, :confirm => t('delete_confirmation') %>
 </td>

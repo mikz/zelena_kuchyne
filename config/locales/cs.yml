@@ -1,615 +1,615 @@
-#-- title
-title: Zelená kuchyně
-motto: Rozvoz vegetariánských jídel.
-#-- layout texts --
-layout_title: Zelená kuchyně
-layout_subtitle: rozvoz jídla - indická zeleninová kuchyně, vegetariánská kuchyně, zdravá výživa
-username: uživatel
-password: heslo
-signup: registrace
-signup_completed: registrace proběhla úspěšně
-signin: přihlásit se
-forgotten_password: zapomenuté heslo?
-signout: odhlásit se
-user: uživatel
-edit_my_profile: upravit registrační údaje
-#-- interface texts --
-to_basket: do košíku
-notice: Upozornění
-hide_notice: Nezobrazovat upozornění.
-item_cannot_be_added_to_basket: Položka nemohla být přidána do košíku. Je možné, že chcete více než můžeme doručit nebo již máte v košíku objednávku na jiný den. Zkuste se do něj <a href="/basket">podívat</a> nebo ho <a href="/basket/delete_basket" onclick="return confirm('Opravdu smazat košík?');">vymazat</a>
-picture_uploaded: Obrázek odeslán
-upload_new_picture: Nahrát nový obrázek
-picture_valid: Připraven k uploadu
-picture_being_uploaded: Nahrávám&hellip;
-show_picture: Obrázek
-basket: Košík
-order: Objednávka
-your_basket_is_empty: Váš košík je prázdný
-ordered_more_meals_then_we_have: Máte v košíku více jídel než můžeme dodat.
-we_edited_your_order: Upravili jsme vaší objednávku.
-she_had_more_meals_then_we_can_deliver: Měla více jídel než můžeme dodat.
-you_cannot_order_for_today: Na dnešek si již nelze objednat.
-item_added_to_basket: Zboží bylo přidáno do košíku.
-update_order: přepočítat
-your_order_will_be_delivered_on: Vaše objednávka bude doručena %date.
-preferred_time_of_delivery: Čas doručení
-time_of_delivery_is_approximate: Čas doručení je pouze přibližný.
-time_of_delivery_approximately: Čas doručení přibližně
-time_of_delivery_not_in_range: Čas doručení není v rozsahu od %from do %to.
-back_to_basket: zpět do košíku
-order_price: Cena objednávky
-additional_info: Další informace
-validate_order: Překontrolovat objednávku
-difference: rozdíl
-in_orders: v objednávkách
-additional: navíc
-time_of_delivery_range: Doručujeme od %from do %to. 
-user_agreement: Podmínky použití
-accept_agreement: přijímám podmínky použití
-have_to_accept_agreement: Musíte potvrdit podmínky použití.
-delivery_fee: poplatek za dovoz
-date_of_delivery: Datum doručení
-submit_order: odeslat objednávku
-order_submitted: objednávka přijata
-price_of_the_whole_menu: Cena za celé menu
-order_the_whole_menu: objednat celé menu
-create_order_for_user: Vytvořit uživateli objednávku
-users_orders: Objednávky uživatele
-add_to_basket: přidat do košíku
-price: cena
-speciality_of_the_day: specialita dne
-always_available: stálá nabídka
-todays_menu: Dnešní nabídka
-your_orders: Vaše objednávky
-menu_for_the_day: Nabídka pro den
-ingredient: přísada
-ingredients: přísady
-delivery_man_color: barva rozvozce
-print: tisk
-item_type: typ
-supply: potřeba
-supplies: potřeby
-amount: množství
-cost: náklady
-condition: podmínka
-unit: jednotka
-cost_per_unit: cena za jednotku
-total_cost: celková cena
-supplier: dodavatel
-auto_cost: automatická cena
-update_successful: záznam byl úspěšně uložen
-create_successful: záznam byl úspěšně vytvořen
-signed_in: přihlášení proběhlo úspěšně
-signin: přihlášení
-signed_out: uživatel byl odhlášen
-true: ano
-false: ne
-'null': (neurčeno)
-from: od
-to: do
-value: hodnota
-next_page: další
-previous_page: předchozí
-delete_confirmation: Vážně smazat?
-add: přidat
-edit: upravit
-delete: smazat
-close: zavřít
-save: uložit
-back_to_listing: zpět na výpis
-cancel: zrušit
-cancel_order: zrušit objednávku
-restore: obnovit
-submit: odeslat
-show: zobrazit
-show_all: zobrazit vše
-download: stáhnout
-agenda: agenda
-week: týden
-month: měsíc
-meals: jídla
-meal_flags: piktogramy
-menus: menu
-item: předmět
-schedule: naplánovat
-none_assigned: nepřidělen
-note: poznámka
-day: den
-log_per_day: výpis podle dne
-log_per_meal: výpis podle jídel
-balance: stav
-discount: sleva
-discount_in_percent: sleva v procentech
-cancelled_at: zrušena
-discounts: Slevy
-along: s sebou
-dont_have_any_scheduled_meals: Nemáte žádná naplánovaná jídla.
-please_sign_up: Registrujte se, prosím.
-please_fill_your_address: Vyplňte si adresu, prosím.
-customer: zákazník
-dont_validate_home_address: Nekontrolovat pravost adresy.
-dont_validate_delivery_address: Nekontrolovat pravost adresy.
-more_here: více zde
-overall: celkem
-old_links: Staré odkazy
-pieces: kusů
-delete_basket: vymazat košík
-total_orders_price: celková cena objednávek
-have_you_forgotten_password?: Zapoměli jste vaše heslo?
-token_dont_match: Bezpečnostní token neodpovídá
-try_it_again: Zkuste to znovu.
-your_new_password_is: Vaše nové heslo je
-congratulations: Gratulujeme
-do_you_really_want_generate_new_password_for_user_u_?: Opravdu chcete vygenerovat nové heslo pro uživatele %u ?
-generate_new_password: Vygenerovat nové heslo
-yes_i_want: Ano, chci.
-problem_when_generating_password: Nastala chyba při generování hesla.
-user_not_found: Uživatel nenalezen.
-user_or_email: uživatel nebo email
-name_of_user: jméno uživatele
-date_of_delivery_changed: Datum doručení zásilky byl změněno.
-change: změnit
-change_deliver_date: Změna data doručení
-we_are_sorry: Omlouváme se
-sold_out: vyprodáno pro rozvoz
-item_removed_from_basket: Položka odebrána z košíku.
-date_change_confirmation: Opravdu změnit datum objednávky? Z košíku bude odstraněna veškerá denní nabídka.
-admin_note: Poznámka administrátora
-notes: poznámky
-expense_type_investment: investice
-expense_type_other: ostatní
-deliver_at_time_was_unavailable: Čas doručení byl nedostupný. Zkontrolujte nový, prosím.
-update_ingredient_cost: aktualizovat cenu suroviny
-update_product_cost: aktualizovat náklady na zboží
-lost_profit: ušlý zisk
-active_discounts: Aktivní slevy
-current_state: současný stav
-real_state: opravdový stav
-create_ingredient_consumptions: vypočítat spotřebu surovin
-term_of_delivery: dodací lhůta
-num_of_days: počet dní
-unknown: neznámo
-term_of_delivery: dodací lhůta
-term_of_delivery_is: dodací lhůta je
-not_on_stock: není skladem
-on_stock: skladem
-index: výpis
-warnings: varování
-driver: řidič
-disabled: vyřazený
-missing_products_on_stock: na skladě chybí
-include_products: včetně zboží
-include_always_available: včetně stálé nabídky
-delete_consumption: smazat spotřebu
-count_consumption: vypočítat spotřebu
-amount_with_consumption: množství s korekcí spotřeby
-poll_type_single: jedna odpověď
-poll_type_multi: více odpovědí
-activate: aktivovat
-deactivate: deaktivovat
-cant_vote_twice: "Nemůžete hlasovat dvakrát."
-thanks_for_voting: "Děkujeme za váš hlas."
-cant_vote_blank: "Musíte vybrat odpověď."
-votes: hlasů
-meal_rss_title: RSS zdroj s naší polední nabídkou
-unable_to_deliver_product: Vybrané zboží nemůžeme doručit.
-confirm_save: Opravdu uložit?
-scheduled_meals_wont_be_updated: Již naplánovaná jídla NEBUDOU AKTUALIZOVÁNA.
-scheduled_menus_wont_be_updated: Již naplánovaná menu NEBUDOU AKTUALIZOVÁNA.
-menu_was_changed: Menu bylo upraveno. Nemusí odpovídat skutečnosti.
-meal_was_changed: Jídlo bylo upraveno. Nemusí odpovídat skutečnosti.
-file: soubor
-importer: importer
-users_from_mysql: Uživatelé z PHP verze
-users_from_csv: Uživatelé z CSV souboru
-country_codes_from_text: Kódy zemí z text. souboru
-meal_alredy_has_this_ingredient: jídlo tuto ingredienci již obsahuje
-meal_alredy_has_this_supplement: jídlo tuto potřebu již obsahuje
-meal_alredy_has_this_spice: jídlo toto koření již obsahuje
-contains_ingredient: obsahuje surovinu
-add_entry: přidat položku
-order_rules: 'Zobrazit pouze objednávky odpovídající těmto požadavkům (zároveň):'
-product_rules: 'Zobrazit pouze zboží odpovídající těmto požadavkům (zároveň):'
-order_number: číslo objednávky
-zone: Zóna
-zone_reviewed: Zóna ověřena
-preferred_delivery_method: Preferovaný způsob rozvozu
-delivery_zone: Zóna rozvozu
-#-- menu_links
-menu_menu: Menu
-menu_basket: Košík
-menu_restaurant: Restaurace
-menu_meals: Jídla
-menu_suppliers: Dodavadelé
-menu_ingredients: Přísady
-menu_meal_categories: Kategorie
-menu_menus: Menu
-menu_schedule: Kalendář
-menu_eshop: Obchod
-menu_products: Zboží
-menu_product_categories: Kategorie
-menu_application: Application
-menu_pages: Stránky
-menu_news: Novinky
-menu_snippets: Ústřižky
-menu_users: Uživatelé
-menu_orders: Objednávky
-menu_analysis: Výstupy
-menu_expenses: Náklady
-menu_shopping_list: Nákupní seznam
-menu_stock: Sklad
-menu_spices: Koření
-#-- models --
-model_bundles: sady
-model_car: auto
-model_bundle: sada
-model_recipes: přísady
-model_meal: jídlo
-model_meals: jídla
-model_menu: menu
-model_menus: menu
-model_spices: koření
-model_product: zboží
-model_products: zboží
-model_user: uživatel
-model_item_discount: sleva na předmět
-model_wholesale_discount: velkoobchodní sleva
-model_user_discount: uživatelská sleva
-#-- order states --
-order_status_order: objednána
-order_status_expedited: expedována
-order_status_closed: uzavřena
-order_status_basket: košík
-order_status_order_pl: objednané
-order_status_expedited_pl: expedované
-order_status_closed_pl: uzavřené
-order_status_all: všechny
-order_status_all_cancelled: všechny a zrušené
-order_cancelled: zrušena
-order_cancelled_pl: zrušené
-#-- model attributes --
-attr_in_dialy_menu: zobrazit v denním menu
-attr_zone: zóna
-attr_question: otázka
-attr_answer_count: počet odpovědí
-attr_poll_answers: odpovědi
-attr_active: aktivní
-attr_car: auto
-attr_beginning: počátek
-attr_date: datum
-attr_ending: konec
-attr_private_distance: soukromě
-attr_business_distance: služebně
-attr_supply_flag: potřeba?
-attr_restaurant_flag: v restauraci?
-attr_picture: obrázek
-attr_email: email
-attr_groups: skupiny
-attr_delivery_address: adresa
-attr_title: nadpis
-attr_recipe: recept
-attr_name: jméno
-attr_name_abbr: zkratka
-attr_address: adresa
-attr_scheduled_for: datum
-attr_supplier_id: dodavatel
-attr_cost: cena
-attr_price: cena
-attr_unit: jednotkové množství
-attr_body: text
-attr_day: datum
-attr_url: url
-attr_menu_item: odkaz v menu
-attr_description: popis
-attr_short_description: krátký popis
-attr_category: kategorie
-attr_login: login
-attr_always_available: ve stálé nabídce
-attr_user: uživatel
-attr_delivery_man: doručovatel
-attr_flag_has_delivery_man: má doručovatele
-attr_minimal_order_price: minimální cena objednávky
-attr_order_state: stav
-attr_order_paid: zaplacena
-attr_deliver_at: čas doručení
-attr_publish_at: datum začátku
-attr_start_at: datum začátku
-attr_expire_at: datum konce
-attr_scheduled_amount: naplánováno
-attr_ordered_amount: v objednávkách
-attr_amount_left: zbývá
-attr_lost_amount: ztraceno
-attr_sold_amount: prodáno
-attr_updated_at: poslední úprava
-attr_item_type_meal: na jídla
-attr_item_type_product: na zboží
-attr_discount_class: třída slevy
-attr_order_price: cena objednávky
-attr_code: kód
-attr_icon_path: cesta k ikoně
-attr_content: obsah
-attr_basket_name: název v košíku
-attr_amount: množství
-attr_user_login: uživatel
-attr_created_at: vytvořeno
-attr_updated_at: upraveno
-attr_note: poznámka
-attr_bought_at: zakoupeno
-attr_type: typ
-attr_expense_owner: majitel
-attr_premise_id: provozovna
-attr_registration_no: SPZ
-attr_fuel_consumption: spotřeba paliva
-attr_spent_money: utraceno
-attr_item: předmět
-attr_buyer_login: kupující
-attr_ingredient: surovina
-attr_operator: operátor
-attr_value: hodnota
-attr_sold_at: prodáno
-attr_meal: jídlo
-attr_premise: provozovna
-attr_expense_type: druh výdaje
-attr_ingredient_consumption: spotřeba surovin
-attr_invisible: nezobrazovat
-#groups translations
-group_admins: administrátoři
-group_customers: zákazníci
-group_delivery_men: rozvozci
-group_heads_of_car_pool: šéfové autoparku
-group_operating_officers: provozní restaurace
-group_warehousers: skladníci
-group_chefs: šéfkuchaři
-#-- settings for decimal formats, currency symbols, and such --
-delimiter: '&nbsp;'
-decimal: ','
-currency: '%number&nbsp;Kč'
-date: '%day.&nbsp;%month.&nbsp;%year'
-date_with_weekday: '%weekday %day. %month. %year'
-time: '%24hour:%minute'
-phone_number_template: '%n%n%n %n%n%n %n%n%n'
-country_code_template: '+(%cc)'
-1_day: 1 den
-2to4_days: %n dny
-x_days: %n dní
-unknown_f: neznámá
-immediately: ihned
-month_1: leden
-month_2: únor
-month_3: březen
-month_4: duben
-month_5: květen
-month_6: červen
-month_7: červenec
-month_8: srpen
-month_9: září
-month_10: říjen
-month_11: listopad
-month_12: prosinec
-weekdays: [Po, Út, St, Čt, Pá, So, Ne]
-country_code: 420
-forgotten_password_sent: zapomenute_heslo_odeslano
-date_and_time: [["dne %date v %time", {hour: [0, 1, 5, 6, 7, 8, 9, 10, 11, 15, 16, 17, 18, 19]}], ["dne %date ve %time", {hour: [2, 3, 4, 12, 13, 14, 20, 21, 22, 23]}]]
-fuel_unit: " l"
-currency_unit: " Kč"
-amount_unit: " ks"
-fuel_consumption_unit: " l/100km"
-distance_unit: " km"
-meters_distance_unit: " m"
-#-- errors --
-error: Hups...
-snippet_report_error: Nahlásit chybu
-error_details: Podrobnosti
-error_ok: Budiž
-err_min_24h: minimální dodací lhůta je 24 hodin
-err_product_disabled: zboží je dočasně vyřazeno
-snippet_e_error: "chyba: obecná chyba"
-snippet_e_unknown_action: "chyba: nezmámá akce"
-snippet_e_record_not_found: "chyba: záznam nenalezen"
-snippet_e_access_denied: "chyba: přístup odepřen"
-snippet_e_login_required: "chyba: požadováno přihlášení"
-#-- registration form
-login_data: Přihlašovací údaje
-personal_data: Osobní údaje
-user_groups: Skupiny
-user_login: Přihlašovací jméno
-user_password_confirmation: heslo (ještě jednou)
-email: e-mail
-first_name: Křestní jméno
-family_name: Příjmení
-company_name: Název společnosti
-phone_number: Telefonní číslo
-phone_number_country_code: Předvolba
-company_registration_no: IČ
-company_tax_no: DIČ
-street: Ulice
-zip: PSČ
-house_no: Číslo domu
-city: Město
-district: Část obce
-home_address: Adresa
-name_and_family_name: Jméno a přijmení
-delivery_address: Doručovací adresa
-activate_delivery_address: Doručovací adresa je jiná
-accept_user_agreement: Přijímám podmínky použití
-send_tomorrow_menu_by_mail: Zasílat menu na další den emailem
-imported_orders_price: Cena importovaných objednávek
-last_order: poslední objednávka
-#-- rules
-minimal_length_is_x_characters: minimální délka je %n znaků
-maximal_length_is_x_characters: maximální délka je %n znaků
-end_with_letter_or_number: končit může písmenem nebo číslem
-inside_can_be_dot_or_underscore: uvnitř může být tečka nebo podtržítko následováno písmenem
-have_to_start_with_letter: musí začínat písmenem
-lowercase_without_national_characters: povolena jsou jen malá písmena bez diakritiky
-phone_number_format: "tel. č. bez mezer. Např: 606123456"
-country_code_is: předvolba pro ČR je +420
-eg_level: například patro
-or_color_size_closer_location: nebo zvonek, barva, velikost nebo bližší umístění
-#snippets
-snippet_footer: patička
-snippet_no_scheduled_meals: žádná naplánovaná jídla
-snippet_unavailable_menu: nedostupná nabídka
-snippet_user_agreement: podmínky použití
-snippet_menu_pages: odkazy v menu
-snippet_order_submitted_mail_header: hlavička emailu objednávka odeslána
-snippet_order_submitted_mail_footer: patička emailu objednávka odeslána
-snippet_tomorrow_menu_mail_header: hlavička emailu s zítřejším menu
-snippet_forgotten_password: zapomenuté heslo
-snippet_dialy_menu_footer: patička denního menu
-#summary
-summary: Souhrn výnosů
-average_day: Průměrný den
-delivery: Rozvoz
-restaurant: Restaurace
-office: Kancelář
-sum_ingredients: náklady na ingredience
-sum_cooking_ingredients: orientační suroviny na vaření
-sum_bought_ingredients: zakoupené suroviny
-sum_sold_items: přímý prodej
-sum_expenses: výdaje
-sum_fuel: palivo rozvozců
-sum_orders_price: výdělek z rozvozu
-sum_orders_delivery: platby za rozvoz
-sum_restaurant_sales: výdělek restaurace
-sum_orders_discount: sleva
-sum_sold_items: přímý prodej
-sum_restaurant_ingredients: suroviny na vaření v restauraci
-sum_delivery_ingredients: suroviny na vaření pro rozvoz
-sum_summary: <strong>výsledek</strong>
-#watchdogs's operators
-operator_e: rovno
-operator_lt: méně než
-operator_gt: vice než
-operator_ne: nerovná se
-operator_gtoe: vice nebo rovno než
-operator_ltoe: méně nebo rovno než
-watchdogs: hlídači
-state: stav
-operator: operátor
-#expences
-expense_owner_delivery: rozvoz
-expense_owner_restaurant: restaurace
-expense_owner_office: kancelář
-#ingredients_log
-entry_owner: majitel
-ingredients_log_owner_delivery: rozvoz
-ingredients_log_owner_restaurant: restaurace
-#mail client
-nobody: nikdo
-attr_last_message_recieved: nejnovější zpráva
-attr_from: od
-attr_to:  do
-mail_to: pro
-body: text
-recieved: přijato
-attr_subject: předmět
-attr_mailbox: schránka
-attr_handled_by: vyřizuje
-reply: odpovědět
-send: odeslat
-move_to: přesunout do
-mark_read: označit jako přečtený
-mark_unread: označit jako nepřečtený
-spam: spam
-conversation_closed: konverzace uzavřena
-close_conversation: uzavřít
-reopen_conversation: znovu otevřít
-confirm_close_conversation: Opravdu označit konverzaci jako uzavřenou?
-show_messages: zobrazit zprávy
-mail_cat_new: nové 
-mail_cat_mine: moje
-mail_cat_open: neuzavřené
-mail_cat_closed: uzavřené
-mail_cat_all: všechny
-#email templates
-forgotten_password_html_mail: "<p>Dobrý den,<br/>\n  na našem webu {{web_url}} uživatel zažádal o zapomenuté heslo k uživatelskému účtu: &quot;<strong>{{login}}</strong>&quot;.\n  Pokud chcete vygenerovat nové heslo, jděte na adresu: {{new_url}} . Odkaz má platnost 24 hodin od odeslání tohoto emailu.</p>"
-delivery_price: Cena doručení
-ordered_at: Objednáno dne
-order_will_be_delivered_at:  Objednávka bude doručena
-order_price: Cena objednávky
-final_price: Konečná cena
-address_of_delivery: Adresa dodání
-portions: porcí
-whole_menu: celé menu
-# admin menu
-admin_restaurant: Restaurace
-admin_delivery: Rozvoz
-admin_content: Obsah
-admin_logistics: Logistika
-admin_users: Uživatelé
-admin_shop: Obchod
-admin_expense: Náklady
-admin_outputs: Výstupy
-admin_emails: E-Maily
-admin_meals: Jídla
-admin_categories: Kategorie
-admin_menus: Menu
-admin_bundles: Sady
-admin_spices: Koření
-admin_ingredients: Suroviny
-admin_meal_flags: Piktogramy
-admin_pages: Stránky
-admin_news: Novinky
-admin_snippets: Ústřižky
-admin_polls: Ankety
-admin_import: Import
-admin_suppliers: Dodavatelé
-admin_products_log: Sklad zboží
-admin_ingredients_log: Sklad surovin
-admin_stocktakings: Inventury
-admin_schedule: Plánování jídel
-admin_lost_items: Ztráty
-admin_sold_items: Přímý prodej
-admin_delivery_methods: Způsoby rozvozu
-admin_delivery_men: Rozvozci
-admin_users_listing: Výpis
-admin_orders: Objednávky
-admin_user_discounts: Uživatelské slevy
-admin_item_discounts: Slevy na předměty
-admin_wholesale_discounts: Velkoobchodní slevy
-admin_products: Zboží
-admin_cars: Auta
-admin_cars_logbook: Kniha jízd
-admin_logbook_categories: Kategorie jízd
-admin_fuel: Pohonné hmoty
-admin_expenses: Výdaje
-admin_expense_categories: Kategorie výdajů
-admin_premises: Provozovny
-admin_restaurant_sales: Prodeje
-admin_ingredients_log_watchdogs: 'Hlidání skladu'
-admin_shopping_list: Nákupní seznam
-admin_cooking: Pro kuchyni
-admin_items_to_load: Pro rozvozce
-admin_summary: Souhrny výnosů
-admin_average_day: Průměrný den
-admin_mail_conversations: Zprávy
-admin_mail_mailboxes: Schránky
-admin_zones: Zóny
-today_menu: Dnešní menu
-tomorrow_menu: Zítřejší menu
-dialy_offer: Denní nabídka
-admin_dialy_menus: Denní menu
-admin_category_order: Pořadí kategorií
-# users 
-containing_text: obsahující text
-list_all: vypsat všechny
-list_only_users: vypsat uživatele
-in_group: ve skupině
-snippet_forgotten_password_dialog: 'zapomenuté heslo'
-snippet_welcome: 'info na úvodní stránce'
-snippet_restaurant_vcard: vizitka restaurace
-snippet_delivery_vcard: vizitka rozvozu
-snippet_opening_hours: otevírací doba
-# welcome
-where_you_can_find_us: Kde nás najdete?
-opening_hours: Otevírací doba
-# limiting delivery methods
-delivery_time_limit_from: Počáteční hodnota doby doručení
-delivery_time_limit_to: Konečná hodnota doby doručení 
+cs:  #-- title
+  title: Zelená kuchyně
+  motto: Rozvoz vegetariánských jídel.
+  #-- layout texts --
+  layout_title: Zelená kuchyně
+  layout_subtitle: rozvoz jídla - indická zeleninová kuchyně, vegetariánská kuchyně, zdravá výživa
+  username: uživatel
+  password: heslo
+  signup: registrace
+  signup_completed: registrace proběhla úspěšně
+  signin: přihlásit se
+  forgotten_password: zapomenuté heslo?
+  signout: odhlásit se
+  user: uživatel
+  edit_my_profile: upravit registrační údaje
+  #-- interface texts --
+  to_basket: do košíku
+  notice: Upozornění
+  hide_notice: Nezobrazovat upozornění.
+  item_cannot_be_added_to_basket: Položka nemohla být přidána do košíku. Je možné, že chcete více než můžeme doručit nebo již máte v košíku objednávku na jiný den. Zkuste se do něj <a href="/basket">podívat</a> nebo ho <a href="/basket/delete_basket" onclick="return confirm('Opravdu smazat košík?');">vymazat</a>
+  picture_uploaded: Obrázek odeslán
+  upload_new_picture: Nahrát nový obrázek
+  picture_valid: Připraven k uploadu
+  picture_being_uploaded: Nahrávám&hellip;
+  show_picture: Obrázek
+  basket: Košík
+  order: Objednávka
+  your_basket_is_empty: Váš košík je prázdný
+  ordered_more_meals_then_we_have: Máte v košíku více jídel než můžeme dodat.
+  we_edited_your_order: Upravili jsme vaší objednávku.
+  she_had_more_meals_then_we_can_deliver: Měla více jídel než můžeme dodat.
+  you_cannot_order_for_today: Na dnešek si již nelze objednat.
+  item_added_to_basket: Zboží bylo přidáno do košíku.
+  update_order: přepočítat
+  your_order_will_be_delivered_on: Vaše objednávka bude doručena {date}.
+  preferred_time_of_delivery: Čas doručení
+  time_of_delivery_is_approximate: Čas doručení je pouze přibližný.
+  time_of_delivery_approximately: Čas doručení přibližně
+  time_of_delivery_not_in_range: Čas doručení není v rozsahu od %from do %to.
+  back_to_basket: zpět do košíku
+  order_price: Cena objednávky
+  additional_info: Další informace
+  validate_order: Překontrolovat objednávku
+  difference: rozdíl
+  in_orders: v objednávkách
+  additional: navíc
+  time_of_delivery_range: Doručujeme od %from do %to. 
+  user_agreement: Podmínky použití
+  accept_agreement: přijímám podmínky použití
+  have_to_accept_agreement: Musíte potvrdit podmínky použití.
+  delivery_fee: poplatek za dovoz
+  date_of_delivery: Datum doručení
+  submit_order: odeslat objednávku
+  order_submitted: objednávka přijata
+  price_of_the_whole_menu: Cena za celé menu
+  order_the_whole_menu: objednat celé menu
+  create_order_for_user: Vytvořit uživateli objednávku
+  users_orders: Objednávky uživatele
+  add_to_basket: přidat do košíku
+  price: cena
+  speciality_of_the_day: specialita dne
+  always_available: stálá nabídka
+  todays_menu: Dnešní nabídka
+  your_orders: Vaše objednávky
+  menu_for_the_day: Nabídka pro den
+  ingredient: přísada
+  ingredients: přísady
+  delivery_man_color: barva rozvozce
+  print: tisk
+  item_type: typ
+  supply: potřeba
+  supplies: potřeby
+  amount: množství
+  cost: náklady
+  condition: podmínka
+  unit: jednotka
+  cost_per_unit: cena za jednotku
+  total_cost: celková cena
+  supplier: dodavatel
+  auto_cost: automatická cena
+  update_successful: záznam byl úspěšně uložen
+  create_successful: záznam byl úspěšně vytvořen
+  signed_in: přihlášení proběhlo úspěšně
+  signin: přihlášení
+  signed_out: uživatel byl odhlášen
+  true: ano
+  false: ne
+  'null': (neurčeno)
+  from: od
+  to: do
+  value: hodnota
+  next_page: další
+  previous_page: předchozí
+  delete_confirmation: Vážně smazat?
+  add: přidat
+  edit: upravit
+  delete: smazat
+  close: zavřít
+  save: uložit
+  back_to_listing: zpět na výpis
+  cancel: zrušit
+  cancel_order: zrušit objednávku
+  restore: obnovit
+  submit: odeslat
+  show: zobrazit
+  show_all: zobrazit vše
+  download: stáhnout
+  agenda: agenda
+  week: týden
+  month: měsíc
+  meals: jídla
+  meal_flags: piktogramy
+  menus: menu
+  item: předmět
+  schedule: naplánovat
+  none_assigned: nepřidělen
+  note: poznámka
+  day: den
+  log_per_day: výpis podle dne
+  log_per_meal: výpis podle jídel
+  balance: stav
+  discount: sleva
+  discount_in_percent: sleva v procentech
+  cancelled_at: zrušena
+  discounts: Slevy
+  along: s sebou
+  dont_have_any_scheduled_meals: Nemáte žádná naplánovaná jídla.
+  please_sign_up: Registrujte se, prosím.
+  please_fill_your_address: Vyplňte si adresu, prosím.
+  customer: zákazník
+  dont_validate_home_address: Nekontrolovat pravost adresy.
+  dont_validate_delivery_address: Nekontrolovat pravost adresy.
+  more_here: více zde
+  overall: celkem
+  old_links: Staré odkazy
+  pieces: kusů
+  delete_basket: vymazat košík
+  total_orders_price: celková cena objednávek
+  have_you_forgotten_password?: Zapoměli jste vaše heslo?
+  token_dont_match: Bezpečnostní token neodpovídá
+  try_it_again: Zkuste to znovu.
+  your_new_password_is: Vaše nové heslo je
+  congratulations: Gratulujeme
+  do_you_really_want_generate_new_password_for_user_u_?: Opravdu chcete vygenerovat nové heslo pro uživatele %u ?
+  generate_new_password: Vygenerovat nové heslo
+  yes_i_want: Ano, chci.
+  problem_when_generating_password: Nastala chyba při generování hesla.
+  user_not_found: Uživatel nenalezen.
+  user_or_email: uživatel nebo email
+  name_of_user: jméno uživatele
+  date_of_delivery_changed: Datum doručení zásilky byl změněno.
+  change: změnit
+  change_deliver_date: Změna data doručení
+  we_are_sorry: Omlouváme se
+  sold_out: vyprodáno pro rozvoz
+  item_removed_from_basket: Položka odebrána z košíku.
+  date_change_confirmation: Opravdu změnit datum objednávky? Z košíku bude odstraněna veškerá denní nabídka.
+  admin_note: Poznámka administrátora
+  notes: poznámky
+  expense_type_investment: investice
+  expense_type_other: ostatní
+  deliver_at_time_was_unavailable: Čas doručení byl nedostupný. Zkontrolujte nový, prosím.
+  update_ingredient_cost: aktualizovat cenu suroviny
+  update_product_cost: aktualizovat náklady na zboží
+  lost_profit: ušlý zisk
+  active_discounts: Aktivní slevy
+  current_state: současný stav
+  real_state: opravdový stav
+  create_ingredient_consumptions: vypočítat spotřebu surovin
+  term_of_delivery: dodací lhůta
+  num_of_days: počet dní
+  unknown: neznámo
+  term_of_delivery: dodací lhůta
+  term_of_delivery_is: dodací lhůta je
+  not_on_stock: není skladem
+  on_stock: skladem
+  index: výpis
+  warnings: varování
+  driver: řidič
+  disabled: vyřazený
+  missing_products_on_stock: na skladě chybí
+  include_products: včetně zboží
+  include_always_available: včetně stálé nabídky
+  delete_consumption: smazat spotřebu
+  count_consumption: vypočítat spotřebu
+  amount_with_consumption: množství s korekcí spotřeby
+  poll_type_single: jedna odpověď
+  poll_type_multi: více odpovědí
+  activate: aktivovat
+  deactivate: deaktivovat
+  cant_vote_twice: "Nemůžete hlasovat dvakrát."
+  thanks_for_voting: "Děkujeme za váš hlas."
+  cant_vote_blank: "Musíte vybrat odpověď."
+  votes: hlasů
+  meal_rss_title: RSS zdroj s naší polední nabídkou
+  unable_to_deliver_product: Vybrané zboží nemůžeme doručit.
+  confirm_save: Opravdu uložit?
+  scheduled_meals_wont_be_updated: Již naplánovaná jídla NEBUDOU AKTUALIZOVÁNA.
+  scheduled_menus_wont_be_updated: Již naplánovaná menu NEBUDOU AKTUALIZOVÁNA.
+  menu_was_changed: Menu bylo upraveno. Nemusí odpovídat skutečnosti.
+  meal_was_changed: Jídlo bylo upraveno. Nemusí odpovídat skutečnosti.
+  file: soubor
+  importer: importer
+  users_from_mysql: Uživatelé z PHP verze
+  users_from_csv: Uživatelé z CSV souboru
+  country_codes_from_text: Kódy zemí z text. souboru
+  meal_alredy_has_this_ingredient: jídlo tuto ingredienci již obsahuje
+  meal_alredy_has_this_supplement: jídlo tuto potřebu již obsahuje
+  meal_alredy_has_this_spice: jídlo toto koření již obsahuje
+  contains_ingredient: obsahuje surovinu
+  add_entry: přidat položku
+  order_rules: 'Zobrazit pouze objednávky odpovídající těmto požadavkům (zároveň):'
+  product_rules: 'Zobrazit pouze zboží odpovídající těmto požadavkům (zároveň):'
+  order_number: číslo objednávky
+  zone: Zóna
+  zone_reviewed: Zóna ověřena
+  preferred_delivery_method: Preferovaný způsob rozvozu
+  delivery_zone: Zóna rozvozu
+  #-- menu_links
+  menu_menu: Menu
+  menu_basket: Košík
+  menu_restaurant: Restaurace
+  menu_meals: Jídla
+  menu_suppliers: Dodavadelé
+  menu_ingredients: Přísady
+  menu_meal_categories: Kategorie
+  menu_menus: Menu
+  menu_schedule: Kalendář
+  menu_eshop: Obchod
+  menu_products: Zboží
+  menu_product_categories: Kategorie
+  menu_application: Application
+  menu_pages: Stránky
+  menu_news: Novinky
+  menu_snippets: Ústřižky
+  menu_users: Uživatelé
+  menu_orders: Objednávky
+  menu_analysis: Výstupy
+  menu_expenses: Náklady
+  menu_shopping_list: Nákupní seznam
+  menu_stock: Sklad
+  menu_spices: Koření
+  #-- models --
+  model_bundles: sady
+  model_car: auto
+  model_bundle: sada
+  model_recipes: přísady
+  model_meal: jídlo
+  model_meals: jídla
+  model_menu: menu
+  model_menus: menu
+  model_spices: koření
+  model_product: zboží
+  model_products: zboží
+  model_user: uživatel
+  model_item_discount: sleva na předmět
+  model_wholesale_discount: velkoobchodní sleva
+  model_user_discount: uživatelská sleva
+  #-- order states --
+  order_status_order: objednána
+  order_status_expedited: expedována
+  order_status_closed: uzavřena
+  order_status_basket: košík
+  order_status_order_pl: objednané
+  order_status_expedited_pl: expedované
+  order_status_closed_pl: uzavřené
+  order_status_all: všechny
+  order_status_all_cancelled: všechny a zrušené
+  order_cancelled: zrušena
+  order_cancelled_pl: zrušené
+  #-- model attributes --
+  attr_in_dialy_menu: zobrazit v denním menu
+  attr_zone: zóna
+  attr_question: otázka
+  attr_answer_count: počet odpovědí
+  attr_poll_answers: odpovědi
+  attr_active: aktivní
+  attr_car: auto
+  attr_beginning: počátek
+  attr_date: datum
+  attr_ending: konec
+  attr_private_distance: soukromě
+  attr_business_distance: služebně
+  attr_supply_flag: potřeba?
+  attr_restaurant_flag: v restauraci?
+  attr_picture: obrázek
+  attr_email: email
+  attr_groups: skupiny
+  attr_delivery_address: adresa
+  attr_title: nadpis
+  attr_recipe: recept
+  attr_name: jméno
+  attr_name_abbr: zkratka
+  attr_address: adresa
+  attr_scheduled_for: datum
+  attr_supplier_id: dodavatel
+  attr_cost: cena
+  attr_price: cena
+  attr_unit: jednotkové množství
+  attr_body: text
+  attr_day: datum
+  attr_url: url
+  attr_menu_item: odkaz v menu
+  attr_description: popis
+  attr_short_description: krátký popis
+  attr_category: kategorie
+  attr_login: login
+  attr_always_available: ve stálé nabídce
+  attr_user: uživatel
+  attr_delivery_man: doručovatel
+  attr_flag_has_delivery_man: má doručovatele
+  attr_minimal_order_price: minimální cena objednávky
+  attr_order_state: stav
+  attr_order_paid: zaplacena
+  attr_deliver_at: čas doručení
+  attr_publish_at: datum začátku
+  attr_start_at: datum začátku
+  attr_expire_at: datum konce
+  attr_scheduled_amount: naplánováno
+  attr_ordered_amount: v objednávkách
+  attr_amount_left: zbývá
+  attr_lost_amount: ztraceno
+  attr_sold_amount: prodáno
+  attr_updated_at: poslední úprava
+  attr_item_type_meal: na jídla
+  attr_item_type_product: na zboží
+  attr_discount_class: třída slevy
+  attr_order_price: cena objednávky
+  attr_code: kód
+  attr_icon_path: cesta k ikoně
+  attr_content: obsah
+  attr_basket_name: název v košíku
+  attr_amount: množství
+  attr_user_login: uživatel
+  attr_created_at: vytvořeno
+  attr_updated_at: upraveno
+  attr_note: poznámka
+  attr_bought_at: zakoupeno
+  attr_type: typ
+  attr_expense_owner: majitel
+  attr_premise_id: provozovna
+  attr_registration_no: SPZ
+  attr_fuel_consumption: spotřeba paliva
+  attr_spent_money: utraceno
+  attr_item: předmět
+  attr_buyer_login: kupující
+  attr_ingredient: surovina
+  attr_operator: operátor
+  attr_value: hodnota
+  attr_sold_at: prodáno
+  attr_meal: jídlo
+  attr_premise: provozovna
+  attr_expense_type: druh výdaje
+  attr_ingredient_consumption: spotřeba surovin
+  attr_invisible: nezobrazovat
+  #groups translations
+  group_admins: administrátoři
+  group_customers: zákazníci
+  group_delivery_men: rozvozci
+  group_heads_of_car_pool: šéfové autoparku
+  group_operating_officers: provozní restaurace
+  group_warehousers: skladníci
+  group_chefs: šéfkuchaři
+  #-- settings for decimal formats, currency symbols, and such --
+  delimiter: '&nbsp;'
+  decimal: ','
+  currency: '{number}&nbsp;Kč'
+  date: '{day}.&nbsp;{month}.&nbsp;{year}'
+  date_with_weekday: '{weekday} {day}. {month}. {year}'
+  time: '{24hour}:{minute}'
+  phone_number_template: '%n%n%n %n%n%n %n%n%n'
+  country_code_template: '+(%cc)'
+  1_day: 1 den
+  2to4_days: %n dny
+  x_days: %n dní
+  unknown_f: neznámá
+  immediately: ihned
+  month_1: leden
+  month_2: únor
+  month_3: březen
+  month_4: duben
+  month_5: květen
+  month_6: červen
+  month_7: červenec
+  month_8: srpen
+  month_9: září
+  month_10: říjen
+  month_11: listopad
+  month_12: prosinec
+  weekdays: [Po, Út, St, Čt, Pá, So, Ne]
+  country_code: 420
+  forgotten_password_sent: zapomenute_heslo_odeslano
+  date_and_time: [["dne {date} v {time}", {hour: [0, 1, 5, 6, 7, 8, 9, 10, 11, 15, 16, 17, 18, 19]}], ["dne {date} ve {time}", {hour: [2, 3, 4, 12, 13, 14, 20, 21, 22, 23]}]]
+  fuel_unit: " l"
+  currency_unit: " Kč"
+  amount_unit: " ks"
+  fuel_consumption_unit: " l/100km"
+  distance_unit: " km"
+  meters_distance_unit: " m"
+  #-- errors --
+  error: Hups...
+  snippet_report_error: Nahlásit chybu
+  error_details: Podrobnosti
+  error_ok: Budiž
+  err_min_24h: minimální dodací lhůta je 24 hodin
+  err_product_disabled: zboží je dočasně vyřazeno
+  snippet_e_error: "chyba: obecná chyba"
+  snippet_e_unknown_action: "chyba: nezmámá akce"
+  snippet_e_record_not_found: "chyba: záznam nenalezen"
+  snippet_e_access_denied: "chyba: přístup odepřen"
+  snippet_e_login_required: "chyba: požadováno přihlášení"
+  #-- registration form
+  login_data: Přihlašovací údaje
+  personal_data: Osobní údaje
+  user_groups: Skupiny
+  user_login: Přihlašovací jméno
+  user_password_confirmation: heslo (ještě jednou)
+  email: e-mail
+  first_name: Křestní jméno
+  family_name: Příjmení
+  company_name: Název společnosti
+  phone_number: Telefonní číslo
+  phone_number_country_code: Předvolba
+  company_registration_no: IČ
+  company_tax_no: DIČ
+  street: Ulice
+  zip: PSČ
+  house_no: Číslo domu
+  city: Město
+  district: Část obce
+  home_address: Adresa
+  name_and_family_name: Jméno a přijmení
+  delivery_address: Doručovací adresa
+  activate_delivery_address: Doručovací adresa je jiná
+  accept_user_agreement: Přijímám podmínky použití
+  send_tomorrow_menu_by_mail: Zasílat menu na další den emailem
+  imported_orders_price: Cena importovaných objednávek
+  last_order: poslední objednávka
+  #-- rules
+  minimal_length_is_x_characters: minimální délka je %n znaků
+  maximal_length_is_x_characters: maximální délka je %n znaků
+  end_with_letter_or_number: končit může písmenem nebo číslem
+  inside_can_be_dot_or_underscore: uvnitř může být tečka nebo podtržítko následováno písmenem
+  have_to_start_with_letter: musí začínat písmenem
+  lowercase_without_national_characters: povolena jsou jen malá písmena bez diakritiky
+  phone_number_format: "tel. č. bez mezer. Např: 606123456"
+  country_code_is: předvolba pro ČR je +420
+  eg_level: například patro
+  or_color_size_closer_location: nebo zvonek, barva, velikost nebo bližší umístění
+  #snippets
+  snippet_footer: patička
+  snippet_no_scheduled_meals: žádná naplánovaná jídla
+  snippet_unavailable_menu: nedostupná nabídka
+  snippet_user_agreement: podmínky použití
+  snippet_menu_pages: odkazy v menu
+  snippet_order_submitted_mail_header: hlavička emailu objednávka odeslána
+  snippet_order_submitted_mail_footer: patička emailu objednávka odeslána
+  snippet_tomorrow_menu_mail_header: hlavička emailu s zítřejším menu
+  snippet_forgotten_password: zapomenuté heslo
+  snippet_dialy_menu_footer: patička denního menu
+  #summary
+  summary: Souhrn výnosů
+  average_day: Průměrný den
+  delivery: Rozvoz
+  restaurant: Restaurace
+  office: Kancelář
+  sum_ingredients: náklady na ingredience
+  sum_cooking_ingredients: orientační suroviny na vaření
+  sum_bought_ingredients: zakoupené suroviny
+  sum_sold_items: přímý prodej
+  sum_expenses: výdaje
+  sum_fuel: palivo rozvozců
+  sum_orders_price: výdělek z rozvozu
+  sum_orders_delivery: platby za rozvoz
+  sum_restaurant_sales: výdělek restaurace
+  sum_orders_discount: sleva
+  sum_sold_items: přímý prodej
+  sum_restaurant_ingredients: suroviny na vaření v restauraci
+  sum_delivery_ingredients: suroviny na vaření pro rozvoz
+  sum_summary: <strong>výsledek</strong>
+  #watchdogs's operators
+  operator_e: rovno
+  operator_lt: méně než
+  operator_gt: vice než
+  operator_ne: nerovná se
+  operator_gtoe: vice nebo rovno než
+  operator_ltoe: méně nebo rovno než
+  watchdogs: hlídači
+  state: stav
+  operator: operátor
+  #expences
+  expense_owner_delivery: rozvoz
+  expense_owner_restaurant: restaurace
+  expense_owner_office: kancelář
+  #ingredients_log
+  entry_owner: majitel
+  ingredients_log_owner_delivery: rozvoz
+  ingredients_log_owner_restaurant: restaurace
+  #mail client
+  nobody: nikdo
+  attr_last_message_recieved: nejnovější zpráva
+  attr_from: od
+  attr_to:  do
+  mail_to: pro
+  body: text
+  recieved: přijato
+  attr_subject: předmět
+  attr_mailbox: schránka
+  attr_handled_by: vyřizuje
+  reply: odpovědět
+  send: odeslat
+  move_to: přesunout do
+  mark_read: označit jako přečtený
+  mark_unread: označit jako nepřečtený
+  spam: spam
+  conversation_closed: konverzace uzavřena
+  close_conversation: uzavřít
+  reopen_conversation: znovu otevřít
+  confirm_close_conversation: Opravdu označit konverzaci jako uzavřenou?
+  show_messages: zobrazit zprávy
+  mail_cat_new: nové 
+  mail_cat_mine: moje
+  mail_cat_open: neuzavřené
+  mail_cat_closed: uzavřené
+  mail_cat_all: všechny
+  #email templates
+  forgotten_password_html_mail: "<p>Dobrý den,<br/>\n  na našem webu {{web_url}} uživatel zažádal o zapomenuté heslo k uživatelskému účtu: &quot;<strong>{{login}}</strong>&quot;.\n  Pokud chcete vygenerovat nové heslo, jděte na adresu: {{new_url}} . Odkaz má platnost 24 hodin od odeslání tohoto emailu.</p>"
+  delivery_price: Cena doručení
+  ordered_at: Objednáno dne
+  order_will_be_delivered_at:  Objednávka bude doručena
+  order_price: Cena objednávky
+  final_price: Konečná cena
+  address_of_delivery: Adresa dodání
+  portions: porcí
+  whole_menu: celé menu
+  # admin menu
+  admin_restaurant: Restaurace
+  admin_delivery: Rozvoz
+  admin_content: Obsah
+  admin_logistics: Logistika
+  admin_users: Uživatelé
+  admin_shop: Obchod
+  admin_expense: Náklady
+  admin_outputs: Výstupy
+  admin_emails: E-Maily
+  admin_meals: Jídla
+  admin_categories: Kategorie
+  admin_menus: Menu
+  admin_bundles: Sady
+  admin_spices: Koření
+  admin_ingredients: Suroviny
+  admin_meal_flags: Piktogramy
+  admin_pages: Stránky
+  admin_news: Novinky
+  admin_snippets: Ústřižky
+  admin_polls: Ankety
+  admin_import: Import
+  admin_suppliers: Dodavatelé
+  admin_products_log: Sklad zboží
+  admin_ingredients_log: Sklad surovin
+  admin_stocktakings: Inventury
+  admin_schedule: Plánování jídel
+  admin_lost_items: Ztráty
+  admin_sold_items: Přímý prodej
+  admin_delivery_methods: Způsoby rozvozu
+  admin_delivery_men: Rozvozci
+  admin_users_listing: Výpis
+  admin_orders: Objednávky
+  admin_user_discounts: Uživatelské slevy
+  admin_item_discounts: Slevy na předměty
+  admin_wholesale_discounts: Velkoobchodní slevy
+  admin_products: Zboží
+  admin_cars: Auta
+  admin_cars_logbook: Kniha jízd
+  admin_logbook_categories: Kategorie jízd
+  admin_fuel: Pohonné hmoty
+  admin_expenses: Výdaje
+  admin_expense_categories: Kategorie výdajů
+  admin_premises: Provozovny
+  admin_restaurant_sales: Prodeje
+  admin_ingredients_log_watchdogs: 'Hlidání skladu'
+  admin_shopping_list: Nákupní seznam
+  admin_cooking: Pro kuchyni
+  admin_items_to_load: Pro rozvozce
+  admin_summary: Souhrny výnosů
+  admin_average_day: Průměrný den
+  admin_mail_conversations: Zprávy
+  admin_mail_mailboxes: Schránky
+  admin_zones: Zóny
+  today_menu: Dnešní menu
+  tomorrow_menu: Zítřejší menu
+  dialy_offer: Denní nabídka
+  admin_dialy_menus: Denní menu
+  admin_category_order: Pořadí kategorií
+  # users 
+  containing_text: obsahující text
+  list_all: vypsat všechny
+  list_only_users: vypsat uživatele
+  in_group: ve skupině
+  snippet_forgotten_password_dialog: 'zapomenuté heslo'
+  snippet_welcome: 'info na úvodní stránce'
+  snippet_restaurant_vcard: vizitka restaurace
+  snippet_delivery_vcard: vizitka rozvozu
+  snippet_opening_hours: otevírací doba
+  # welcome
+  where_you_can_find_us: Kde nás najdete?
+  opening_hours: Otevírací doba
+  # limiting delivery methods
+  delivery_time_limit_from: Počáteční hodnota doby doručení
+  delivery_time_limit_to: Konečná hodnota doby doručení 
 
-print_menus: Vybrat menu k tisku
-attr_facebook: facebook tlačítko
+  print_menus: Vybrat menu k tisku
+  attr_facebook: facebook tlačítko
 
-mass_menu: Hromadná objednávka
+  mass_menu: Hromadná objednávka

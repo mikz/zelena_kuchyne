@@ -3,51 +3,51 @@
   <div class="">
   <% remote_form_for "date" do |f| %>
     <p>
-      <label><%=locales[:from]%><input type="text" name="date[]" class="datepicker" value="<%= @selected_dates[0]%>"/></label>
-      <label><%= locales[:to]%><input type="text" name="date[]" class="datepicker" value="<%= @selected_dates[1]%>"/></label>
-      <%= f.submit locales[:submit]%>
+      <label><%=t(:from)%><input type="text" name="date[]" class="datepicker" value="<%= @selected_dates[0]%>"/></label>
+      <label><%= t(:to)%><input type="text" name="date[]" class="datepicker" value="<%= @selected_dates[1]%>"/></label>
+      <%= f.submit t(:submit)%>
     </p>
   <% end %>
   </div>
-  <h2><%=locales[:delivery]%></h2>
+  <h2><%=t(:delivery)%></h2>
   <table class="admin delivery">
     <thead>
       <tr>
-        <td><%= locales[:attr_name]%></td>
-        <td><%= locales[:value]%></td>
+        <td><%= t(:attr_name)%></td>
+        <td><%= t(:value)%></td>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td><a href="#" onclick="jQuery('.orders.hidden_info').toggle(); return false;"><%= locales["sum_orders_price"] %></a></td>
+        <td><a href="#" onclick="jQuery('.orders.hidden_info').toggle(); return false;"><%= t("sum_orders_price") %></a></td>
         <td><pre><%= format_currency(@summary[:orders_price], :fixed_length => true)%></pre></td>
       </tr>
       <tr class="orders hidden_info">
-        <td><%= locales["sum_orders_discount"] %></td>
+        <td><%= t("sum_orders_discount") %></td>
         <td><pre><%= format_currency(-@summary[:orders_discount], :fixed_length => true)%></pre></td>
       </tr>
       <tr class="orders hidden_info">
-        <td><%= locales["sum_orders_delivery"] %></td>
+        <td><%= t("sum_orders_delivery") %></td>
         <td><pre><%= format_currency(@summary[:orders_delivery], :fixed_length => true)%></pre></td>
       </tr>
       <tr>
-        <td><%= locales["sum_sold_items"] %></td>
+        <td><%= t("sum_sold_items") %></td>
         <td><pre><%= format_currency(@summary[:delivery_sold], :fixed_length => true)%></pre></td>
       </tr>
       <tr>
-        <td><a href="#" onclick="jQuery('.delivery .ingredients.hidden_info').toggle(); return false;"><%= locales["sum_cooking_ingredients"] %></a></td>
+        <td><a href="#" onclick="jQuery('.delivery .ingredients.hidden_info').toggle(); return false;"><%= t("sum_cooking_ingredients") %></a></td>
         <td><pre><%= format_currency(-@summary[:delivery_cooking_ingredients], :fixed_length => true)%></pre></td> 
       </tr>
       <tr class="ingredients hidden_info">
-        <td><%= locales["sum_bought_ingredients"] %></td>
+        <td><%= t("sum_bought_ingredients") %></td>
         <td><pre><%= format_currency(-@summary[:delivery_bought_ingredients], :fixed_length => true)%></pre></td>
       </tr>
       <tr>
-        <td><%= locales["sum_fuel"] %></td>
+        <td><%= t("sum_fuel") %></td>
         <td><pre><%= format_currency(-@summary[:fuel], :fixed_length => true)%></pre></td>
       </tr>
       <tr>
-        <td><a href="#" onclick="jQuery('.delivery .expenses.hidden_info').toggle(); return false;"><%= locales["sum_expenses"] %></a></td>
+        <td><a href="#" onclick="jQuery('.delivery .expenses.hidden_info').toggle(); return false;"><%= t("sum_expenses") %></a></td>
         <td><pre><%= format_currency(-@summary[:delivery_expenses], :fixed_length => true)%></pre></td>
       </tr>
 <%    @expenses[:delivery].each do |expense_category|  %>
@@ -57,38 +57,38 @@
       </tr>
 <% end %>
       <tr>
-        <td><%= locales["sum_summary"] %></td>
+        <td><%= t("sum_summary") %></td>
         <td><pre><%= format_currency(@summary[:delivery_summary], :fixed_length => true)%></pre></td>
       </tr>
     </tbody>
   </table>
-  <h2><%=locales[:restaurant]%></h2>
+  <h2><%=t(:restaurant)%></h2>
   <table class="admin restaurant">
     <thead>
       <tr>
-        <td><%= locales[:attr_name]%></td>
-        <td><%= locales[:value]%></td>
+        <td><%= t(:attr_name)%></td>
+        <td><%= t(:value)%></td>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td><%= locales["sum_restaurant_sales"] %></td>
+        <td><%= t("sum_restaurant_sales") %></td>
         <td><pre><%= format_currency(@summary[:restaurant_sales], :fixed_length => true)%></pre></td>
       </tr>
       <tr>
-        <td><%= locales["sum_sold_items"] %></td>
+        <td><%= t("sum_sold_items") %></td>
         <td><pre><%= format_currency(@summary[:restaurant_sold], :fixed_length => true)%></pre></td>
       </tr>
       <tr>
-        <td><a href="#" onclick="jQuery('.restaurant .ingredients.hidden_info').toggle(); return false;"><%= locales["sum_cooking_ingredients"] %></a></td>
+        <td><a href="#" onclick="jQuery('.restaurant .ingredients.hidden_info').toggle(); return false;"><%= t("sum_cooking_ingredients") %></a></td>
         <td><pre><%= format_currency(-@summary[:restaurant_cooking_ingredients], :fixed_length => true)%></pre></td>
       </tr>
       <tr class="ingredients hidden_info">
-        <td><%= locales["sum_bought_ingredients"] %></td>
+        <td><%= t("sum_bought_ingredients") %></td>
         <td><pre><%= format_currency(-@summary[:restaurant_bought_ingredients], :fixed_length => true)%></pre></td>
       </tr>
       <tr>
-        <td><a href="#" onclick="jQuery('.restaurant .expenses.hidden_info').toggle(); return false;"><%= locales["sum_expenses"] %></a></td>
+        <td><a href="#" onclick="jQuery('.restaurant .expenses.hidden_info').toggle(); return false;"><%= t("sum_expenses") %></a></td>
         <td><pre><%= format_currency(-@summary[:restaurant_expenses], :fixed_length => true)%></pre></td>
       </tr>
 <%    @expenses[:restaurant].each do |expense_category|  %>
@@ -98,22 +98,22 @@
       </tr>
 <% end %>
       <tr>
-        <td><%= locales["sum_summary"] %></td>
+        <td><%= t("sum_summary") %></td>
         <td><pre><%= format_currency(@summary[:restaurant_summary], :fixed_length => true)%></pre></td>
       </tr>
     </tbody>
   </table>
-  <h2><%=locales[:office]%></h2>
+  <h2><%=t(:office)%></h2>
   <table class="admin office">
     <thead>
       <tr>
-        <td><%= locales[:attr_name]%></td>
-        <td><%= locales[:value]%></td>
+        <td><%= t(:attr_name)%></td>
+        <td><%= t(:value)%></td>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td><a href="#" onclick="jQuery('.office .expenses.hidden_info').toggle(); return false;"><%= locales["sum_expenses"] %></a></td>
+        <td><a href="#" onclick="jQuery('.office .expenses.hidden_info').toggle(); return false;"><%= t("sum_expenses") %></a></td>
         <td><pre><%= format_currency(-@summary[:office_expenses], :fixed_length => true)%></pre></td>
       </tr>
 <%    @expenses[:office].each do |expense_category|  %>
@@ -123,7 +123,7 @@
       </tr>
 <% end %>
       <tr>
-        <td><%= locales["sum_summary"] %></td>
+        <td><%= t("sum_summary") %></td>
         <td><pre><%= format_currency(@summary[:office_summary], :fixed_length => true)%></pre></td>
       </tr>
     </tbody>

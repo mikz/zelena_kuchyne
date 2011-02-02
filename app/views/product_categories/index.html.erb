@@ -6,11 +6,11 @@
     </tr>
     <% end %>
     <tr>
-      <td><%= link_to locales["attr_#{@options[:title][:name]}"], :action => 'index', :order => @options[:title][:name] %></td>
+      <td><%= link_to t("attr_#{@options[:title)[:name]}"], :action => 'index', :order => @options[:title][:name] %></td>
     <% for column in @options[:columns] %>
-      <td><%= link_to locales["attr_#{column}"], :action => 'index', :order => column %></td>
+      <td><%= link_to t("attr_#{column}"), :action => 'index', :order => column %></td>
     <% end %>
-      <td><span id="record_add"><%= smart_link locales[:add], {:action => 'new'}, :html => {:onclick => "if(!check_opened(event)) {return false;}"} %></span></td>
+      <td><span id="record_add"><%= smart_link t(:add), {:action => 'new'}, :html => {:onclick => "if(!check_opened(event)) {return false;}"} %></span></td>
     </tr>
   </thead>
   <tbody id="records_body">

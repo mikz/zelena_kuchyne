@@ -24,7 +24,7 @@
       });
         //]]>
     </script>
-    <title><%= locales['layout_title'] %>: <%= locales['error'] %></title>
+    <title><%= t('layout_title') %>: <%= t('error') %></title>
   </head>
   <body id="body">
     <% if current_user.belongs_to_one_of?(:admins, :heads_of_car_pool, :operating_officers, :warehousers, :deliverymen, :chefs) %>
@@ -32,22 +32,22 @@
     <% end %>
     <div id="header" class="container">
       <div id="logo">
-        <span><%= locales[:title]%></span>
+        <span><%= t(:title)%></span>
       </div>
       <div id="sections">
         <ul>
           <li id="s_menu"<%= ' class="active"' if active_section == 'menu' %>>
-            <a href="/menu"><span><%= locales[:menu_menus]%></span></a>
+            <a href="/menu"><span><%= t(:menu_menus)%></span></a>
           </li>
           <li id="s_eshop"<%= ' class="active"' if active_section == 'eshop' %>>
-            <a href="/eshop"><span><%= locales[:menu_eshop]%></span></a>
+            <a href="/eshop"><span><%= t(:menu_eshop)%></span></a>
           </li>
           <li id="s_basket"<%= ' class="active"' if active_section == 'basket' %>>
-            <a href="/basket"><span><%= locales[:menu_basket]%></span></a>
+            <a href="/basket"><span><%= t(:menu_basket)%></span></a>
           </li>
           <% if logged_in? %>
           <li id="s_orders"<%= ' class="active"' if active_section == 'orders' %>>
-            <a href="/orders/mine"><span><%= locales[:menu_orders]%></span></a>
+            <a href="/orders/mine"><span><%= t(:menu_orders)%></span></a>
           </li>
           <% end %>
         </ul>

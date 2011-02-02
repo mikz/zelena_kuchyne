@@ -109,6 +109,13 @@ class User < ActiveRecord::Base
       return super(method, *args)
     end
   end
+
+  def respond_to_with_profile?(method)
+    return true if UserProfileType.cached_list.has_key?(method.to_s)
+    
+    respond_to_without_profile?(method)
+  end
+  alias_method_chain :respond_to?, :profile
   
   def read_profile(attr)
     list = UserProfileType.cached_list

@@ -57,7 +57,7 @@ class DialyMenusController < ApplicationController
       if(@record.save and @record.errors.empty?)
         respond_to do |f|
           format f, :html do
-            flash[:notice] = locales[:update_successful]
+            flash[:notice] = t(:update_successful)
             redirect_back_or_default :action => 'show', :id => @record
           end
           format f, :xml do

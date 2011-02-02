@@ -15,20 +15,20 @@ class BasketController < ApplicationController
       current_user.basket.reload.update_delivery_method(true)
       respond_to do |format|
         format.html do
-          flash[:notice] = locales[:item_added_to_basket]
+          flash[:notice] = t(:item_added_to_basket)
           redirect_to :back
         end
         format.js do
           render :update do |page|
             page.remove "notice"
-            page.insert_html :top, "text", :partial => "shared/notice", :locals => {:message => locales[:item_added_to_basket]}
+            page.insert_html :top, "text", :partial => "shared/notice", :locals => {:message => t(:item_added_to_basket)}
             page.call "init_notice"
           end
         end
       end
-    rescue Exception => e
-      Rails.logger.error "Error: #{e.inspect}"
-      flash[:notice] = locales[:item_cannot_be_added_to_basket]
+    rescue Order => e
+      Rails.logger.error "Error: #{e.inspect} - #{e.backtrace}"
+      flash[:notice] = t(:item_cannot_be_added_to_basket)
       respond_to do |format|
         format.html do
           redirect_to :back
@@ -51,7 +51,7 @@ class BasketController < ApplicationController
       if !@basket.valid_without_callbacks? && @basket.errors.on(:ordered_items)
         @basket.fix_amounts
         @basket.save
-        msg = locales[:we_edited_your_order] + " " + locales[:she_had_more_meals_then_we_can_deliver]
+        msg = t(:we_edited_your_order) + " " + t(:she_had_more_meals_then_we_can_deliver)
       else
         @basket.make_menus_from_meals
       end
@@ -72,7 +72,7 @@ class BasketController < ApplicationController
           end
         end
         format.html do
-          flash[:notice] = msg.to_s + locales[:order_updated]
+          flash[:notice] = msg.to_s + t(:order_updated)
           redirect_to :back
         end
       end
@@ -106,13 +106,13 @@ class BasketController < ApplicationController
     @basket = current_user.basket
     @address = (@basket.user.address[:delivery].nil?) ? @basket.user.address[:home] : @basket.user.address[:delivery]
     unless(logged_in?)
-      flash[:notice] = locales[:please_sign_up]
+      flash[:notice] = t(:please_sign_up)
       store_location
       redirect_to(:controller => 'users', :action => 'new')
       return
     end
     unless(@address)
-      flash[:notice] = locales[:please_fill_your_address]
+      flash[:notice] = t(:please_fill_your_address)
       store_location
       redirect_to(:controller => 'users', :action => 'edit', :id => current_user.id)
       return
@@ -124,10 +124,10 @@ class BasketController < ApplicationController
       
       if !@basket.save
         if @basket.errors.on(:deliver_at)
-          flash[:notice] = locales[:deliver_at_time_was_unavailable]
+          flash[:notice] = t(:deliver_at_time_was_unavailable)
         end
         if @basket.errors.on(:products)
-          flash[:notice] = locales[:unable_to_deliver_product]
+          flash[:notice] = t(:unable_to_deliver_product)
         end
         redirect_to :action => :index
         return
@@ -147,19 +147,19 @@ class BasketController < ApplicationController
       update_order
     elsif params[:validate]
       if current_user.guest?
-        flash[:notice] = locales[:please_sign_up]
+        flash[:notice] = t(:please_sign_up)
         store_location
         redirect_to(:controller => 'users', :action => 'new')
         return
       elsif (!@basket.valid_without_callbacks? && @basket.errors.on(:ordered_items))
           @basket.fix_amounts
           @basket.save
-          flash[:notice] = locales[:we_edited_your_order] + " " + locales[:she_had_more_meals_then_we_can_deliver]
+          flash[:notice] = t(:we_edited_your_order) + " " + t(:she_had_more_meals_then_we_can_deliver)
           redirect_to :action => :index
       elsif  params[:order] and params[:order]['confirmed'] #if everything is ok
         validate_order
       else 
-       flash[:notice] = locales[:have_to_accept_agreement]
+       flash[:notice] = t(:have_to_accept_agreement)
        redirect_to :action => :index
       end
     elsif params[:submit]
@@ -175,7 +175,7 @@ class BasketController < ApplicationController
     @order.notice = params[:order]["notice"] if @order
     if(logged_in?)
       if (@order.valid_without_callbacks?)
-          flash[:notice] = locales[:order_submitted].chars.capitalize
+          flash[:notice] = t(:order_submitted).mb_chars.capitalize
           @order.state = 'order'
           @order.save
           begin
@@ -191,17 +191,17 @@ class BasketController < ApplicationController
       elsif @basket.errors.on(:ordered_items)
         @basket.fix_amounts
         @basket.save
-        flash[:notice] = locales[:we_edited_your_order] + " " + locales[:she_had_more_meals_then_we_can_deliver]
+        flash[:notice] = t(:we_edited_your_order) + " " + t(:she_had_more_meals_then_we_can_deliver)
         redirect_to :action => "index"
       elsif @basket.errors.on(:deliver_at)
-        flash[:notice] = locales[:deliver_at_time_was_unavailable]
+        flash[:notice] = t(:deliver_at_time_was_unavailable)
         redirect_to :action => "index"
       elsif @basket.errors.on(:products)
-        flash[:notice] = locales[:errors_on_products]
+        flash[:notice] = t(:errors_on_products)
         redirect_to :action => "index"
       end
     else
-      flash[:notice] = locales[:please_sign_up]
+      flash[:notice] = t(:please_sign_up)
       store_location
       redirect_to(:controller => 'users', :action => 'new')
     end
@@ -214,7 +214,7 @@ class BasketController < ApplicationController
     @basket.destroy if @basket.ordered_items.size == 0
     respond_to do |format|
       format.html do
-        flash[:notice] = locales[:item_removed_from_basket]
+        flash[:notice] = t(:item_removed_from_basket)
         redirect_to :back
       end
       format.js do
@@ -267,9 +267,9 @@ class BasketController < ApplicationController
             render :update do |page|
               unless(disabled || @basket.disabled?)
                 page.remove "notice"
-                page.insert_html :top, "text", :partial => "shared/notice", :locals => {:message => locales[:date_of_delivery_changed]}
+                page.insert_html :top, "text", :partial => "shared/notice", :locals => {:message => t(:date_of_delivery_changed)}
                 page.call "init_notice"
-                page.replace_html "deliver_at", "#{format_date(@basket.deliver_at)} #{smart_link locales[:change].chars.capitalize, {:action => "change_deliver_on"}, :id => "deliver_at_link"}"
+                page.replace_html "deliver_at", "#{format_date(@basket.deliver_at)} #{smart_link t(:change).mb_chars.capitalize, {:action => "change_deliver_on"}, :id => "deliver_at_link"}"
                 page.visual_effect :highlight, "deliver_at", :duration => 0.5
                 page.replace_html "order", :partial => "order"
                 page.visual_effect :highlight, "order", :duration => 0.5
@@ -280,7 +280,7 @@ class BasketController < ApplicationController
             end
           }
           format.html {
-            flash[:notice] = locales[:date_of_delivery_changed]
+            flash[:notice] = t(:date_of_delivery_changed)
             redirect_to :controller => :basket, :action => :index
           }
         end # end respond_to
@@ -291,7 +291,7 @@ class BasketController < ApplicationController
             render :update do |page|
               page.replace_html "text", :partial => "empty_basket"
               page.remove "notice"
-              page.insert_html :top, "text", :partial => "shared/notice", :locals => {:message => locales[:item_cannot_be_added_to_basket]}
+              page.insert_html :top, "text", :partial => "shared/notice", :locals => {:message => t(:item_cannot_be_added_to_basket)}
               page.call "init_notice"
             end
           }

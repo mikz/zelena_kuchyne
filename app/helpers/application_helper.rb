@@ -35,20 +35,20 @@ module ApplicationHelper
     options ||= {}
     case value
       when nil
-        locales['unknown_f']
+        t('unknown_f')
       when 0
-        locales['immediately']
+        t('immediately')
       when 1
-        locales['1_day']
+        t('1_day')
       when 2..4
-        locales['2to4_days'].sub "%n", (value.seconds / (24*60*60)).to_s
+        t('2to4_days').sub "%n", (value.seconds / (24*60*60)).to_s
       else
-        locales['x_days'].sub "%n", (value.seconds / (24*60*60)).to_s
+        t('x_days').sub "%n", (value.seconds / (24*60*60)).to_s
     end
   end
   
   def format_distance(value, options ={})
-    "#{format_numeric(value,options)}#{locales[:distance_unit]}"
+    "#{format_numeric(value,options)}#{t(:distance_unit)}"
   end
   
   def format_numeric(value, options = {})
@@ -98,23 +98,23 @@ module ApplicationHelper
   alias formar_bignum format_numeric
   
   def format_currency(value, options = {})
-    template = options[:template] || locales[:currency] 
+    template = options[:template] || t(:currency) 
     number = format_numeric(value, options.merge({:precision => 2}))
-    return template.gsub('%number', number)
+    return template.gsub('{number}', number)
   end
   
   def format_date(value, options = {})
-    template = options[:template] || locales[:date]
-    return template.gsub('%day', value.day.to_s).gsub('%month_name', locales["month_#{value.month}"]).gsub('%month', value.month.to_s).gsub('%year', value.year.to_s)
+    template = options[:template] || t(:date, :raise => false)
+    return template.gsub('{day}', value.day.to_s).gsub('{month_name}', t("month_#{value.month}")).gsub('{month}', value.month.to_s).gsub('{year}', value.year.to_s)
   end
   
   def format_date_with_weekday(value, options={})
-    template = options[:template] || locales[:date_with_weekday]
-    return template.gsub('%weekday',locales['weekdays'][value.wday-1]).gsub('%day', value.day.to_s).gsub('%month_name', locales["month_#{value.month}"]).gsub('%month', value.month.to_s).gsub('%year', value.year.to_s)
+    template = options[:template] || t(:date_with_weekday)
+    return template.gsub('{weekday}',t('weekdays')[value.wday-1]).gsub('{day}', value.day.to_s).gsub('{month_name}', t("month_#{value.month}")).gsub('{month}', value.month.to_s).gsub('{year}', value.year.to_s)
   end
   
   def format_time(value, options = {})
-    template = options[:template] || locales[:time]
+    template = options[:template] || t(:time)
     flag = value.hour > 12 ? 'PM' : 'AM'
     hour12 = (flag == 'AM' ? value.hour : value.hour - 12).to_s
     hour12 = hour12.length == 1 ? hour12 = "0#{hour12}" : hour12
@@ -122,24 +122,24 @@ module ApplicationHelper
     hour24 = hour24.length == 1 ? hour24 = "0#{hour24}" : hour24
     minute = value.min.to_s
     minute = minute.length == 1 ? minute = "0#{minute}" : minute
-    return template.gsub('%24hour', hour24).gsub('%minute', minute).gsub('%flag', flag).gsub('%hour', hour12)
+    return template.gsub('{24hour}', hour24).gsub('{minute}', minute).gsub('%flag', flag).gsub('%hour', hour12)
   end
   
   def format_nil_class(value, options = {})
-    options[:template] || locales[:null]
+    options[:template] || t(:null)
   end
   
   def format_true_class(value, options = {})
-    options[:template] || locales[:true]
+    options[:template] || t(:true)
   end
   
   def format_false_class(value, options = {})
-    options[:template] || locales[:false]
+    options[:template] || t(:false)
   end
   
   def format_phone_number(phone_number, country_code=nil, options ={})
-    phone_number_tpl = locales[:phone_number_template]
-    country_code_tpl = locales[:country_code_template]
+    phone_number_tpl = t(:phone_number_template)
+    country_code_tpl = t(:country_code_template)
     country_code_out = country_code ? country_code_tpl.gsub("%cc",country_code) : nil
     
     phone_number_out = phone_number_tpl.clone
@@ -151,10 +151,10 @@ module ApplicationHelper
   
   def format_date_and_time(value, options={})
     format = nil
-    locales[:date_and_time].each {|f|
+    t(:date_and_time).each {|f|
       format = f.first if f.last["hour"].include?(value.hour)
     }
-    return format.sub("%date", format_date(value)).sub("%time", format_time(value))
+    return format.sub("{date}", format_date(value)).sub("{time}", format_time(value))
   end
   
   def format_percent(value, options = {})
@@ -162,7 +162,7 @@ module ApplicationHelper
   end
   
   def format_amount(value, options = {})
-    unit = (options[:unit])? (locales.has_key?(options[:unit]))? locales[options[:unit]] : options[:unit]: locales[:amount_unit]  # if option :unit is locale key - use locales. if isn't - use it as string. else user locales[:amount_unit]
+    unit = (options[:unit])? (locales.has_key?(options[:unit]))? t(options[:unit]) : options[:unit]: t(:amount_unit)  # if option :unit is locale key - use locales. if isn't - use it as string. else user t(:amount_unit)
     return "#{format(value)} #{unit}"
   end
 end

@@ -4,6 +4,6 @@
   <td><%= format((column[:proc].is_a?(Proc))? column[:proc].call(val) : val,column[:options]) %></td>
 <% end %>
 <td>
-  <%= (record.active?)? (smart_link locales[:deactivate], :action => 'deactivate', :id => record) : (smart_link locales[:activate], :action => 'activate', :id => record) %>
-  | <%= smart_link locales[:delete], {:action => 'destroy', :id => record}, :confirm => locales['delete_confirmation'] %>
+  <%= (record.active?)? (smart_link t(:deactivate), :action => 'deactivate', :id => record) : (smart_link t(:activate), :action => 'activate', :id => record) %>
+  | <%= smart_link t(:delete), {:action => 'destroy', :id => record}, :confirm => t('delete_confirmation') %>
 </td>
