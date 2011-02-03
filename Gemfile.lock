@@ -1,0 +1,51 @@
+GIT
+  remote: https://github.com/MrJoy/jrails.git
+  revision: d97cb2fb7ddea892484a830819e158820c98bc14
+  specs:
+    jrails (0.6.0)
+
+GEM
+  remote: http://rubygems.org/
+  specs:
+    actionmailer (2.3.10)
+      actionpack (= 2.3.10)
+    actionpack (2.3.10)
+      activesupport (= 2.3.10)
+      rack (~> 1.1.0)
+    activerecord (2.3.10)
+      activesupport (= 2.3.10)
+    activeresource (2.3.10)
+      activesupport (= 2.3.10)
+    activesupport (2.3.10)
+    awesome_print (0.3.2)
+    chronic (0.3.0)
+    fastercsv (1.5.4)
+    haml (3.0.25)
+    nokogiri (1.4.4)
+    pg (0.10.1)
+    rack (1.1.0)
+    rails (2.3.10)
+      actionmailer (= 2.3.10)
+      actionpack (= 2.3.10)
+      activerecord (= 2.3.10)
+      activeresource (= 2.3.10)
+      activesupport (= 2.3.10)
+      rake (>= 0.8.3)
+    rake (0.8.7)
+    sanitize (2.0.0)
+      nokogiri (~> 1.4.4)
+    will_paginate (2.3.15)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  awesome_print
+  chronic
+  fastercsv
+  haml
+  jrails!
+  pg
+  rails (= 2.3.10)
+  sanitize
+  will_paginate
