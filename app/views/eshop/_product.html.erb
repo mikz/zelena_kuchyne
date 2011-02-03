@@ -4,7 +4,7 @@
 <p>
   <%= t(:price).mb_chars.capitalize%>: <%= format_currency product.price%><br/>
   <%- if product.on_stock? -%>
-    <%= t(:on_stock).mb_chars.capitalize%>: <%= t(:true).mb_chars.capitalize%>
+    <%= t(:on_stock).mb_chars.capitalize%>: <%= t(:true_class).mb_chars.capitalize%>
   <%-else-%>
     <%=t(:term_of_delivery).mb_chars.capitalize%>: <%= format_interval product.term_of_delivery%>
   <%-end-%>

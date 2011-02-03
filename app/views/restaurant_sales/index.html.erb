@@ -1,5 +1,5 @@
 <% content_for :javascript do %>
-  <% fw_strings = {:val_true => t('true'), :val_false => t('false'), :submit => t('submit'), :show_all => t('show_all'), :formats => {'xls' => t('download') + " XLS"}} %>
+  <% fw_strings = {:val_true => t(:true_class), :val_false => t(:false_class), :submit => t('submit'), :show_all => t('show_all'), :formats => {'xls' => t('download') + " XLS"}} %>
   <%= filter_widget("records-rules", :url => url_for(params),
                                    :wrap => false,
                                    :beforeSend => %{function() {$("#records").html('<p><img src="/images/loading.gif" alt="loading" /></p>');}},

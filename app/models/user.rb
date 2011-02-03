@@ -2,8 +2,8 @@ require 'digest/sha2'
 
 class User < ActiveRecord::Base
   has_many :orders
-  has_many :groups, :through => :memberships, :order => "groups.title ASC"
-  has_many :memberships
+  has_many :memberships, :order => nil
+  has_many :groups, :through => :memberships#, :order => "groups.title ASC"
   has_many :user_profiles
   has_many :addresses
   has_many :user_discounts

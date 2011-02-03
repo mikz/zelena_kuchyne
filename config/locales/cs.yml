@@ -83,8 +83,9 @@ cs:  #-- title
   signed_in: přihlášení proběhlo úspěšně
   signin: přihlášení
   signed_out: uživatel byl odhlášen
-  true: ano
-  false: ne
+  true_class: ano
+  false_class: ne
+  nil_class: (neurčeno)
   'null': (neurčeno)
   from: od
   to: do
@@ -266,6 +267,7 @@ cs:  #-- title
   order_status_closed_pl: uzavřené
   order_status_all: všechny
   order_status_all_cancelled: všechny a zrušené
+  order_status_validating: nepotvrzená
   order_cancelled: zrušena
   order_cancelled_pl: zrušené
   #-- model attributes --

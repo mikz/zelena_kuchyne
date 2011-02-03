@@ -103,7 +103,7 @@ class MealsController < ApplicationController
     
     super
 
-#    return unless @record.errors.empty?
+    return unless @record.errors.empty?
 
     if(params['image_file'])
       @record.save_image params['image_file']

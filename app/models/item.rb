@@ -39,33 +39,29 @@ class Item < ActiveRecord::Base
     return @item_id
   end
   
-  def method_missing(method, *args)
-    attr = method.to_s
-    DEBUG {%w{attr}}
-    if attr.last == "?"
-      attr = attr.chop
-      if ItemProfileType.cached_list.has_key? attr
-        return !self.read_profile(attr).blank?
-      else
-        return self.item_type == attr
+  DEBUG {%w{ItemProfileType.cached_list.keys}}
+  
+  ItemProfileType.cached_list.keys.each do |key|
+    self.class_eval %{
+      def #{key}
+        read_profile(#{key.inspect})
       end
-    else
-      list = ItemProfileType.cached_list
-      if(list.has_key?(attr.gsub('=', '')))
-        return (attr.include?('=') ? self.set_profile(attr.gsub('=', ''), args[0]) : self.read_profile(attr))
-      else
-        return super(method, *args)
+      
+      def #{key}=(val)
+        set_profile(#{key.inspect}, val)
       end
-    end
+      
+      def #{key}?
+        #{key}.present?
+      end
+    }
   end
   
-  def respond_to_with_profiles?(*args)
-    return true if ItemProfileType.cached_list.has_key?  args.first.to_s
-    return true if ItemProfileType.cached_writers.include?  args.first.to_s
-    
-    respond_to_without_profiles?(*args)
+  def item_type
+    ActiveSupport::StringInquirer.new(self[:item_type])
   end
-  alias_method_chain :respond_to?, :profiles
+  
+  delegate :product?, :meal?, :menu?, :bundle?, :to => :item_type
   
   def read_profile(attr)
     list = ItemProfileType.cached_list

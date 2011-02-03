@@ -126,15 +126,15 @@ module ApplicationHelper
   end
   
   def format_nil_class(value, options = {})
-    options[:template] || t(:null)
+    options[:template] || t(:nil_class)
   end
   
   def format_true_class(value, options = {})
-    options[:template] || t(:true)
+    options[:template] || t(:true_class)
   end
   
   def format_false_class(value, options = {})
-    options[:template] || t(:false)
+    options[:template] || t(:false_class)
   end
   
   def format_phone_number(phone_number, country_code=nil, options ={})

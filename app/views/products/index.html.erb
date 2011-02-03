@@ -1,5 +1,5 @@
 <%  content_for :javascript do %>
-<%  fw_strings = {:val_true => t('true'), :val_false => t('false'), :submit => t('submit'), :show_all => t('show_all'), :formats => {'xls' => t('download') + " XLS"}}    
+<%  fw_strings = {:val_true => t(:true_class), :val_false => t(:false_class), :submit => t('submit'), :show_all => t('show_all'), :formats => {'xls' => t('download') + " XLS"}}    
   categories_hash = {"null" => t(:none_assigned) }
   @categories.each { |d|
     categories_hash[d.id] = d.name

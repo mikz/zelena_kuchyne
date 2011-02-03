@@ -30,8 +30,10 @@ function before_submit(elem) {
 var form_onsubmit;
 var send_form;
 jQuery(function() {
+  console.log(window.location.pathname, window.location.pathname == "/basket")
   if(window.location.pathname == "/basket") {
       jQuery("#order_confirmed").bind("click",function() {
+        console.log("clicked")
       if(this.checked) {
         jQuery("#submit_confirmation p:first").hide();
         jQuery("#submit_confirmation p:last button:first").attr("disabled",false);

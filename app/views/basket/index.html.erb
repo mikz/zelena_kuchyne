@@ -26,7 +26,7 @@
       <li><%= t(:time_of_delivery_approximately).mb_chars.capitalize %>: <strong></strong>.</li>
     </ul>
     <p><%=t(:have_to_accept_agreement)%></p>
-    <p>Pokračovat ? <button disabled="disabled" class="confirm_yes"><%= t(:true)%></button><button class="confirm_no"><%= t(:false)%></button></p>
+    <p>Pokračovat ? <button disabled="disabled" class="confirm_yes"><%= t(:true_class)%></button><button class="confirm_no"><%= t(:false_class)%></button></p>
   </div>
   <p id="validate_order"><input type="submit" name="validate" value="<%= t(:validate_order) %>" <%= "disabled='disabled'" if @basket.disabled? %>/></p>
 <%else%>
