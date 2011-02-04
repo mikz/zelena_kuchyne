@@ -74,7 +74,6 @@ class DialyMenusController < ApplicationController
           end
         end
       else
-        DEBUG{%w{@record.errors}}
         respond_to do |f|
           format f, :html do
             redirect_to :action => 'edit'

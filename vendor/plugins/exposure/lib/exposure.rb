@@ -228,12 +228,10 @@ module Exposure
         respond_to do |f|
           
           format f, :xml do
-            DEBUG {%w{f "xml"}}
             head :ok
           end
           
           format f, :js do
-            DEBUG {%w{f "js"}}
             if(request.referer =~ /^#{url_for(:action => 'index')}/)
               render 'show.js'
             else
@@ -242,7 +240,6 @@ module Exposure
           end
           
           format f, :html do
-            DEBUG {%w{f "html"}}
             flash[:notice] = t(:update_successful)
             redirect_back_or_default :action => 'show', :id => @record
           end

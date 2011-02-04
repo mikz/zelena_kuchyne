@@ -9,7 +9,6 @@ class MassMenuController < ApplicationController
     @dates.each do |date|
       @delivery[date] = Order.delivery_times(date, Time.now, current_user)
     end
-    DEBUG {%w{@delivery}}
     respond_to do |format|
       format.html
     end

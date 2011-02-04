@@ -136,7 +136,6 @@ class MenuController < ApplicationController
     filter_meals.each_pair{ |date, days|
        categories_conditions.push date, days
     }
-    DEBUG {%w{categories_conditions filter_meals}}
     @categories = MealCategory.find :all, :include => [{:meals => :scheduled_meals}, :order], :conditions => categories_conditions, :order => "meal_category_order.order_id ASC"
     @scheduled_bundles = ScheduledBundle.find :all, :conditions => ["scheduled_bundles.scheduled_for IN (?) AND scheduled_bundles.invisible = false", dates], :include => [{:bundle => {:meal => :meal_category}}]
 

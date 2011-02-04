@@ -39,7 +39,6 @@ class Item < ActiveRecord::Base
     return @item_id
   end
   
-  DEBUG {%w{ItemProfileType.cached_list.keys}}
   
   ItemProfileType.cached_list.keys.each do |key|
     self.class_eval %{
