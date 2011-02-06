@@ -1,13 +1,11 @@
 module BasketHelper
   
-  def time_of_delivery_options(steps = @delivery[:steps])
-    selected = false
-    buff = ""
-    steps.each do |step|
-      select = true if step.strftime("%H:%M") == @basket.deliver_at.strftime("%H:%M") or step == steps.last and !selected if @basket
-      buff += "<option value='#{step.strftime("%H:%M")}'#{" selected='selected'" if select }>#{step.strftime("%H:%M")}</option>"
-      selected = true if select
-    end
-    buff
+  def time_of_delivery_options(steps = @delivery[:steps], selected = nil, order = @basket )
+    selected = selected.presence || order.deliver_at.strftime("%H:%M") if order
+    steps.map{ |step|
+      attrs = {:value => step.strftime("%H:%M")}
+      attrs.merge! :selected => true if step.strftime("%H:%M") == selected
+      content_tag :option, step.strftime("%H:%M"), attrs
+    }.join
   end
 end

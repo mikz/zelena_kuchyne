@@ -2,27 +2,41 @@ class MassMenuController < ApplicationController
   active_section 'menu'
   include_javascripts "menu"
   
-  def index
+  def show
     @days = Day.find(:all, :conditions => ["scheduled_for >= ?", Date.today]).collect &:scheduled_for
     load_all_scheduled_for ["scheduled_for IN (?)", @days]
     @delivery = {}
     @dates.each do |date|
       @delivery[date] = Order.delivery_times(date, Time.now, current_user)
     end
+
+    @mass_menu = session[:mass_menu] || MassMenu.new(Hash[@scheduled_items.map{|k,v|[k.to_s,'']}])
+    
+    load_orders(false).each &:destroy
+    
     respond_to do |format|
       format.html
     end
   end
   
-  def create
-    load_orders
+  def update
     
+    session[:mass_menu] = MassMenu.new params[:mass_menu]
+    unless params[:mass_menu].delete(:confirmation)
+      return redirect_to(:back, :notice => t(:have_to_accept_agreement))
+    end
+    
+    load_orders
     Order.transaction do
       params[:mass_menu].each_pair do |date, params|
-        o = Order.create(:deliver_at => date, :state => 'validating', :user => current_user)
-        o.time_of_delivery = params.delete('time_of_delivery')
+        o = Order.create(:deliver_at => date, :state => 'validating', :user => current_user, :time_of_delivery => params.delete(:time_of_delivery))
         o.update_or_insert_items params
-        o.save
+        if !o.valid_without_callbacks? && o.errors.on(:ordered_items)
+          o.fix_amounts
+          o.save
+          flash.now[:notice] = t(:we_edited_your_order) + " " + t(:she_had_more_meals_then_we_can_deliver)
+        end
+
         o.reload
         @orders << o.order_view
         o.destroy if o.ordered_items.blank?
@@ -32,12 +46,12 @@ class MassMenuController < ApplicationController
         format.html
       end
       
-      session[:mass_menu] = @orders.collect &:id
+      session[:mass_menu_orders] = @orders.collect &:id
     end
   end
   
   
-  def confirm
+  def create
     load_orders
     @orders.each do |view|
       
@@ -55,17 +69,20 @@ class MassMenuController < ApplicationController
       end
     end
     
-    flash[:notice] = t(:order_submitted).mb_chars.capitalize
+    session[:mass_menu_orders] = session[:mass_menu] = nil
+    flash[:notice] = t(:orders_submitted).mb_chars.capitalize
     
     redirect_to "/"
   end
   
 protected
-  def load_orders
+  def load_orders(views = true)
     @orders = []
-    unless session[:mass_menu].blank?
-      @orders = Order.find(:all, :conditions => ["id IN (?)", session[:mass_menu]]).map(&:order_view)
+    unless session[:mass_menu_orders].blank?
+      @orders = Order.find(:all, :conditions => ["id IN (?)", session[:mass_menu_orders]])
+      @orders = @orders.map(&:order_view) if views
     end
+    @orders
   end
   
   def load_all_scheduled_for conditions = ["scheduled_for >= ?", Date.today], expand_menus = false
@@ -75,7 +92,7 @@ protected
     end
     @dates = @days.collect &:scheduled_for
     
-    @menus = Menu.find :all, :include => [:scheduled_menus, {:meals => {:meal_category => :order}}], :conditions => ["scheduled_menus.scheduled_for IN (?) AND scheduled_menus.invisible = false", @dates], :order => "meal_category_order.order_id ASC"
+    @menus = Menu.find :all, :include => [{:scheduled_menus => {:menu => [:item_profiles, :item_discounts]}}, :item_profiles, :item_discounts, {:meals => [{:meal_category => :order}, :meal_flags, :item_profiles, :item_discounts]}], :conditions => ["scheduled_menus.scheduled_for IN (?) AND scheduled_menus.invisible = false", @dates], :order => "meal_category_order.order_id ASC"
     
     filter_meals = {}
     @menus.each do |menu|
@@ -94,8 +111,8 @@ protected
        categories_conditions.push date, days
     }
     
-    @categories = MealCategory.find :all, :include => [{:meals => :scheduled_meals}, :order], :conditions => categories_conditions, :order => "meal_category_order.order_id ASC"
-    @bundles = ScheduledBundle.find :all, :conditions => ["scheduled_bundles.scheduled_for IN (?) AND scheduled_bundles.invisible = false", @dates], :include => [{:bundle => {:meal => :meal_category}}]
+    @categories = MealCategory.find :all, :include => [:order, {:meals => [:scheduled_meals, :meal_flags, :item_profiles, :item_discounts]}], :conditions => categories_conditions, :order => "meal_category_order.order_id ASC"
+    @bundles = ScheduledBundle.find :all, :conditions => ["scheduled_bundles.scheduled_for IN (?) AND scheduled_bundles.invisible = false", @dates], :include => [{:bundle => {:meal => [:meal_category, :item_profiles, :item_discounts]}}]
     
     @categories.each do |category|
       category.meals.each do |meal|

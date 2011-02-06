@@ -104,25 +104,15 @@ module ApplicationHelper
   end
   
   def format_date(value, options = {})
-    template = options[:template] || t(:date, :raise => false)
-    return template.gsub('{day}', value.day.to_s).gsub('{month_name}', t("month_#{value.month}")).gsub('{month}', value.month.to_s).gsub('{year}', value.year.to_s)
+    l value.to_date
   end
   
   def format_date_with_weekday(value, options={})
-    template = options[:template] || t(:date_with_weekday)
-    return template.gsub('{weekday}',t('weekdays')[value.wday-1]).gsub('{day}', value.day.to_s).gsub('{month_name}', t("month_#{value.month}")).gsub('{month}', value.month.to_s).gsub('{year}', value.year.to_s)
+    l value.to_date, :format => :with_day_abbr
   end
   
   def format_time(value, options = {})
-    template = options[:template] || t(:time)
-    flag = value.hour > 12 ? 'PM' : 'AM'
-    hour12 = (flag == 'AM' ? value.hour : value.hour - 12).to_s
-    hour12 = hour12.length == 1 ? hour12 = "0#{hour12}" : hour12
-    hour24 = value.hour.to_s
-    hour24 = hour24.length == 1 ? hour24 = "0#{hour24}" : hour24
-    minute = value.min.to_s
-    minute = minute.length == 1 ? minute = "0#{minute}" : minute
-    return template.gsub('{24hour}', hour24).gsub('{minute}', minute).gsub('%flag', flag).gsub('%hour', hour12)
+    l value, :format => :very_short
   end
   
   def format_nil_class(value, options = {})
@@ -150,11 +140,7 @@ module ApplicationHelper
   end
   
   def format_date_and_time(value, options={})
-    format = nil
-    t(:date_and_time).each {|f|
-      format = f.first if f.last["hour"].include?(value.hour)
-    }
-    return format.sub("{date}", format_date(value)).sub("{time}", format_time(value))
+    l value
   end
   
   def format_percent(value, options = {})
