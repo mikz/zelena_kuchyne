@@ -5,7 +5,7 @@ gem "pg"
 
 gem 'will_paginate'
 gem "fastercsv"
-gem "jrails", :git => "https://github.com/MrJoy/jrails.git"
+gem "jrails"#, :git => "https://github.com/MrJoy/jrails.git"
 gem "sanitize"
 gem 'haml'
 gem 'chronic'

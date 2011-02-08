@@ -299,7 +299,7 @@ jQuery.fn.extend({
       }
     });
   },
-  formatError: function() {
+  formatError: function(given) {
       var JSON;
       var errors;
       var list;
@@ -312,8 +312,17 @@ jQuery.fn.extend({
         return false;
       }
       this.each(function(i) {
-          jQuery.data(this,"error",jQuery(this).html());
-          JSON = eval(jQuery(this).html());
+          if(given){
+            JSON = given;
+          } else {
+            $(this).data("error",jQuery(this).html());
+            try {
+              JSON = eval(jQuery(this).html());
+            } catch (e) {
+              throw "Bad JSON - " + e.toString();
+            }
+            
+          }
           var element, form, done;
           done = [];
           form = $(this).parents("form");
@@ -340,7 +349,7 @@ jQuery.fn.extend({
               });
               
             } else {
-              element = $("#"+JSON[i][0]);
+              element = $("#"+JSON[i][0].replace("=_address", ""));
               if(element.length == 1 && element.is("tr")) {
                 element.addClass("formError");
                 if( !in_array(done, element.get(0) ) ) {

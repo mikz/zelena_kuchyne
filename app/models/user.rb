@@ -95,31 +95,28 @@ class User < ActiveRecord::Base
   def self.encrypt(data, salt)
     Digest::SHA256.hexdigest("--#{salt}--#{data}--")
   end
-
-  def method_missing(method, *args)
-    attr = method.to_s
-    list = UserProfileType.cached_list
-    if(list.has_key?(attr.gsub('=', '')))
-      return (attr.include?('=') ? self.set_profile(attr.gsub('=', ''), args[0]) : self.read_profile(attr))
-    elsif(method.to_s == 'home_address=' || method.to_s == 'delivery_address=')
-      return self.set_address(method.to_s.split('_')[0], *args)
-    elsif (attr =~ /\?$/) && !(attr =~ /_changed\?$/)
-      return !self.send(attr.chop).blank?
-    else
-      return super(method, *args)
-    end
+  
+  UserProfileType.cached_list.keys.each do |key|
+    self.class_eval %{
+      def #{key}
+        read_profile(#{key.inspect})
+      end
+      
+      def #{key}=(val)
+        set_profile(#{key.inspect}, val)
+      end
+      
+      def #{key}?
+        #{key}.present?
+      end
+    }
   end
-
-  def respond_to_with_profile?(method)
-    return true if UserProfileType.cached_list.has_key?(method.to_s)
-    
-    respond_to_without_profile?(method)
-  end
-  alias_method_chain :respond_to?, :profile
   
   def read_profile(attr)
     list = UserProfileType.cached_list
-    @profiles = {} unless(@profiles.is_a? Hash)
+    attr = attr.to_sym
+    @profiles = {} unless @profiles.is_a?(Hash)
+    
     if(@profiles[list[attr]])
       return @profiles[list[attr]]
     else
@@ -132,7 +129,10 @@ class User < ActiveRecord::Base
   
   def set_profile(attr, value)
     list = UserProfileType.cached_list
-    @profiles = {} unless(@profiles.is_a? Hash)
+    attr = attr.to_sym
+    @profiles = {} unless @profiles.is_a?(Hash)
+    
+    return unless list[attr].present?
     @profiles[list[attr]] = value
     @profiles_changed ||= [];
     @profiles_changed.push list[attr]
@@ -151,6 +151,12 @@ class User < ActiveRecord::Base
     end
   end
   
+  ['home', 'delivery'].each do |address|
+    define_method(address + "_address=") do |*args|
+      set_address(address, *args)
+    end
+  end
+  
   def activate_delivery_address=(val)
     @activate_delivery_address = !val.blank? && val.to_i == 1
   end
@@ -164,16 +170,16 @@ class User < ActiveRecord::Base
   end
 
   def mass_menu= val
-    set_profile('mass_menu', (val.to_s.to_i == 1 || val == true)? true : false )
+    set_profile(:mass_menu, (val.to_s.to_i == 1 || val == true)? true : false )
   end
   
   def update_profiles
-    return unless @profiles_changed
-    query = "DELETE FROM user_profiles WHERE user_id = #{self.id} AND field_type IN (#{@profiles_changed.join(',')});"
-    self.connection.execute query
+    return unless @profiles_changed.present?
+    UserProfile.delete_all ["user_id = ? AND field_type IN (?)", self.id, @profiles_changed]
     @profiles_changed.each do |type_id|
       self.user_profiles.create({:field_type => type_id, :field_body => @profiles[type_id]})
     end
+    self.user_profiles.reload
     true
   end
   
@@ -241,6 +247,10 @@ class User < ActiveRecord::Base
     false
   end
   
+  def password?
+    @password.present?
+  end
+  
   def name
     if self.first_name? and self.family_name?
       "#{self.first_name} #{self.family_name}"
@@ -252,6 +262,7 @@ class User < ActiveRecord::Base
   def last_name
     self.family_name
   end
+  
   
   def delivery_address
     arr = {}
@@ -290,7 +301,7 @@ class User < ActiveRecord::Base
   end
   
   def interface_language
-    super ? super : Configuration.default_language
+    read_profile(:interface_language).presence || I18n.default_locale
   end
   
   def total_orders_price
@@ -325,6 +336,7 @@ class User < ActiveRecord::Base
   
   def disable_addresses
     self.addresses.each do |address|
+      DEBUG {%w{activate_delivery_address address.address_type}}
       address.disabled = !activate_delivery_address if address.address_type == 'delivery'
     end
   end

@@ -187,8 +187,8 @@ class UsersController < ApplicationController
         format.js do
           #update_notice @user.errors #TODO: update_notice is non-existent
           render :update do |page|
-            page.replace_html "validation_error",  @user.errors.to_json
-            page << %{$("#validation_error").formatError();}
+#            page.replace_html "validation_error",  
+            page << %{$("#validation_error").formatError(#{@user.errors.to_json});}
             page << %{$("#home_address_dont_validate").parent().show();}
             page << %{$("#delivery_address_dont_validate").parent().show();}
             page.visual_effect :appear, "validation_error"
@@ -251,6 +251,7 @@ class UsersController < ApplicationController
           head :ok
         end
         format.js do
+          DEBUG {%w{format}}
           render :update do |page|
             if session[:return_to]
               page << "window.location = '#{session[:return_to]}'"
@@ -272,8 +273,8 @@ class UsersController < ApplicationController
         format.js do
           #update_notice @user.errors #TODO: update_notice is non-existent
           render :update do |page|
-            page.replace_html "validation_error",  @user.errors.to_json
-            page << %{$("#validation_error").formatError();}
+#            page.replace_html "validation_error",  
+            page << %{$("#validation_error").formatError(#{@user.errors.to_json});}
             page << %{$("#home_address_dont_validate").parent().show();}
             page << %{$("#delivery_address_dont_validate").parent().show();}
             page.visual_effect :appear, "validation_error"
@@ -303,8 +304,8 @@ class UsersController < ApplicationController
       format.js do
         #update_notice @user.errors #TODO: update_notice is non-existent
         render :update do |page|
-          page.replace_html "validation_error",  @user.errors.to_json
-          page << %{$("#validation_error").formatError();}
+#          page.replace_html "validation_error",  
+          page << %{$("#validation_error").formatError(#{@user.errors.to_json});}
           page.visual_effect :appear, "validation_error"
         end
       end

@@ -5,3 +5,5 @@
 #   
 #   cities = City.create([{ :name => 'Chicago' }, { :name => 'Copenhagen' }])
 #   Major.create(:name => 'Daley', :city => cities.first)
+
+UserProfileType.create  :name => 'mass_menu', :data_type => 'hidden', :visible => false, :editable => false, :required => false

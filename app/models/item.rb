@@ -64,7 +64,7 @@ class Item < ActiveRecord::Base
   
   def read_profile(attr)
     list = ItemProfileType.cached_list
-    attr = attr.to_s
+    attr = attr.to_sym
     @profiles = {} unless(@profiles.is_a? Hash)
     if(@profiles[list[attr]])
       return @profiles[list[attr]]
@@ -78,15 +78,20 @@ class Item < ActiveRecord::Base
 
   def set_profile(attr, value)
     list = ItemProfileType.cached_list
-    @profiles = {} unless(@profiles.is_a? Hash)
+    DEBUG {%w{list}}
+    attr = attr.to_sym
+    @profiles = {} unless @profiles.is_a?(Hash)
+    
+    return unless list[attr].present?
     @profiles[list[attr]] = value
-    @profiles_changed ||= []; @profiles_changed.push list[attr]
+    @profiles_changed ||= []
+    @profiles_changed.push list[attr]
+    @profiles_changed.uniq!
   end
 
   def update_profiles
     return unless @profiles_changed
-    query = "DELETE FROM item_profiles WHERE item_id = #{self.item_id} AND field_type IN (#{@profiles_changed.join(',')});"
-    self.connection.execute query
+    ItemProfile.delete_all ["item_id = ? AND field_type IN (?)", self.item_id, @profiles_changed]
     @profiles.each do |type_id, value|
       ItemProfile.create({:item_id => self.item_id, :field_body => value, :field_type => type_id})
     end

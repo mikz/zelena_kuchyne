@@ -1,9 +1,3 @@
-GIT
-  remote: https://github.com/MrJoy/jrails.git
-  revision: d97cb2fb7ddea892484a830819e158820c98bc14
-  specs:
-    jrails (0.6.0)
-
 GEM
   remote: http://rubygems.org/
   specs:
@@ -21,6 +15,7 @@ GEM
     chronic (0.3.0)
     fastercsv (1.5.4)
     haml (3.0.25)
+    jrails (0.6.0)
     nokogiri (1.4.4)
     pg (0.10.1)
     rack (1.1.0)
@@ -44,7 +39,7 @@ DEPENDENCIES
   chronic
   fastercsv
   haml
-  jrails!
+  jrails
   pg
   rails (= 2.3.10)
   sanitize
