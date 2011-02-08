@@ -165,9 +165,10 @@
     </ul>
     <% if current_user.belongs_to?('admins')%>
       <p class="<%='formError' if (@user.errors["home_address_zone_reviewed"]) %>">
-          <label for="home_address_zone_reviewed"><%= t('zone_reviewed') %></label><br />
           <input type="checkbox" name="user[home_address][zone_reviewed]" id="home_address_zone_reviewed" value="1" <%= @user.address[:home] && @user.address[:home].zone_reviewed? ? 'checked="checked"' : "" %>/>
           <input type="hidden" name="user[home_address][zone_reviewed]" value="0"/>
+          
+          <label for="home_address_zone_reviewed"><%= t('zone_reviewed') %></label>
           <%= "<label for='home_address_zone_reviewed' class='formError'>#{@user.errors["home_address_zone_reviewed"]}</label>" if (@user.errors["home_address_zone_reviewed"]) %>
       </p>
     <% end%>
@@ -296,10 +297,8 @@
   </p>
   
   <p>
-    <label for="user_mass_menu"><%= t(:mass_menu)%></label><br/>
-    <%= check_box_tag "user[mass_menu]", "1", @user.mass_menu %>
-    <%= hidden_field_tag "user[mass_menu]", "0"%>
-    
+    <%= check_box "user", "mass_menu"%>
+    <label for="user_mass_menu"><%= t(:mass_menu)%></label>
   </p>
   
   <% if @user.belongs_to?('deliverymen') %>

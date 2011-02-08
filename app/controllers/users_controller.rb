@@ -251,7 +251,6 @@ class UsersController < ApplicationController
           head :ok
         end
         format.js do
-          DEBUG {%w{format}}
           render :update do |page|
             if session[:return_to]
               page << "window.location = '#{session[:return_to]}'"
