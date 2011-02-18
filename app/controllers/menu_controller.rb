@@ -6,9 +6,7 @@ class MenuController < ApplicationController
   def index
     @date = params[:id] ? Date.parse(params[:id]) : Date.today
     
-    url = params[:format].blank? ? menu_path(@date) : formatted_menu_path(@date, params[:format])
-    
-    redirect_to url, :status => :temporary_redirect
+    redirect_to  menu_path(@date), :status => :temporary_redirect
   end
   
   
@@ -36,9 +34,9 @@ class MenuController < ApplicationController
     @days = Day.find :all, :conditions => ["scheduled_for >= ?", Date.today]
     @date = params[:id] ? Date.parse(params[:id]) : Date.today
     
-    @menus = Menu.find :all, :include => [:scheduled_menus, {:meals => {:meal_category => :order}}], :conditions => "scheduled_menus.scheduled_for = '#{@date.to_s}' AND scheduled_menus.invisible = false", :order => "meal_category_order.order_id ASC"
+    @menus = Menu.find :all, :include => [:scheduled_menus, {:meals => {:meal_category => :order}}], :conditions => ["scheduled_menus.scheduled_for = ? AND scheduled_menus.invisible = false", @date], :order => "meal_category_order.order_id ASC"
     
-    @categories = MealCategory.find :all, :include => [{:meals => :scheduled_meals}, :order], :conditions => ["meals.always_available = true OR scheduled_meals.scheduled_for = '#{@date.to_s}' AND scheduled_meals.invisible = false AND meals.id NOT IN (?)", @menus.map{|m| m.meals.map(&:id)}.flatten.uniq], :order => "meal_category_order.order_id ASC"
+    @categories = MealCategory.find :all, :include => [{:meals => :scheduled_meals}, :order], :conditions => ["meals.always_available = true OR scheduled_meals.scheduled_for = ? AND scheduled_meals.invisible = false AND meals.id NOT IN (?)", @date, @menus.map{|m| m.meals.map(&:id)}.flatten.uniq], :order => "meal_category_order.order_id ASC"
     @scheduled_bundles = ScheduledBundle.find :all, :conditions => ["scheduled_bundles.scheduled_for = ? AND scheduled_bundles.invisible = false", @date.to_s], :include => [{:bundle => {:meal => :meal_category}}]
     
     
@@ -66,24 +64,14 @@ class MenuController < ApplicationController
     @delivery = Order.delivery_times(@date, Time.now)
     respond_to do |format|
       if @date < Date.today
-        format.html {
-          render :action => "unavailable", :status => :unprocessable_entity
-        }
-        format.json {
-          render :status => :unprocessable_entity
-        }
+        format.html { render 'unavailable', :status => :unprocessable_entity }
+        format.json { render :status => :unprocessable_entity }
       else
         if @scheduled_bundles.empty? && scheduled[:meals].empty?
-          format.html {
-            render :action => "no_scheduled_meals"
-          }
-          format.json {
-            render :status => :not_found
-          }
+          format.html { render 'no_scheduled_meals' }
+          format.json { render :status => :not_found }
         else
-          format.html {
-            render :action => 'show'
-          }
+          format.html { render 'show' }
           format.json {
             @scheduled = scheduled
             render

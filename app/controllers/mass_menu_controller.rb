@@ -4,6 +4,8 @@ class MassMenuController < ApplicationController
   
   def show
     @days = Day.find(:all, :conditions => ["scheduled_for >= ?", Date.today]).collect &:scheduled_for
+    return render('menu/no_scheduled_meals') unless @days.present?
+
     load_all_scheduled_for ["scheduled_for IN (?)", @days]
     @delivery = {}
     @dates.each do |date|
