@@ -1,4 +1,7 @@
 - form_for :mass_menu, :html => {:class => :mass_menu, :method => :post} do |f|
+  %p
+    Objednávka na uživatelské jméno
+    %strong= @user.login
   - @orders.each do |order|
     %table.order.menu
       %caption #{format_date_with_weekday(order.date)} &ndash; #{l order.deliver_at, :format => :very_short}

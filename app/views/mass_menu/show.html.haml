@@ -1,4 +1,9 @@
 - form_for :mass_menu, :html => {:class => :mass_menu, :method => :put} do |f|
+  - if current_user.admin?
+    %p
+      %label
+        Uživatelské jméno objednávajícího
+        =text_field_tag "order[user]", session[:order_user].presence || current_user.login
   - @scheduled_items.each do |date, items|
     - if @delivery[date][:steps].blank?
       %h1 Na #{format_date_with_weekday(date)} již nelze objednat.

@@ -24,15 +24,24 @@ class MassMenuController < ApplicationController
   def update
     
     session[:mass_menu] = MassMenu.new params[:mass_menu]
-    unless params[:mass_menu].delete(:confirmation)
+    unless params[:mass_menu].delete(:confirmation) || current_user.admin?
       return redirect_to(:back, :notice => t(:have_to_accept_agreement))
     end
     
+    @user = current_user
+    if current_user.admin? && params[:order].present? && params[:order][:user]
+      @user = User.find_by_login!(params[:order][:user])
+      session[:order_user] = params[:order][:user]
+    end
+    
     load_orders
+    
     Order.transaction do
       params[:mass_menu].each_pair do |date, params|
-        o = Order.create(:deliver_at => date, :state => 'validating', :user => current_user, :time_of_delivery => params.delete(:time_of_delivery))
+        
+        o = Order.create(:deliver_at => date, :state => 'validating', :user => @user, :time_of_delivery => params.delete(:time_of_delivery))
         o.update_or_insert_items params
+        
         if !o.valid_without_callbacks? && o.errors.on(:ordered_items)
           o.fix_amounts
           o.save
@@ -71,7 +80,7 @@ class MassMenuController < ApplicationController
       end
     end
     
-    session[:mass_menu_orders] = session[:mass_menu] = nil
+    session[:mass_menu_orders] = session[:mass_menu] = session[:order_user] = nil
     flash[:notice] = t(:orders_submitted).mb_chars.capitalize
     
     redirect_to "/"
