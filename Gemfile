@@ -17,3 +17,7 @@ end
 group :test do
 
 end
+
+group :proxy do 
+  gem 'em-proxy'
+end

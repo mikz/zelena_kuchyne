@@ -13,6 +13,9 @@ GEM
     activesupport (2.3.10)
     awesome_print (0.3.2)
     chronic (0.3.0)
+    em-proxy (0.1.5)
+      eventmachine
+    eventmachine (0.12.10)
     fastercsv (1.5.4)
     haml (3.0.25)
     jrails (0.6.0)
@@ -37,6 +40,7 @@ PLATFORMS
 DEPENDENCIES
   awesome_print
   chronic
+  em-proxy
   fastercsv
   haml
   jrails

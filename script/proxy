@@ -1,0 +1,31 @@
+#!/usr/bin/env ruby
+require "rubygems"
+require "bundler/setup"
+
+Bundler.require :proxy
+
+def host(env)
+  case env.to_sym
+  when :production
+    "zelenakuchyne.cz"
+  when :test
+    "beta.zk.o2h.cz"
+  end
+end
+
+Proxy.start(:host => "0.0.0.0", :port => 8080, :debug => true) do |conn|
+  conn.server :production, :host => host(:production), :port => 80 
+  conn.server :test, :host => host(:test), :port => 80
+ 
+  conn.on_data do |data|
+    data.gsub(/Host: .*?\r\n/, "Host: #{host(:production)}\r\n")
+  end
+    
+  conn.on_response do |server, resp|
+    resp if server == :production
+  end
+  
+  conn.on_finish do |server|
+    #unbind if server == :test
+  end
+end
