@@ -20,3 +20,5 @@ config.action_mailer.default_url_options = { :host => "zelenakuchyne.cz" }
 
 ActiveRecord::Base.colorize_logging = false
 config.log_level = :debug
+
+config.action_mailer.delivery_method = :test
