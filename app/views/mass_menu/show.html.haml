@@ -55,10 +55,11 @@
         %select{:name => "mass_menu[#{date}][time_of_delivery]", :id => "mass_menu_#{date}_time_of_delivery", :class => "time_filed"}
           = time_of_delivery_options(@delivery[date][:steps], mm['time_of_delivery'])
   %p= t(:time_of_delivery_is_approximate)
-  %p= t(:user_agreement)
-  #user_agreement= snippet 'user_agrement'
-  %p#confirm_agreement
-    %input#mass_menu_confirmation{:type=>"checkbox", :name=>"mass_menu[confirmation]"}
-    %label{:for => "mass_menu_confirmation"}=t(:accept_agreement)
+  - unless current_user.admin?
+    %p= t(:user_agreement)
+    #user_agreement= snippet 'user_agrement'
+    %p#confirm_agreement
+      %input#mass_menu_confirmation{:type=>"checkbox", :name=>"mass_menu[confirmation]"}
+      %label{:for => "mass_menu_confirmation"}=t(:accept_agreement)
   %p.submit
     = f.submit "Pokračovat k potvrzení objednávky", :confirm => "Opravdu pokračovat k potvrzení objednávky?\n\nTento krok nebude možné vrátit."
