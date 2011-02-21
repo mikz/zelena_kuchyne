@@ -9,6 +9,7 @@ gem "jrails"#, :git => "https://github.com/MrJoy/jrails.git"
 gem "sanitize"
 gem 'haml'
 gem 'chronic'
+gem 'newrelic_rpm'
 
 group :development do
   gem 'awesome_print'
