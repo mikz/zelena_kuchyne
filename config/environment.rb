@@ -60,6 +60,7 @@ Rails::Initializer.run do |config|
   config.gem "fastercsv"
   config.gem "jrails"
   config.gem "sanitize"
+  config.gem "newrelic_rpm"
   
   config.active_record.schema_format = :sql
 end
