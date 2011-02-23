@@ -55,6 +55,7 @@ class MenuController < ApplicationController
         ids << meal.id
       end
     end
+    
     @sold_out = {}
     Stock.find(:all, :conditions => ["meal_id IN (?) AND scheduled_for = ? AND amount_left <= 0", ids, @date]).each { |stock|
       @sold_out[stock.meal_id] = stock

@@ -106,14 +106,18 @@ protected
     @dates = @days.collect &:scheduled_for
     
     @menus = Menu.find :all, :include => [{:scheduled_menus => {:menu => [:item_profiles, :item_discounts]}}, :item_profiles, :item_discounts, {:meals => [{:meal_category => :order}, :meal_flags, :item_profiles, :item_discounts]}], :conditions => ["scheduled_menus.scheduled_for IN (?) AND scheduled_menus.invisible = false", @dates], :order => "meal_category_order.order_id ASC"
-    
-    filter_meals = {}
+
+    ids = []
+    filter_meals = Hash[ @dates.zip(@dates.length.times.map{[]}) ]
+
     @menus.each do |menu|
-      menu.scheduled_menus.each do |sm|
-        filter_meals[sm.scheduled_for] ||= []
-        filter_meals[sm.scheduled_for].push *sm.menu.meals.map(&:id).flatten.uniq
+      menu.scheduled_menus.each do |scheduled|
+        filter_meals[scheduled.scheduled_for].push *menu.meals.map(&:id).flatten.uniq
+        @scheduled_items[scheduled.scheduled_for][:menus] << menu
       end
     end
+    
+    ids << filter_meals.values
     
     days = filter_meals.keys.size
     menu_meals_filter = days.times.collect {
@@ -132,18 +136,18 @@ protected
         meal.scheduled_meals.each do |scheduled|
           @scheduled_items[scheduled.scheduled_for][:categories][category] ||= []
           @scheduled_items[scheduled.scheduled_for][:categories][category] << meal
+          filter_meals[scheduled.scheduled_for] << meal.id
         end
-      end
-    end
-    
-    @menus.each do |menu|
-      menu.scheduled_menus.each do |scheduled|
-        @scheduled_items[scheduled.scheduled_for][:menus] << menu
       end
     end
     
     @bundles.each do |scheduled|
       @scheduled_items[scheduled.scheduled_for][:categories][scheduled.bundle.meal.meal_category] << scheduled.bundle
     end
+    
+    @sold_out = Hash[ filter_meals.map{|date, meal_ids|
+      [date, Stock.find(:all, :conditions => ["scheduled_for = ? AND meal_id IN (?) AND amount_left <= 0", date, meal_ids]).map(&:meal_id)]
+    }]
+    
   end
 end

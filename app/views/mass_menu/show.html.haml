@@ -21,35 +21,38 @@
             %td množství
         %tbody
           - items[:menus].each do |menu|
-            %tr{:class => cycle(:even, :odd)}
+            - state = (@sold_out[date] & menu.meal_ids).present? && :soldout
+            %tr{:class => [cycle(:even, :odd), state]}
               %td
                 %h6= menu.name
                 //          = meal.description
               %td
               %td.price= format_currency menu.discount_price(:date => date)
               %td
-                = text_field_tag "mass_menu[#{date}][#{menu.item_id}]", mm[menu.item_id]
+                = text_field_tag "mass_menu[#{date}][#{menu.item_id}]", mm[menu.item_id], :disabled => state
 
             - menu.meals.each do |meal|
-              %tr{:class => cycle(:even, :odd)}
+              - state = @sold_out[date].include?(meal.id) && :soldout
+              %tr{:class => [cycle(:even, :odd), state]}
                 %td
                   %h6= meal.name
                   = meal.description
                 %td= meal_flags(meal, false)
                 %td.price= format_currency meal.discount_price(:date => date)
                 %td
-                  = text_field_tag "mass_menu[#{date}][#{meal.item_id}]", mm[meal.item_id]
+                  = text_field_tag "mass_menu[#{date}][#{meal.item_id}]", mm[meal.item_id], :disabled => state
 
           - items[:categories].each do |category, meals|
             - meals.each do |meal|
-              %tr{:class => cycle(:even, :odd)}
+              - state = @sold_out[date].include?(meal.id) && :soldout
+              %tr{:class => [cycle(:even, :odd), state]}
                 %td
                   %h6= meal.name
                   = meal.description
                 %td= meal_flags(meal, false)
                 %td.price= format_currency meal.discount_price(:date => date)
                 %td
-                  = text_field_tag "mass_menu[#{date.to_s}][#{meal.item_id}]", mm[meal.item_id]
+                  = text_field_tag "mass_menu[#{date.to_s}][#{meal.item_id}]", mm[meal.item_id], :disabled => state
       %p
         %label{:for => "mass_menu_#{date}_time_of_delivery"}= t(:preferred_time_of_delivery)
         %select{:name => "mass_menu[#{date}][time_of_delivery]", :id => "mass_menu_#{date}_time_of_delivery", :class => "time_filed"}

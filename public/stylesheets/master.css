@@ -384,8 +384,11 @@ h2 {
   margin-top: 24px;
   padding-left: 124px;
 }
-.menus.disabled {
+.menus.disabled, #contents table.menu tbody tr.soldout {
   background: #F5F5F5;
+}
+#contents table.menu tbody tr.soldout {
+  color: gray;
 }
 .menus.disabled h3 {
    /* color: #767676; */
