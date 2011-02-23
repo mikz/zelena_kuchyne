@@ -51,12 +51,16 @@ h2 {
   padding-bottom: 0.5em;
 }
 
-#notice {
+#notice, .flash.notice {
   border: 4px #ebbb3c solid;
   background: #fff;
   font-weight: bold;
   font-size: 14px;
   padding: 16px;
+}
+.flash.notice {
+  padding: 8px;
+  margin-bottom: 0;
 }
 #notice.js {
   position: absolute;
@@ -1302,6 +1306,9 @@ table.menu input[type='text'] {
   width: 3em;
 }
 table.menu + p {
+  margin-bottom: 1.5em;
+}
+table.order.menu {
   margin-bottom: 1.5em;
 }
 .mass_menu .submit {

@@ -3,8 +3,11 @@
     Objednávka na uživatelské jméno
     %strong= @user.login
   - @orders.each do |order|
+    - view = order.order_view
+    - if order.fixed_amounts?
+      %p.flash.notice= t(:we_edited_your_order) + " " + t(:she_had_more_meals_then_we_can_deliver)
     %table.order.menu
-      %caption #{format_date_with_weekday(order.date)} &ndash; #{l order.deliver_at, :format => :very_short}
+      %caption #{format_date_with_weekday(view.date)} &ndash; #{l view.deliver_at, :format => :very_short}
       %thead
         %tr
           %td= t(:attr_name)
@@ -16,31 +19,31 @@
         %tr{:class => [:total, cycle(:even, :odd)]}
           %td{:colspan=>3}
           %td.price
-            %strong= format_currency order.price
+            %strong= format_currency view.price
           %td
       %tbody
-        - if order.ordered_items.empty?
+        - if view.ordered_items.empty?
           %tr
             %td{:colspan => 5} Na tento den není žádná objednávka.
         - else
-          - for item in order.ordered_items
+          - for item in view.ordered_items
             %tr{:id => "item_#{item.item.id}", :class => cycle(:even, :odd)}
               %td= item.item.name
               %td.price= format_currency item.item.price
               %td.price= format item.amount
               %td.price= format_currency (item.amount * item.item.price)
               %td
-          - if order.original_price != order.discount_price
+          - if view.original_price != view.discount_price
             %tr{:class => cycle(:even,:odd)}
               %td= t(:discount)
               %td{:colspan=>2}
-              %td.price= format_currency(-1*(order.original_price - order.discount_price) )
+              %td.price= format_currency(-1*(view.original_price - view.discount_price) )
               %td
           %tr{:class => cycle(:even, :odd)}
-            %td= order.delivery_method.basket_name
+            %td= view.delivery_method.basket_name
             %td{:colspan=>2}
             %td.price{:id => "order_#{order.id}_delivery_fee"}
-              = format_currency order.delivery_method.price
+              = format_currency view.delivery_method.price
             %td
   %p.submit
     = link_to "Zpět na úpravu objednávek", mass_menu_path

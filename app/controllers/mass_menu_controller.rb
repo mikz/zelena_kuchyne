@@ -34,8 +34,9 @@ class MassMenuController < ApplicationController
       session[:order_user] = params[:order][:user]
     end
     
-    load_orders
-    
+    load_orders(false)
+
+    to_destroy = []
     Order.transaction do
       params[:mass_menu].each_pair do |date, params|
         
@@ -45,32 +46,33 @@ class MassMenuController < ApplicationController
         if !o.valid_without_callbacks? && o.errors.on(:ordered_items)
           o.fix_amounts
           o.save
-          flash.now[:notice] = t(:we_edited_your_order) + " " + t(:she_had_more_meals_then_we_can_deliver)
         end
 
         o.reload
-        @orders << o.order_view
-        o.destroy if o.ordered_items.blank?
-      end if @orders.blank?
+        @orders << o
+        to_destroy << o if o.ordered_items.blank?
+        
+      end if @orders.empty?
       
       respond_to do |format|
         format.html
       end
       
+      to_destroy.each &:destroy
       session[:mass_menu_orders] = @orders.collect &:id
     end
   end
   
   
   def create
-    load_orders
-    @orders.each do |view|
+    load_orders(false)
+    @orders.each do |order|
       
-      view.order.state = 'order'
-      view.order.save
-      view.reload
+      order.state = 'order'
+      order.save
+      
       begin
-        Mailer.deliver_order_submitted(current_user, view)
+        Mailer.deliver_order_submitted(current_user, order.view)
       rescue
         logger.error %{
           Sending mail failed with error: #{$!.to_s}
@@ -90,7 +92,7 @@ protected
   def load_orders(views = true)
     @orders = []
     unless session[:mass_menu_orders].blank?
-      @orders = Order.find(:all, :conditions => ["id IN (?)", session[:mass_menu_orders]])
+      @orders = Order.find(:all, :conditions => ["id IN (?) AND state = ?", session[:mass_menu_orders], 'validating'])
       @orders = @orders.map(&:order_view) if views
     end
     @orders

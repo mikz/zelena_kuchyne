@@ -7,7 +7,7 @@ class Order < ActiveRecord::Base
   belongs_to :delivery_method, :foreign_key => "delivery_method_id"
   before_update Proc.new{|record| record.reload if(record[:state].nil?)}
   after_save :create_products_log_warnings
-  attr_accessor :ignore_products_log, :original_state
+  attr_accessor :ignore_products_log, :original_state, :fixed_amounts
   before_validation Proc.new {|record| record.original_state = record.state_was if @original_state.nil?}
   after_save Proc.new {|record| record.update_delivery_method if !record.delivery_method_id_changed? && record.original_state == record.state }
   
@@ -40,6 +40,10 @@ class Order < ActiveRecord::Base
       error ||= true
     end
     !error
+  end
+  
+  def cancel!
+    self.update_attribute :cancelled, true
   end
   
   def validate
@@ -423,6 +427,11 @@ class Order < ActiveRecord::Base
     }
     self.update_or_insert_items sql
     self.make_menus_from_meals :items_cache => ordered_items_buff, :menus_cache => menus_buff
+    @fixed_amounts = true
+  end
+  
+  def fixed_amounts?
+    @fixed_amounts.present?
   end
   
   def make_menus_from_meals options = {}
