@@ -1,6 +1,6 @@
 source :rubygems
 
-gem "rails", "2.3.10"
+gem "rails", "2.3.11"
 gem "pg"
 
 gem 'will_paginate'

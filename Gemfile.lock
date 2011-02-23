@@ -1,16 +1,16 @@
 GEM
   remote: http://rubygems.org/
   specs:
-    actionmailer (2.3.10)
-      actionpack (= 2.3.10)
-    actionpack (2.3.10)
-      activesupport (= 2.3.10)
+    actionmailer (2.3.11)
+      actionpack (= 2.3.11)
+    actionpack (2.3.11)
+      activesupport (= 2.3.11)
       rack (~> 1.1.0)
-    activerecord (2.3.10)
-      activesupport (= 2.3.10)
-    activeresource (2.3.10)
-      activesupport (= 2.3.10)
-    activesupport (2.3.10)
+    activerecord (2.3.11)
+      activesupport (= 2.3.11)
+    activeresource (2.3.11)
+      activesupport (= 2.3.11)
+    activesupport (2.3.11)
     awesome_print (0.3.2)
     chronic (0.3.0)
     em-proxy (0.1.5)
@@ -23,12 +23,12 @@ GEM
     nokogiri (1.4.4)
     pg (0.10.1)
     rack (1.1.0)
-    rails (2.3.10)
-      actionmailer (= 2.3.10)
-      actionpack (= 2.3.10)
-      activerecord (= 2.3.10)
-      activeresource (= 2.3.10)
-      activesupport (= 2.3.10)
+    rails (2.3.11)
+      actionmailer (= 2.3.11)
+      actionpack (= 2.3.11)
+      activerecord (= 2.3.11)
+      activeresource (= 2.3.11)
+      activesupport (= 2.3.11)
       rake (>= 0.8.3)
     rake (0.8.7)
     sanitize (2.0.0)
@@ -47,6 +47,6 @@ DEPENDENCIES
   jrails
   newrelic_rpm
   pg
-  rails (= 2.3.10)
+  rails (= 2.3.11)
   sanitize
   will_paginate
