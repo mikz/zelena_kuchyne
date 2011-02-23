@@ -63,6 +63,7 @@ Rails::Initializer.run do |config|
   config.gem "newrelic_rpm"
   
   config.active_record.schema_format = :sql
+  config.action_controller.session_store = :active_record_store
 end
 
 require "debugging" if Rails.env.development?

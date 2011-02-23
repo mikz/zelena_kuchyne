@@ -30,7 +30,7 @@ class ApplicationController < ActionController::Base
   
   # See ActionController::RequestForgeryProtection for details
   # Uncomment the :secret if you're not using the cookie session store
-  protect_from_forgery # :secret => '8d8e2c59c5f618996e2fcc4217bbef59'
+  protect_from_forgery :secret => self.session.first[:secret]
   
   # Stores current location to be returned to in the future.
   # Redirection is accomplished using ApplicationController#redirect_back_or_default.
