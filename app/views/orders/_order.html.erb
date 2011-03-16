@@ -52,7 +52,7 @@
     <% end %>
   </td>
   <td class="fullscreen"><%= format order.deliver_at.to_date %></td>
-  <td><%= format order.deliver_at %></td>
+  <td><%= l order.deliver_at, :format => :very_short %></td>
   <td>
   <%= link_to image_tag('open.png'), :action => 'show', :id => order.id %>
   <%= link_to image_tag('edit.png'), :action => 'edit', :id => order.id %>
