@@ -75,4 +75,16 @@ jQuery(function() {
       );
     }
   );
+  
+  $(".to_xls").click(function(){
+    if(confirm('Chápu, že export můze trvat i několik minut.')) {
+      var disable = function(element){
+        $(element).attr('disabled', true);
+      }
+      setTimeout(disable, 300, this);
+    } else {
+      return false;
+    }
+    
+  });
 });

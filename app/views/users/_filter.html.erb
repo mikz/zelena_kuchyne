@@ -7,6 +7,6 @@
     <%= text_field_tag :q, params[:q], :class => "user_search" %>
     <%= hidden_field_tag "order", params[:order]%>
     <%= button_tag 'Zobrazit'%>
-    <%= button_tag 'XLS', {:name => "format", :value => "xls"}%>
+    <%= button_tag 'XLS', {:name => "format", :value => "xls", :class => "to_xls"}%>
   </p>
 <% end -%>

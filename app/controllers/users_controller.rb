@@ -104,7 +104,7 @@ class UsersController < ApplicationController
   
   
   def index
-    condition = "(#{params[:q].blank?} OR (login ILIKE ? OR first_name ILIKE ? OR family_name ILIKE ? OR company_name ILIKE ?))"
+    condition = "(#{params[:q].blank?} OR (login ILIKE ? OR users_view.first_name ILIKE ? OR users_view.family_name ILIKE ? OR users_view.company_name ILIKE ?))"
     query = "%#{params[:q]}%" if params[:q]
     order = nil
     case params[:order]
@@ -118,18 +118,20 @@ class UsersController < ApplicationController
     
     if params[:id] and params[:id].length > 0
       @selected = ''
-      @users = UsersView.paginate(:all, :order => order, :include => {:groups => :memberships}, :conditions => ["groups.system_name = ? AND #{condition}", params[:id], query, query, query, query],  :page => params[:page], :per_page => current_user.pagination_setting)
+      @users = UsersView.scoped(:order => order, :include => {:groups => :memberships}, :conditions => ["groups.system_name = ? AND #{condition}", params[:id], query, query, query, query])
     else
-      @users = UsersView.paginate(:all, :page => params[:page], :per_page => current_user.pagination_setting, :order => order, :conditions => ["guest = false AND #{condition}", query, query, query, query])
+      @users = UsersView.scoped(:order => order, :conditions => ["guest = false AND #{condition}", query, query, query, query])
       @selected = 'selected="selected"'
     end
     @groups = Group.find :all
     
     
     respond_to do |format|
-      format.html
+      format.html do
+        @users = @users.paginate(:all, :page => params[:page], :per_page => current_user.pagination_setting)
+      end
       format.xls do
-        send_data @users.to_xls(:only => [:login, :name, :email, :spent_money, :user_discount], :methods => [:zone_name, :delivery_address]), :filename => 'users.xls'
+        send_data @users.scoped(:include => {:addresses => :zone}).to_xls(:only => [:login, :name, :email, :spent_money, :user_discount], :methods => [:zone_name, :delivery_address]), :filename => 'users.xls'
       end
     end
   end
