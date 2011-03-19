@@ -14,10 +14,22 @@
       </optgroup>
     </select>
   </p>
-  <p><label for="<%=row_id%>_user"><%= t("attr_user") %></label><br />
-  <input id="<%=row_id%>_user" value="<%= @record.user.login if @record.user %>" class="{required: true}" type="text" size="30" name="record[user]"/><% if @record.new_record? %><span class="add_user"><a href="#" onclick="lost_items.add_user(this);">+</a></span><%end%></p>
-  <p><label for="<%=row_id%>_amount"><%= t(:amount) %></label><br />
-  <%= f.text_field :amount, :id => row_id + "_amount", :class => "{required: true, min: 0}" %>
+  <table>
+      <thead>
+        <tr>
+          <th><%= t(:attr_user) %></th>
+          <th><%= t(:amount) %></th>
+        </tr>
+      </thead>
+      <tbody>
+        <%- @delivery_men.each do |delivery_man| -%>
+          <tr>
+            <td><strong><%= h delivery_man.name %></strong><%= hidden_field_tag "record[users][]", delivery_man.id %></td>
+            <td><%= text_field_tag "record[amounts][]", nil, :class => "{min: 0}" %></td>
+          </tr>
+        <%-end-%>
+      </tbody>
+  </table>
   <p><%= yield :submit_button%></p>
 <% end %>
 <script type="text/javascript">
