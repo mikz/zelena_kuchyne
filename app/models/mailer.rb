@@ -20,7 +20,7 @@ class Mailer < ActionMailer::Base
     
   def forgotten_password(user)
     @recipients   = user.email
-    @from         = "noreply@zelenakuchyne.cz"
+    @from         = "Zelená kuchyně <noreply@zelenakuchyne.cz>"
     @subject      = "Zapomenuté heslo"
     @sent_on      = Time.now
     @content_type = "text/html"
@@ -42,7 +42,7 @@ class Mailer < ActionMailer::Base
   
   def order_submitted(user, order)
     @recipients   = user.email
-    @from         = "objednavky@zelenakuchyne.cz"
+    @from         = "Zelená kuchyně <objednavky@zelenakuchyne.cz>"
     @bcc          = "objednavky@zelenakuchyne.cz"
     @subject      = "Objednávka ze ZelenaKuchyne.cz"
     @sent_on      = Time.now
