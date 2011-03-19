@@ -1,9 +1,9 @@
 class Item < ActiveRecord::Base
-  has_many :item_profiles, :finder_sql => 'SELECT * FROM item_profiles WHERE item_id = #{item_id}' # FIXME: this association will fail while loaded by :include
-  has_many :ordered_items, :finder_sql => 'SELECT * FROM ordered_items WHERE item_id = #{item_id}' # FIXME: this association will fail while loaded by :include
+  has_many :item_profiles, :primary_key => :item_id
+  has_many :ordered_items, :primary_key => :item_id
   has_many :orders, :through => :ordered_items
   belongs_to :last_update_by, :class_name => 'User', :foreign_key => 'updated_by'
-  has_many :item_discounts, :finder_sql => 'SELECT * FROM item_discounts WHERE item_id = #{item_id}' # FIXME: this association will fail while loaded by :include
+  has_many :item_discounts, :primary_key => :item_id
   before_create :ignore_item_id
   before_create :ignore_item_type
   after_create :unignore_item_id
@@ -13,7 +13,8 @@ class Item < ActiveRecord::Base
   before_save :set_updated_by
 
   attr_readonly :item_id
-
+  
+  default_scope :include => [:item_profiles]
   # Active record attempts to save a NULL into item_id on create, which we don't want.
   def attributes_with_quotes(include_primary_key = true, include_readonly_attributes = true, attribute_names = self.attributes.keys)
     if @ignore_item_id

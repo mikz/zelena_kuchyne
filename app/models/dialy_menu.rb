@@ -18,7 +18,7 @@ class DialyMenu < ActiveRecord::Base
   end
   
   def meals
-    Meal.all(:conditions => ["item_id IN (?)", self.scheduled.collect{|s|s.item_id}], :order => "#{MealCategoryOrder.table_name}.order_id ASC", :include => [:meal_category => :order])
+    Meal.all(:conditions => ["meals.item_id IN (?)", self.scheduled.collect(&:item_id) ], :order => "#{MealCategoryOrder.table_name}.order_id ASC", :include => [:meal_category => :order])
   end
   
   def banned?(item_id)
@@ -33,6 +33,7 @@ class DialyMenu < ActiveRecord::Base
   end
   
   def copy_scheduled
+    DEBUG {%w{meals}}
     meals.each do |meal|
       self.entries.build :meal => meal
     end

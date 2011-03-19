@@ -1,6 +1,6 @@
 <%= error_messages_for :record %>
 <% row_id = "record_#{@record.id ? @record.id : 'new'}" %>
-<% remote_form_for :record, :url => url, :html => {:class => "dialy_menu"} do |f| %>
+<% remote_form_for :record, :url => url.reverse_merge!(:format => 'js'), :html => {:class => "dialy_menu"} do |f| %>
   <p><label for="<%=row_id%>_date"><%= t(:attr_date) %></label><br />
   <%= f.text_field :date, :id=> "#{row_id}_date", :class => 'datepicker' %></p>
   <% unless @record.new_record? %>

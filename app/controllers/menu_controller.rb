@@ -36,7 +36,7 @@ class MenuController < ApplicationController
     
     @menus = Menu.find :all, :include => [:scheduled_menus, {:meals => {:meal_category => :order}}], :conditions => ["scheduled_menus.scheduled_for = ? AND scheduled_menus.invisible = false", @date], :order => "meal_category_order.order_id ASC"
     
-    @categories = MealCategory.find :all, :include => [{:meals => :scheduled_meals}, :order], :conditions => ["meals.always_available = true OR scheduled_meals.scheduled_for = ? AND scheduled_meals.invisible = false AND meals.id NOT IN (?)", @date, @menus.map{|m| m.meals.map(&:id)}.flatten.uniq], :order => "meal_category_order.order_id ASC"
+    @categories = MealCategory.find :all, :include => [{:meals => [:scheduled_meals, :item_profiles, :item_discounts, :meal_flags]}, :order], :conditions => ["meals.always_available = true OR scheduled_meals.scheduled_for = ? AND scheduled_meals.invisible = false AND meals.id NOT IN (?)", @date, @menus.map{|m| m.meals.map(&:id)}.flatten.uniq], :order => "meal_category_order.order_id ASC"
     @scheduled_bundles = ScheduledBundle.find :all, :conditions => ["scheduled_bundles.scheduled_for = ? AND scheduled_bundles.invisible = false", @date], :include => [{:bundle => {:meal => :meal_category}}]
     
     

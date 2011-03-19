@@ -17,8 +17,9 @@ class DialyMenuEntry < ActiveRecord::Base
     
     self.meal_flags = meal.flags.select{ |flag| flag.in_dialy_menu? }
     
-    %{description}.each do |attr|
-      self.send "#{attr}=", Sanitize.clean((meal.send(attr))).gsub(" ", '').strip
+    %w{description}.each do |attr|
+      DEBUG {%w{attr meal meal.send(attr) meal.description meal.item_profiles}}
+      self.send "#{attr}=", Sanitize.clean(meal.send(attr)).gsub(" ", '').strip
     end
   end
 end

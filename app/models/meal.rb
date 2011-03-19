@@ -16,8 +16,6 @@ class Meal < Item
   alias_attribute :category, :meal_category
   alias_attribute :flags, :meal_flags
   
-  default_scope :include => [:item_profiles]
-  
   def save_spices(used_spices)
     q = ''
     if !used_spices.nil?
