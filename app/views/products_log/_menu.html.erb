@@ -1,5 +1,0 @@
-<div id="log_menu">
-  <%= (params[:action] == "index")? "<span>#{t(:index)}</span>" : link_to(t(:index), :action=>"index") %>
-  <%= (params[:action] == "balance")? "<span>#{t(:balance)}</span>" : link_to(t(:balance), :action=>"balance")%>
-  <%= (params[:action] == "warnings")? "<span>#{t(:warnings)}</span>" : link_to(t(:warnings), :action=>"warnings")%>
-</div>

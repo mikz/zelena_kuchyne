@@ -1,8 +1,0 @@
-<td><%= link_to record.send(@options[:title][:name]), :action => 'show', :id => record %></td>
-<% for column in @options[:columns] %>
-  <td><%= format(record.send(column[:name])) %></td>
-<% end %>
-<td>
-  <%= smart_link(t(:edit), {:action => 'edit', :id => record}, :html => {:onclick => "if(!check_opened(event)) {return false;}"}) %>
-  | <%= smart_link t(:delete), {:action => 'destroy', :id => record}, :confirm => t('delete_confirmation') %>
-</td>

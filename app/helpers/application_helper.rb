@@ -148,7 +148,12 @@ module ApplicationHelper
   end
   
   def format_amount(value, options = {})
-    unit = (options[:unit])? (locales.has_key?(options[:unit]))? t(options[:unit]) : options[:unit]: t(:amount_unit)  # if option :unit is locale key - use locales. if isn't - use it as string. else user t(:amount_unit)
+    unit = if options[:unit]
+      t options[:unit], :default => options[:unit]
+    else
+      t :amount_unit
+    end
+    
     return "#{format(value)} #{unit}"
   end
 end

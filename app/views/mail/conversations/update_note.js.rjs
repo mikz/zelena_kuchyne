@@ -1,1 +1,0 @@
-page.replace("#conversation_#{@conversation.id} tr.conversation-note-editor", :partial => 'note', :locals => {:note => @conversation.note, :id => @conversation.id})

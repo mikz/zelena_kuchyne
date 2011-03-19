@@ -42,15 +42,6 @@
     <%-if current_user.belongs_to_one_of? :admins, :warehousers, :operating_officers, :chefs -%>
     <dd><%= link_to t(:admin_suppliers), :controller => '/suppliers' -%></dd>
     <%-end-%>
-    <%-if current_user.belongs_to_one_of? :admins, :warehousers -%>
-    <dd><%= link_to t(:admin_products_log), :controller => '/products_log' -%></dd>
-    <%-end-%>
-    <%-if current_user.belongs_to_one_of? :admins, :warehousers, :operating_officers-%>
-    <dd><%= link_to t(:admin_ingredients_log), :controller => '/ingredients_log' -%></dd>
-    <%-end-%>
-    <%-if current_user.belongs_to? :admins-%>
-    <dd><%= link_to t(:admin_stocktakings), :controller => '/stocktakings' -%></dd>
-    <%-end-%>
     <%-if current_user.belongs_to_one_of? :admins, :chefs-%>
     <dd><%= link_to t(:admin_schedule), :controller => '/schedule' -%></dd>
     <%-end-%>
@@ -76,30 +67,6 @@
     <dd><%= link_to t(:admin_item_discounts), :controller => '/item_discounts' -%></dd>
     <dd><%= link_to t(:admin_wholesale_discounts), :controller => '/wholesale_discounts' -%></dd>
   </dl>
-  <dl>
-    <dt><%= t(:admin_shop)%></dt>
-    <dd><%= link_to t(:admin_products), :controller => '/products' -%></dd>
-    <dd><%= link_to t(:admin_categories), :controller => '/product_categories' -%></dd>
-  </dl>
-<%-end-%>
-<%-if current_user.belongs_to_one_of? :admins, :heads_of_car_pool, :operating_officers, :deliverymen, :warehousers-%>
-  <dl>
-    <dt><%= t(:admin_expense)%></dt>
-    <%-if current_user.belongs_to_one_of? :admins, :heads_of_car_pool-%>
-    <dd><%= link_to t(:admin_cars), :controller => '/cars'-%></dd>
-    <dd><%= link_to t(:admin_logbook_categories), :controller => '/logbook_categories'-%></dd>
-    <%-end-%>
-    <%-if current_user.belongs_to_one_of? :admins, :heads_of_car_pool, :deliverymen-%>
-    <dd><%= link_to t(:admin_cars_logbook), :controller => '/cars_logbooks'-%></dd>
-    <dd><%= link_to t(:admin_fuel), :controller => '/fuel'-%></dd>
-    <%-end-%>
-    <%-if current_user.belongs_to_one_of? :admins, :operating_officers, :warehousers-%>
-    <dd><%= link_to t(:admin_expenses), :controller => '/expenses'-%></dd>
-    <%-end-%>
-    <%-if current_user.belongs_to? :admins-%>
-    <dd><%= link_to t(:admin_expense_categories), :controller => '/expense_categories'-%></dd>
-    <%-end-%>
-  </dl>
 <%-end-%>
 <%-if current_user.belongs_to_one_of? :admins, :operating_officers-%>
   <dl>
@@ -108,7 +75,6 @@
     <dd><%= link_to t(:admin_premises), :controller => '/premises'-%></dd>
     <%-end-%>
     <dd><%= link_to t(:admin_restaurant_sales), :controller => '/restaurant_sales'-%></dd>
-    <dd><%= link_to t(:admin_ingredients_log_watchdogs), :controller => '/ingredients_log_watchdogs'-%></dd>
   </dl>
 <%-end-%>
 <%-if current_user.belongs_to_one_of? :admins, :operating_officers, :warehousers, :chefs-%>
@@ -126,17 +92,6 @@
     <%-if current_user.belongs_to_one_of? :admins, :operating_officers, :chefs -%>
     <dd><%= link_to t(:admin_summary), :controller => '/views', :action => 'summary' -%></dd>
     <dd><%= link_to t(:admin_average_day), :controller => '/views', :action => 'average_day' -%></dd>
-    <%-end-%>
-  </dl>
-<%-end-%>
-<%-if current_user.belongs_to_one_of? :admins, :operating_officers, :warehousers, :delivery_men-%>
-  <dl>
-    <dt><%= t(:admin_emails)%></dt>
-    <%-if current_user.belongs_to_one_of? :admins, :warehousers, :operationg_officers, :delivery_men -%>
-    <dd><%= link_to t(:admin_mail_conversations), :controller => '/mail/conversations' -%></dd>
-    <%-end-%>
-    <%-if current_user.belongs_to_one_of? :admins -%>
-    <dd><%= link_to t(:admin_mail_mailboxes), :controller => '/mail/mailboxes' -%></dd>
     <%-end-%>
   </dl>
 <%-end-%>

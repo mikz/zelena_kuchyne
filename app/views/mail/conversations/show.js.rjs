@@ -1,2 +1,0 @@
-page.insert_html :after, "record_#{params[:id]}", :partial => "conversation"
-page.visual_effect :blind_down, "conversation_#{params[:id]}"

@@ -1,7 +1,0 @@
-<td><%= link_to format( record.ingredient.name ), :action => 'show', :id => record %></td>
-<td><%= format(t("operator_#{record.operator_readable}")) %></td>
-<td><%= format_amount(record.value, :unit => record.ingredient.unit ) %></td>
-<td>
-  <%= smart_link t(:edit), :action => 'edit', :id => record %>
-  | <%= smart_link t(:delete), {:action => 'destroy', :id => record}, :confirm => t('delete_confirmation') %>
-</td>
