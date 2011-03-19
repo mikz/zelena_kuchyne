@@ -2,8 +2,6 @@
 jQuery(function() {
   $("#notice").addClass("js");
   
-  init_FCKeditor();
-  init_jquery_tabs();
   init_externalLinks();
   init_locks();
 });
@@ -15,6 +13,8 @@ window.onload = function() {
 
 function init() {
   init_ajax_message();
+  init_FCKeditor();
+  init_jquery_tabs();
 }
 function init_ajax_message() {
   if($("#ajax_message").length == 0)
