@@ -1,6 +1,11 @@
 
 jQuery(function() {
   $("#notice").addClass("js");
+  
+  init_FCKeditor();
+  init_jquery_tabs();
+  init_externalLinks();
+  init_locks();
 });
 
 window.onload = function() {
@@ -9,14 +14,26 @@ window.onload = function() {
 }
 
 function init() {
-  init_FCKeditor();
-  init_jquery_tabs();
-  init_externalLinks();
   init_ajax_message();
 }
 function init_ajax_message() {
   if($("#ajax_message").length == 0)
     $(document.body).append('<div id="ajax_message"></div>');
+}
+function init_locks(){
+  $(":input.lock").click(function(){
+    var input = $(this);
+    var form = input.closest("form");
+    form.bind("submit.lock", function(){
+      var disable = function(element){
+        element.attr('disabled', true);
+      }
+      setTimeout(disable, 100, input);
+      
+      form.unbind("submit.lock");
+    });
+    
+  });
 }
 function ajax_message(text) {
   var ok_button = '<p><button onclick=\'close_ajax_message();\'>Ok</button></p>';

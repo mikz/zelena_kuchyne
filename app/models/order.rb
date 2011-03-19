@@ -4,6 +4,8 @@ class Order < ActiveRecord::Base
   has_many :ordered_items, :order => "items.name ASC", :include => [:item],  :foreign_key => 'order_id'
   has_many :items, :through => :ordered_items, :order => "items.name ASC"
   belongs_to :order_view, :foreign_key => 'id', :include => [:delivery_method]
+  alias :view :order_view
+  
   belongs_to :delivery_method, :foreign_key => "delivery_method_id"
   before_update Proc.new{|record| record.reload if(record[:state].nil?)}
   after_save :create_products_log_warnings

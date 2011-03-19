@@ -22,6 +22,8 @@ class OrderedItem < ActiveRecord::Base
   end
   
   def self.add_to_user(options)
+    options.symbolize_keys!
+    
     user = self.get_user(options[:user])
     
     item_id = options[:item_id].to_i
@@ -32,9 +34,8 @@ class OrderedItem < ActiveRecord::Base
     
     deliver_at = Date.parse(options[:deliver_at].to_s)
 
-
     basket = user.basket
-
+    
     if basket && basket.deliver_at.to_date < Date.today
       basket.destroy
       user.basket = basket = nil

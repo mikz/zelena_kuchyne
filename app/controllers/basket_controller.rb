@@ -7,6 +7,7 @@ class BasketController < ApplicationController
   def add_item
     begin
       deliver_at = params[:item]['deliver_on'] || Date.parse(( current_user.basket ? current_user.basket.deliver_at : Date.today ).to_s).to_s
+      DEBUG {%w{deliver_at}}
       if params[:item]['item_ids'] && params[:item]['amounts']
         @record = OrderedItem.add_to_user :user => current_user, :deliver_at => deliver_at, :item_ids => params[:item]['item_ids'], :amounts => params[:item]['amounts']
       else

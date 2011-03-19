@@ -116,11 +116,12 @@ class UsersController < ApplicationController
         order = (params[:order].blank?)? "login" : params[:order]
     end
     
+    @users = UsersView.scoped(:order => order, :include => {:addresses => :zone})
     if params[:id] and params[:id].length > 0
       @selected = ''
-      @users = UsersView.scoped(:order => order, :include => {:groups => :memberships}, :conditions => ["groups.system_name = ? AND #{condition}", params[:id], query, query, query, query])
+      @users = @users.scoped(:include => {:groups => :memberships}, :conditions => ["groups.system_name = ? AND #{condition}", params[:id], query, query, query, query])
     else
-      @users = UsersView.scoped(:order => order, :conditions => ["guest = false AND #{condition}", query, query, query, query])
+      @users = @users.scoped(:order => order, :conditions => ["guest = false AND #{condition}", query, query, query, query])
       @selected = 'selected="selected"'
     end
     @groups = Group.find :all
