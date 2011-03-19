@@ -1,9 +1,11 @@
 class Menu < Item
   set_table_name 'menus'
-  has_many :courses
+  has_many :courses, :include => :meal
   has_many :meals, :through => :courses, :order => "meals.name ASC"
   has_many :days
   has_many :scheduled_menus
+  
+  default_scope :include => [:item_profiles]
   
   def discount_price options={}
     options[:meals] = true

@@ -1,1 +1,0 @@
-page.insert_html :after, "message_#{@message.id}", :partial => '/mail/messages/reply'

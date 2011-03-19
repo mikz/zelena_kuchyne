@@ -46,7 +46,7 @@ class DeliveryMenController < ApplicationController
     else
       respond_to do |format|
         format.html do 
-          flash[:notice] = locales[:error_adding_item_in_trunk]
+          flash[:notice] = t(:error_adding_item_in_trunk)
           redirect_to :action => :index, :date => params[:item_in_trunk]['deliver_at']
         end
       end

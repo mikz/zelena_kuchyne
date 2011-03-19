@@ -1,6 +1,6 @@
-<%= link_to locales[:today_menu], '/menu' %> |
-<%= link_to locales[:tomorrow_menu], menu_path(Date.tomorrow) %>
-<%= link_to locales[:print_menus], formatted_print_menu_path(:format => :html), :class=> "print_menus"%>
+<%= link_to t(:today_menu), '/menu' %> |
+<%= link_to t(:tomorrow_menu), menu_path(Date.tomorrow) %>
+<%= link_to t(:print_menus), print_menu_path(:format => :html), :class=> "print_menus"%>
 <%- if current_user && current_user.mass_menu %>
-  | <%= link_to locales[:mass_menu], "/mass_menu" %>
+  | <%= link_to t(:mass_menu), "/mass_menu" %>
 <%-end-%>

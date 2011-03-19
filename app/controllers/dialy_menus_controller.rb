@@ -55,34 +55,25 @@ class DialyMenusController < ApplicationController
       
       
       if(@record.save and @record.errors.empty?)
-        respond_to do |f|
-          format f, :html do
-            flash[:notice] = locales[:update_successful]
+        respond_to do |format|
+          format.html do
+            flash[:notice] = t(:update_successful)
             redirect_back_or_default :action => 'show', :id => @record
           end
-          format f, :xml do
+          format.xml do
             head :ok
           end
-          format f, :js do
-            if(request.referer =~ /^#{url_for(:action => 'index')}/)
-              render :action => 'show'
-            else
-              render :update do |page|
-                page.redirect_to :action => 'index'
-          end
-        end
-          end
+          format.js
         end
       else
-        DEBUG{%w{@record.errors}}
-        respond_to do |f|
-          format f, :html do
+        respond_to do |format|
+          format.html do
             redirect_to :action => 'edit'
           end
-          format f, :xml do
+          format.xml do
             render :xml => @record.errors, :status => 422
           end
-          format f, :js do
+          format.js do
             render :action => 'error'
           end
         end

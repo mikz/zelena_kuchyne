@@ -1,13 +1,13 @@
 <% content_for :javascript do %>
-  <% fw_strings = {:val_true => locales['true'], :val_false => locales['false'], :submit => locales['submit'], :show_all => locales['show_all'], :formats => {'xls' => locales['download'] + " XLS"}}  %>
+  <% fw_strings = {:val_true => t(:true_class), :val_false => t(:false_class), :submit => t('submit'), :show_all => t('show_all'), :formats => {'xls' => t('download') + " XLS"}}  %>
   <%= filter_widget("meals-rules", :url => url_for(params), 
                                    :wrap => false, 
                                    :beforeSend => %{function() {$("#records").html('<p><img src="/images/loading.gif" alt="loading" /></p>');}}, 
                                    :strings => fw_strings) do |widget| 
-        widget.add_rule("price", locales[:price], "numeric")
-        widget.add_rule("meal_category_id", locales[:attr_category], "enum", @categories)
-        widget.add_rule("restaurant_flag", locales[:attr_restaurant_flag], "boolean")
-        widget.add_rule("ingredients.id", locales[:contains_ingredient], "autocomplete","/ingredients/search")
+        widget.add_rule("price", t(:price), "numeric")
+        widget.add_rule("meal_category_id", t(:attr_category), "enum", @categories)
+        widget.add_rule("restaurant_flag", t(:attr_restaurant_flag), "boolean")
+        widget.add_rule("ingredients.id", t(:contains_ingredient), "autocomplete","/ingredients/search")
       end %>
 <% end %>
 

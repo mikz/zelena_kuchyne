@@ -2,10 +2,10 @@
   <table class="order">
     <thead>
      <tr>
-        <td><%=locales[:attr_name]%></td>
-        <td><%=locales[:attr_price]%></td>
-        <td><%=locales[:pieces]%></td>
-        <td><%=locales[:overall]%></td>
+        <td><%=t(:attr_name)%></td>
+        <td><%=t(:attr_price)%></td>
+        <td><%=t(:pieces)%></td>
+        <td><%=t(:overall)%></td>
         <td></td>
       </tr>
     </thead>
@@ -18,7 +18,7 @@
           <input type="text" value="<%= format item.amount %>" name="amount[<%= item.item.id %>]" />
         </td>
         <td class="item-price"><%= format_currency (item.amount * item.discount_price) %></td>
-        <td><%= smart_link locales[:delete], :action => 'remove_item', :id => @order.id, :item_id => item.id %></td>
+        <td><%= smart_link t(:delete), :action => 'remove_item', :id => @order.id, :item_id => item.id %></td>
       </tr>
     <% end %>
     <%if @order.delivery_method %>
@@ -58,7 +58,7 @@
     <tr class="total" id="orders-total">
       <td colspan="3"></td>
       <td id="order-total"><%= format_currency @order.price %></td>
-      <td><input type="submit" value="<%= locales[:update_order] %>"/></td>
+      <td><input type="submit" value="<%= t(:update_order) %>"/></td>
     </tr>
     </tfoot>
   </table>

@@ -1,17 +1,17 @@
 <% form_for "item_in_trunk", :url => {:action => :add_item}, :method => :post do  |f| %>
-<p><input type="text" name="item_in_trunk[amount]" id="item_in_trunk_<%=delivery_man.id%>_amount" size="3"/><label for="item_in_trunk_<%=delivery_man.id%>_amount"><%= locales[:amount]%></label>
+<p><input type="text" name="item_in_trunk[amount]" id="item_in_trunk_<%=delivery_man.id%>_amount" size="3"/><label for="item_in_trunk_<%=delivery_man.id%>_amount"><%= t(:amount)%></label>
 <select name="item_in_trunk[item_id]" id="item_in_trunk_<%=delivery_man.id%>_item_id">
-  <optgroup label="<%=locales[:meals]%>">
+  <optgroup label="<%=t(:meals)%>">
   <% for scheduled in @scheduled_meals %>
     <option value="<%= scheduled.item.item_id %>"><%= scheduled.item.name %></option>
   <% end %>
   </optgroup>
-  <optgroup label="<%=locales[:menus]%>">
+  <optgroup label="<%=t(:menus)%>">
   <% for scheduled in @scheduled_menus %>
   <% end if @scheduled_menus%>
   </optgroup>
 </select>
-<input type="submit" value="<%= locales[:add] %>"/>
+<input type="submit" value="<%= t(:add) %>"/>
 </p>
 <p>
   

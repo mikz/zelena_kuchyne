@@ -1,9 +1,9 @@
 class Item < ActiveRecord::Base
-  has_many :item_profiles, :finder_sql => 'SELECT * FROM item_profiles WHERE item_id = #{item_id}' # FIXME: this association will fail while loaded by :include
-  has_many :ordered_items, :finder_sql => 'SELECT * FROM ordered_items WHERE item_id = #{item_id}' # FIXME: this association will fail while loaded by :include
+  has_many :item_profiles, :primary_key => :item_id
+  has_many :ordered_items, :primary_key => :item_id
   has_many :orders, :through => :ordered_items
   belongs_to :last_update_by, :class_name => 'User', :foreign_key => 'updated_by'
-  has_many :item_discounts, :finder_sql => 'SELECT * FROM item_discounts WHERE item_id = #{item_id}' # FIXME: this association will fail while loaded by :include
+  has_many :item_discounts, :primary_key => :item_id
   before_create :ignore_item_id
   before_create :ignore_item_type
   after_create :unignore_item_id
@@ -13,7 +13,8 @@ class Item < ActiveRecord::Base
   before_save :set_updated_by
 
   attr_readonly :item_id
-
+  
+  default_scope :include => [:item_profiles]
   # Active record attempts to save a NULL into item_id on create, which we don't want.
   def attributes_with_quotes(include_primary_key = true, include_readonly_attributes = true, attribute_names = self.attributes.keys)
     if @ignore_item_id
@@ -38,29 +39,33 @@ class Item < ActiveRecord::Base
     end
     return @item_id
   end
-
-  def method_missing(method, *args)
-    attr = method.to_s
-    if attr.last == "?"
-      attr = attr.chop
-      if ItemProfileType.cached_list.has_key? attr
-        return !self.read_profile(attr).blank?
-      else
-        return self.item_type == attr
+  
+  
+  ItemProfileType.cached_list.keys.each do |key|
+    self.class_eval %{
+      def #{key}
+        read_profile(#{key.inspect})
       end
-    else
-      list = ItemProfileType.cached_list
-      if(list.has_key?(attr.gsub('=', '')))
-        return (attr.include?('=') ? self.set_profile(attr.gsub('=', ''), args[0]) : self.read_profile(attr))
-      else
-        return super(method, *args)
+      
+      def #{key}=(val)
+        set_profile(#{key.inspect}, val)
       end
-    end
+      
+      def #{key}?
+        #{key}.present?
+      end
+    }
   end
-
+  
+  def item_type
+    ActiveSupport::StringInquirer.new(self[:item_type])
+  end
+  
+  delegate :product?, :meal?, :menu?, :bundle?, :to => :item_type
+  
   def read_profile(attr)
     list = ItemProfileType.cached_list
-    attr = attr.to_s
+    attr = attr.to_sym
     @profiles = {} unless(@profiles.is_a? Hash)
     if(@profiles[list[attr]])
       return @profiles[list[attr]]
@@ -74,15 +79,20 @@ class Item < ActiveRecord::Base
 
   def set_profile(attr, value)
     list = ItemProfileType.cached_list
-    @profiles = {} unless(@profiles.is_a? Hash)
+    DEBUG {%w{list}}
+    attr = attr.to_sym
+    @profiles = {} unless @profiles.is_a?(Hash)
+    
+    return unless list[attr].present?
     @profiles[list[attr]] = value
-    @profiles_changed ||= []; @profiles_changed.push list[attr]
+    @profiles_changed ||= []
+    @profiles_changed.push list[attr]
+    @profiles_changed.uniq!
   end
 
   def update_profiles
     return unless @profiles_changed
-    query = "DELETE FROM item_profiles WHERE item_id = #{self.item_id} AND field_type IN (#{@profiles_changed.join(',')});"
-    self.connection.execute query
+    ItemProfile.delete_all ["item_id = ? AND field_type IN (?)", self.item_id, @profiles_changed]
     @profiles.each do |type_id, value|
       ItemProfile.create({:item_id => self.item_id, :field_body => value, :field_type => type_id})
     end

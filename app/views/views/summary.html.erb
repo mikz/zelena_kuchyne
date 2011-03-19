@@ -1,5 +1,5 @@
 <% content_for :sidebar do %>
   <%= calendar_widget :action => 'summary', :active_dates => @dates, :updates => '#summary', :date_param => :date%>
 <% end %>
-<h1><%= locales[:summary]%></h1>
+<h1><%= t(:summary)%></h1>
 <%= render :partial => "summary"%>

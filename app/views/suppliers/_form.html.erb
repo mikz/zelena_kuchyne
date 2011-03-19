@@ -1,12 +1,12 @@
 <%= error_messages_for :record %>
 <% row_id = "record_#{@record.id ? @record.id : 'new'}" %>
 <% remote_form_for :record, :url => url, :html => {:onsubmit => "jQuery(this).update_textareas()"} do |f| %>
-  <p><label for="<%=row_id%>_name"><%= locales[:attr_name] %></label><br />
+  <p><label for="<%=row_id%>_name"><%= t(:attr_name) %></label><br />
   <%= f.text_field :name, :id=>"#{row_id}_name", :class => '{required: true, minlength: 2, maxlength: 70}' %></p>
-  <p><label for="<%=row_id%>_name_abbr"><%= locales[:attr_name_abbr] %></label><br />
+  <p><label for="<%=row_id%>_name_abbr"><%= t(:attr_name_abbr) %></label><br />
   <%= f.text_field :name_abbr, :id=>"#{row_id}_name_abbr", :class => '{required: true, minlength: 2, maxlength: 10}' %></p>
-  <p><label for="<%=row_id%>_address"><%= locales[:attr_address] %></label><br />
+  <p><label for="<%=row_id%>_address"><%= t(:attr_address) %></label><br />
   <%= f.text_area :address, :id=>"#{row_id}_address", :class => '' %></p>
-  <p><%= yield(:submit_button) || '<input type="submit" value="' + locales[:submit] + '" />' %></p>
+  <p><%= yield(:submit_button) || '<input type="submit" value="' + t(:submit) + '" />' %></p>
 <% end %>
 <script type="text/javascript">$("form").initValidation();</script>

@@ -23,22 +23,32 @@ class LostItemsController < ApplicationController
   
   
   def new
+    @delivery_men = DeliveryMan.all
     super
   end
   
   def create
-    if params[:record]["users"]
-      users = params[:record].delete 'users'
-      for user in users
-        user = User.find_by_login(user)
-        params[:record]['user'] = user
-        @record = LostItem.new(params[:record])
+    if params[:record][:users] && params[:record][:amounts]
+  
+      users = params[:record].delete :users
+      amounts = params[:record].delete :amounts
+      DEBUG {%w{users amounts}}
+      users.each_with_index do |user, index|
+        amount = amounts[index].to_i
+        DEBUG {%w{amount}}
+        next unless amount > 0
+        
+        user = User.find(user)
+        
+        @record = LostItem.new(params[:record].merge :user => user, :amount => amount)
         @record.save
       end
+      
     else
       params[:record]['user'] = User.find_by_login(params[:record]['user'])
       @record = LostItem.new(params[:record])
     end
+    
     super
   end
   

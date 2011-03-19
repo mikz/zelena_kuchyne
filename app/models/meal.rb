@@ -2,7 +2,7 @@ class Meal < Item
   set_table_name 'meals'
   has_many :menus, :through => :courses
   has_many :courses
-  has_many :ingredients, :through => :recipes, :order => "ingredients.name ASC"
+  has_many :ingredients, :through => :recipes
   has_many :recipes
   has_many :spices, :through => :used_spices, :order => "spices.name ASC"
   has_many :used_spices

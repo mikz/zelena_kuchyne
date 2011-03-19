@@ -1,0 +1,6 @@
+begin
+  element = "record_#{@record.id}"
+  page.visual_effect :highlight, element
+rescue
+  page.alert($!.to_s)
+end

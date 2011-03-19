@@ -1,9 +1,9 @@
 <table class="admin stocktakings">
   <thead>
     <tr>
-      <td><%= locales[:attr_ingredient]%></td>
-      <td><%= locales[:difference]%></td>
-      <td><%= locales[:attr_ingredient_consumption]%></td>
+      <td><%= t(:attr_ingredient)%></td>
+      <td><%= t(:difference)%></td>
+      <td><%= t(:attr_ingredient_consumption)%></td>
     </tr>
   </thead>
   <tbody>
@@ -11,7 +11,7 @@
     <tr id="ingredient_<%=log.ingredient.id%>">
       <td><%= log.ingredient.name%></td>
       <td><span class="<%if(log.amount > 0) then %>more<% elsif(log.amount < 0) then %>less<%end%>"><%= format_amount log.amount, :unit => log.ingredient.unit%></span></td>
-      <td class="consumption"><%= format_percent(@consumptions[log.ingredient.id].consumption) if @consumptions[log.ingredient.id]%><span class="delete_consumption"><%= link_to_remote(locales[:delete_consumption], :url => {:action => :delete_consumption, :stocktaking_id => @record.id, :ingredient_id => log.ingredient.id} ) if @consumptions[log.ingredient.id]%></span></td>
+      <td class="consumption"><%= format_percent(@consumptions[log.ingredient.id].consumption) if @consumptions[log.ingredient.id]%><span class="delete_consumption"><%= link_to_remote(t(:delete_consumption), :url => {:action => :delete_consumption, :stocktaking_id => @record.id, :ingredient_id => log.ingredient.id} ) if @consumptions[log.ingredient.id]%></span></td>
     </tr>
     <%-end-%>
   </tbody>

@@ -1,5 +1,5 @@
 <% content_for :cancel_button do %>
-  <a href="#" onclick="$('#record_new').effect('fade',{},300);$('#record_add').show(); setTimeout('$(\'#record_new\').remove();', 300);"><%= locales[:cancel] %></a>
+  <a href="#" onclick="$('#record_new').effect('fade',{},300);$('#record_add').show(); setTimeout('$(\'#record_new\').remove();', 300);"><%= t(:cancel) %></a>
 <% end %>
 <tr id="record_new" class="inline_edit">
   <%= render :partial => "form", :locals => {:date => (Date.parse(date)<Date.today)? Date.today.to_s : date , :scheduled => false, :what => false }%>

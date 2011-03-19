@@ -6,15 +6,15 @@
     </tr>
     <% end %>
     <tr>
-      <td><%= link_to locales["user"], :action => 'index', :order => "users.login" %></td>
-      <td><%= locales["name_of_user"]%></td>
-      <td><%= link_to locales["attr_name"], :action => 'index', :order => "name" %></td>
-      <td><%= link_to locales["discount"], :action => 'index', :order => "amount" %></td>
-      <td><%= link_to locales["attr_publish_at"], :action => 'index', :order => "start_at" %></td>
-      <td><%= link_to locales["attr_expire_at"], :action => 'index', :order => "expire_at" %></td>
-      <td><%= link_to locales["attr_discount_class"], :action => 'index', :order => "discount_class" %></td>
-      <td><%= link_to locales["note"], :action => 'index', :order => "note" %></td>
-      <td><span id="record_add"><%= smart_link locales[:add], :action => 'new' %></span></td>
+      <td><%= link_to t("user"), :action => 'index', :order => "users.login" %></td>
+      <td><%= t("name_of_user")%></td>
+      <td><%= link_to t("attr_name"), :action => 'index', :order => "name" %></td>
+      <td><%= link_to t("discount"), :action => 'index', :order => "amount" %></td>
+      <td><%= link_to t("attr_publish_at"), :action => 'index', :order => "start_at" %></td>
+      <td><%= link_to t("attr_expire_at"), :action => 'index', :order => "expire_at" %></td>
+      <td><%= link_to t("attr_discount_class"), :action => 'index', :order => "discount_class" %></td>
+      <td><%= link_to t("note"), :action => 'index', :order => "note" %></td>
+      <td><span id="record_add"><%= smart_link t(:add), :action => 'new' %></span></td>
     </tr>
   </thead>
   <tbody id="records_body">

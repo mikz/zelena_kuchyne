@@ -72,13 +72,13 @@
       });
         //]]>
     </script>
-    <title><%= locales['layout_title'] %><%= yield(:title) || '' %></title>
+    <title><%= t('layout_title') %><%= yield(:title) || '' %></title>
     <%= yield(:head) %>
   </head>
   <body id="body">
     <div id="header" class="container">
       <a href="/" id="logo">
-        <span><%= locales[:title]%></span>
+        <span><%= t(:title)%></span>
       </a>
     </div>
     <div id="contents" class="container">

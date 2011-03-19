@@ -152,7 +152,8 @@ class Address < ActiveRecord::Base
       if errors.length > 0
         errors.add("dont_validate",'')
       end
-    rescue
+    rescue Exception => e
+      DEBUG {%w{e}}
       errors.add("dont_validate",'')
     end
     errors.clear if self.changed? and errors.size > 0 and self.fixme and address and address.length == 6

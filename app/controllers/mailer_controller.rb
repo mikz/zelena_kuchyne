@@ -13,9 +13,9 @@ class MailerController < ApplicationController
       UserToken.delete_all ["user_id = ?", @user.id]
       UserToken.create(:token => Digest::MD5.hexdigest(Time.now.to_s), :user => @user)
       Mailer.deliver_forgotten_password(@user)
-      redirect_to "/#{locales[:forgotten_password_sent]}"
+      redirect_to "/#{t(:forgotten_password_sent)}"
     else
-      flash[:notice] = locales[:user_not_found]
+      flash[:notice] = t(:user_not_found)
       redirect_to :back
     end
   end

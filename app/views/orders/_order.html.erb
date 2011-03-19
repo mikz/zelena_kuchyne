@@ -8,7 +8,7 @@
     <%-if order.user.delivery_address.zone%>
       <%= order.user.delivery_address.zone.name%>
       <% unless order.user.delivery_address.zone_reviewed? %>
-      <br/><%= link_to_remote locales[:zone_reviewed].downcase,  :url => {:controller => "users", :action => "set_zone", :id => order.user.id, :from => "orders", :order_id => order.id, :zone => {:zone_reviewed => true}} %>
+      <br/><%= link_to_remote t(:zone_reviewed).downcase,  :url => {:controller => "users", :action => "set_zone", :id => order.user.id, :from => "orders", :order_id => order.id, :zone => {:zone_reviewed => true}} %>
       <%-end-%>
     <%-else-%>
       <% form_remote_tag :url => {:action => :set_zone, :id => order.user.id, :controller => :users, :from => "orders", :order_id => order.id} do %>
@@ -26,7 +26,7 @@
     <% form_remote_tag :url => {:action => 'assign', :id => order.id} do %>
     <p>
       <select name="delivery_man_id" onchange='this.form.onsubmit();'>
-        <option value="null"><%= locales[:none_assigned] %></option>
+        <option value="null"><%= t(:none_assigned) %></option>
         <% for dude in delivery_men %>
           <option<%= ' selected="selected"' if order.delivery_man and order.delivery_man.id == dude.id %> value="<%= dude.id %>"><%= dude.label %></option>
         <% end %>
@@ -36,25 +36,25 @@
   </td>
   <td>
     <% if order.cancelled %>
-      <%= locales["order_status_#{order.state}"] %>
-      <%= link_to_remote locales['restore'], :url => {:action => 'toggle_cancelled', :id => order.id} %>
+      <%= t("order_status_#{order.state}") %>
+      <%= link_to_remote t('restore'), :url => {:action => 'toggle_cancelled', :id => order.id} %>
     <% else %>
       <% form_remote_tag :url => {:action => 'change_state', :id => order.id} do %>
       <p>
         <select name="state" onchange='this.form.onsubmit();'>
           <% for state in ['order', 'expedited', 'closed'] %>
-            <option value="<%= state %>"<%= order.state == state ? ' selected="selected"' : "" %>><%= locales['order_status_'+state] %></option>
+            <option value="<%= state %>"<%= order.state == state ? ' selected="selected"' : "" %>><%= t('order_status_'+state) %></option>
           <% end %>
         </select>
       </p>
       <% end %>
-      <%= link_to_remote locales['cancel_order'], :url => {:action => 'toggle_cancelled', :id => order.id} %>
+      <%= link_to_remote t('cancel_order'), :url => {:action => 'toggle_cancelled', :id => order.id} %>
     <% end %>
   </td>
   <td class="fullscreen"><%= format order.deliver_at.to_date %></td>
-  <td><%= format order.deliver_at %></td>
+  <td><%= l order.deliver_at, :format => :very_short %></td>
   <td>
   <%= link_to image_tag('open.png'), :action => 'show', :id => order.id %>
   <%= link_to image_tag('edit.png'), :action => 'edit', :id => order.id %>
-  <%=link_to "<img src='/images/print.png' alt='#{locales[:print]}'/>", {:action => :show, :id => order.id, :print => true },:popup =>['print', 'height=300,width=300']%></td>
+  <%=link_to "<img src='/images/print.png' alt='#{t(:print)}'/>", {:action => :show, :id => order.id, :print => true },:popup =>['print', 'height=300,width=300']%></td>
 </tr>

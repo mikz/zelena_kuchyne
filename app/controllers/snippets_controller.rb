@@ -8,7 +8,7 @@ class SnippetsController < ApplicationController
     #order records by localized name
     if params[:order] == "name"
      @records.sort! { |first, second|
-        locales["snippet_" + first.send(params[:order])].chars.downcase <=> locales["snippet_" + second.send(params[:order])].chars.downcase
+        t("snippet_" + first.send(params[:order])).mb_chars.downcase <=> t("snippet_" + second.send(params[:order])).mb_chars.downcase
       }
     end
     super

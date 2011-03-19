@@ -409,7 +409,7 @@ module Importers
       
       allowed = /^[a-z0-9_\.]+$/
       
-      login = data[:login].chars.downcase
+      login = data[:login].mb_chars.downcase
       replacements.each do |weird, normal|
         login.gsub!(weird, normal)
       end

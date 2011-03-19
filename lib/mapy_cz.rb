@@ -15,6 +15,7 @@ module MapyCz
     info = {}
     data = get_json_data "http://www.mapy.cz/basepoi/detail?output=json&requestType=xmlhttp&encoding=utf8&adr=#{poi_id}"
     tmp = []
+    
     return unless data["status"].to_i == 200
     content = data["obsah"].first["cont"].gsub(/(<\/p><p[^>]*>)/m,"<br />").gsub(/(<\/p>)|(<p[^>]*>)/m,"").gsub(/&nbsp;/,"").split(/<br\s*\/>/m)
     title = data["obsah"].first["title"].split(",").first.strip
@@ -34,11 +35,12 @@ module MapyCz
         info[:district] = content[1].gsub(/^(část obce )/,"").strip
         info[:city] = content[0].scan(/(\d+)(.*)/).first.last.strip
     end
+
     return info
   end
 
   def translit str
-    ActiveSupport::Multibyte::Handlers::UTF8Handler.normalize(str.to_s,:d).split(//u).reject { |e| e.length > 1 }.join
+    str.mb_chars.normalize.split(//u).reject { |e| e.length > 1 }.join
   end
 
   private

@@ -1,6 +1,6 @@
 <% content_for :submit_button do %>
-  <input type="submit" value="<%= locales[:save] %>" />
-  <%= link_to_remote locales[:close], :url => {:action => 'show', :id => @record} %>
+  <input type="submit" value="<%= t(:save) %>" />
+  <%= link_to_remote t(:close), :url => {:action => 'show', :id => @record} %>
 <% end %>
 <td colspan="<%= @options[:columns].length + 2 %>">
   <h3><%= @record.name %></h3>

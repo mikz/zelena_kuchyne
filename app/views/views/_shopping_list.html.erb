@@ -2,12 +2,12 @@
   <table class="admin">
     <thead>
       <tr>
-        <td><%= link_to locales[:ingredient], :order => "name" %></td>
-        <td><%= link_to locales[:attr_code], :order => "code" %></td>
-        <td class="text right"><%= link_to locales[:amount], :order => "amount" %></td>
-        <td class="text left"><%= link_to locales[:unit], :order => "unit" %></td>
-        <td class="text right"><%= link_to locales[:total_cost], :order => "total_cost" %></td>
-        <td><%= link_to locales[:supplier], :order => "supplier_short"  %></td>
+        <td><%= link_to t(:ingredient), :order => "name" %></td>
+        <td><%= link_to t(:attr_code), :order => "code" %></td>
+        <td class="text right"><%= link_to t(:amount), :order => "amount" %></td>
+        <td class="text left"><%= link_to t(:unit), :order => "unit" %></td>
+        <td class="text right"><%= link_to t(:total_cost), :order => "total_cost" %></td>
+        <td><%= link_to t(:supplier), :order => "supplier_short"  %></td>
       </tr>
     </thead>
     <tfoot>

@@ -1,6 +1,6 @@
 class Mailer < ActionMailer::Base
   helper :application
-  helper {def locales; LocalesSystem.locales; end}
+  helper {def locales; I18n.locales; end}
   helper {def snippet(name); unless(s = Snippet.find_by_name(name)).blank?; s.content; else; Snippet.create(:content => ""){|s| s.name = name}.content; end; end}
   
   def tomorrow_menu(user, menus, categories, options ={} )

@@ -1,7 +1,7 @@
 <%= error_messages_for :record %>
 <% row_id = "record_#{@record.id ? @record.id : 'new'}" %>
-<% remote_form_for :record, :url => url, :html => {:class => "dialy_menu"} do |f| %>
-  <p><label for="<%=row_id%>_date"><%= locales[:attr_date] %></label><br />
+<% remote_form_for :record, :url => url.reverse_merge!(:format => 'js'), :html => {:class => "dialy_menu"} do |f| %>
+  <p><label for="<%=row_id%>_date"><%= t(:attr_date) %></label><br />
   <%= f.text_field :date, :id=> "#{row_id}_date", :class => 'datepicker' %></p>
   <% unless @record.new_record? %>
     <p><label for="<%=row_id%>_menu_price">cena menu</label><br />
@@ -64,7 +64,7 @@
       </table>
     </fieldset>
   <%end%>
-<p><%= yield(:submit_button) || '<input type="submit" value="' + locales[:submit] + '" />' %></p>
+<p><%= yield(:submit_button) || '<input type="submit" value="' + t(:submit) + '" />' %></p>
 <% end %>
 <script type="text/javascript">
 $(function(){

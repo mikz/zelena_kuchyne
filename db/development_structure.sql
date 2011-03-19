@@ -185,7 +185,8 @@ CREATE TYPE order_state AS ENUM (
     'basket',
     'order',
     'expedited',
-    'closed'
+    'closed',
+    'validating'
 );
 
 
@@ -315,6 +316,15 @@ CREATE FUNCTION apply_wholesale_discounts() RETURNS trigger
     RETURN NEW;
   END;
 $$;
+
+
+--
+-- Name: armor(bytea); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION armor(bytea) RETURNS text
+    LANGUAGE c IMMUTABLE STRICT
+    AS '$libdir/pgcrypto', 'pg_armor';
 
 
 --
@@ -940,6 +950,42 @@ $$;
 
 
 --
+-- Name: crypt(text, text); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION crypt(text, text) RETURNS text
+    LANGUAGE c IMMUTABLE STRICT
+    AS '$libdir/pgcrypto', 'pg_crypt';
+
+
+--
+-- Name: dearmor(text); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION dearmor(text) RETURNS bytea
+    LANGUAGE c IMMUTABLE STRICT
+    AS '$libdir/pgcrypto', 'pg_dearmor';
+
+
+--
+-- Name: decrypt(bytea, bytea, text); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION decrypt(bytea, bytea, text) RETURNS bytea
+    LANGUAGE c IMMUTABLE STRICT
+    AS '$libdir/pgcrypto', 'pg_decrypt';
+
+
+--
+-- Name: decrypt_iv(bytea, bytea, bytea, text); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION decrypt_iv(bytea, bytea, bytea, text) RETURNS bytea
+    LANGUAGE c IMMUTABLE STRICT
+    AS '$libdir/pgcrypto', 'pg_decrypt_iv';
+
+
+--
 -- Name: delete_item_discounts(); Type: FUNCTION; Schema: public; Owner: -
 --
 
@@ -1054,6 +1100,24 @@ CREATE FUNCTION difference(text, text) RETURNS integer
 
 
 --
+-- Name: digest(text, text); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION digest(text, text) RETURNS bytea
+    LANGUAGE c IMMUTABLE STRICT
+    AS '$libdir/pgcrypto', 'pg_digest';
+
+
+--
+-- Name: digest(bytea, text); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION digest(bytea, text) RETURNS bytea
+    LANGUAGE c IMMUTABLE STRICT
+    AS '$libdir/pgcrypto', 'pg_digest';
+
+
+--
 -- Name: dmetaphone(text); Type: FUNCTION; Schema: public; Owner: -
 --
 
@@ -1069,6 +1133,51 @@ CREATE FUNCTION dmetaphone(text) RETURNS text
 CREATE FUNCTION dmetaphone_alt(text) RETURNS text
     LANGUAGE c IMMUTABLE STRICT
     AS '$libdir/fuzzystrmatch', 'dmetaphone_alt';
+
+
+--
+-- Name: encrypt(bytea, bytea, text); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION encrypt(bytea, bytea, text) RETURNS bytea
+    LANGUAGE c IMMUTABLE STRICT
+    AS '$libdir/pgcrypto', 'pg_encrypt';
+
+
+--
+-- Name: encrypt_iv(bytea, bytea, bytea, text); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION encrypt_iv(bytea, bytea, bytea, text) RETURNS bytea
+    LANGUAGE c IMMUTABLE STRICT
+    AS '$libdir/pgcrypto', 'pg_encrypt_iv';
+
+
+--
+-- Name: gen_random_bytes(integer); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION gen_random_bytes(integer) RETURNS bytea
+    LANGUAGE c STRICT
+    AS '$libdir/pgcrypto', 'pg_random_bytes';
+
+
+--
+-- Name: gen_salt(text); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION gen_salt(text) RETURNS text
+    LANGUAGE c STRICT
+    AS '$libdir/pgcrypto', 'pg_gen_salt';
+
+
+--
+-- Name: gen_salt(text, integer); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION gen_salt(text, integer) RETURNS text
+    LANGUAGE c STRICT
+    AS '$libdir/pgcrypto', 'pg_gen_salt_rounds';
 
 
 --
@@ -1433,6 +1542,24 @@ CREATE FUNCTION hex_to_int(character varying) RETURNS integer
 
 
 --
+-- Name: hmac(text, text, text); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION hmac(text, text, text) RETURNS bytea
+    LANGUAGE c IMMUTABLE STRICT
+    AS '$libdir/pgcrypto', 'pg_hmac';
+
+
+--
+-- Name: hmac(bytea, bytea, text); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION hmac(bytea, bytea, text) RETURNS bytea
+    LANGUAGE c IMMUTABLE STRICT
+    AS '$libdir/pgcrypto', 'pg_hmac';
+
+
+--
 -- Name: ingredient_cost(integer); Type: FUNCTION; Schema: public; Owner: -
 --
 
@@ -1600,6 +1727,177 @@ CREATE FUNCTION no_guest_orders() RETURNS trigger
     RETURN NEW;
   END;
 $$;
+
+
+--
+-- Name: pgp_key_id(bytea); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION pgp_key_id(bytea) RETURNS text
+    LANGUAGE c IMMUTABLE STRICT
+    AS '$libdir/pgcrypto', 'pgp_key_id_w';
+
+
+--
+-- Name: pgp_pub_decrypt(bytea, bytea); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION pgp_pub_decrypt(bytea, bytea) RETURNS text
+    LANGUAGE c IMMUTABLE STRICT
+    AS '$libdir/pgcrypto', 'pgp_pub_decrypt_text';
+
+
+--
+-- Name: pgp_pub_decrypt(bytea, bytea, text); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION pgp_pub_decrypt(bytea, bytea, text) RETURNS text
+    LANGUAGE c IMMUTABLE STRICT
+    AS '$libdir/pgcrypto', 'pgp_pub_decrypt_text';
+
+
+--
+-- Name: pgp_pub_decrypt(bytea, bytea, text, text); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION pgp_pub_decrypt(bytea, bytea, text, text) RETURNS text
+    LANGUAGE c IMMUTABLE STRICT
+    AS '$libdir/pgcrypto', 'pgp_pub_decrypt_text';
+
+
+--
+-- Name: pgp_pub_decrypt_bytea(bytea, bytea); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION pgp_pub_decrypt_bytea(bytea, bytea) RETURNS bytea
+    LANGUAGE c IMMUTABLE STRICT
+    AS '$libdir/pgcrypto', 'pgp_pub_decrypt_bytea';
+
+
+--
+-- Name: pgp_pub_decrypt_bytea(bytea, bytea, text); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION pgp_pub_decrypt_bytea(bytea, bytea, text) RETURNS bytea
+    LANGUAGE c IMMUTABLE STRICT
+    AS '$libdir/pgcrypto', 'pgp_pub_decrypt_bytea';
+
+
+--
+-- Name: pgp_pub_decrypt_bytea(bytea, bytea, text, text); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION pgp_pub_decrypt_bytea(bytea, bytea, text, text) RETURNS bytea
+    LANGUAGE c IMMUTABLE STRICT
+    AS '$libdir/pgcrypto', 'pgp_pub_decrypt_bytea';
+
+
+--
+-- Name: pgp_pub_encrypt(text, bytea); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION pgp_pub_encrypt(text, bytea) RETURNS bytea
+    LANGUAGE c STRICT
+    AS '$libdir/pgcrypto', 'pgp_pub_encrypt_text';
+
+
+--
+-- Name: pgp_pub_encrypt(text, bytea, text); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION pgp_pub_encrypt(text, bytea, text) RETURNS bytea
+    LANGUAGE c STRICT
+    AS '$libdir/pgcrypto', 'pgp_pub_encrypt_text';
+
+
+--
+-- Name: pgp_pub_encrypt_bytea(bytea, bytea); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION pgp_pub_encrypt_bytea(bytea, bytea) RETURNS bytea
+    LANGUAGE c STRICT
+    AS '$libdir/pgcrypto', 'pgp_pub_encrypt_bytea';
+
+
+--
+-- Name: pgp_pub_encrypt_bytea(bytea, bytea, text); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION pgp_pub_encrypt_bytea(bytea, bytea, text) RETURNS bytea
+    LANGUAGE c STRICT
+    AS '$libdir/pgcrypto', 'pgp_pub_encrypt_bytea';
+
+
+--
+-- Name: pgp_sym_decrypt(bytea, text); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION pgp_sym_decrypt(bytea, text) RETURNS text
+    LANGUAGE c IMMUTABLE STRICT
+    AS '$libdir/pgcrypto', 'pgp_sym_decrypt_text';
+
+
+--
+-- Name: pgp_sym_decrypt(bytea, text, text); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION pgp_sym_decrypt(bytea, text, text) RETURNS text
+    LANGUAGE c IMMUTABLE STRICT
+    AS '$libdir/pgcrypto', 'pgp_sym_decrypt_text';
+
+
+--
+-- Name: pgp_sym_decrypt_bytea(bytea, text); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION pgp_sym_decrypt_bytea(bytea, text) RETURNS bytea
+    LANGUAGE c IMMUTABLE STRICT
+    AS '$libdir/pgcrypto', 'pgp_sym_decrypt_bytea';
+
+
+--
+-- Name: pgp_sym_decrypt_bytea(bytea, text, text); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION pgp_sym_decrypt_bytea(bytea, text, text) RETURNS bytea
+    LANGUAGE c IMMUTABLE STRICT
+    AS '$libdir/pgcrypto', 'pgp_sym_decrypt_bytea';
+
+
+--
+-- Name: pgp_sym_encrypt(text, text); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION pgp_sym_encrypt(text, text) RETURNS bytea
+    LANGUAGE c STRICT
+    AS '$libdir/pgcrypto', 'pgp_sym_encrypt_text';
+
+
+--
+-- Name: pgp_sym_encrypt(text, text, text); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION pgp_sym_encrypt(text, text, text) RETURNS bytea
+    LANGUAGE c STRICT
+    AS '$libdir/pgcrypto', 'pgp_sym_encrypt_text';
+
+
+--
+-- Name: pgp_sym_encrypt_bytea(bytea, text); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION pgp_sym_encrypt_bytea(bytea, text) RETURNS bytea
+    LANGUAGE c STRICT
+    AS '$libdir/pgcrypto', 'pgp_sym_encrypt_bytea';
+
+
+--
+-- Name: pgp_sym_encrypt_bytea(bytea, text, text); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION pgp_sym_encrypt_bytea(bytea, text, text) RETURNS bytea
+    LANGUAGE c STRICT
+    AS '$libdir/pgcrypto', 'pgp_sym_encrypt_bytea';
 
 
 --
@@ -1926,7 +2224,7 @@ CREATE TABLE addresses (
     company_name character varying(100),
     zone_id integer,
     zone_reviewed boolean DEFAULT false,
-    CONSTRAINT addresses_address_type_check CHECK (((address_type)::text = ANY ((ARRAY['home'::character varying, 'delivery'::character varying, 'billing'::character varying])::text[])))
+    CONSTRAINT addresses_address_type_check CHECK (((address_type)::text = ANY (ARRAY[('home'::character varying)::text, ('delivery'::character varying)::text, ('billing'::character varying)::text])))
 );
 
 
@@ -2091,7 +2389,7 @@ CREATE TABLE users (
 --
 
 CREATE VIEW assigned_ordered_meals AS
-    SELECT users.id AS delivery_man_id, COALESCE(meals.item_id, bundles.item_id) AS item_id, sum(ordered_items.amount) AS amount, (orders.deliver_at)::date AS date FROM ((((((users LEFT JOIN orders ON ((orders.delivery_man_id = users.id))) LEFT JOIN ordered_items ON ((orders.id = ordered_items.order_id))) LEFT JOIN menus ON ((menus.item_id = ordered_items.item_id))) LEFT JOIN courses ON ((menus.id = courses.menu_id))) LEFT JOIN meals ON (((courses.meal_id = meals.id) OR (ordered_items.item_id = meals.item_id)))) LEFT JOIN bundles ON ((bundles.item_id = ordered_items.item_id))) WHERE ((orders.cancelled = false) AND (orders.state <> 'basket'::order_state)) GROUP BY users.id, users.login, COALESCE(meals.item_id, bundles.item_id), meals.id, meals.item_id, (orders.deliver_at)::date ORDER BY (orders.deliver_at)::date, users.id;
+    SELECT users.id AS delivery_man_id, COALESCE(meals.item_id, bundles.item_id) AS item_id, sum(ordered_items.amount) AS amount, (orders.deliver_at)::date AS date FROM ((((((users LEFT JOIN orders ON ((orders.delivery_man_id = users.id))) LEFT JOIN ordered_items ON ((orders.id = ordered_items.order_id))) LEFT JOIN menus ON ((menus.item_id = ordered_items.item_id))) LEFT JOIN courses ON ((menus.id = courses.menu_id))) LEFT JOIN meals ON (((courses.meal_id = meals.id) OR (ordered_items.item_id = meals.item_id)))) LEFT JOIN bundles ON ((bundles.item_id = ordered_items.item_id))) WHERE ((orders.cancelled = false) AND (orders.state <> 'basket'::order_state)) GROUP BY (orders.deliver_at)::date, users.id, users.login, COALESCE(meals.item_id, bundles.item_id), meals.id, meals.item_id ORDER BY (orders.deliver_at)::date, users.id;
 
 
 --
@@ -2556,6 +2854,38 @@ CREATE SEQUENCE dialy_menu_entries_id_seq
 --
 
 ALTER SEQUENCE dialy_menu_entries_id_seq OWNED BY dialy_menu_entries.id;
+
+
+--
+-- Name: dialy_menu_entry_flags; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE dialy_menu_entry_flags (
+    id integer NOT NULL,
+    meal_flag_id integer NOT NULL,
+    dialy_menu_entry_id integer NOT NULL,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+--
+-- Name: dialy_menu_entry_flags_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE dialy_menu_entry_flags_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: dialy_menu_entry_flags_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE dialy_menu_entry_flags_id_seq OWNED BY dialy_menu_entry_flags.id;
 
 
 --
@@ -3133,7 +3463,7 @@ CREATE TABLE item_profile_types (
     visible boolean DEFAULT true NOT NULL,
     editable boolean DEFAULT true NOT NULL,
     required boolean DEFAULT false NOT NULL,
-    CONSTRAINT item_profile_types_data_type_check CHECK (((data_type)::text = ANY ((ARRAY['text_field'::character varying, 'text_area'::character varying, 'hidden'::character varying, 'checkbox'::character varying])::text[]))),
+    CONSTRAINT item_profile_types_data_type_check CHECK (((data_type)::text = ANY (ARRAY[('text_field'::character varying)::text, ('text_area'::character varying)::text, ('hidden'::character varying)::text, ('checkbox'::character varying)::text]))),
     CONSTRAINT item_profile_types_name_check CHECK ((length((name)::text) > 1))
 );
 
@@ -3283,7 +3613,7 @@ CREATE TABLE mail_acl_rules (
     mailbox_id integer NOT NULL,
     group_id integer NOT NULL,
     action character varying(15) NOT NULL,
-    CONSTRAINT mail_acl_rules_action_check CHECK (((action)::text = ANY ((ARRAY['read'::character varying, 'handle'::character varying, 'admin'::character varying])::text[])))
+    CONSTRAINT mail_acl_rules_action_check CHECK (((action)::text = ANY (ARRAY[('read'::character varying)::text, ('handle'::character varying)::text, ('admin'::character varying)::text])))
 );
 
 
@@ -3430,6 +3760,7 @@ ALTER SEQUENCE mail_messages_message_id_seq OWNED BY mail_messages.message_id;
 CREATE TABLE meal_categories (
     id integer NOT NULL,
     name character varying(70) NOT NULL,
+    facebook boolean DEFAULT true NOT NULL,
     CONSTRAINT meal_categories_name_check CHECK ((length((name)::text) > 1))
 );
 
@@ -3472,6 +3803,7 @@ CREATE TABLE meal_flags (
     name character varying(30) NOT NULL,
     description character varying(255),
     icon_path character varying(255),
+    in_dialy_menu boolean DEFAULT true NOT NULL,
     CONSTRAINT meal_flags_name_check CHECK ((length((name)::text) > 1))
 );
 
@@ -4403,7 +4735,7 @@ CREATE TABLE user_profile_types (
     visible boolean DEFAULT true NOT NULL,
     editable boolean DEFAULT true NOT NULL,
     required boolean DEFAULT false NOT NULL,
-    CONSTRAINT user_profile_types_data_type_check CHECK (((data_type)::text = ANY ((ARRAY['text_field'::character varying, 'text_area'::character varying, 'hidden'::character varying, 'checkbox'::character varying])::text[]))),
+    CONSTRAINT user_profile_types_data_type_check CHECK (((data_type)::text = ANY (ARRAY[('text_field'::character varying)::text, ('text_area'::character varying)::text, ('hidden'::character varying)::text, ('checkbox'::character varying)::text]))),
     CONSTRAINT user_profile_types_name_check CHECK ((length((name)::text) > 1))
 );
 
@@ -4648,6 +4980,13 @@ ALTER TABLE delivery_methods ALTER COLUMN id SET DEFAULT nextval('delivery_metho
 --
 
 ALTER TABLE dialy_menu_entries ALTER COLUMN id SET DEFAULT nextval('dialy_menu_entries_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE dialy_menu_entry_flags ALTER COLUMN id SET DEFAULT nextval('dialy_menu_entry_flags_id_seq'::regclass);
 
 
 --
@@ -5188,6 +5527,14 @@ ALTER TABLE ONLY delivery_methods
 
 ALTER TABLE ONLY dialy_menu_entries
     ADD CONSTRAINT dialy_menu_entries_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: dialy_menu_entry_flags_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY dialy_menu_entry_flags
+    ADD CONSTRAINT dialy_menu_entry_flags_pkey PRIMARY KEY (id);
 
 
 --
@@ -7154,3 +7501,11 @@ INSERT INTO schema_migrations (version) VALUES ('20100626174011');
 INSERT INTO schema_migrations (version) VALUES ('20100626174419');
 
 INSERT INTO schema_migrations (version) VALUES ('20100626212118');
+
+INSERT INTO schema_migrations (version) VALUES ('20100921133352');
+
+INSERT INTO schema_migrations (version) VALUES ('20100921134207');
+
+INSERT INTO schema_migrations (version) VALUES ('20101110123339');
+
+INSERT INTO schema_migrations (version) VALUES ('20110202115441');

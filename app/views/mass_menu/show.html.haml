@@ -1,0 +1,68 @@
+- form_for :mass_menu, :html => {:class => :mass_menu, :method => :put} do |f|
+  - if current_user.admin?
+    %p
+      %label
+        Uživatelské jméno objednávajícího
+        =text_field_tag "order[user]", session[:order_user].presence || current_user.login
+  - @scheduled_items.each do |date, items|
+    - if @delivery[date][:steps].blank?
+      %h1 Na #{format_date_with_weekday(date)} již nelze objednat.
+    - else
+      - reset_cycle :even
+      - mm = @mass_menu[date]
+      %table.menu
+        %caption= format_date_with_weekday(date)
+        %thead
+          %tr
+            %td
+              %p název
+            %td piktogramy
+            %td.price cena
+            %td množství
+        %tbody
+          - items[:menus].each do |menu|
+            - state = (@sold_out[date] & menu.meal_ids).present? && :soldout
+            %tr{:class => [cycle(:even, :odd), state]}
+              %td
+                %h6= menu.name
+                //          = meal.description
+              %td
+              %td.price= format_currency menu.discount_price(:date => date)
+              %td
+                = text_field_tag "mass_menu[#{date}][#{menu.item_id}]", mm[menu.item_id], :disabled => state
+
+            - menu.meals.each do |meal|
+              - state = @sold_out[date].include?(meal.id) && :soldout
+              %tr{:class => [cycle(:even, :odd), state]}
+                %td
+                  %h6= meal.name
+                  = meal.description
+                %td= meal_flags(meal, false)
+                %td.price= format_currency meal.discount_price(:date => date)
+                %td
+                  = text_field_tag "mass_menu[#{date}][#{meal.item_id}]", mm[meal.item_id], :disabled => state
+
+          - items[:categories].each do |category, meals|
+            - meals.each do |meal|
+              - state = @sold_out[date].include?(meal.id) && :soldout
+              %tr{:class => [cycle(:even, :odd), state]}
+                %td
+                  %h6= meal.name
+                  = meal.description
+                %td= meal_flags(meal, false)
+                %td.price= format_currency meal.discount_price(:date => date)
+                %td
+                  = text_field_tag "mass_menu[#{date.to_s}][#{meal.item_id}]", mm[meal.item_id], :disabled => state
+      %p
+        %label{:for => "mass_menu_#{date}_time_of_delivery"}= t(:preferred_time_of_delivery)
+        %select{:name => "mass_menu[#{date}][time_of_delivery]", :id => "mass_menu_#{date}_time_of_delivery", :class => "time_filed"}
+          = time_of_delivery_options(@delivery[date][:steps], mm['time_of_delivery'])
+  %p= t(:time_of_delivery_is_approximate)
+  - unless current_user.admin?
+    %p= t(:user_agreement)
+    #user_agreement= snippet 'user_agrement'
+    %p#confirm_agreement
+      %input#mass_menu_confirmation{:type=>"checkbox", :name=>"mass_menu[confirmation]"}
+      %label{:for => "mass_menu_confirmation"}=t(:accept_agreement)
+  %p.submit
+    = f.submit "Pokračovat k potvrzení objednávky", :confirm => "Opravdu pokračovat k potvrzení objednávky?\n\nTento krok nebude možné vrátit.", :class => 'lock'

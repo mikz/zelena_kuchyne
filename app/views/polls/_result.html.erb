@@ -1,6 +1,6 @@
 <%= render :partial => "polls/message", :locals => {:message => message ||= nil, :error => error ||= nil } %>
 <dl>
-  <dt><%= poll.question.chars.capitalize%></dt>
+  <dt><%= poll.question.mb_chars.capitalize%></dt>
   <%- poll.poll_answers_results.each do |answer|-%>
   <dd><div class="result"><div style="width: <%= format answer.percent, :precision => 0%>%;"><span><%= format answer.percent, :precision => 0%>%</span></div></div> <%= answer.text %></dd>
   <%-end-%>

@@ -3,61 +3,61 @@
 <% form_for :user, :method => :post, :url => ( (defined?(url) and url) ? url : {:action => 'update', :id => @user})  do |f| %>
 <div id="personal_data">
 <fieldset>
-    <legend><%= locales['login_data'] %></legend>
+    <legend><%= t('login_data') %></legend>
     <p class="required<%=' formError' if (@user.errors["user_login"]) %>">
-        <label for="user_login"><%= locales['user_login'] %></label><span class="hint"> (<a href="#" rel="external" onclick="toggle_rule('login'); return false;">pravidla</a>)</span><br />
+        <label for="user_login"><%= t('user_login') %></label><span class="hint"> (<a href="#" rel="external" onclick="toggle_rule('login'); return false;">pravidla</a>)</span><br />
         <%= f.text_field :login, :class => '{required: true, minlength: 2, maxlength: 50, login: true}' %>
         <%= "<label for='user_login' class='formError'>#{@user.errors["user_login"]}</label>" if (@user.errors["user_login"]) %>
     </p>
     <ul class="rules" id="rule_login">
-      <li><%= locales[:lowercase_without_national_characters]%></li>
-      <li><%= locales[:have_to_start_with_letter]%></li>
-      <li><%= locales[:inside_can_be_dot_or_underscore]%></li>
-      <li><%= locales[:end_with_letter_or_number]%></li>
-      <li><%= locales[:maximal_length_is_x_characters].gsub("%n", "50")%></li>
+      <li><%= t(:lowercase_without_national_characters)%></li>
+      <li><%= t(:have_to_start_with_letter)%></li>
+      <li><%= t(:inside_can_be_dot_or_underscore)%></li>
+      <li><%= t(:end_with_letter_or_number)%></li>
+      <li><%= t(:maximal_length_is_x_characters).gsub("%n", "50")%></li>
     </ul>
     <p class="required<%=' formError' if (@user.errors["user_password"]) %>">
-        <label for="user_password"><%= locales['password'] %></label><span class="hint"> ( <%= locales[:minimal_length_is_x_characters].gsub("%n","5")%> )</span><br />
+        <label for="user_password"><%= t('password') %></label><span class="hint"> ( <%= t(:minimal_length_is_x_characters).gsub("%n","5")%> )</span><br />
         <%= f.password_field :password, :class => "{password: true, minlength: 5, maxlength: 32}", :autocomplete => "off" %>
         <%= "<label for='user_password' class='formError'>#{@user.errors["user_password"]}</label>" if (@user.errors["user_password"]) %>
     </p>
     <p class="required<%=' formError' if (@user.errors["user_password_confirmation"]) %>">
-        <label for="user_password_confirmation"><%= locales['user_password_confirmation'] %></label><br />
+        <label for="user_password_confirmation"><%= t('user_password_confirmation') %></label><br />
         <%= f.password_field :password_confirmation, :class => '{equalTo: "#user_password"}', :autocomplete => "off" %>
         <%= "<label for='user_password_confirmation' class='formError'>#{@user.errors["user_password_confirmation"]}</label>" if (@user.errors["user_password_confirmation"]) %>
     </p>
     <p class="required<%=' formError' if (@user.errors["user_email"]) %>">
-        <label for="user_email"><%= locales['email'] %></label><br />
+        <label for="user_email"><%= t('email') %></label><br />
         <%= f.text_field :email, :class => "{required: true, minlength: 5, maxlength: 50, email: true}" %>
         <%= "<label for='user_email' class='formError'>#{@user.errors["user_email"]}</label>" if (@user.errors["user_email"]) %>
     </p>
 </fieldset>
 <fieldset id="user">
-    <legend><%= locales['personal_data'] %></legend>
+    <legend><%= t('personal_data') %></legend>
     <p<%= ' class="formError"' if (@user.errors["user_first_name"]) %>>
-        <label for="user_first_name"><%= locales['first_name'] %></label><br />
+        <label for="user_first_name"><%= t('first_name') %></label><br />
         <%= f.text_field :first_name, :class => "{nameOrCompany: true, person_name: true, maxlength: 100}", :onkeyup => "jQuery(this).updateNameOrCompany();"%>
         <%= "<label for='user_first_name' class='formError'>#{@user.errors["user_first_name"]}</label>" if (@user.errors["user_first_name"]) %>
     </p>
     <p<%= ' class="formError"' if (@user.errors["user_family_name"]) %>>
-        <label for="user_family_name"><%= locales['family_name'] %></label><br />
+        <label for="user_family_name"><%= t('family_name') %></label><br />
         <%= f.text_field :family_name, :class => "{nameOrCompany: true, person_name: true, maxlength: 100}", :onkeyup => "jQuery(this).updateNameOrCompany();" %>
         <%= "<label for='user_family_name' class='formError'>#{@user.errors["user_family_name"]}</label>" if (@user.errors["user_family_name"]) %>
     </p>
     <p<%= ' class="formError"' if (@user.errors["user_company_name"]) %>>
-        <label for="user_company_name"><%= locales['company_name'] %></label><br />
+        <label for="user_company_name"><%= t('company_name') %></label><br />
         <%= f.text_field :company_name, :class => "{nameOrCompany: true, maxlength: 100}", :onkeyup => "jQuery(this).updateNameOrCompany();" %>
         <%= "<label for='user_company_name' class='formError'>#{@user.errors["user_company_name"]}</label>" if (@user.errors["user_company_name"]) %>
     </p>
     <p class="required<%=' formError' if (@user.errors["user_phone_number"]) %>">
-        <label for="user_phone_number_country_code"><%= locales['phone_number_country_code'] %></label>&nbsp;-&nbsp;<label for="user_phone_number"><%= locales['phone_number'] %></label><span class="hint"> (<a href="#" rel="external" onclick="toggle_rule('phone_number'); return false;">pravidla</a>)</span><br />
+        <label for="user_phone_number_country_code"><%= t('phone_number_country_code') %></label>&nbsp;-&nbsp;<label for="user_phone_number"><%= t('phone_number') %></label><span class="hint"> (<a href="#" rel="external" onclick="toggle_rule('phone_number'); return false;">pravidla</a>)</span><br />
         <select name="user[phone_number_country_code]" id="user_phone_number_country_code">
           <% for cc in @country_codes 
             selected = false
             if @user.phone_number_country_code 
               selected = (cc.code == @user.phone_number_country_code.to_i)
             else
-              selected = (cc.code == locales[:country_code].to_i)
+              selected = (cc.code == t(:country_code).to_i)
             end %>
             <option value="<%=cc.code%>" <%= "selected='selected'" if selected %>>+<%=cc.code%></option>
           <% end%>
@@ -67,23 +67,23 @@
         <%= "<label for='user_phone_number' class='formError'>#{@user.errors["user_phone_number"]}</label>" if (@user.errors["user_phone_number"]) %>
     </p>
     <ul class="rules" id="rule_phone_number">
-      <li><%= locales[:phone_number_format]%></li>
-      <li><%= locales[:country_code_is]%></li>
+      <li><%= t(:phone_number_format)%></li>
+      <li><%= t(:country_code_is)%></li>
     </ul>
     <p<%= ' class="formError"' if (@user.errors["user_company_registration_no"]) %>>
-        <label for="user_company_registration_no"><%= locales['company_registration_no'] %></label><br />
+        <label for="user_company_registration_no"><%= t('company_registration_no') %></label><br />
         <%= f.text_field :company_registration_no %>
         <%= "<label for='user_company_registration_no' class='formError'>#{@user.errors["user_company_registration_no"]}</label>" if (@user.errors["user_company_registration_no"]) %>
     </p>
     <p<%= ' class="formError"' if (@user.errors["user_company_tax_no"]) %>>
-        <label for="user_company_tax_no"><%= locales['company_tax_no'] %></label><br />
+        <label for="user_company_tax_no"><%= t('company_tax_no') %></label><br />
         <%= f.text_field :company_tax_no %>
         <%= "<label for='user_company_tax_no' class='formError'>#{@user.errors["user_company_tax_no"]}</label>" if (@user.errors["user_company_tax_no"]) %>
     </p>
 </fieldset>
 <% if current_user.belongs_to?('admins') %>  
 <fieldset>
-  <legend><%= locales['user_groups'] %></legend>
+  <legend><%= t('user_groups') %></legend>
   <% group_ids = @user.groups.collect {|group| group.id} %>
   <% for group in @groups %>
     <p><%= check_box_tag "user[groups][]", "#{group.id}", group_ids.include?(group.id), :id => "checkbox_#{group.id}" %>
@@ -91,7 +91,7 @@
   <% end if @groups %>
 </fieldset>
 <fieldset>
-  <legend><%= locales['discounts']%> <%= link_to locales[:add], :controller => "user_discounts"%></legend>
+  <legend><%= t('discounts')%> <%= link_to t(:add), :controller => "user_discounts"%></legend>
   <% for discount in @user.user_discounts %>
     <p><%= discount.name%> - <%= format discount.amount %>%</p>
   <% end %>
@@ -100,59 +100,59 @@
 </div>
 <div id="addresses">
 <fieldset id="home_address">
-    <legend><%= locales['home_address'] %></legend>
+    <legend><%= t('home_address') %></legend>
     <input type="hidden" name="user[home_address][address_type]" value="home"/>
     <p<%=' class="formError"' if (@user.errors["home_address_first_name"]) %>>
-        <label for="home_address_first_name"><%= locales['first_name'] %></label><br />
+        <label for="home_address_first_name"><%= t('first_name') %></label><br />
         <input type="text" name="user[home_address][first_name]" id="home_address_first_name" class="{nameOrCompany: true, person_name: true, maxlength: 100}" onkeyup="jQuery(this).updateNameOrCompany();" value="<%= @user.address[:home] ? @user.address[:home].first_name : "" %>"/>
         <%= "<label for='home_address_first_name' class='formError'>#{@user.errors["home_address_first_name"]}</label>" if (@user.errors["home_address_first_name"]) %>
     </p>
     <p<%=' class="formError"' if (@user.errors["home_address_family_name"]) %>>
-        <label for="home_address_family_name"><%= locales['family_name'] %></label><br />
+        <label for="home_address_family_name"><%= t('family_name') %></label><br />
         <input type="text" name="user[home_address][family_name]" id="home_address_family_name"  class="{nameOrCompany: true, person_name: true, maxlength: 100}" onkeyup="jQuery(this).updateNameOrCompany();" value="<%= @user.address[:home] ? @user.address[:home].family_name : "" %>"/>
         <%= "<label for='home_address_family_name' class='formError'>#{@user.errors["home_address_family_name"]}</label>" if (@user.errors["home_address_family_name"]) %>
     </p>
     <p<%=' class="formError"' if (@user.errors["home_address_company_name"]) %>>
-        <label for="home_address_company_name"><%= locales['company_name'] %></label><br />
+        <label for="home_address_company_name"><%= t('company_name') %></label><br />
         <input type="text" name="user[home_address][company_name]" id="home_address_company_name"  class="{nameOrCompany: true, maxlength: 100}" onkeyup="jQuery(this).updateNameOrCompany();" value="<%= @user.address[:home] ? @user.address[:home].company_name : "" %>"/>
         <%= "<label for='home_address_company_name' class='formError'>#{@user.errors["home_address_company_name"]}</label>" if (@user.errors["home_address_company_name"]) %>
     </p>
     <p class="required<%=' formError' if (@user.errors["home_address_street"]) %>">
-        <label for="home_address_street"><%= locales['street'] %></label><br />
+        <label for="home_address_street"><%= t('street') %></label><br />
         <input type="text" name="user[home_address][street]" id="home_address_street" class="{required: true, maxlength: 70}" value="<%= @user.address[:home] ? @user.address[:home].street : "" %>" <%= "disabled='disabled'" if  (@user.address[:home] && @user.address[:home].zone_reviewed?)  && !current_user.belongs_to?('admins') %>/>
         <%= "<label for='home_address_street' class='formError'>#{@user.errors["home_address_street"]}</label>" if (@user.errors["home_address_street"]) %>
     </p>
     <p class="required<%=' formError' if (@user.errors["home_address_house_no"]) %>">
-        <label for="home_address_house_no"><%= locales['house_no'] %></label><br />
+        <label for="home_address_house_no"><%= t('house_no') %></label><br />
         <input type="text" name="user[home_address][house_no]" id="home_address_house_no" class="{required: true, maxlength: 15}" value="<%= @user.address[:home] ? @user.address[:home].house_no : "" %>" <%= "disabled='disabled'" if  (@user.address[:home] && @user.address[:home].zone_reviewed?)  && !current_user.belongs_to?('admins') %>/>
         <%= "<label for='home_address_house_no' class='formError'>#{@user.errors["home_address_house_no"]}</label>" if (@user.errors["home_address_house_no"]) %>
     </p>
     <p<%=' class="formError"' if (@user.errors["home_address_note"]) %>>
-        <label for="home_address_note"><%= locales['note'].chars.capitalize %></label><span class="hint"> (<a href="#" rel="external" onclick="toggle_rule('home_address_note'); return false;">nápověda</a>)</span><br />
+        <label for="home_address_note"><%= t('note').mb_chars.capitalize %></label><span class="hint"> (<a href="#" rel="external" onclick="toggle_rule('home_address_note'); return false;">nápověda</a>)</span><br />
         <input type="text" name="user[home_address][note]" id="home_address_note" class="{maxlength: 100}" value="<%= @user.address[:home] ? @user.address[:home].note : ""  %>"/>
         <%= "<label for='home_address_note' class='formError'>#{@user.errors["home_address_note"]}</label>" if (@user.errors["home_address_note"]) %>
     </p>
     <ul class="rules" id="rule_home_address_note">
-      <li><%= locales[:eg_level]%></li>
-      <li><%= locales[:or_color_size_closer_location]%></li>
+      <li><%= t(:eg_level)%></li>
+      <li><%= t(:or_color_size_closer_location)%></li>
     </ul>
     <p class="required<%=' formError' if (@user.errors["home_address_city"]) %>">
-        <label for="home_address_city"><%= locales['city'] %></label><br />
+        <label for="home_address_city"><%= t('city') %></label><br />
         <input type="text" name="user[home_address][city]" id="home_address_city" class="{required: true, maxlength: 70}" value="<%= @user.address[:home] ? @user.address[:home].city : "" %>" <%= "disabled='disabled'" if  (@user.address[:home] && @user.address[:home].zone_reviewed?)  && !current_user.belongs_to?('admins') %>/>
         <%= "<label for='home_address_city' class='formError'>#{@user.errors["home_address_city"]}</label>" if (@user.errors["home_address_city"]) %>
     </p>
     <p class="required<%=' formError' if (@user.errors["home_address_district"]) %>">
-        <label for="home_address_district"><%= locales['district'] %></label><br />
+        <label for="home_address_district"><%= t('district') %></label><br />
         <input type="text" name="user[home_address][district]" id="home_address_district" class="{maxlength: 70}" value="<%= @user.address[:home] ? @user.address[:home].district : "" %>" <%= "disabled='disabled'" if  (@user.address[:home] && @user.address[:home].zone_reviewed?)  && !current_user.belongs_to?('admins') %>/>
         <%= "<label for='home_address_district' class='formError'>#{@user.errors["home_address_district"]}</label>" if (@user.errors["home_address_district"]) %>
     </p>
     <p class="required<%=' formError' if (@user.errors["home_address_zip"]) %>">
-        <label for="home_address_zip"><%= locales['zip'] %></label><br />
+        <label for="home_address_zip"><%= t('zip') %></label><br />
         <input type="text" name="user[home_address][zip]" id="home_address_zip" class="{required: true, psc: true, maxlength: 30}" value="<%= @user.address[:home] ? @user.address[:home].zip : "" %>" <%= "disabled='disabled'" if  (@user.address[:home] && @user.address[:home].zone_reviewed?)  && !current_user.belongs_to?('admins') %>/>
         <%= "<label for='home_address_zip' generated='true' class='formError'>#{@user.errors["home_address_zip"]}</label>" if (@user.errors["home_address_zip"]) %>
     </p>
     <p class="required<%=' formError' if (@user.errors["home_address_zone_id"]) %>">
-      <label for="home_address_zone_id"><%= locales['zone'] %></label><span class="hint"> (<a href="#" rel="external" onclick="toggle_rule('home_address_zone_id'); return false;">nápověda</a>)</span><br />
+      <label for="home_address_zone_id"><%= t('zone') %></label><span class="hint"> (<a href="#" rel="external" onclick="toggle_rule('home_address_zone_id'); return false;">nápověda</a>)</span><br />
       <select name="user[home_address][zone_id]" id="home_adress_zone_id" class="{zone: true}" <%= "disabled='disabled'" if  (@user.address[:home] && @user.address[:home].zone_reviewed?)  && !current_user.belongs_to?('admins') %>>
         <option/>
         <%= options_for_select @zones.collect {|z| [ z.name, z.id ] }, (@user.address[:home] ? @user.address[:home].zone_id : nil)%>
@@ -165,77 +165,78 @@
     </ul>
     <% if current_user.belongs_to?('admins')%>
       <p class="<%='formError' if (@user.errors["home_address_zone_reviewed"]) %>">
-          <label for="home_address_zone_reviewed"><%= locales['zone_reviewed'] %></label><br />
-          <input type="checkbox" name="user[home_address][zone_reviewed]" id="home_address_zone_reviewed" value="1" <%= @user.address[:home] && @user.address[:home].zone_reviewed? ? 'checked="checked"' : "" %>/>
           <input type="hidden" name="user[home_address][zone_reviewed]" value="0"/>
+          <input type="checkbox" name="user[home_address][zone_reviewed]" id="home_address_zone_reviewed" value="1" <%= @user.address[:home] && @user.address[:home].zone_reviewed? ? 'checked="checked"' : "" %>/>
+          
+          <label for="home_address_zone_reviewed"><%= t('zone_reviewed') %></label>
           <%= "<label for='home_address_zone_reviewed' class='formError'>#{@user.errors["home_address_zone_reviewed"]}</label>" if (@user.errors["home_address_zone_reviewed"]) %>
       </p>
     <% end%>
     <p <%= 'style="display: none;"' unless @user.errors["user_addresses"]%>>
       <input type="checkbox" name="user[home_address][dont_validate]" id="home_address_dont_validate"/>
-      <label for="home_address_dont_validate"><%= locales['dont_validate_home_address'] %></label>
+      <label for="home_address_dont_validate"><%= t('dont_validate_home_address') %></label>
     </p>
     
     <p>
       <input type="checkbox" name="user[activate_delivery_address]" id="activate_delivery_address" onclick='jQuery("#delivery_address").activate("slow");' <%= @user.address[:delivery] ? 'checked="checked"' : "" %> value="1"/>
-      <label for="activate_delivery_address"><%= locales['activate_delivery_address'] %></label>
+      <label for="activate_delivery_address"><%= t('activate_delivery_address') %></label>
     </p>
     
 </fieldset>
 <fieldset id="delivery_address">
-    <legend><%= locales['delivery_address'] %></legend>
+    <legend><%= t('delivery_address') %></legend>
     <input type="hidden" name="user[delivery_address][address_type]" value="delivery"/>
     <p<%=' class="formError"' if (@user.errors["delivery_address_first_name"]) %>>
-        <label for="delivery_address_first_name"><%= locales['first_name'] %></label><br />
+        <label for="delivery_address_first_name"><%= t('first_name') %></label><br />
         <input type="text" name="user[delivery_address][first_name]" id="delivery_address_first_name" class="{nameOrCompany: true, maxlength: 100}" onkeyup="jQuery(this).updateNameOrCompany();" value="<%= @user.address[:delivery] ? @user.address[:delivery].first_name : "" %>"/>
         <%= "<label for='delivery_address_first_name' class='formError'>#{@user.errors["delivery_address_first_name"]}</label>" if (@user.errors["delivery_address_first_name"]) %>
     </p>
     <p<%=' class="formError"' if (@user.errors["delivery_address_family_name"]) %>>
-        <label for="delivery_address_family_name"><%= locales['family_name'] %></label><br />
+        <label for="delivery_address_family_name"><%= t('family_name') %></label><br />
         <input type="text" name="user[delivery_address][family_name]" id="delivery_address_family_name" class="{nameOrCompany: true, maxlength: 100}" onkeyup="jQuery(this).updateNameOrCompany();" value="<%= @user.address[:delivery] ? @user.address[:delivery].family_name : ""  %>"/>
         <%= "<label for='delivery_address_family_name' class='formError'>#{@user.errors["delivery_address_family_name"]}</label>" if (@user.errors["delivery_address_family_name"]) %>
     </p>
     <p<%=' class="formError"' if (@user.errors["delivery_address_company_name"]) %>>
-        <label for="delivery_address_company_name"><%= locales['company_name'] %></label><br />
+        <label for="delivery_address_company_name"><%= t('company_name') %></label><br />
         <input type="text" name="user[delivery_address][company_name]" id="delivery_address_company_name" class="{nameOrCompany: true, maxlength: 100}" onkeyup="jQuery(this).updateNameOrCompany();" value="<%= @user.address[:delivery] ? @user.address[:delivery].company_name : ""  %>"/>
         <%= "<label for='delivery_address_company_name' class='formError'>#{@user.errors["delivery_address_company_name"]}</label>" if (@user.errors["delivery_address_company_name"]) %>
     </p>
     <p class="required<%='f ormError' if (@user.errors["delivery_address_street"]) %>">
-        <label for="delivery_address_street"><%= locales['street'] %></label><br />
+        <label for="delivery_address_street"><%= t('street') %></label><br />
         <input type="text" name="user[delivery_address][street]" id="delivery_address_street" class='{required: "#activate_delivery_address:checked",maxlength: 70}' value="<%= @user.address[:delivery] ? @user.address[:delivery].street : ""  %>"/>
         <%= "<label for='delivery_address_street' class='formError'>#{@user.errors["delivery_address_street"]}</label>" if (@user.errors["delivery_address_street"]) %>
     </p>
     <p class="required<%=' formError' if (@user.errors["delivery_address_house_no"]) %>">
-        <label for="delivery_address_house_no"><%= locales['house_no'] %></label><br />
+        <label for="delivery_address_house_no"><%= t('house_no') %></label><br />
         <input type="text" name="user[delivery_address][house_no]" id="delivery_address_house_no" class='{required: "#activate_delivery_address:checked",maxlength: 15}' value="<%= @user.address[:delivery] ? @user.address[:delivery].house_no : ""  %>"/>
         <%= "<label for='delivery_address_house_no' class='formError'>#{@user.errors["delivery_address_house_no"]}</label>" if (@user.errors["delivery_address_house_no"]) %>
     </p>
     <p<%=' class="formError"' if (@user.errors["delivery_address_note"]) %>>
-        <label for="delivery_address_note"><%= locales['note'].chars.capitalize %></label><span class="hint"> (<a href="#" rel="external" onclick="toggle_rule('delivery_address_note'); return false;">nápověda</a>)</span><br />
+        <label for="delivery_address_note"><%= t('note').mb_chars.capitalize %></label><span class="hint"> (<a href="#" rel="external" onclick="toggle_rule('delivery_address_note'); return false;">nápověda</a>)</span><br />
         <input type="text" name="user[delivery_address][note]" id="delivery_address_note" class="{maxlength: 100}"  value="<%= @user.address[:delivery] ? @user.address[:delivery].note : ""  %>"/>
         <%= "<label for='delivery_address_note' class='formError'>#{@user.errors["delivery_address_note"]}</label>" if (@user.errors["delivery_address_note"]) %>
     </p>
     <ul class="rules" id="rule_delivery_address_note">
-      <li><%= locales[:eg_level]%></li>
-      <li><%= locales[:or_color_size_closer_location]%></li>
+      <li><%= t(:eg_level)%></li>
+      <li><%= t(:or_color_size_closer_location)%></li>
     </ul>
     <p class="required<%=' formError' if (@user.errors["delivery_address_city"]) %>">
-        <label for="delivery_address_city"><%= locales['city'] %></label><br />
+        <label for="delivery_address_city"><%= t('city') %></label><br />
         <input type="text" name="user[delivery_address][city]" id="delivery_address_city" class='{required: "#activate_delivery_address:checked",maxlength: 70}' value="<%= @user.address[:delivery] ? @user.address[:delivery].city : ""  %>"/>
         <%= "<label for='delivery_address_city' class='formError'>#{@user.errors["delivery_address_city"]}</label>" if (@user.errors["delivery_address_city"]) %>
     </p>
     <p class="required<%=' formError' if (@user.errors["delivery_address_district"]) %>">
-        <label for="delivery_address_district"><%= locales['district'] %></label><br />
+        <label for="delivery_address_district"><%= t('district') %></label><br />
         <input type="text" name="user[delivery_address][district]" id="delivery_address_district" class='{maxlength: 70}' value="<%= @user.address[:delivery] ? @user.address[:delivery].district : "" %>"/>
         <%= "<label for='delivery_address_district' class='formError'>#{@user.errors["delivery_address_district"]}</label>" if (@user.errors["delivery_address_district"]) %>
     </p>
     <p class="required<%=' formError' if (@user.errors["delivery_address_zip"]) %>">
-        <label for="delivery_address_zip"><%= locales['zip'] %></label><br />
+        <label for="delivery_address_zip"><%= t('zip') %></label><br />
         <input type="text" name="user[delivery_address][zip]" id="delivery_address_zip" class='{required: "#activate_delivery_address:checked",psc: true, maxlength: 30}  ' value="<%= @user.address[:delivery] ? @user.address[:delivery].zip : "" %>"/>
         <%= "<label for='delivery_address_zip' class='formError'>#{@user.errors["delivery_address_zip"]}</label>" if (@user.errors["delivery_address_zip"]) %>
     </p>
     <p class="required<%=' formError' if (@user.errors["delivery_address_zone_id"]) %>">
-      <label for="delivery_address_zone_id"><%= locales['zone'] %></label><span class="hint"> (<a href="#" rel="external" onclick="toggle_rule('delivery_address_zone_id'); return false;">nápověda</a>)</span><br />
+      <label for="delivery_address_zone_id"><%= t('zone') %></label><span class="hint"> (<a href="#" rel="external" onclick="toggle_rule('delivery_address_zone_id'); return false;">nápověda</a>)</span><br />
       <select name="user[delivery_address][zone_id]" id="delivery_adress_zone_id" class'{zone: "#activate_delivery_address:checked"}' <%= "disabled='disabled'" if  (@user.address[:delivery] && @user.address[:delivery].zone_reviewed?)  && !current_user.belongs_to?('admins') %>>
         <option/>
         <%= options_for_select @zones.collect {|z| [ z.name, z.id ] }, (@user.address[:delivery] ? @user.address[:delivery].zone_id : nil)%>
@@ -248,7 +249,7 @@
     </ul>
     <% if current_user.belongs_to?('admins')%>
       <p class="<%='formError' if (@user.errors["delivery_address_zone_reviewed"]) %>">
-          <label for="delivery_address_zone_reviewed"><%= locales['zone_reviewed'] %></label><br />
+          <label for="delivery_address_zone_reviewed"><%= t('zone_reviewed') %></label><br />
           <input type="checkbox" name="user[delivery_address][zone_reviewed]" id="delivery_address_zone_reviewed" value="1" <%= @user.address[:delivery] && @user.address[:delivery].zone_reviewed? ? 'checked="checked"' : "" %>/>
           <input type="hidden" name="user[delivery_address][zone_reviewed]" value="0"/>
           <%= "<label for='delivery_address_zone_reviewed' class='formError'>#{@user.errors["delivery_address_zone_reviewed"]}</label>" if (@user.errors["delivery_address_zone_reviewed"]) %>
@@ -256,7 +257,7 @@
     <% end%>
     <p <%= 'style="display: none;"' unless @user.errors["user_addresses"]%>>
       <input type="checkbox" name="user[delivery_address][dont_validate]" id="delivery_address_dont_validate"/>
-      <label for="delivery_address_dont_validate"><%= locales['dont_validate_delivery_address'] %></label>
+      <label for="delivery_address_dont_validate"><%= t('dont_validate_delivery_address') %></label>
     </p>
 </fieldset>
 </div>
@@ -264,21 +265,21 @@
 <% if @user.new_record? %>
     <p class="required<%=' formError' if (@user.errors["user_user_agreement"]) %>">
         <input type="checkbox" name="user[user_agreement]" id="user_user_agreement" class="{required: true}" <%= 'checked="checked"' if @user.user_agreement %>/>
-        <label for="user_user_agreement"><%= locales['accept_user_agreement'] %></label> <a href="/podminky_registrace" rel="external"><%=locales[:more_here]%></a>
+        <label for="user_user_agreement"><%= t('accept_user_agreement') %></label> <a href="/podminky_registrace" rel="external"><%=t(:more_here)%></a>
         <%= "<label for='user_user_agreement' class='formError'>#{@user.errors["user_user_agreement"]}</label>" if (@user.errors["user_user_agreement"]) %>
     </p>
 <% end %>
 <% if current_user.belongs_to?('admins')%>
   <p>
-    <label for="user_imported_orders_price"><%= locales[:imported_orders_price]%></label><br/>
+    <label for="user_imported_orders_price"><%= t(:imported_orders_price)%></label><br/>
     <input type="text" name="user[imported_orders_price]" id="user_imported_orders_price" value="<%=@user.imported_orders_price%>"/>
   </p>
   <p>
-    <label for="user_admin_note"><%= locales[:admin_note]%></label><br/>
+    <label for="user_admin_note"><%= t(:admin_note)%></label><br/>
     <input type="text" name="user[admin_note]" id="user_admin_note" value="<%=@user.admin_note%>"/>
   </p>
   <p>
-    <label for="user_preferred_delivery_method_id"><%= locales[:preferred_delivery_method]%></label><br/>
+    <label for="user_preferred_delivery_method_id"><%= t(:preferred_delivery_method)%></label><br/>
     <select name="user[preferred_delivery_method_id]" id="user_preferred_delivery_method_id">
       <option/>
       <%= option_groups_from_collection_for_select @zones, :delivery_methods, :name, :id, :name, @user.preferred_delivery_method_id.to_i%>
@@ -286,32 +287,30 @@
   </p>
   
   <p>
-    <label for="user_delivery_time_limit_from"><%= locales[:delivery_time_limit_from]%></label><br/>
+    <label for="user_delivery_time_limit_from"><%= t(:delivery_time_limit_from)%></label><br/>
     <%= text_field_tag "user[delivery_time_limit_from]", @user.delivery_time_limit_from %>
   </p>
 
   <p>
-    <label for="user_delivery_time_limit_to"><%= locales[:delivery_time_limit_to]%></label><br/>
+    <label for="user_delivery_time_limit_to"><%= t(:delivery_time_limit_to)%></label><br/>
     <%= text_field_tag "user[delivery_time_limit_to]", @user.delivery_time_limit_to %>
   </p>
   
   <p>
-    <label for="user_mass_menu"><%= locales[:mass_menu]%></label><br/>
-    <%= check_box_tag "user[mass_menu]", "1", @user.mass_menu %>
-    <%= hidden_field_tag "user[mass_menu]", "0"%>
-    
+    <%= check_box "user", "mass_menu"%>
+    <label for="user_mass_menu"><%= t(:mass_menu)%></label>
   </p>
   
   <% if @user.belongs_to?('deliverymen') %>
     <p>
-      <label for="user_delivery_man_color"><%= locales[:delivery_man_color]%></label><br/>
+      <label for="user_delivery_man_color"><%= t(:delivery_man_color)%></label><br/>
       <input type="text" name="user[delivery_man_color]" id="user_delivery_man_color" value="<%=@user.delivery_man_color%>"/>
     </p>
   <%end%>
 <%end%>
     <p<%= ' class="formError"' if (@user.errors["user_tomorrow_menu_by_mail"]) %>>
         <input type="checkbox" name="user[tomorrow_menu_by_mail]" id="user_tomorrow_menu_by_mail" <%= 'checked="checked"' if @user.new_record? || @user.tomorrow_menu_by_mail %>/>
-        <label for="user_tomorrow_menu_by_mail"><%= locales['send_tomorrow_menu_by_mail'] %></label>
+        <label for="user_tomorrow_menu_by_mail"><%= t('send_tomorrow_menu_by_mail') %></label>
         <%= "<label for='user_newsletter' class='formError'>#{@user.errors["user_tomorrow_menu_by_mail"]}</label>" if (@user.errors["user_tomorrow_menu_by_mail"]) %>
     </p>
 </fieldset>

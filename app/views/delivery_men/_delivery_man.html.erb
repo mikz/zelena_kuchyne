@@ -6,16 +6,16 @@
   <table class="admin">
     <thead>
       <tr>
-        <td><%=locales[:customer]%></td>
-        <td><%=locales[:attr_deliver_at]%></td><% @scheduled_items.each do |si| %>
+        <td><%=t(:customer)%></td>
+        <td><%=t(:attr_deliver_at)%></td><% @scheduled_items.each do |si| %>
         <td class="need_info with_lines"><span class="hidden_info"><%= si.item.name %></span></td><%end%>
-        <td><%=locales[:attr_price]%></td>
+        <td><%=t(:attr_price)%></td>
       </tr>
     </thead>
     <tfoot>
       <tr>
         <td colspan="<%= @scheduled_items.length + 1%>"/>
-        <td><%= locales[:overall].chars.capitalize%></td>
+        <td><%= t(:overall).mb_chars.capitalize%></td>
         <td><%= format_currency delivery_man.sum_price(@date.scheduled_for)%></td>
       </tr>
     </tfoot>
@@ -31,18 +31,18 @@
   <table class="admin">
     <thead>
       <tr>
-        <td><%= locales[:attr_name]%></td>
-        <td><%= locales[:attr_scheduled_amount]%></td>
-        <td><%= locales[:along]%></td>
-        <td><%= locales[:in_orders]%></td>
-        <td><%= locales[:additional]%></td>
-        <td><%= locales[:attr_amount_left]%></td>
+        <td><%= t(:attr_name)%></td>
+        <td><%= t(:attr_scheduled_amount)%></td>
+        <td><%= t(:along)%></td>
+        <td><%= t(:in_orders)%></td>
+        <td><%= t(:additional)%></td>
+        <td><%= t(:attr_amount_left)%></td>
       </tr>
     </thead>
     <tfoot>
       <tr>
         <td colspan="4"/>
-        <td><input type="submit" value="<%=locales[:save]%>"/></td>
+        <td><input type="submit" value="<%=t(:save)%>"/></td>
       </tr>
     </tfoot>
     <tbody>

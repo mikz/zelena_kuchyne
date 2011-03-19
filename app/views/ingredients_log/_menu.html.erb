@@ -1,6 +1,0 @@
-<div id="log_menu">
-  <%= (params[:action] == "per_day")? "<span>#{locales[:log_per_day]}</span>" : link_to(locales[:log_per_day], :action=>"per_day") %>
-  <%= (params[:action] == "per_meal")? "<span>#{locales[:log_per_meal]}</span>" : link_to(locales[:log_per_meal], :action=>"per_meal") %>
-  <%= (params[:action] == "balance")? "<span>#{locales[:balance]}</span>" : link_to(locales[:balance], :action=>"balance")%>
-  <%= (params[:action] == "watchdogs")? "<span>#{locales[:watchdogs]}</span>" : link_to(locales[:watchdogs], :action=>"watchdogs")%>
-</div>

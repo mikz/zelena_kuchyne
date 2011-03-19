@@ -19,7 +19,7 @@ class UsersController < ApplicationController
       end
       respond_to do |format|
         format.html do
-          flash[:notice] = locales[:signed_in]
+          flash[:notice] = t(:signed_in)
           redirect_to :back
         end
         format.js do
@@ -34,7 +34,7 @@ class UsersController < ApplicationController
     else
       respond_to do |format|
         format.html do
-          flash[:notice] = locales[:bad_login]
+          flash[:notice] = t(:bad_login)
           redirect_to :back
         end
         format.js do
@@ -53,7 +53,7 @@ class UsersController < ApplicationController
     reset_session
     respond_to do |format|
       format.html do
-        flash[:notice] = locales[:signed_out]
+        flash[:notice] = t(:signed_out)
         redirect_to :back
       end
       format.js do
@@ -104,7 +104,7 @@ class UsersController < ApplicationController
   
   
   def index
-    condition = "(#{params[:q].blank?} OR (login ILIKE ? OR first_name ILIKE ? OR family_name ILIKE ? OR company_name ILIKE ?))"
+    condition = "(#{params[:q].blank?} OR (login ILIKE ? OR users_view.first_name ILIKE ? OR users_view.family_name ILIKE ? OR users_view.company_name ILIKE ?))"
     query = "%#{params[:q]}%" if params[:q]
     order = nil
     case params[:order]
@@ -116,20 +116,23 @@ class UsersController < ApplicationController
         order = (params[:order].blank?)? "login" : params[:order]
     end
     
+    @users = UsersView.scoped(:order => order, :include => {:addresses => :zone})
     if params[:id] and params[:id].length > 0
       @selected = ''
-      @users = UsersView.paginate(:all, :order => order, :include => {:groups => :memberships}, :conditions => ["groups.system_name = ? AND #{condition}", params[:id], query, query, query, query],  :page => params[:page], :per_page => current_user.pagination_setting)
+      @users = @users.scoped(:include => {:groups => :memberships}, :conditions => ["groups.system_name = ? AND #{condition}", params[:id], query, query, query, query])
     else
-      @users = UsersView.paginate(:all, :page => params[:page], :per_page => current_user.pagination_setting, :order => order, :conditions => ["guest = false AND #{condition}", query, query, query, query])
+      @users = @users.scoped(:order => order, :conditions => ["guest = false AND #{condition}", query, query, query, query])
       @selected = 'selected="selected"'
     end
     @groups = Group.find :all
     
     
     respond_to do |format|
-      format.html
+      format.html do
+        @users = @users.paginate(:all, :page => params[:page], :per_page => current_user.pagination_setting)
+      end
       format.xls do
-        send_data @users.to_xls(:only => [:login, :name, :email, :spent_money, :user_discount], :methods => [:zone_name, :delivery_address]), :filename => 'users.xls'
+        send_data @users.scoped(:include => {:addresses => :zone}).to_xls(:only => [:login, :name, :email, :spent_money, :user_discount], :methods => [:zone_name, :delivery_address]), :filename => 'users.xls'
       end
     end
   end
@@ -162,7 +165,7 @@ class UsersController < ApplicationController
       end
       respond_to do |format|
         format.html do
-          flash[:notice] = locales[:signup_completed]
+          flash[:notice] = t(:signup_completed)
           redirect_back_or_default '/'
         end
         format.xml do
@@ -187,8 +190,8 @@ class UsersController < ApplicationController
         format.js do
           #update_notice @user.errors #TODO: update_notice is non-existent
           render :update do |page|
-            page.replace_html "validation_error",  @user.errors.to_json
-            page << %{$("#validation_error").formatError();}
+#            page.replace_html "validation_error",  
+            page << %{$("#validation_error").formatError(#{@user.errors.to_json});}
             page << %{$("#home_address_dont_validate").parent().show();}
             page << %{$("#delivery_address_dont_validate").parent().show();}
             page.visual_effect :appear, "validation_error"
@@ -272,8 +275,8 @@ class UsersController < ApplicationController
         format.js do
           #update_notice @user.errors #TODO: update_notice is non-existent
           render :update do |page|
-            page.replace_html "validation_error",  @user.errors.to_json
-            page << %{$("#validation_error").formatError();}
+#            page.replace_html "validation_error",  
+            page << %{$("#validation_error").formatError(#{@user.errors.to_json});}
             page << %{$("#home_address_dont_validate").parent().show();}
             page << %{$("#delivery_address_dont_validate").parent().show();}
             page.visual_effect :appear, "validation_error"
@@ -303,8 +306,8 @@ class UsersController < ApplicationController
       format.js do
         #update_notice @user.errors #TODO: update_notice is non-existent
         render :update do |page|
-          page.replace_html "validation_error",  @user.errors.to_json
-          page << %{$("#validation_error").formatError();}
+#          page.replace_html "validation_error",  
+          page << %{$("#validation_error").formatError(#{@user.errors.to_json});}
           page.visual_effect :appear, "validation_error"
         end
       end
@@ -382,7 +385,7 @@ class UsersController < ApplicationController
       else
         respond_to do |format|
           format.html do
-            flash[:notice] = locales[:problem_when_generating_password]
+            flash[:notice] = t(:problem_when_generating_password)
             redirect_to :back
           end
         end

@@ -1,5 +1,5 @@
 <% content_for :submit_button do %>
-  <%= link_to_remote locales[:close], :url => {:action => 'show', :id => @record} %>
+  <%= link_to_remote t(:close), :url => {:action => 'show', :id => @record} %>
 <% end %>
 <td colspan="<%= @options[:columns].length + 2 %>">
   <h3><%= format (@options[:title][:proc].is_a?(Proc))? @options[:title][:proc].call(@record) : @record.send(@options[:title][:name]) %></h3>

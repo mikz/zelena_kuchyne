@@ -98,10 +98,10 @@ module Exposure
       @records ||= options[:model].paginate(:all, :page => params[:page], :per_page => current_user.pagination_setting, :joins => options[:joins], :include => options[:include], :conditions => conditions, :order => (params[:order] ? params[:order] : options[:title][:order] || options[:title][:name]) + ' ASC')
       respond_to do |f|
         format f, :html do
-          render
+          render 'index.html'
         end
         format f, :js do 
-          render
+          render 'index.js'
         end 
         format f, :xml do
           render :xml => @records
@@ -114,10 +114,10 @@ module Exposure
       @record ||= options[:model].new
       respond_to do |f|
         format f, :html do
-          render
+          render 'new.html'
         end
         format f, :js do
-          render
+          render 'new.js'
         end
         saved_formats f
       end
@@ -127,10 +127,10 @@ module Exposure
       @record ||= options[:model].find(params[:id])
       respond_to do |f|
         format f, :html do
-          render
+          render 'show.html'
         end
         format f, :js do
-          render
+          render 'show.js'
         end
         format f, :xml do
           render :xml => @record
@@ -162,7 +162,7 @@ module Exposure
           head :ok
         end
         format f, :js do
-          render
+          render 'destroy.js'
         end
         saved_formats f
       end
@@ -173,7 +173,7 @@ module Exposure
       if(@record.save and @record.errors.empty?)
         respond_to do |f|
           format f, :html do
-            flash[:notice] = locales[:create_successful]
+            flash[:notice] = t(:create_successful)
             redirect_to :action => 'index'
           end
           format f, :xml do
@@ -181,7 +181,7 @@ module Exposure
           end
           format f, :js do
             if(request.referer =~ /^#{url_for(:action => 'index')}/)
-              render
+              render 'create.js'
             else
               render :update do |page|
                 page.redirect_to :action => 'index'
@@ -199,7 +199,7 @@ module Exposure
             render :xml => @record.errors, :status => 422
           end
           format f, :js do
-            render :action => 'error'
+            render 'error.js'
           end
           saved_formats f
         end
@@ -216,7 +216,7 @@ module Exposure
           render
         end
         format f, :js do
-          render
+          render 'edit.js'
         end
         saved_formats f
       end
@@ -226,20 +226,24 @@ module Exposure
       @record ||= options[:model].find(params[:id])
       if(@record.update_attributes(params['record']) and @record.errors.empty?)
         respond_to do |f|
-          format f, :html do
-            flash[:notice] = locales[:update_successful]
-            redirect_back_or_default :action => 'show', :id => @record
-          end
+          
           format f, :xml do
             head :ok
           end
+          
           format f, :js do
             if(request.referer =~ /^#{url_for(:action => 'index')}/)
-              render :action => 'show'
+              render 'show.js'
             else
               render :update do |page|
                 page.redirect_to :action => 'index'
           end
+          
+          format f, :html do
+            flash[:notice] = t(:update_successful)
+            redirect_back_or_default :action => 'show', :id => @record
+          end
+          
           saved_formats f
         end
           end
@@ -253,7 +257,7 @@ module Exposure
             render :xml => @record.errors, :status => 422
           end
           format f, :js do
-            render :action => 'error'
+            render "error.js"
           end
           saved_formats f
         end

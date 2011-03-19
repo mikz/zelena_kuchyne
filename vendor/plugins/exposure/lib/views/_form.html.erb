@@ -3,7 +3,7 @@
   row_id = "record_#{@record.id ? @record.id : 'new'}" %>
   <%= validation_error_for @record %>
   <% @options[:form_fields].each do |field| %>
-    <p><label for="<%=row_id%>_<%= field[:name] %>"><%= locales[field[:locale] || "attr_#{field[:name]}"] %></label><br />
+    <p><label for="<%=row_id%>_<%= field[:name] %>"><%= t(field[:locale) || "attr_#{field[:name]}"] %></label><br />
     <% case field[:type] 
          when :radio_buttons %>
       <%= radio_buttons f, row_id, field[:name], field[:fields]%>
@@ -11,10 +11,10 @@
       <%= f.send field[:type], field[:name], field[:data], field[:options].merge({:selected => field[:selected].is_a?(Proc)? field[:selected].call(@record) : field[:selected]}), (field[:html_options]||{}).merge({:id=> "#{row_id}_#{field[:name]}"})%>
     <% else %>
     <% field[:options].each_pair do |k,v| field[:options][k] = v.gsub('#{row_id}', row_id); end%>
-      <%= f.send field[:type], field[:name], field[:options].merge({:id=> "#{row_id}_#{field[:name]}"}) %><%= locales[field[:note]] if field[:note] %></p>
+      <%= f.send field[:type], field[:name], field[:options].merge({:id=> "#{row_id}_#{field[:name]}"}) %><%= t(field[:note)] if field[:note] %></p>
     <% end%>
   <% end %>
-  <p><%= yield(:submit_button) || '<input type="submit" value="' + locales[:submit] + '" />' %></p>
+  <p><%= yield(:submit_button) || '<input type="submit" value="' + t(:submit) + '" />' %></p>
 <% end %>
 <script type="text/javascript">$("form").initValidation();
 <% if @options[:form][:onload] %>

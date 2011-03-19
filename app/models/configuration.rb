@@ -29,6 +29,10 @@ class Configuration
     return @delivery
   end
   
+  def default_language
+    I18n.default_locale
+  end
+  
   private
   def self.update_values options={}
     rows = ActiveRecord::Base.connection.select_all 'SELECT * FROM configuration;'

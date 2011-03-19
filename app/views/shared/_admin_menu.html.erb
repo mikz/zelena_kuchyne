@@ -7,136 +7,91 @@
   <%-end-%>
 <%-if current_user.belongs_to_one_of? :admins, :warehousers, :operation_chefs, :chefs-%>
   <dl>
-    <dt><%= locales[:admin_delivery]%></dt>
-    <dd><%= link_to locales[:admin_meals], :controller => '/meals' -%></dd>
+    <dt><%= t(:admin_delivery)%></dt>
+    <dd><%= link_to t(:admin_meals), :controller => '/meals' -%></dd>
     <%- if current_user.belongs_to? :admins -%>
-    <dd><%= link_to locales[:admin_categories], :controller => '/meal_categories' -%></dd>
+    <dd><%= link_to t(:admin_categories), :controller => '/meal_categories' -%></dd>
     <%-end-%>
     <%-if current_user.belongs_to_one_of? :admins, :operating_officers, :chefs -%>
-    <dd><%= link_to locales[:admin_menus], :controller => '/menus' -%></dd>
+    <dd><%= link_to t(:admin_menus), :controller => '/menus' -%></dd>
     <%-end-%>
     <%-if current_user.belongs_to_one_of? :admins, :chefs-%>
-    <dd><%= link_to locales[:admin_bundles], :controller => '/bundles' -%></dd>
-    <dd><%= link_to locales[:admin_spices], :controller => '/spices' -%></dd>
+    <dd><%= link_to t(:admin_bundles), :controller => '/bundles' -%></dd>
+    <dd><%= link_to t(:admin_spices), :controller => '/spices' -%></dd>
     <%-end-%>
-    <dd><%= link_to locales[:admin_ingredients], :controller => '/ingredients' -%></dd>
+    <dd><%= link_to t(:admin_ingredients), :controller => '/ingredients' -%></dd>
     <%-if current_user.belongs_to_one_of? :admins, :chefs-%>
-    <dd><%= link_to locales[:admin_meal_flags], :controller => '/meal_flags' -%></dd>
+    <dd><%= link_to t(:admin_meal_flags), :controller => '/meal_flags' -%></dd>
     <%-end-%>
   </dl>
 <%- end -%>
 <%- if current_user.belongs_to? :admins-%>
   <dl>
-    <dt><%= locales[:admin_content]%></dt>
-    <dd><%= link_to locales[:admin_pages], :controller => '/pages' -%></dd>
-    <dd><%= link_to locales[:admin_news], :controller => '/news' -%></dd>
-    <dd><%= link_to locales[:admin_snippets], :controller => '/snippets' -%></dd>
-    <dd><%= link_to locales[:admin_polls], :controller => '/polls' -%></dd>
-    <dd><%= link_to locales[:admin_dialy_menus], :controller => '/dialy_menus' -%></dd>
-    <dd><%= link_to locales[:admin_category_order], :controller => '/meal_category_orders' -%></dd>
+    <dt><%= t(:admin_content)%></dt>
+    <dd><%= link_to t(:admin_pages), :controller => '/pages' -%></dd>
+    <dd><%= link_to t(:admin_news), :controller => '/news' -%></dd>
+    <dd><%= link_to t(:admin_snippets), :controller => '/snippets' -%></dd>
+    <dd><%= link_to t(:admin_polls), :controller => '/polls' -%></dd>
+    <dd><%= link_to t(:admin_dialy_menus), :controller => '/dialy_menus' -%></dd>
+    <dd><%= link_to t(:admin_category_order), :controller => '/meal_category_orders' -%></dd>
   </dl>
 <%-end-%>
 <%-if current_user.belongs_to_one_of? :admins, :warehousers, :deliverymen, :operating_officers, :chefs -%>
   <dl>
-    <dt><%= locales[:admin_logistics]%></dt>
+    <dt><%= t(:admin_logistics)%></dt>
     <%-if current_user.belongs_to_one_of? :admins, :warehousers, :operating_officers, :chefs -%>
-    <dd><%= link_to locales[:admin_suppliers], :controller => '/suppliers' -%></dd>
-    <%-end-%>
-    <%-if current_user.belongs_to_one_of? :admins, :warehousers -%>
-    <dd><%= link_to locales[:admin_products_log], :controller => '/products_log' -%></dd>
-    <%-end-%>
-    <%-if current_user.belongs_to_one_of? :admins, :warehousers, :operating_officers-%>
-    <dd><%= link_to locales[:admin_ingredients_log], :controller => '/ingredients_log' -%></dd>
-    <%-end-%>
-    <%-if current_user.belongs_to? :admins-%>
-    <dd><%= link_to locales[:admin_stocktakings], :controller => '/stocktakings' -%></dd>
+    <dd><%= link_to t(:admin_suppliers), :controller => '/suppliers' -%></dd>
     <%-end-%>
     <%-if current_user.belongs_to_one_of? :admins, :chefs-%>
-    <dd><%= link_to locales[:admin_schedule], :controller => '/schedule' -%></dd>
+    <dd><%= link_to t(:admin_schedule), :controller => '/schedule' -%></dd>
     <%-end-%>
     <%-if current_user.belongs_to_one_of? :admins, :deliverymen -%>
-    <dd><%= link_to locales[:admin_lost_items], :controller => '/lost_items'-%></dd>
+    <dd><%= link_to t(:admin_lost_items), :controller => '/lost_items'-%></dd>
     <%-end-%>
     <%-if current_user.belongs_to_one_of? :admins, :deliverymen, :chefs -%>
-    <dd><%= link_to locales[:admin_sold_items], :controller => '/sold_items'-%></dd>
+    <dd><%= link_to t(:admin_sold_items), :controller => '/sold_items'-%></dd>
     <%-end-%>
     <%-if current_user.belongs_to? :admins-%>
-    <dd><%= link_to locales[:admin_delivery_methods], :controller => '/delivery_methods' -%></dd>
-    <dd><%= link_to locales[:admin_zones], :controller => '/zones' -%></dd>
-    <dd><%= link_to locales[:admin_delivery_men], :controller => '/delivery_men' -%></dd>
+    <dd><%= link_to t(:admin_delivery_methods), :controller => '/delivery_methods' -%></dd>
+    <dd><%= link_to t(:admin_zones), :controller => '/zones' -%></dd>
+    <dd><%= link_to t(:admin_delivery_men), :controller => '/delivery_men' -%></dd>
     <%-end-%>
   </dl>
 <%-end-%>
 <%-if current_user.belongs_to_one_of? :admins-%>
   <dl>
-    <dt><%= locales[:admin_users]%></dt>
-    <dd><%= link_to locales[:admin_users_listing], :controller => '/users' -%></dd>
-    <dd><%= link_to locales[:admin_orders], :controller => '/orders' -%></dd>
-    <dd><%= link_to locales[:admin_user_discounts], :controller => '/user_discounts' -%></dd>
-    <dd><%= link_to locales[:admin_item_discounts], :controller => '/item_discounts' -%></dd>
-    <dd><%= link_to locales[:admin_wholesale_discounts], :controller => '/wholesale_discounts' -%></dd>
-  </dl>
-  <dl>
-    <dt><%= locales[:admin_shop]%></dt>
-    <dd><%= link_to locales[:admin_products], :controller => '/products' -%></dd>
-    <dd><%= link_to locales[:admin_categories], :controller => '/product_categories' -%></dd>
-  </dl>
-<%-end-%>
-<%-if current_user.belongs_to_one_of? :admins, :heads_of_car_pool, :operating_officers, :deliverymen, :warehousers-%>
-  <dl>
-    <dt><%= locales[:admin_expense]%></dt>
-    <%-if current_user.belongs_to_one_of? :admins, :heads_of_car_pool-%>
-    <dd><%= link_to locales[:admin_cars], :controller => '/cars'-%></dd>
-    <dd><%= link_to locales[:admin_logbook_categories], :controller => '/logbook_categories'-%></dd>
-    <%-end-%>
-    <%-if current_user.belongs_to_one_of? :admins, :heads_of_car_pool, :deliverymen-%>
-    <dd><%= link_to locales[:admin_cars_logbook], :controller => '/cars_logbooks'-%></dd>
-    <dd><%= link_to locales[:admin_fuel], :controller => '/fuel'-%></dd>
-    <%-end-%>
-    <%-if current_user.belongs_to_one_of? :admins, :operating_officers, :warehousers-%>
-    <dd><%= link_to locales[:admin_expenses], :controller => '/expenses'-%></dd>
-    <%-end-%>
-    <%-if current_user.belongs_to? :admins-%>
-    <dd><%= link_to locales[:admin_expense_categories], :controller => '/expense_categories'-%></dd>
-    <%-end-%>
+    <dt><%= t(:admin_users)%></dt>
+    <dd><%= link_to t(:admin_users_listing), :controller => '/users' -%></dd>
+    <dd><%= link_to t(:admin_orders), :controller => '/orders' -%></dd>
+    <dd><%= link_to t(:admin_user_discounts), :controller => '/user_discounts' -%></dd>
+    <dd><%= link_to t(:admin_item_discounts), :controller => '/item_discounts' -%></dd>
+    <dd><%= link_to t(:admin_wholesale_discounts), :controller => '/wholesale_discounts' -%></dd>
   </dl>
 <%-end-%>
 <%-if current_user.belongs_to_one_of? :admins, :operating_officers-%>
   <dl>
-    <dt><%= locales[:admin_restaurant]%></dt>
+    <dt><%= t(:admin_restaurant)%></dt>
     <%-if current_user.belongs_to? :admins-%>
-    <dd><%= link_to locales[:admin_premises], :controller => '/premises'-%></dd>
+    <dd><%= link_to t(:admin_premises), :controller => '/premises'-%></dd>
     <%-end-%>
-    <dd><%= link_to locales[:admin_restaurant_sales], :controller => '/restaurant_sales'-%></dd>
-    <dd><%= link_to locales[:admin_ingredients_log_watchdogs], :controller => '/ingredients_log_watchdogs'-%></dd>
+    <dd><%= link_to t(:admin_restaurant_sales), :controller => '/restaurant_sales'-%></dd>
   </dl>
 <%-end-%>
 <%-if current_user.belongs_to_one_of? :admins, :operating_officers, :warehousers, :chefs-%>
   <dl>
-    <dt><%= locales[:admin_outputs]%></dt>
+    <dt><%= t(:admin_outputs)%></dt>
     <%-if current_user.belongs_to_one_of? :admins, :warehousers, :chefs-%>
-    <dd><%= link_to locales[:admin_shopping_list], :controller => '/views', :action => 'shopping_list' -%></dd>
+    <dd><%= link_to t(:admin_shopping_list), :controller => '/views', :action => 'shopping_list' -%></dd>
     <%-end-%>
     <%-if current_user.belongs_to_one_of? :admins, :warehousers, :operating_officers, :chefs-%>
-    <dd><%= link_to locales[:admin_cooking], :controller => '/views', :action => 'cooking' -%></dd>
+    <dd><%= link_to t(:admin_cooking), :controller => '/views', :action => 'cooking' -%></dd>
     <%-end-%>
     <%-if current_user.belongs_to_one_of? :admins, :warehousers, :chefs-%>
-    <dd><%= link_to locales[:admin_items_to_load], :controller => '/views', :action => 'items_to_load' -%></dd>
+    <dd><%= link_to t(:admin_items_to_load), :controller => '/views', :action => 'items_to_load' -%></dd>
     <%-end-%>
     <%-if current_user.belongs_to_one_of? :admins, :operating_officers, :chefs -%>
-    <dd><%= link_to locales[:admin_summary], :controller => '/views', :action => 'summary' -%></dd>
-    <dd><%= link_to locales[:admin_average_day], :controller => '/views', :action => 'average_day' -%></dd>
-    <%-end-%>
-  </dl>
-<%-end-%>
-<%-if current_user.belongs_to_one_of? :admins, :operating_officers, :warehousers, :delivery_men-%>
-  <dl>
-    <dt><%= locales[:admin_emails]%></dt>
-    <%-if current_user.belongs_to_one_of? :admins, :warehousers, :operationg_officers, :delivery_men -%>
-    <dd><%= link_to locales[:admin_mail_conversations], :controller => '/mail/conversations' -%></dd>
-    <%-end-%>
-    <%-if current_user.belongs_to_one_of? :admins -%>
-    <dd><%= link_to locales[:admin_mail_mailboxes], :controller => '/mail/mailboxes' -%></dd>
+    <dd><%= link_to t(:admin_summary), :controller => '/views', :action => 'summary' -%></dd>
+    <dd><%= link_to t(:admin_average_day), :controller => '/views', :action => 'average_day' -%></dd>
     <%-end-%>
   </dl>
 <%-end-%>

@@ -78,7 +78,7 @@ class MealsController < ApplicationController
   end
   
   def update
-    @record = MealComputed.find_by_id params[:id], :include => :recipes
+    @record = Meal.find_by_id params[:id], :include => :recipes
     params[:record]["meal_flag_ids"] ||= []
     if(@record.update_attributes(params['record']))
       @record.spice_ids = params['used_spice_ids']

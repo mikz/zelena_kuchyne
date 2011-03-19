@@ -47,13 +47,13 @@ class PollsController < ApplicationController
           render :update do |page|
             page.visual_effect :fade, "poll_#{params[:id]}", :duration => 0.3
             page.delay 0.3 do
-              page.replace_html "poll_#{params[:id]}", :partial => "polls/poll", :locals => {:message => locales[:cant_vote_blank], :poll => @poll, :error => true}
+              page.replace_html "poll_#{params[:id]}", :partial => "polls/poll", :locals => {:message => t(:cant_vote_blank), :poll => @poll, :error => true}
               page.visual_effect :appear, "poll_#{params[:id]}", :duration => 0.3
             end
           end
         }
         format.html {
-          flash[:notice] = locales[:cant_vote_blank]
+          flash[:notice] = t(:cant_vote_blank)
           redirect_to :back
         }
       end
@@ -70,13 +70,13 @@ class PollsController < ApplicationController
           render :update do |page|
             page.visual_effect :fade, "poll_#{params[:id]}", :duration => 0.3
             page.delay 0.3 do
-              page.replace_html "poll_#{params[:id]}", :partial => "polls/message", :locals => {:message => locales[:cant_vote_twice], :error => true}
+              page.replace_html "poll_#{params[:id]}", :partial => "polls/message", :locals => {:message => t(:cant_vote_twice), :error => true}
               page.visual_effect :appear, "poll_#{params[:id]}", :duration => 0.3
             end
           end
         }
         format.html {
-          flash[:notice] = locales[:cant_vote_twice]
+          flash[:notice] = t(:cant_vote_twice)
           redirect_to :back
         }
       end
@@ -109,13 +109,13 @@ class PollsController < ApplicationController
         render :update do |page|
           page.visual_effect :fade, "poll_#{params[:id]}", :duration => 0.3
           page.delay 0.3 do
-            page.replace_html "poll_#{@poll.id}", :partial => "polls/result", :locals => {:message => locales[:thanks_for_voting], :poll => @poll }
+            page.replace_html "poll_#{@poll.id}", :partial => "polls/result", :locals => {:message => t(:thanks_for_voting), :poll => @poll }
             page.visual_effect :appear, "poll_#{params[:id]}", :duration => 0.3
           end
         end
       }
       format.html {
-        flash[:notice] = locales[:thanks_for_voting]
+        flash[:notice] = t(:thanks_for_voting)
         redirect_to :back
       }
     end

@@ -1,6 +1,7 @@
 class UserProfileType < ActiveRecord::Base
   after_save :clean_cache
   after_destroy :clean_cache
+  validates_uniqueness_of :name
   
   def clean_cache
     @cached_list = nil
@@ -13,6 +14,7 @@ class UserProfileType < ActiveRecord::Base
     for entry in entries
       @cached_list[entry.name] = entry.id
     end
+    @cached_list.symbolize_keys!
     @cached_list
   end
   

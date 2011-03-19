@@ -1,4 +1,0 @@
-<h1><%= format( (@options[:title][:proc])? @options[:title][:proc].call(@record) : @record.send(@options[:title][:name]) ,@options[:title][:options]) %></h1>
-<div>
-  <%= render :partial => "list", :locals => { :row_id => "", :categories => @record.self_and_descendants } %>
-</div>

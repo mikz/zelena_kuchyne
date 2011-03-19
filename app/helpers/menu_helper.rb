@@ -7,7 +7,7 @@ module MenuHelper
     url_options = options[:url_options] ? options[:url_options] : {}
     date = options[:date]
     scheduled_days = options[:scheduled_days]
-    weekdays = options[:weekdays] || locales[:weekdays]
+    weekdays = options[:weekdays] || t(:weekdays)
     calendar = '<table class="calendar">'
     column = date.beginning_of_month.wday - options[:week_starts_on]
     column += 7 if column < 0
@@ -24,7 +24,7 @@ module MenuHelper
     # calendar header
   
     calendar << "<thead><tr><td>#{previous_day ? link_to('&lt;', :id => previous_day.strftime("%Y-%m-%d")) : '&lt;'}</td>"
-    calendar << %{<td colspan="5">#{locales["month_#{date.month}"]} #{date.year.to_s}</td>}
+    calendar << %{<td colspan="5">#{t("month_#{date.month}")} #{date.year.to_s}</td>}
     calendar << "<td>#{next_day ? link_to('&gt;', :id => next_day.strftime("%Y-%m-%d")) : '&gt;'}</td>"
     calendar << "</tr></thead><tbody>"
     calendar << %{<tr class="calendar_weekdays">}

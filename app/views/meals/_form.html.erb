@@ -3,32 +3,32 @@
 <% remote_form_for :record, :method => :post, :url => url, :html => {:multipart => true, :id => "meal_form_" + row_id} do |f| %>
   <div class="tabs">
     <ul>
-      <li><a href="#<%= row_id %>_tab_meal"><%= locales[:model_meal] %></a></li>
-      <li><a href="#<%= row_id %>_tab_recipes"><%= locales[:model_recipes] %></a></li>
-      <li><a href="#<%= row_id %>_tab_supplies"><%= locales[:supplies] %></a></li>
-      <li><a href="#<%= row_id %>_tab_spices"><%= locales[:model_spices] %></a></li>
-      <li><a href="#<%= row_id %>_tab_recipe"><%= locales[:attr_recipe] %></a></li>
-      <li><a href="#<%= row_id %>_tab_picture"><%= locales[:attr_picture] %></a></li>
-      <li><a href="#<%= row_id %>_tab_meal_flags"><%= locales[:meal_flags] %></a></li>
+      <li><a href="#<%= row_id %>_tab_meal"><%= t(:model_meal) %></a></li>
+      <li><a href="#<%= row_id %>_tab_recipes"><%= t(:model_recipes) %></a></li>
+      <li><a href="#<%= row_id %>_tab_supplies"><%= t(:supplies) %></a></li>
+      <li><a href="#<%= row_id %>_tab_spices"><%= t(:model_spices) %></a></li>
+      <li><a href="#<%= row_id %>_tab_recipe"><%= t(:attr_recipe) %></a></li>
+      <li><a href="#<%= row_id %>_tab_picture"><%= t(:attr_picture) %></a></li>
+      <li><a href="#<%= row_id %>_tab_meal_flags"><%= t(:meal_flags) %></a></li>
     </ul>
     <div id="<%= row_id %>_tab_meal">
-      <p><label for="<%= row_id %>_record_name"><%= locales["attr_name"] %></label><br />
+      <p><label for="<%= row_id %>_record_name"><%= t("attr_name") %></label><br />
       <%= f.text_field :name, :id => "#{row_id}_record_name", :class => "{required:true, minlength: 2, maxlength: 100}"%></p>
       <p>
-        <label for="<%= row_id %>_record_meal_category_id"><%= locales['attr_category'] %></label><br />
+        <label for="<%= row_id %>_record_meal_category_id"><%= t('attr_category') %></label><br />
         <select id="<%= row_id %>_record_meal_category_id" name="record[meal_category_id]">
           <% for category in @categories %>
             <option <%= 'selected="selected" ' if @record.meal_category_id == category.id %>value="<%= category.id %>"><%= category.name %></option>
           <% end %>
         </select>
       </p>
-      <p><label for="<%= row_id %>_record_always_available"><%= locales['attr_always_available'] %></label><br />
+      <p><label for="<%= row_id %>_record_always_available"><%= t('attr_always_available') %></label><br />
       <%= f.check_box :always_available, :id => "#{row_id}_record_always_available" %></p>
-      <p><label for="<%= row_id %>_record_restaurant_flag"><%= locales['attr_restaurant_flag'] %></label><br />
+      <p><label for="<%= row_id %>_record_restaurant_flag"><%= t('attr_restaurant_flag') %></label><br />
       <%= f.check_box :restaurant_flag, :id => "#{row_id}_record_restaurant_flag" %></p>
-      <p><label for="<%= row_id %>_record_price"><%= locales["attr_price"] %></label><br />
+      <p><label for="<%= row_id %>_record_price"><%= t("attr_price") %></label><br />
       <%= f.text_field :price, :id => "#{row_id}_record_price", :onkeyup=>"decimal_dot_conversion(this)", :class => "{required:true, minlength: 1, number:true}" %></p>
-      <p><label for="<%= row_id %>_record_description"><%= locales["attr_description"] %></label><br />
+      <p><label for="<%= row_id %>_record_description"><%= t("attr_description") %></label><br />
       <%= f.text_area :description, :class => 'small_area', :id => "#{row_id}_record_description" %></p>
     </div>
     <div id="<%= row_id %>_tab_recipes">
@@ -38,7 +38,7 @@
             <option id="<%= row_id %>_ingredient_<%= ingredient.id %>" value="<%= ingredient.id %>"><%= ingredient.name %> (<%= ingredient.unit %>)</option>
           <% end %>
         </select>
-        <a href="#" onclick="meals.add.ingredient('<%= row_id %>','<%= locales[:meal_alredy_has_this_ingredient]%>');"><%= locales['add'] %></a>
+        <a href="#" onclick="meals.add.ingredient('<%= row_id %>','<%= t(:meal_alredy_has_this_ingredient)%>');"><%= t('add') %></a>
       </p>
         <table id="<%= row_id %>_recipes">
           <tbody>
@@ -64,7 +64,7 @@
             <option id="<%= row_id %>_supply_<%= supply.id %>" value="<%= supply.id %>"><%= supply.name %> (<%= supply.unit %>)</option>
           <% end %>
         </select>
-        <a href="#" onclick="meals.add.supply('<%= row_id %>','<%= locales[:meal_alredy_has_this_supplement]%>');"><%= locales['add'] %></a>
+        <a href="#" onclick="meals.add.supply('<%= row_id %>','<%= t(:meal_alredy_has_this_supplement)%>');"><%= t('add') %></a>
       </p>
         <table id="<%= row_id %>_supply_recipes">
           <% for recipe in @record.recipes 
@@ -88,7 +88,7 @@
             <option id="<%= row_id %>_spice_<%= spice.id %>" value="<%= spice.id %>"><%= spice.name %></option>
           <% end %>
         </select>
-        <a href="#" onclick="meals.add.spice('<%= row_id %>','<%= locales[:meal_alredy_has_this_spice]%>');"><%= locales['add'] %></a>
+        <a href="#" onclick="meals.add.spice('<%= row_id %>','<%= t(:meal_alredy_has_this_spice)%>');"><%= t('add') %></a>
       </p>
         <table id="<%= row_id %>_used_spices">
           <tbody>
@@ -98,7 +98,7 @@
                 <label for="<% row_id %>_used_spice_<%= used_spice.id %>"><%= used_spice.spice.name %></label>
               </td>
               <td>
-                <a href="#" onclick="$('#<%= row_id %>_used_spice_row_<%= used_spice.id %>').hide('slow');$('#<%= row_id %>_used_spice_<%= used_spice.spice.id %>').remove();"><%= locales['delete'] %></a>
+                <a href="#" onclick="$('#<%= row_id %>_used_spice_row_<%= used_spice.id %>').hide('slow');$('#<%= row_id %>_used_spice_<%= used_spice.spice.id %>').remove();"><%= t('delete') %></a>
                 <input type="hidden" id="<%= row_id %>_used_spice_<%= used_spice.spice.id %>" value="<%= used_spice.spice.id %>" name="used_spice_ids[]" />
               </td>
             </tr>
@@ -107,14 +107,14 @@
         </table>
     </div>
     <div id="<%= row_id %>_tab_recipe">
-        <p><label for="<%= row_id %>_record_recipe"><%= locales["attr_recipe"] %></label><br />
+        <p><label for="<%= row_id %>_record_recipe"><%= t("attr_recipe") %></label><br />
         <%= f.text_area :recipe, :class => 'small_area', :id => "#{row_id}_record_recipe" %></p>
     </div>
     <div id="<%= row_id %>_tab_picture">
       <% if @record.image_flag %>
       <div class="picture">
         <img src="/pictures/item_<%= @record.item_id %>.th.jpg" alt="<%= @record.name %>" />
-        <p><label for="<%= row_id %>_image_flag"><%= locales[:show_picture] %>
+        <p><label for="<%= row_id %>_image_flag"><%= t(:show_picture) %>
         <%= f.check_box :image_flag, :id => "#{row_id}_record_image_flag",
               :onchange => "$('\#meal_form_#{row_id} \##{row_id}_tab_picture .picture img').toggle(
                 function() {
@@ -127,7 +127,7 @@
               );" %></p>
       </div>
       <% end %>
-      <p class="flash uploader"><label for="<%= row_id %>_record_picture"><%= locales['upload_new_picture'] %></label><br />
+      <p class="flash uploader"><label for="<%= row_id %>_record_picture"><%= t('upload_new_picture') %></label><br />
       <input type="file" name="image_file" id="<%= row_id %>_record_picture" /></p>
     </div>
     <div id="<%= row_id %>_tab_meal_flags">
@@ -140,12 +140,12 @@
       <%end%>
     </div>
   </div>
-  <p><%= yield(:submit_button) || '<input type="submit" value="' + locales[:submit] + '" />' %></p>
+  <p><%= yield(:submit_button) || '<input type="submit" value="' + t(:submit) + '" />' %></p>
 <% end %>
 <script type="text/javascript">
   var row_color = $('#record_<%= @record.id %>').hasClass('even') ? 'D7DEBB' : 'f0f2e0';
   $(function(){
-    $("#<%='meal_form_' + row_id%>").data("onsubmit",'confirm("<%=locales[:confirm_save]%>\\n<%=locales[:scheduled_meals_wont_be_updated]%>")');
+    $("#<%='meal_form_' + row_id%>").data("onsubmit",'confirm("<%=t(:confirm_save)%>\\n<%=t(:scheduled_meals_wont_be_updated)%>")');
     $("form").initValidation();
   });
   
@@ -156,9 +156,9 @@
     allowedExtDescr: "Images (*.jpg; *.jpeg)",
     allowedExt: "jpg|JPG",
     background: row_color,
-    endMessage: "<%= locales['picture_uploaded'] %>",
-    validFileMessage: "<%= locales['picture_valid'] %>",
-    progressMessage: "<%= locales['picture_being_uploaded'] %>",
+    endMessage: "<%= t('picture_uploaded') %>",
+    validFileMessage: "<%= t('picture_valid') %>",
+    progressMessage: "<%= t('picture_being_uploaded') %>",
     hideSubmit: false
   }); 
 </script>
