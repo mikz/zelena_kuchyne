@@ -2,6 +2,7 @@ class MealCategoryOrder < ActiveRecord::Base
   set_table_name "meal_category_order"
   set_primary_key "category_id"
   belongs_to :category, :class_name => "MealCategory"
+  
   validates_presence_of :order_id
   validates_uniqueness_of :order_id
   alias_attribute :order, :order_id
