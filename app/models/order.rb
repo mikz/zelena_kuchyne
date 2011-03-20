@@ -8,8 +8,8 @@ class Order < ActiveRecord::Base
   
   belongs_to :delivery_method, :foreign_key => "delivery_method_id"
   before_update Proc.new{|record| record.reload if(record[:state].nil?)}
-  after_save :create_products_log_warnings
-  attr_accessor :ignore_products_log, :original_state, :fixed_amounts
+
+  attr_accessor :original_state, :fixed_amounts
   before_validation Proc.new {|record| record.original_state = record.state_was if @original_state.nil?}
   after_save Proc.new {|record| record.update_delivery_method if !record.delivery_method_id_changed? && record.original_state == record.state }
   
@@ -51,7 +51,6 @@ class Order < ActiveRecord::Base
   def validate
     return if self.user.guest
     validate_deliver_time if self.deliver_at.is_a?(Time)
-    validate_products
     @stock = self.items_not_on_stock
     unless @stock.empty?
       ActiveRecord::Base.logger.debug("  Missing items:\t#{@stock.inspect}")
@@ -64,43 +63,7 @@ class Order < ActiveRecord::Base
     self.deliver_at = self.deliver_at.change :hour => time.hour, :min => time.min
   end
     
-  def validate_products
-    size = errors.count
-    ordered_items = self.ordered_items_hash
-    self.products.each do |item_id,product|
-      unless self.deliver_at - Time.now > 1.day
-        self.errors.add "item_#{product.item_id}", "err_min_24h"
-      end
-      if product.disabled?
-        errors.add "item_#{product.item_id}", "err_product_disabled"
-        next
-      end
-      if !product.on_stock?
-        errors.add "item_#{product.item_id}", "err_term_of_delivery"
-      else
-        if ordered_items[product.item_id].amount > product.amount
-          if product.term_of_delivery.nil? || Time.now + product.term_of_delivery > self.deliver_at
-            errors.add "item_#{product.item_id}", "err_missing_products_on_stock #{ordered_items[product.item_id].amount - product.amount}"
-            errors.add "item_#{product.item_id}", "err_term_of_delivery"
-          end
-        end
-      end
-      
-    end
-    if errors.count > size
-      self.errors.add "products", ""
-    end
-  end
-  
-  def products
-    return @products unless @products.nil?
-    @products ||= {}
-    ProductWithStock.find(:all, :conditions => ["item_id IN (?)", self.item_ids]).each {|p|
-      @products[p.item_id] = p
-    }
-    @products
-  end
-  
+    
   def validate_deliver_time(time_now = Time.now)
     @delivery ||= Configuration.delivery
     
@@ -111,24 +74,6 @@ class Order < ActiveRecord::Base
     self.errors.add("deliver_at", "too_soon") unless (self.deliver_at - time_now > 2*@delivery[:step]) # add error if delivery_at time is less than two delivery steps from
   end
   
-  def create_products_log_warnings(ordered_items_before_update = nil)
-    return if self.state == "basket"
-    before_update = {}
-    ordered_items_before_update ||= ordered_items
-    
-    ordered_items_before_update.each do |oi|
-      before_update[oi.item_id] = oi
-    end
-    
-    self.ordered_items.each do |ordered|
-      if ordered.item.product?
-        warning = ProductsLogWarning.find :first, :conditions => ["ordered_item_id = ?", ordered.id]
-        if(before_update[ordered.item_id].nil? || ( !warning && before_update[ordered.item_id].amount != ordered.amount ) )
-          ProductsLogWarning.create(:ordered_item_id => ordered.id)
-        end
-      end
-    end
-  end
     
   def self.delivery_times(order_time, time_now, user = nil)
     
@@ -218,7 +163,6 @@ class Order < ActiveRecord::Base
     self.ordered_items.reload
     unless self.eql_ordered_items?(before_update)
       update_delivery_method 
-      create_products_log_warnings(before_update)
     end
     deleted
   end
@@ -226,7 +170,6 @@ class Order < ActiveRecord::Base
   def update_or_insert_items(items)
     query = ""
     before_update = self.ordered_items.clone
-    @product_warnings = []
     ordered_items = {}
     self.ordered_items.each do |oi|
       ordered_items[oi.item_id] = oi
@@ -248,7 +191,6 @@ class Order < ActiveRecord::Base
     self.ordered_items.reload
     unless self.eql_ordered_items?(before_update)
       update_delivery_method
-      create_products_log_warnings(before_update)
     end
     return ret
   end
@@ -328,7 +270,7 @@ class Order < ActiveRecord::Base
   def items_not_on_stock
     deliver_at = Date.parse(self[:deliver_at].to_s)
     s = self.state
-    @ignore_products_log = true
+
     self.state = "order"
     self.save_without_validation
     ordered_ids = ordered_items_recursive_ids
@@ -342,7 +284,7 @@ class Order < ActiveRecord::Base
     self.state = s
     self.state_will_change!
     self.save_without_validation
-    @ignore_products_log = false
+
     @missing = {}
     missing.each do |e|
       @missing[e.item_id] = e
