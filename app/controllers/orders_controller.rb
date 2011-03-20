@@ -316,10 +316,9 @@ class OrdersController < ApplicationController
   
   def set_notice
     @order = Order.find(params[:id])
-    @order.notice = params[:order]['notice']
     respond_to do |format|
       format.js {
-        if @order.save
+        if @order.update_attribute :notice, params[:order][:notice]
           render :update do |page|
             page.visual_effect :highlight, "notice_form"
           end
