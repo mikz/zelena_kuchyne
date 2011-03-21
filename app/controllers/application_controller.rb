@@ -111,7 +111,7 @@ class ApplicationController < ActionController::Base
         Error: #{e.clean_message}
         Trace: #{e.backtrace}
       }
-    end
+    end unless [UserSystem::LoginRequired, UserSystem::AccessDenied].include?(@error)
     
     respond_to do |format|
       format.html do
