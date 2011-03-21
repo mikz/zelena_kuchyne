@@ -127,7 +127,7 @@ class ApplicationController < ActionController::Base
   end
   
   def try_to_notify_about_error
-    return if [UserSystem::LoginRequired, UserSystem::AccessDenied].include?(@error.class)
+    return if [UserSystem::LoginRequired, UserSystem::AccessDenied, ActionController::RoutingError].include?(@error.class)
     begin
       notify_about_exception(@error)
     rescue Exception => e
