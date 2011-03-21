@@ -31,7 +31,7 @@
         <h2 class="name">Celé menu</h2><strong class="price"><%= format_currency menu.menu_price%></strong>
         <div class="clearfix">&nbsp;</div>
       </div>
-      <%- unless category == entries.last.first%>
+      <%- unless category == entries.keys.last%>
       <hr/>
       <%-end-%>
       <%- opened = false %>
