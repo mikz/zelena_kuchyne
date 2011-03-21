@@ -28,7 +28,7 @@
                 <%= options_from_collection_for_select @categories, :id, :name %>
               </select>
             </td>
-            <td><%= check_box_tag "entries[ID][in_menu]", 1, false%><%= hidden_field_tag "entries[ID][in_menu]", 0 %></td>
+            <td><%= check_box("entries[ID]", "in_menu") %></td>
             <td rowspan="2"><a href="#" class="destroy">smazat</a><%= hidden_field_tag "entries[ID][_destroy]" %></td>
           </tr>
           <tr class="sample">
@@ -44,7 +44,7 @@
                 <%= options_from_collection_for_select @categories, :id, :name, entry.category_id %>
               </select>
             </td>
-            <td><%= check_box_tag "entries[#{entry.id}][in_menu]", 1, entry.in_menu?%><%= hidden_field_tag "entries[#{entry.id}][in_menu]", 0 %></td>
+            <td><%= check_box("entries[#{entry.id}]", "in_menu", :checked => entry.in_menu?) %></td>
             <td rowspan="3"><a href="#" class="destroy">smazat</a><%= hidden_field_tag "entries[#{entry.id}][_destroy]" %></td>
           </tr>
           <tr>

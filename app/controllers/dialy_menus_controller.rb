@@ -15,8 +15,10 @@ class DialyMenusController < ApplicationController
       return render :action => "not_found" unless @record
       
       respond_to do |format|
+        format.js {
+          render 'show.js'
+        }
         format.html
-        format.js
         format.xml {
           render :xml => @entries.to_xml
         }
@@ -63,7 +65,9 @@ class DialyMenusController < ApplicationController
           format.xml do
             head :ok
           end
-          format.js
+          format.js do
+            render 'show.js'
+          end
         end
       else
         respond_to do |format|
