@@ -77,12 +77,14 @@ class OrdersController < ApplicationController
   
   def assign
     @order = Order.find params[:id]
-    if params[:delivery_man_id].to_i != 0
+    
+    if params[:delivery_man_id].present?
       @order.set_delivery_man_id params[:delivery_man_id].to_i
     else
       @order.delivery_man_id = nil
     end
-    @order.save
+    
+    @order.save_without_validation!
     
     respond_to do |format|
       format.js do

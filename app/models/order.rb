@@ -255,6 +255,7 @@ class Order < ActiveRecord::Base
         ids[oi.item_id] += (items_in_trunk[oi.item_id] && items_in_trunk[oi.item_id].amount < oi.amount)? items_in_trunk[oi.item_id].amount : oi.amount
       end
     end
+    
     ItemInTrunk.update_amounts :ids => ids, :delivery_man_id => id, :deliver_at => self.deliver_at
   end
   
