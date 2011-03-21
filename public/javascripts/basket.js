@@ -19,6 +19,13 @@ function submit_confirmation(e) {
   jQuery("#submit_confirmation ul li:first strong").html((delivery_fee)?delivery_fee : "0 Kč");
   jQuery("#submit_confirmation ul li:last strong").html(jQuery("#time_of_delivery").val());
   jQuery("#submit_confirmation").show("slow");
+  
+  var scroll = jQuery('html, body');
+  var position = jQuery("#submit_confirmation").position().top - 24;
+
+  if(scroll.scrollTop() > position)
+    scroll.animate({scrollTop: position }, 'slow');
+  
   return false;
 }
 function before_submit(elem) {
