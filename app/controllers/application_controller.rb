@@ -11,9 +11,7 @@ class ApplicationController < ActionController::Base
   include ExceptionNotification::Notifiable if defined? ExceptionNotification
   
   helper_method :locales, :version
-  
-  
-  
+    
   ActionView::Base.field_error_proc = Proc.new {|html_tag, instance|  html_tag  }
   
   def initialize #:nodoc:
@@ -65,6 +63,14 @@ class ApplicationController < ActionController::Base
     }
   end
   
+
+  
+  # Provides version string
+  def version
+    'HEAD'
+  end
+  
+protected
   # This method is called when an exception occurs sometime during the request evaluation.
   # It attempts to gather available information on the exception and render it in a friendly form using either AJAX or pure HTML
   def rescue_action(e)
@@ -158,10 +164,5 @@ class ApplicationController < ActionController::Base
       categories[:last] = category if meals.any?(&:in_menu?)
     end
     [menu, entries, categories]
-  end
-  
-  # Provides version string
-  def version
-    'HEAD'
   end
 end
