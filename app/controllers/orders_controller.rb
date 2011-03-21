@@ -213,7 +213,6 @@ class OrdersController < ApplicationController
       else
         item = @order.ordered_items.create({:item_id => params[:item_id], :amount => 1})
       end
-      @order.create_products_log_warnings(ordered_items)
       
       @order = OrderView.find(params[:id],:include=>[:ordered_items])
       

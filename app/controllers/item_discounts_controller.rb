@@ -9,7 +9,6 @@ class ItemDiscountsController < ApplicationController
     @meals = Meal.find :all, :order => "name ASC"
     @menus = Menu.find :all, :order => "name ASC"
     @bundles = Bundle.find :all, :order => "name ASC"
-    @products = Product.find :all, :order => "name ASC"
     super
   end
 
@@ -17,7 +16,6 @@ class ItemDiscountsController < ApplicationController
     @meals = Meal.find :all, :order => "name ASC"
     @menus = Menu.find :all, :order => "name ASC"
     @bundles = Bundle.find :all, :order => "name ASC"
-    @products = Product.find :all, :order => "name ASC"
     super
   end
 end

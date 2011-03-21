@@ -3,8 +3,7 @@
 <h2><%= t(:add_entry).mb_chars.capitalize%></h2>
 <% form_remote_tag(:url => {:action => 'add_item', :id => @order.order.id}, :html => {:id => 'add_item_form'}) do %>
   <p>
-    <input type="checkbox" name="products" id="products" title="<%=t(:include_products)%>" onchange="scheduled_items.load($('#deliver_at_date').val(), '#schedule_item_id', false, this.checked, $('#always_available').get(0).checked);"/>
-    <input type="checkbox" name="always_available" id="always_available" title="<%=t(:include_always_available)%>" onchange="scheduled_items.load($('#deliver_at_date').val(), '#schedule_item_id', false, $('#products').get(0).checked, this.checked);"/>
+    <input type="checkbox" name="always_available" id="always_available" title="<%=t(:include_always_available)%>" onchange="scheduled_items.load($('#deliver_at_date').val(), '#schedule_item_id', false, false, this.checked);"/>
     <select name="item_id" id="schedule_item_id">
       <optgroup label="<%= t(:model_meals) %>">
         <% for meal in @meals %>

@@ -22,11 +22,6 @@
           <option value="<%= menu.item_id %>" <%= "selected='selected'" if menu.item_id == @record.item_id%>><%= menu.name %></option>
         <% end %>
       </optgroup>
-      <optgroup label="<%= t(:model_products) %>">
-        <% for product in @products %>
-          <option value="<%= product.item_id %>" <%= "selected='selected'" if product.item_id == @record.item_id%>><%= product.name %></option>
-        <% end %>
-      </optgroup>
     </select>
   </p>
   <p><label for="<%=row_id%>_amount"><%= t("discount_in_percent") %></label><br />
