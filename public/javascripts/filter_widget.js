@@ -89,7 +89,7 @@ filterWidget.prototype = {
     var data = $(this.form).serializeArray();
     data.push({name: "format", value: format});
     data.push({name: "authenticity_token", value: window.authenticity_token});
-    console.log(data);
+//    console.log(data);
     var params = $.param(data);
     jQuery.each(params.split('&'), function(){ 
       var pair = this.split('=');

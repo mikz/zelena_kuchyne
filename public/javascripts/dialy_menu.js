@@ -40,7 +40,7 @@ jQuery.fn.extend({
       date.change(function(){
         
       });
-      console.log(this, row_id);
+//      console.log(this, row_id);
     });
 
   }
