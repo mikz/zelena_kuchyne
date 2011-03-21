@@ -103,15 +103,7 @@ class ApplicationController < ActionController::Base
     Trace: #{(@error_trace.is_a? Array)? @error_trace.join("\n\t   ") : @error_trace }
     }
     
-    begin
-      notify_about_exception(@error)
-    rescue Exception => e
-      logger.error %{
-        FAILED TO SEND EXCEPTION NOTIFICATION! at #{Time.now}
-        Error: #{e.clean_message}
-        Trace: #{e.backtrace}
-      }
-    end unless [UserSystem::LoginRequired, UserSystem::AccessDenied].include?(@error)
+    try_to_notify_about_error
     
     respond_to do |format|
       format.html do
@@ -131,6 +123,19 @@ class ApplicationController < ActionController::Base
           end
         end
       end
+    end
+  end
+  
+  def try_to_notify_about_error
+    return if [UserSystem::LoginRequired, UserSystem::AccessDenied].include?(@error.class)
+    begin
+      notify_about_exception(@error)
+    rescue Exception => e
+      logger.error %{
+        FAILED TO SEND EXCEPTION NOTIFICATION! at #{Time.now}
+        Error: #{e.clean_message}
+        Trace: #{e.backtrace}
+      }
     end
   end
   
