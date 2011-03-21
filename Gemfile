@@ -19,6 +19,10 @@ group :test do
 
 end
 
+group :production do
+  gem 'exception_notification', '~> 2.3.3.0'
+end
+
 group :proxy do 
   gem 'em-proxy'
 end

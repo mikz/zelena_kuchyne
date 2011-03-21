@@ -127,9 +127,6 @@ class BasketController < ApplicationController
         if @basket.errors.on(:deliver_at)
           flash[:notice] = t(:deliver_at_time_was_unavailable)
         end
-        if @basket.errors.on(:products)
-          flash[:notice] = t(:unable_to_deliver_product)
-        end
         redirect_to :action => :index
         return
       end
@@ -196,9 +193,6 @@ class BasketController < ApplicationController
         redirect_to :action => "index"
       elsif @basket.errors.on(:deliver_at)
         flash[:notice] = t(:deliver_at_time_was_unavailable)
-        redirect_to :action => "index"
-      elsif @basket.errors.on(:products)
-        flash[:notice] = t(:errors_on_products)
         redirect_to :action => "index"
       end
     else

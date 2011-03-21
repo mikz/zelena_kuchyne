@@ -7,6 +7,9 @@ class ApplicationController < ActionController::Base
   include WillPaginateMod
   include Includers
   include SnippetsSystem
+  
+  include ExceptionNotification::Notifiable
+  
   helper_method :locales, :version
   
   
@@ -99,6 +102,16 @@ class ApplicationController < ActionController::Base
     Error: #{@error.clean_message}  (status: #{@status})
     Trace: #{(@error_trace.is_a? Array)? @error_trace.join("\n\t   ") : @error_trace }
     }
+    
+    begin
+      notify_about_exception(@error)
+    rescue Exception => e
+      logger.error %{
+        FAILED TO SEND EXCEPTION NOTIFICATION! at #{Time.now}
+        Error: #{e.clean_message}
+        Trace: #{e.backtrace}
+      }
+    end
     
     respond_to do |format|
       format.html do

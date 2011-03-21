@@ -65,6 +65,7 @@ class OrdersController < ApplicationController
   end
   
   def edit
+    raise "errr"
     show
     @meals = Meal.find :all, :order => "name ASC"
     @menus = Menu.find :all, :order => "name ASC"

@@ -16,6 +16,7 @@ GEM
     em-proxy (0.1.5)
       eventmachine
     eventmachine (0.12.10)
+    exception_notification (2.3.3.0)
     fastercsv (1.5.4)
     haml (3.0.25)
     jrails (0.6.0)
@@ -42,6 +43,7 @@ DEPENDENCIES
   awesome_print
   chronic
   em-proxy
+  exception_notification (~> 2.3.3.0)
   fastercsv
   haml
   jrails
