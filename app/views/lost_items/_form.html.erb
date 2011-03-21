@@ -14,22 +14,33 @@
       </optgroup>
     </select>
   </p>
-  <table>
-      <thead>
-        <tr>
-          <th><%= t(:attr_user) %></th>
-          <th><%= t(:amount) %></th>
-        </tr>
-      </thead>
-      <tbody>
-        <%- @delivery_men.each do |delivery_man| -%>
+  <%- if @record.new_record? %>
+    <table>
+        <thead>
           <tr>
-            <td><strong><%= h delivery_man.name %></strong><%= hidden_field_tag "record[users][]", delivery_man.id %></td>
-            <td><%= text_field_tag "record[amounts][]", nil, :class => "{min: 0}" %></td>
+            <th><%= t(:attr_user) %></th>
+            <th><%= t(:amount) %></th>
           </tr>
-        <%-end-%>
-      </tbody>
-  </table>
+        </thead>
+        <tbody>
+          <%- @delivery_men.each do |delivery_man| -%>
+            <tr>
+              <td><strong><%= h delivery_man.name %></strong><%= hidden_field_tag "record[users][]", delivery_man.id %></td>
+              <td><%= text_field_tag "record[amounts][]", nil, :class => "{min: 0}" %></td>
+            </tr>
+          <%-end-%>
+        </tbody>
+    </table>
+  <%-else-%>
+  <p>
+    <strong><%= t(:attr_user) %></strong><br/>
+    <%= h @record.user.name%>
+  </p>
+  <p>
+    <%= f.label :amount, t(:attr_amount) %><br/>
+    <%= f.text_field :amount%>
+  </p>
+  <%-end-%>
   <p><%= yield :submit_button%></p>
 <% end %>
 <script type="text/javascript">
