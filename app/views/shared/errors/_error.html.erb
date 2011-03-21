@@ -1,4 +1,4 @@
-<%= t("snippet_e_#{@error_name}", :default => 'MISSING') == 'MISSING' ? snippet("e_#{@error_name}") : snippet('e_error')%>
+<%= t("snippet_e_#{@error_name}", :default => 'MISSING') == 'MISSING' ? snippet('e_error') : snippet("e_#{@error_name}")%>
 <%= snippet('report_error') %>
 <% if show_error_details? %>
   <h3><a href="#" onclick="jQuery('div.error').toggle('slow');"><%= t('error_details') %></a></h3>
