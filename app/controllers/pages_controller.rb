@@ -11,12 +11,8 @@ class PagesController < ApplicationController
       return render(:file => path, :layout => true)
     end
     
-    if(params[:id].to_i == 0)
-      @record = Page.find_by_url(params[:id])
-    else
-      @record = Page.find_by_id(params[:id])
-    end
-    
+    @record = Page.find_by_id(params[:id].to_i)
+
     if(@record)
       super
     else
