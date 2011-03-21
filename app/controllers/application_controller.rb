@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   include Includers
   include SnippetsSystem
   
-  include ExceptionNotification::Notifiable
+  include ExceptionNotification::Notifiable if defined? ExceptionNotification
   
   helper_method :locales, :version
   
