@@ -101,9 +101,8 @@ class OrdersController < ApplicationController
   
   def change_state
     @order = Order.find params[:id]
-    @order.state = params[:state]
-    
-    @order.save
+
+    @order.update_attribute :state, params[:state]
   
     respond_to do |format|
       format.js do
