@@ -109,7 +109,7 @@ protected
     Trace: #{(@error_trace.is_a? Array)? @error_trace.join("\n\t   ") : @error_trace }
     }
     
-    try_to_notify_about_error
+    
     
     respond_to do |format|
       format.html do
@@ -130,6 +130,8 @@ protected
         end
       end
     end
+    
+    try_to_notify_about_error
   end
   
   def try_to_notify_about_error
