@@ -329,8 +329,7 @@ class UsersController < ApplicationController
   def create_order
     user = User.find(params[:id])
     order = user.orders.build({:deliver_at => Time.now, :state => 'order'})
-    order.deliver_at = order.delivery_times[:steps].first
-    order.save!
+    order.save_without_validation!
     
     redirect_to :controller => 'orders', :action => 'edit', :id => order.id
   end
