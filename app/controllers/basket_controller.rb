@@ -27,7 +27,7 @@ class BasketController < ApplicationController
           end
         end
       end
-    rescue Order => e
+    rescue Exception => e
       Rails.logger.error "Error: #{e.inspect} - #{e.backtrace}"
       flash[:notice] = t(:item_cannot_be_added_to_basket)
       respond_to do |format|
