@@ -119,9 +119,9 @@ class OrdersController < ApplicationController
   
   def toggle_cancelled
     @order = Order.find params[:id]
-    @order.cancelled = !@order.cancelled
     
-    @order.save
+    @order.update_attribute :cancelled, !@order.cancelled
+    
     respond_to do |format|
       format.js do
         render :update do |page|
