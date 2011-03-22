@@ -1,6 +1,6 @@
 class UsersView < ActiveRecord::Base
   has_many :orders, :foreign_key => :user_id
-  has_many :groups, :through => :memberships, :order => "groups.title ASC", :foreign_key => "user_id"
+  has_many :groups, :through => :memberships, :foreign_key => "user_id" #, :order => "groups.title ASC"
   has_many :memberships, :foreign_key => :user_id
   has_many :user_profiles, :foreign_key => :user_id
   has_many :addresses, :foreign_key => :user_id

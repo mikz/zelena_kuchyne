@@ -350,7 +350,7 @@ class UsersController < ApplicationController
      conditions = " AND #{filter_widget_conditions(params[:filter])}" if params[:filter].is_a?(Array)
     end
 
-    @users = UsersView.find :all, :limit => params[:limit], :join => :groups, :include => {:groups => :memberships}, :conditions => ["guest = ? AND (login ILIKE ? OR first_name ILIKE ? OR family_name ILIKE ? OR company_name ILIKE ?)#{conditions if conditions}", false, like, like, like, like]
+    @users = UsersView.find :all, :limit => params[:limit], :include => {:groups => :memberships}, :conditions => ["guest = ? AND (login ILIKE ? OR first_name ILIKE ? OR family_name ILIKE ? OR company_name ILIKE ?)#{conditions if conditions}", false, like, like, like, like]
 
     respond_to do |format|
       format.js do 
