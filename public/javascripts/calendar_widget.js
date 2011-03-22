@@ -141,7 +141,7 @@ function calendar_widget_day_click(link, event, date) {
   if(event.shiftKey == 1 && calendar_widget_selected_dates.length == 1 && !calendar_widget_disable_range) {
     $.ajax({
       type: "GET",
-      url: calendar_widget_url.replace('__date__', date+';'+calendar_widget_selected_dates[0]).replace('&amp;', '&'),
+      url: calendar_widget_url.replace('__date__', date+'~'+calendar_widget_selected_dates[0]).replace('&amp;', '&'),
       dataType: "script"
     });
     $('#c_'+date).addClass('calendar_selected');
