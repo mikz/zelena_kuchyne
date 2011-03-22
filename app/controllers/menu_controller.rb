@@ -63,15 +63,14 @@ class MenuController < ApplicationController
     
     @delivery = Order.delivery_times(@date, Time.now)
     
-    DEBUG {%w{@categories @menus}}
     respond_to do |format|
       if @date < Date.today
         format.html { render 'unavailable', :status => :unprocessable_entity }
-        format.json { render :status => :unprocessable_entity }
+        format.json { render :json => nil, :status => :unprocessable_entity }
       else
         if @scheduled_bundles.empty? && scheduled[:meals].empty?
           format.html { render 'no_scheduled_meals' }
-          format.json { render :status => :not_found }
+          format.json { render :json => nil, :status => :not_found }
         else
           format.html { render 'show' }
           format.json {
