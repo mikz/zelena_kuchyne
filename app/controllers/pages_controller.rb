@@ -11,7 +11,7 @@ class PagesController < ApplicationController
       return render(:file => path, :layout => true)
     end
     
-    @record = Page.find_by_id(params[:id].to_i)
+    @record = Page.find_by_url(params[:id])
 
     if(@record)
       super
