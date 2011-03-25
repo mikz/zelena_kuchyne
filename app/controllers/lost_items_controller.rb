@@ -54,7 +54,6 @@ class LostItemsController < ApplicationController
   
   def update
     @record = LostItem.find_by_oid(params[:id])
-    params[:record]['user'] = User.find_by_login(params[:record]['user'])
     super
   end
   
