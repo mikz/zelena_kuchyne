@@ -79,7 +79,7 @@ class OrdersController < ApplicationController
     @order = Order.find params[:id]
     
     Order.transaction do
-      if params[:delivery_man_id].present?
+      if params[:delivery_man_id].present?  # clients sends "null", bleeeah
         @order.set_delivery_man_id params[:delivery_man_id].to_i
       else
         @order.delivery_man_id = nil

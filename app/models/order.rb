@@ -221,8 +221,12 @@ class Order < ActiveRecord::Base
   end
   
   def set_delivery_man_id id
-    self.delivery_man_id = id
-
+    if id == 0 || id.blank?
+      return self.delivery_man_id = nil
+    else
+      self.delivery_man_id = id
+    end
+    
     ids = {}
     items_in_trunk = {}
     ItemInTrunk.find(:all, :conditions => ["deliver_at = ?::date AND delivery_man_id = ?", self.deliver_at, id]).each do |iit|
