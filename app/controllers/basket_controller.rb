@@ -141,6 +141,8 @@ class BasketController < ApplicationController
   
   def submit
     @basket = current_user.basket
+    return redirect_to :action => :index unless @basket
+    
     if params[:update]
       update_order
     elsif params[:validate]
