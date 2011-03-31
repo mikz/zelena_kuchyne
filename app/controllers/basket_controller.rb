@@ -2,7 +2,7 @@ class BasketController < ApplicationController
   include_javascripts 'basket','jquery.fieldselection'
   include_stylesheets 'time', 'jquery-ui'
   active_section 'basket'
-  before_filter :load_sidebar_content, :only => [:index]
+  before_filter :load_sidebar_content, :only => [:index, :submit]
   
   def add_item
     begin
