@@ -1,7 +1,5 @@
 <td><%= link_to format( (@options[:title][:proc])? @options[:title][:proc].call(record) : record.send(@options[:title][:name]) ,@options[:title][:options]), :action => 'show', :id => record %>
-<div style='display: none;'>
-<%= [record].to_json(:only => :address) %>
-</div>
+<div style='display: none;' class='tooltip'><%= h [record].to_json(:only => :address) %></div>
 
 <script type="text/javascript">$(function() {  $("a[href^='/suppliers/show/']").tooltip('address'); });</script>
 </td>

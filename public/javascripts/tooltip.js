@@ -9,17 +9,20 @@ jQuery.fn.extend({
           if(jQuery.data(this,"tooltip"))
             return;
           var tooltip;
-          var JSON;
+          var values;
           if($("#tooltip").length<1) init_tooltip();
-          JSON = eval($(this).next().html());
+          var html = $(this).next().text();
+
+          values = JSON.parse(html);
           tooltip = "<ul>";
-          for (var i in JSON) {
-              tooltip += "<li>" + JSON[i][key] + "</li>";
+          for (var i in values) {
+              tooltip += "<li>" + values[i][key] + "</li>";
           }
           tooltip += "</ul>"
           
 
           jQuery.data(this,"tooltip",tooltip);
+
           $(this).hover(
             function(e) {
                 var tooltip = jQuery.data(this,"tooltip");
@@ -68,6 +71,7 @@ $(function() {
         init_tooltip();
         $("a[href^='/menus/show/']").tooltip();
         $("a[href^='/meals/show/']").tooltip();
+        $("a[href^='/suppliers/show/']").tooltip('address');
         $("td.need_info").need_info();
 });
  
