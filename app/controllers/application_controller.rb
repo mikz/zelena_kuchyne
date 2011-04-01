@@ -47,6 +47,14 @@ class ApplicationController < ActionController::Base
     session[:return_to] = nil
   end
   
+  def redirect_back_or_fallback(fallback = {}, response_status = {})
+    begin
+      redirect_to :back, response_status
+    rescue ActionController::RedirectBackError
+      redirect_to fallback, response_status
+    end
+  end
+  
   def active_section
     'nothing'
   end

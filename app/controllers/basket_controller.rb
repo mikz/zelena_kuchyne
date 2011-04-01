@@ -7,7 +7,7 @@ class BasketController < ApplicationController
   def add_item
     begin
       deliver_at = params[:item]['deliver_on'] || Date.parse(( current_user.basket ? current_user.basket.deliver_at : Date.today ).to_s).to_s
-      DEBUG {%w{deliver_at}}
+
       if params[:item]['item_ids'] && params[:item]['amounts']
         @record = OrderedItem.add_to_user :user => current_user, :deliver_at => deliver_at, :item_ids => params[:item]['item_ids'], :amounts => params[:item]['amounts']
       else
@@ -17,7 +17,7 @@ class BasketController < ApplicationController
       respond_to do |format|
         format.html do
           flash[:notice] = t(:item_added_to_basket)
-          redirect_to :back
+          redirect_back_or_fallback :action => :index
         end
         format.js do
           render :update do |page|
@@ -32,7 +32,7 @@ class BasketController < ApplicationController
       flash[:notice] = t(:item_cannot_be_added_to_basket)
       respond_to do |format|
         format.html do
-          redirect_to :back
+          redirect_back_or_fallback :action => :index
         end
         format.js do
           render :update do |page|
