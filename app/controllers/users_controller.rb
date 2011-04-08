@@ -132,7 +132,11 @@ class UsersController < ApplicationController
         @users = @users.paginate(:all, :page => params[:page], :per_page => current_user.pagination_setting)
       end
       format.xls do
-        send_data @users.scoped(:include => {:addresses => :zone}).to_xls(:only => [:login, :name, :email, :spent_money, :user_discount], :methods => [:zone_name, :delivery_address]), :filename => 'users.xls'
+        send_data(@users.scoped(:include => {:addresses => :zone}).to_xls(
+                          :only => [:login, :name, :email, :spent_money, :user_discount],
+                          :methods => [:zone_name, {
+                            :address => [:street, :house_no, :city, :district, :zip, :note]
+                          }]), :filename => 'users.xls')
       end
     end
   end

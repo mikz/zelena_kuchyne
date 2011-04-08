@@ -1,7 +1,7 @@
 module ToXlsMethods
   def to_xls(options = {})
     options.symbolize_keys!
-    options.reverse_merge! :batch_size => 100
+    options.reverse_merge! :batch_size => 100, :formatters => {Numeric => proc{|f|f.to_s.gsub(".",",")}}
     
     output = '<?xml version="1.0" encoding="UTF-8"?><Workbook xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet" xmlns:html="http://www.w3.org/TR/REC-html40" xmlns="urn:schemas-microsoft-com:office:spreadsheet" xmlns:o="urn:schemas-microsoft-com:office:office"><Worksheet ss:Name="Sheet1"><Table>'
       
@@ -16,7 +16,22 @@ module ToXlsMethods
       end
 
       columns += Array(options[:methods])
-
+      
+      columns.map! {|column|
+        case column
+        when Hash
+          column.map {|object, methods|
+            methods.map {|method| 
+              [object, method].join(".")
+            }
+          }
+        else
+          column
+        end
+          
+      }
+      columns.flatten!
+      
       if columns.any?
         unless options[:headers] == false
           output << "<Row>"
@@ -28,11 +43,20 @@ module ToXlsMethods
           output << "<Row>"
           columns.each do |column|
             begin
-              value = column.to_s.split(".").inject(item){ |item, method| item.send(method) }
+              DEBUG {%w{column item}}
+              value = column.to_s.split(".").inject(item){ |object, method| DEBUG {%w{object method}}; object.send(method) }
+              DEBUG {%w{value}}
             rescue
               value = nil
             end
-            output << "<Cell><Data ss:Type=\"#{value.is_a?(Integer) ? 'Number' : 'String'}\">#{value}</Data></Cell>"
+            
+            formatted_value = value
+            options[:formatters].each_pair do |klass, formatter|
+              next unless value.is_a? klass
+              formatted_value = formatter[value]
+            end
+            
+            output << "<Cell><Data ss:Type=\"#{value.is_a?(Numeric) ? 'Number' : 'String'}\">#{formatted_value}</Data></Cell>"
           end
           output << "</Row>"
         }
