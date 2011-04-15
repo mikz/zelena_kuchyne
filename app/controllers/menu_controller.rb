@@ -1,12 +1,16 @@
 class MenuController < ApplicationController
   active_section 'menu'
   include_javascripts "menu"
-  before_filter :load_sidebar_content, :except => [:feed]
+  before_filter :load_sidebar_content, :except => [:feed, :index], :if => :valid_date?
   
   def index
+    begin
     @date = params[:id] ? Date.parse(params[:id]) : Date.today
     
     redirect_to  menu_path(@date), :status => :temporary_redirect
+    rescue ArgumentError
+      
+    end
   end
   
   
@@ -32,6 +36,14 @@ class MenuController < ApplicationController
   
   def show
     @days = Day.find :all, :conditions => ["scheduled_for >= ?", Date.today]
+    unless valid_date?
+      respond_to do |format|
+        format.html { render 'unavailable', :status => :unprocessable_entity }
+      end
+      @delivery = Order.delivery_times(Date.today, Time.now)
+      return
+    end
+    
     @date = params[:id] ? Date.parse(params[:id]) : Date.today
     
     @menus = Menu.find :all, :include => [:scheduled_menus, {:meals => {:meal_category => :order}}], :conditions => ["scheduled_menus.scheduled_for = ? AND scheduled_menus.invisible = false", @date], :order => "meal_category_order.order_id ASC"
@@ -147,6 +159,13 @@ class MenuController < ApplicationController
     
     @scheduled_bundles.each do |scheduled|
       @scheduled_items[scheduled.scheduled_for][:categories][scheduled.bundle.meal.meal_category] << scheduled.bundle
+    end
+  end
+  
+  def valid_date?
+    begin
+      params[:id].to_date && Date.parse(params[:id])
+    rescue
     end
   end
 end
