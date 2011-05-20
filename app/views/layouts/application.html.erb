@@ -42,6 +42,7 @@
     <% if current_user.belongs_to_one_of?(:admins, :heads_of_car_pool, :operating_officers, :warehousers, :deliverymen, :chefs) %>
     <link rel="stylesheet" href="/stylesheets/admin.css" type="text/css" media="screen"/>
     <%= javascript_include_tag "admin.js" %>
+    <%= javascript_include_tag "libs/underscore.js" %>
     <% end %>
     <%= javascript_include_tag "application.js" %>
     <style type="text/css" media="screen">

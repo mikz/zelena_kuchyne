@@ -50,6 +50,9 @@ function draw_month(week_starts_on) {
   if(typeof(window["calendar_widget_year"]) == "undefined" || typeof(window["calendar_widget_month"]) == "undefined") {
     return;
   }
+  var datestr = function(day) {
+     return day.getFullYear()+'-'+(day.getMonth() < 9 ? '0' : '')+(day.getMonth()+1)+'-'+(day.getDate() < 10 ? '0' : '')+(day.getDate());
+  }
   var first = true;
   var today = new Date();
   var date = ((calendar_widget_year != false && calendar_widget_month != false) ? new Date(calendar_widget_year, calendar_widget_month - 1, 1) : new Date(today.getFullYear(), today.getMonth(), 1));
@@ -58,6 +61,8 @@ function draw_month(week_starts_on) {
   week_starts_on = (week_starts_on == null ? 1 : week_starts_on % 7) // correct the weekday to start from 0
   var column = date.getDay() - week_starts_on;
   column < 0 ? column += 7 : false;
+  
+  var last_date = new Date(_.max(calendar_widget_dates, function(date){ return new Date(date) }));
   
   // start the html
   var html = '<tr class="calendar_weekdays">';
@@ -75,13 +80,13 @@ function draw_month(week_starts_on) {
   
   // the month
   month = day.getMonth();
-  while(day.getMonth() == month) {
+  day.str = datestr(day);
+  while(day.getMonth() == month || (day <= last_date && day >= today) ) {
     if(day.getDay() == week_starts_on && !first ) {
         html += '</tr><tr>';
     }
-    first = false;  
-      
-    datestring = day.getFullYear()+'-'+(day.getMonth() < 9 ? '0' : '')+(day.getMonth()+1)+'-'+(day.getDate() < 10 ? '0' : '')+(day.getDate());
+    first = false;
+    
     
     classes = [];
     if (day < today) {
@@ -92,20 +97,22 @@ function draw_month(week_starts_on) {
       classes.push("calendar_today");
     }
     
-    if(hasValInside(calendar_widget_selected_dates, datestring) >= 0) {
+    if(hasValInside(calendar_widget_selected_dates, day.str) >= 0) {
       classes.push("calendar_selected");
     }
     classstring = classes.length != 0 ? ' class="' + classes.join(' ') + '"' : "";
     
-    html += '<td id="c_'+datestring+'"'+classstring+'>';
+    html += '<td id="c_'+day.str+'"'+classstring+'>';
 
-    if(hasValInside(calendar_widget_dates, datestring) >= 0)
-      html += '<a href="#" onclick="calendar_widget_day_click(this, event, \''+datestring+'\'); return false;">'+day.getDate()+'</a>';
+    if(hasValInside(calendar_widget_dates, day.str) >= 0)
+      html += '<a href="#" onclick="calendar_widget_day_click(this, event, \''+day.str+'\'); return false;">'+day.getDate()+'</a>';
     else
       html += day.getDate();
   
     html += '</td>';
     day.setDate(day.getDate() + 1);
+    day.str = datestr(day);
+    console.log(day, day <= last_date, day >= today);
   } 
   
   // after the month
@@ -116,8 +123,16 @@ function draw_month(week_starts_on) {
     while(rest-- > 0) {
       html += '<td class="calendar_inactive">'+day.getDate()+'</td>';
       day.setDate(day.getDate() + 1);
+      day.str = datestr(day);
     }
   }
+  
+  html += '</tr><tr>';
+  _(7).times(function(){ 
+    html += '<td class="calendar_inactive">'+day.getDate()+'</td>';
+    day.setDate(day.getDate() + 1);
+    day.str = datestr(day);
+  });
   
   html += "</tr>";
   $("#calendar_widget tbody").empty().prepend(html);

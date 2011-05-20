@@ -7,7 +7,7 @@ class SoldItemsController < ApplicationController
   
   def index
     dates = CalendarWidget.parse params[:id]
-    @dates = Day.find(:all).collect {|day| day.scheduled_for }
+    @dates = Day.find(:all, :order => :scheduled_for).collect {|day| day.scheduled_for }
     @sold_items = SoldItem.find :all, :conditions => ["sold_items.sold_at::date BETWEEN ? AND ?", dates[0], dates[1] ], :order => "sold_at ASC"
     
     respond_to do |format|

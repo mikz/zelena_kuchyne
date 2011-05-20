@@ -43,7 +43,7 @@ class ViewsController < ApplicationController
   def items_to_load
     dates = CalendarWidget.parse params[:date]
     
-    @dates = Day.find(:all).collect {|day| day.scheduled_for }
+    @dates = Day.find(:all, :order => :scheduled_for).collect {|day| day.scheduled_for }
     items_to_load = ItemToLoad.find :all, :from => "total_assigned_ordered_meals_for('#{dates.first.to_s}')", :include => [:item, :user]
     @delivery_men = {}
     @items = {}

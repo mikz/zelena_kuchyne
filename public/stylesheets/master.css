@@ -344,6 +344,9 @@ h2 {
   background: #d7debb;
   color: #d7debb;
 }
+#calendar_widget .calendar_inactive {
+  color: #435F23;
+}
 
 .calendar tbody {
   border: 2px #638c33 solid;

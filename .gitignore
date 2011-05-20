@@ -4,6 +4,7 @@ config/database.yml
 db/schema.rb
 backup_*.sql
 backup_*.sql.bz2
+*.sql
 tmp/*
 log/*.log
 backup*.sql

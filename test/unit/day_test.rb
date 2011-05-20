@@ -4,7 +4,7 @@ class DayTest < ActiveSupport::TestCase
   fixtures :scheduled_meals, :scheduled_menus
   
   def test_days
-    all_days = Day.find(:all).collect {|d| d.scheduled_for.strftime("%Y-%m-%d")}
+    all_days = Day.find(:all, :order => :scheduled_for).collect {|d| d.scheduled_for.strftime("%Y-%m-%d")}
     
     scheduled_items = @loaded_fixtures['scheduled_meals'] + @loaded_fixtures['scheduled_menus']
     scheduled_items.each do |name, fixture|

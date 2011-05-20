@@ -23,14 +23,14 @@ class RestaurantSalesController < ApplicationController
      ],
     :form => {:onload => %{$(".datepicker").datepicker();$('.autocomplete').autocomplete('/users/find/');}},
     :calendar_widget => true,
-    :dates_proc => Proc.new{Day.find(:all).collect{|day| day.scheduled_for } },
+    :dates_proc => Proc.new{Day.find(:all, :order => :scheduled_for).collect{|day| day.scheduled_for } },
     :date_column => "sold_at",
     :include => [:buyer, :premise, :item],
     :joins => "LEFT JOIN meals ON restaurant_sales.item_id = meals.item_id"
   })
   
   def index
-    @dates = Day.find(:all).collect {|day| day.scheduled_for }
+    @dates = Day.find(:all, :order => :scheduled_for).collect {|day| day.scheduled_for }
     @premises = {}
     Premise.find(:all, :order => "name ASC").each do |e|
       @premises[e.id] = e.name

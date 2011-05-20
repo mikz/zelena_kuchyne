@@ -4,7 +4,7 @@ class DeliveryMenController < ApplicationController
   
   def index
     @date = Day.find_by_scheduled_for CalendarWidget.parse(params[:date]).first
-    @dates = Day.find(:all).collect {|day| day.scheduled_for }
+    @dates = Day.find(:all, :order => :scheduled_for).collect {|day| day.scheduled_for }
     unless @date
       render :action => "no_scheduled_meals"
       return

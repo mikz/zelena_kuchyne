@@ -6,7 +6,7 @@ class LostItemsController < ApplicationController
   
   def index
     dates = CalendarWidget.parse params[:id]
-    @dates = Day.find(:all).collect {|day| day.scheduled_for }
+    @dates = Day.find(:all, :order => :scheduled_for).collect {|day| day.scheduled_for }
     @lost_items = LostItem.find :all, :conditions => ["lost_items.lost_at::date BETWEEN ? AND ?", dates[0], dates[1] ], :order => "lost_at ASC", :include => [:item, {:user => :user_profiles}]
     
     respond_to do |format|
