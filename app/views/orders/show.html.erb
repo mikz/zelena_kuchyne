@@ -56,6 +56,7 @@
 <p><%= "#{t(:preferred_time_of_delivery)}: <strong class=\"print_time\">#{format_time(@order.deliver_at)}</strong>" %></p>
 <h1><%= t(:additional_info)%></h1>
 <p><%= t(:model_user).mb_chars.capitalize%>: <%= link_to @order.user.name, :controller => "users", :action => "show", :id => @order.user%></p>
+<p><%=  t(:attr_order_state).mb_chars.capitalize %>: <%= t("order_status_#{@order.state}") %></p>
 <p class="notice"><%= t(:note).mb_chars.capitalize%>:<br/><%= h @order.notice %></p>
 <% if !@order.user.admin_note.blank? && current_user.belongs_to?("admins")%>
 <p><%= t(:admin_note)%>: <strong><%= h @order.user.admin_note%></strong></p>
