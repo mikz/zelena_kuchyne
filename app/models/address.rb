@@ -31,7 +31,7 @@ class Address < ActiveRecord::Base
   def validate
     errors.clear && return if disabled
     
-    validate_address if validate?
+    #validate_address if validate?
     
     PROTECTED_ATTRIBUTES.each do |attr|
       errors.add(attr, "Nelze změnit, když je adresa ověřena administrátorem.") if self.send("#{attr}_changed?")
