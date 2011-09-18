@@ -45,18 +45,25 @@ class BasketController < ApplicationController
   
   def update_order
     @basket = current_user.basket
-    @basket.update_items(params['amount'])
-    @basket.time_of_delivery = params[:order]['time_of_delivery'] if params[:order]
     msg = nil
-    unless current_user.guest?
-      if !@basket.valid_without_callbacks? && @basket.errors.on(:ordered_items)
-        @basket.fix_amounts
-        @basket.save
-        msg = t(:we_edited_your_order) + " " + t(:she_had_more_meals_then_we_can_deliver)
-      else
-        @basket.make_menus_from_meals
+
+    @basket.transaction do
+      @basket.update_items(params['amount'])
+      @basket.time_of_delivery = params[:order]['time_of_delivery'] if params[:order]
+    
+      unless current_user.guest?
+        if !@basket.valid_without_callbacks? && @basket.errors.on(:ordered_items)
+          @basket.fix_amounts
+          @basket.save
+          msg = t(:we_edited_your_order) + " " + t(:she_had_more_meals_then_we_can_deliver)
+        else
+          @basket.make_menus_from_meals
+        end
       end
+
+      @basket.reload.update_delivery_method(true)
     end
+
     if @basket.order_view
       respond_to do |format|
         format.js do
