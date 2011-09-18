@@ -5,21 +5,6 @@ class OrderedItem < ActiveRecord::Base
   
   set_primary_key 'oid'
   
-  def self.remove_from_user(options)
-    user = self.get_user(options[:user])
-    
-    item_id = options[:item_id].to_i
-    basket = user.basket
-    
-    query = %{DELETE FROM ordered_items WHERE order_id = #{basket.id} AND item_id = #{item_id}}
-    self.connection.execute query
-    
-    if basket.ordered_items.length == 0
-      basket.destroy
-    end
-    
-    true
-  end
   
   def self.add_to_user(options)
     options.symbolize_keys!

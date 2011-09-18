@@ -205,10 +205,18 @@ class BasketController < ApplicationController
   end
   
   def remove_item
-    OrderedItem.remove_from_user :user => current_user, :item_id => params[:id]
     @basket = current_user.basket
-    @basket.save
-    @basket.destroy if @basket.ordered_items.size == 0
+
+    @basket.transaction do
+      @basket.ordered_items.find_by_item_id(params[:id]).try(:destroy)
+      unless @basket.ordered_items.empty?
+        @basket.update_delivery_method(true)
+        #@basket.save
+      else
+        @basket.destroy
+      end
+    end
+
     respond_to do |format|
       format.html do
         flash[:notice] = t(:item_removed_from_basket)
