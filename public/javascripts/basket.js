@@ -1,6 +1,9 @@
 function update_basket(e) {
-  $(this).before("<input type='hidden' name='update' value='1'/>");
   var form = jQuery(this.form);
+
+  form.unbind("submit", submit_confirmation);
+  form.append("<input type='hidden' name='update' value='1'/>");
+
   jQuery.ajax({
       async: true,
       beforeSend:function(xhr) {
@@ -11,6 +14,7 @@ function update_basket(e) {
       type: form.attr("method") || "POST",
       url: form.attr("action")
   });
+
   return false;
 }
 
