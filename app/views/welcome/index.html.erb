@@ -11,7 +11,7 @@
     <a href="http://maps.google.com/maps?f=q&amp;source=embed&amp;hl=cs&amp;geocode=&amp;q=mil%C3%AD%C4%8Dova+5&amp;sll=50.082315,14.463329&amp;sspn=0.041307,0.071754&amp;ie=UTF8&amp;ll=50.085055,14.450369&amp;spn=0.00413,0.006437&amp;z=16" rel="external">Zobrazit větší mapu</a>
   </div>
   <%= snippet "restaurant_vcard"%>
-  <p><%= t(:opening_hours)%>: <!--[if IE]><nobr><![endif]--><strong><%= snippet "opening_hours" %></strong><!--[if IE]></nobr><![endif]--></p>
+  <% # <p><%= t(:opening_hours)>: <!--[if IE]><nobr><![endif]--><strong><%= snippet "opening_hours" ></strong><!--[if IE]></nobr><![endif]--></p> %>
   <%= snippet 'delivery_vcard'%>
 </div>
 <% content_for :javascript do %>
