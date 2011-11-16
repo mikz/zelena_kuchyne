@@ -12,6 +12,12 @@ GEM
       activesupport (= 2.3.11)
     activesupport (2.3.11)
     awesome_print (0.3.2)
+    capistrano (2.9.0)
+      highline
+      net-scp (>= 1.0.0)
+      net-sftp (>= 2.0.0)
+      net-ssh (>= 2.0.14)
+      net-ssh-gateway (>= 1.1.0)
     chronic (0.3.0)
     em-proxy (0.1.5)
       eventmachine
@@ -19,9 +25,21 @@ GEM
     exception_notification (2.3.3.0)
     fastercsv (1.5.4)
     haml (3.0.25)
+    highline (1.6.8)
     jrails (0.6.0)
+    net-scp (1.0.4)
+      net-ssh (>= 1.99.1)
+    net-sftp (2.0.5)
+      net-ssh (>= 2.0.9)
+    net-ssh (2.2.1)
+    net-ssh-gateway (1.1.0)
+      net-ssh (>= 1.99.1)
     newrelic_rpm (3.3.0)
     nokogiri (1.4.4)
+    o2h (0.0.4)
+      capistrano (~> 2.9.0)
+      newrelic_rpm (~> 3.3.0)
+      rvm (~> 1.9.2)
     pg (0.10.1)
     rack (1.1.0)
     rails (2.3.11)
@@ -32,6 +50,7 @@ GEM
       activesupport (= 2.3.11)
       rake (>= 0.8.3)
     rake (0.8.7)
+    rvm (1.9.2)
     sanitize (2.0.0)
       nokogiri (~> 1.4.4)
     will_paginate (2.3.15)
@@ -47,7 +66,7 @@ DEPENDENCIES
   fastercsv
   haml
   jrails
-  newrelic_rpm
+  o2h
   pg
   rails (= 2.3.11)
   sanitize

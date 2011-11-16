@@ -9,7 +9,7 @@ gem "jrails"#, :git => "https://github.com/MrJoy/jrails.git"
 gem "sanitize"
 gem 'haml'
 gem 'chronic'
-gem 'newrelic_rpm'
+gem 'o2h'
 
 group :development do
   gem 'awesome_print'
@@ -23,6 +23,6 @@ group :production do
   gem 'exception_notification', '~> 2.3.3.0'
 end
 
-group :proxy do 
+group :proxy do
   gem 'em-proxy'
 end
