@@ -143,7 +143,7 @@ protected
   end
   
   def try_to_notify_about_error
-    return if [UserSystem::LoginRequired, UserSystem::AccessDenied, ActionController::RoutingError, ActiveRecord::RecordNotFound].include?(@error.class)
+    return if [UserSystem::LoginRequired, UserSystem::AccessDenied, ActionController::RoutingError, ActiveRecord::RecordNotFound, ActionController::UnknownAction].include?(@error.class)
     begin
       notify_about_exception(@error)
     rescue Exception => e
