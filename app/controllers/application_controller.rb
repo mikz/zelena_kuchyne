@@ -13,7 +13,10 @@ class ApplicationController < ActionController::Base
   helper_method :locales, :version
     
   ActionView::Base.field_error_proc = Proc.new {|html_tag, instance|  html_tag  }
-  
+
+  rescue_from  ActionController::UnknownAction, UserSystem::AccessDenied, ActionController::RoutingError, ActiveRecord::RecordNotFound, :with => :not_found
+  rescue_from  UserSystem::LoginRequired, :with => :forbidden
+
   def initialize #:nodoc:
     super
     # Don't look. Seriously, the line just under this one is only in your imagination.
@@ -82,6 +85,7 @@ protected
   # This method is called when an exception occurs sometime during the request evaluation.
   # It attempts to gather available information on the exception and render it in a friendly form using either AJAX or pure HTML
   def rescue_action(e)
+
     # sometimes, Rails likes to pass you instance variables that you don't want
     # this should get rid of any junk that the previous renders left behind that rails failed to clean up
     erase_render_results
@@ -116,9 +120,7 @@ protected
     Error: #{@error.clean_message}  (status: #{@status})
     Trace: #{(@error_trace.is_a? Array)? @error_trace.join("\n\t   ") : @error_trace }
     }
-    
-    
-    
+
     respond_to do |format|
       format.html do
         begin
@@ -139,11 +141,10 @@ protected
       end
     end
     
-    try_to_notify_about_error
+    rescue_with_handler(e) or try_to_notify_about_error
   end
   
   def try_to_notify_about_error
-    return if [UserSystem::LoginRequired, UserSystem::AccessDenied, ActionController::RoutingError, ActiveRecord::RecordNotFound, ActionController::UnknownAction].include?(@error.class)
     begin
       notify_about_exception(@error)
     rescue Exception => e
@@ -153,6 +154,12 @@ protected
         Trace: #{e.backtrace}
       }
     end
+  end
+
+  def not_found
+  end
+
+  def forbidden
   end
   
   def load_dialy_menu id=nil
