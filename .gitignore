@@ -6,7 +6,7 @@ backup_*.sql
 backup_*.sql.bz2
 *.sql
 tmp/*
-log/*.log
+log/
 backup*.sql
 .bundle
 vendor/bundle/
