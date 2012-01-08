@@ -72,7 +72,10 @@ class OrdersController < ApplicationController
   end
   
   def mine
-    @orders = OrderView.find :all, :conditions => "orders_view.user_id = #{current_user.id} AND state != 'basket'", :include => [{:user => :addresses}], :order => params[:order]
+    @orders = OrderView.find(:all,
+                             :conditions => "orders_view.user_id = #{current_user.id} AND state != 'basket'",
+                             :include => [{:user => :addresses}],
+                             :order => params[:order]).paginate(:page => params[:page], :per_page => 15)
   end
   
   def assign

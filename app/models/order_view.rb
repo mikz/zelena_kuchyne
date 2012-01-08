@@ -7,6 +7,7 @@ class OrderView < ActiveRecord::Base
   belongs_to :delivery_method, :foreign_key => "delivery_method_id"
   has_many :possible_delivery_methods, :class_name => "DeliveryMethod", :finder_sql => 'SELECT * FROM delivery_methods WHERE minimal_order_price <= #{original_price || 0} AND zone_id = #{zone_id || "NULL"} ORDER BY price ASC;'
   
+  default_scope :order => 'deliver_at DESC'
   set_table_name 'orders_view'
   
   has_one :real_record, :class_name => 'Order', :foreign_key => 'id'
