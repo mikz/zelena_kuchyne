@@ -13,6 +13,7 @@ gem 'o2h'
 
 group :development do
   gem 'awesome_print'
+  gem 'ruby-debug'
 end
 
 group :test do
