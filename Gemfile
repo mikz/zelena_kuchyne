@@ -9,11 +9,12 @@ gem "jrails"#, :git => "https://github.com/MrJoy/jrails.git"
 gem "sanitize"
 gem 'haml'
 gem 'chronic'
-gem 'o2h'
 
 group :development do
   gem 'awesome_print'
   gem 'ruby-debug'
+
+  gem 'o2h'
 end
 
 group :test do
