@@ -2,14 +2,15 @@
   <table class="admin">
     <thead>
       <tr>
+        <td>✔/✘</td>
         <td><%= t(:model_meal) %></td>
         <td><%= t(:attr_scheduled_for) %></td>
-        <td><%= t(:attr_scheduled_amount) %></td>
-        <td><%= t(:attr_ordered_amount) %></td>
+        <td><%= t(:attr_scheduled_amount_abbr, :default => 'napl.') %></td>
+        <td><%= t(:attr_ordered_amount_abbr, :default => 'v obj.') %></td>
         <td><%= t(:attr_lost_amount) %></td>
         <td><%= t(:attr_sold_amount) %></td>
         <td><%= t(:attr_amount_left) %></td>
-        <td><span id="record_add"><%= smart_link t(:schedule), {:action => "new" , :date =>  (@days.first) ? @days.first.scheduled_for : Date.today} %></span></td>
+        <td><span id="record_add"><%= smart_link t(:schedule_abbr, :default => 'napl.'), {:action => "new" , :date =>  (@days.first) ? @days.first.scheduled_for : Date.today} %></span></td>
       </tr>
     </thead>
     <tbody id="records_body">
@@ -18,6 +19,7 @@
           if day.scheduled_menus.length > 0 
             for menu in day.scheduled_menus %>
             <tr id="record_menu_<%=menu.oid%>" class="scheduled_menu">
+              <td><%= invisible?(menu) %></td>
               <td><span><%= menu.menu.name %><%if menu.created_at < menu.menu.updated_at%></span><span class="warning" title="<%=t(:menu_was_changed)%>">!</span><%end%></td>
               <td><%= format menu.scheduled_for %></td>
               <td><%= format menu.amount %></td>
@@ -27,6 +29,7 @@
           <%  for stock in day.stock 
                 if menu.menu.meal_ids.include? stock.meal_id %>
               <tr class="scheduled_menu_meal record_menu_<%=menu.oid%>">
+                <td><%= invisible?(menu) %></td>
                 <td><%= stock.name %></td>
                 <td><%= format stock.scheduled_for %></td>
                 <td><%= format stock.scheduled_amount %></td>
@@ -45,6 +48,7 @@
             for stock in day.stock 
               if bundle.bundle.meal_id == stock.meal_id %>
                 <tr id="record_bundle_<%=bundle.oid%>" class="scheduled_meal">
+                  <td><%= invisible?(bundle) %></td>
                   <td><%= bundle.bundle.name %></td>
                   <td><%= format bundle.scheduled_for %></td>
                   <td><%= format (stock.scheduled_amount/bundle.bundle.amount).floor %></td>
@@ -62,6 +66,7 @@
             for stock in day.stock 
               if meal.meal_id == stock.meal_id %>
                 <tr id="record_meal_<%=meal.oid%>" class="scheduled_meal">
+                  <td><%= invisible?(meal) %></td>
                   <td><%= stock.name %><%if meal.created_at < meal.meal.updated_at%></span><span class="warning" title="<%=t(:meal_was_changed)%>">!</span><%end%></td>
                   <td><%= format stock.scheduled_for %></td>
                   <td><%= format stock.scheduled_amount %></td>
@@ -76,7 +81,7 @@
           end
         end%>        
         <tr class="day_divide">
-          <td colspan="8"/>
+          <td colspan="9"/>
         </tr>
       <% end%>
     </tbody>

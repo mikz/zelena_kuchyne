@@ -1,6 +1,10 @@
 # Methods added to this helper will be available to all templates in the application.
 module ApplicationHelper
   
+  def invisible?(meal)
+    meal.invisible? ? '✘' : '✔'
+  end
+
   def button_tag content = nil, options = {}, submit = true, &block
     options = {:type => "submit"}.merge(options) if submit
     content_tag :button, (block_given?)? block : content, options

@@ -30,7 +30,7 @@ row_id = row_id || "record_new" %>
   <p><label for="schedule_amount"><%= t(:amount) %></label><br />
   <input type="text" name="schedule[amount]" id="schedule_amount" value="<%= scheduled.amount if scheduled%>"/></p>
   <p><label for="schedule_invisible"><%= t(:attr_invisible) %></label><br />
-  <input type="checkbox" name="schedule[invisible]" id="schedule_invisible" value="1" <%= 'checked="checked"' if scheduled && scheduled.invisible?%>/></p>
+  <input type="checkbox" name="schedule[invisible]" id="schedule_invisible" value="1" <%= 'checked="checked"' if !scheduled || scheduled.invisible?%>/></p>
   <p><input type="submit" value="<%= t(:schedule) %>" /><%= yield :cancel_button%></p>
 <% end %>
 </td>
