@@ -28,15 +28,6 @@ Rails::Initializer.run do |config|
   # you must remove the Active Record framework.
   config.frameworks -= [:active_resource]
 
-  config.gem 'will_paginate'
-  config.gem "fastercsv"
-  config.gem "jrails"
-  config.gem "sanitize"
-  config.gem "newrelic_rpm"
-  
-  config.gem 'haml'
-  config.gem 'chronic'
-  
   # Activate observers that should always be running
   # config.active_record.observers = :cacher, :garbage_collector, :forum_observer
 
