@@ -39,7 +39,7 @@ GEM
       net-ssh (>= 1.99.1)
     newrelic_rpm (3.3.1)
     nokogiri (1.4.4)
-    o2h (0.1.13)
+    o2h (0.1.14)
       capistrano (~> 2.9.0)
       newrelic_rpm (~> 3.3.0)
       pg_dumper (~> 0.1.7)
