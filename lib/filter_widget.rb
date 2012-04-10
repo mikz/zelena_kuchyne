@@ -41,17 +41,17 @@ module FilterWidget
   
   def sql_op_for(op)
     case(op)
-    when "e":
+    when "e"
       "="
-    when "lt":
+    when "lt"
       "<"
-    when "gt":
+    when "gt"
       ">"
-    when "ltoe":
+    when "ltoe"
       "<="
-    when "gtoe":
+    when "gtoe"
       ">="
-    when "ne":
+    when "ne"
       "!="
     end
   end
