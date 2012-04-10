@@ -22,15 +22,18 @@ class ImagesController < ApplicationController
       file = params["NewFile"]
       if file
         begin
-          url = "/pictures/user_uploads/#{user.id}/"
-          tmp_path = "#{RAILS_ROOT}/public#{url}"
-          fpath = "#{tmp_path}/#{file.original_filename}"
-          Dir.mkdir(tmp_path) unless File.exists? tmp_path
-          File.open(fpath, 'wb') do |f| #TODO: check if a previous file exists with the same name
+
+          public = Rails.root.join('public')
+          tmp_path = public.join(*%W(system pictures user_uploads #{user.id}))
+          fpath = tmp_path.join(file.original_filename)
+
+          tmp_path.mkpath unless tmp_path.exist?
+
+          fpath.open('wb') do |f| #TODO: check if a previous file exists with the same name
             f.write file.read
           end
           response[:errno] = 0
-          response[:url] = url + file.original_filename
+          response[:url] = "/" + tmp_path.relative_path_from(public).join(file.original_filename).to_s
         rescue Exception => e
           response[:errno] = 1
           response[:errmsg] = e.inspect
