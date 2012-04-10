@@ -1,3 +1,5 @@
+# coding: utf-8
+
 namespace :mailer do
   desc "Send tomorrow menu to users."
   task :tomorrow_menu => [:environment, :init_fake_controller] do

@@ -1,3 +1,5 @@
+# coding: utf-8
+
 namespace :temporary_stuff do
   desc "fix products"
   task :fix_products => [:environment, 'mailer:init_fake_controller'] do

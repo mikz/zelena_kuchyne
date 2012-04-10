@@ -11,7 +11,11 @@ GEM
     activeresource (2.3.14)
       activesupport (= 2.3.14)
     activesupport (2.3.14)
+    airbrake (3.0.9)
+      activesupport
+      builder
     awesome_print (1.0.2)
+    builder (3.0.0)
     capistrano (2.9.0)
       highline
       net-scp (>= 1.0.0)
@@ -62,12 +66,13 @@ GEM
     rvm (1.9.2)
     sanitize (2.0.3)
       nokogiri (>= 1.4.4, < 1.6)
-    will_paginate (3.0.3)
+    will_paginate (2.3.16)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
+  airbrake
   awesome_print
   chronic
   debugger
@@ -79,4 +84,4 @@ DEPENDENCIES
   pg
   rails (= 2.3.14)
   sanitize
-  will_paginate
+  will_paginate (~> 2.2)

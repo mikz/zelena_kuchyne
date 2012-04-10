@@ -3,7 +3,7 @@ source :rubygems
 gem "rails", "2.3.14"
 gem "pg"
 
-gem 'will_paginate'
+gem 'will_paginate', '~> 2.2'
 gem "fastercsv"
 gem "jrails"#, :git => "https://github.com/MrJoy/jrails.git"
 gem "sanitize"
@@ -16,6 +16,8 @@ group :development do
 
   gem 'o2h'
 end
+
+gem 'airbrake'
 
 group :test do
 
