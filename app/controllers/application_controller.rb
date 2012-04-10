@@ -8,8 +8,6 @@ class ApplicationController < ActionController::Base
   include Includers
   include SnippetsSystem
   
-  include ExceptionNotification::Notifiable if defined? ExceptionNotification
-  
   helper_method :locales, :version
     
   ActionView::Base.field_error_proc = Proc.new {|html_tag, instance|  html_tag  }
@@ -141,21 +139,9 @@ protected
       end
     end
     
-    rescue_with_handler(e) or try_to_notify_about_error
+    rescue_with_handler(e) or notify_airbrake(e)
   end
   
-  def try_to_notify_about_error
-    begin
-      notify_about_exception(@error)
-    rescue Exception => e
-      logger.error %{
-        FAILED TO SEND EXCEPTION NOTIFICATION! at #{Time.now}
-        Error: #{e.clean_message}
-        Trace: #{e.backtrace}
-      }
-    end
-  end
-
   def not_found
   end
 

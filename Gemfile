@@ -1,6 +1,6 @@
 source :rubygems
 
-gem "rails", "2.3.11"
+gem "rails", "2.3.14"
 gem "pg"
 
 gem 'will_paginate'
@@ -12,7 +12,7 @@ gem 'chronic'
 
 group :development do
   gem 'awesome_print'
-  gem 'ruby-debug'
+  gem 'debugger'
 
   gem 'o2h'
 end
@@ -22,7 +22,7 @@ group :test do
 end
 
 group :production do
-  gem 'exception_notification', '~> 2.3.3.0'
+
 end
 
 group :proxy do
