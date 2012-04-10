@@ -93,8 +93,8 @@ protected
     reset_variables_added_to_assigns
     
     @error = e
-    debugger
     @error_name = e.class.to_s.demodulize.underscore
+
     if(@error.backtrace.length == 1)
       # sometimes, Rails likes to screw with the exception just to piss off unsuspecting programmers
       @error_trace = @error.backtrace.first.gsub('<', '&lt;').gsub('>', '&gt;').gsub(/([ \n\r\t]+[0-9]+\:)/, '<br />\0')
