@@ -13,6 +13,7 @@ gem 'chronic'
 group :development do
   gem 'awesome_print'
   gem 'debugger'
+  gem 'pry'
 
   gem 'o2h'
 end
