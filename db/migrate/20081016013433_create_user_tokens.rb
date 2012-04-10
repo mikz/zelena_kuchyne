@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class CreateUserTokens < ActiveRecord::Migration
   def self.up
     sql_script 'user_tokens_up'
@@ -7,3 +8,4 @@ class CreateUserTokens < ActiveRecord::Migration
     sql_script 'user_tokens_down'
   end
 end
+

@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class UserDiscount < ActiveRecord::Base
   set_table_name 'user_discounts'
   belongs_to :user
@@ -27,3 +28,4 @@ class UserDiscount < ActiveRecord::Base
   end
   
 end
+

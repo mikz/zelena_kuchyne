@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 require File.dirname(__FILE__) + '/../test_helper'
 
 class BundleTest < ActiveSupport::TestCase
@@ -10,3 +11,4 @@ class BundleTest < ActiveSupport::TestCase
     assert_equal bundle.cost, (meal.cost.to_f * bundle.amount).to_s
   end
 end
+

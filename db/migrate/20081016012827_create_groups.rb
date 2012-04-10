@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class CreateGroups < ActiveRecord::Migration
   def self.up
     sql_script 'groups_up'
@@ -7,3 +8,4 @@ class CreateGroups < ActiveRecord::Migration
     sql_script 'groups_down'
   end
 end
+

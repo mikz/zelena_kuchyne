@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 module ActiveRecord
   module Acts
     module Tree
@@ -94,3 +95,4 @@ module ActiveRecord
     end
   end
 end
+

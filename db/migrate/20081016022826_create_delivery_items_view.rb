@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class CreateDeliveryItemsView < ActiveRecord::Migration
   def self.up
     sql_script 'delivery_items_view_up'
@@ -7,3 +8,4 @@ class CreateDeliveryItemsView < ActiveRecord::Migration
     sql_script 'delivery_items_view_down'
   end
 end
+

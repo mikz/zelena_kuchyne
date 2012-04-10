@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 module UserSystem
   class AccessDenied < RuntimeError
     def message
@@ -136,3 +137,4 @@ module UserSystem
     end
   end
 end
+

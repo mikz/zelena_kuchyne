@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class MassMenuController < ApplicationController
   active_section 'menu'
   include_javascripts "menu"
@@ -151,3 +152,4 @@ protected
     
   end
 end
+

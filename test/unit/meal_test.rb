@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 require File.dirname(__FILE__) + '/../test_helper'
 
 class MealTest < ActiveSupport::TestCase
@@ -24,3 +25,4 @@ class MealTest < ActiveSupport::TestCase
     assert_equal meal[:id], meal.id 
   end
 end
+

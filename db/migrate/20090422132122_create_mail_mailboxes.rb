@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class CreateMailMailboxes < ActiveRecord::Migration
   def self.up
     sql_script 'mail_mailboxes_up'
@@ -7,3 +8,4 @@ class CreateMailMailboxes < ActiveRecord::Migration
     sql_script 'mail_mailboxes_down'
   end
 end
+

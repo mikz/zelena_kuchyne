@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class Page < ActiveRecord::Base
   has_many :page_histories
   
@@ -17,3 +18,4 @@ class Page < ActiveRecord::Base
     end
   end
 end
+

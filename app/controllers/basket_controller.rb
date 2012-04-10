@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class BasketController < ApplicationController
   include_javascripts 'basket','jquery.fieldselection'
   include_stylesheets 'time', 'jquery-ui'
@@ -327,3 +328,4 @@ class BasketController < ApplicationController
     @dialy_menu, @dialy_entries, @dialy_categories = load_dialy_menu
   end
 end
+

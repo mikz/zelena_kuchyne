@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 require File.dirname(__FILE__) + '/../test_helper'
 
 class NewsTest < ActiveSupport::TestCase
@@ -15,3 +16,4 @@ class NewsTest < ActiveSupport::TestCase
     assert !news.valid?
   end
 end
+

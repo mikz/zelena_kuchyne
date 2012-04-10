@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class WholesaleDiscount < ActiveRecord::Base
   belongs_to :user
   validates_presence_of :start_at, :user, :discount_price
@@ -18,3 +19,4 @@ class WholesaleDiscount < ActiveRecord::Base
     self.user = User.find_by_login(login)
   end
 end
+

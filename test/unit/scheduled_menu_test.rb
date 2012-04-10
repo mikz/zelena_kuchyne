@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 require File.dirname(__FILE__) + '/../test_helper'
 
 class ScheduledMenuTest < ActiveSupport::TestCase
@@ -13,3 +14,4 @@ class ScheduledMenuTest < ActiveSupport::TestCase
     assert_not_equal ingredients_log.first.amount, ingredients_log.last.amount # if values are different, that bug is gone
   end
 end
+

@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class RestaurantSalesController < ApplicationController
   before_filter { |c| c.must_belong_to_one_of(:admins, :operating_officers)}
   include_javascripts 'jquery.autocomplete', 'calendar_widget', "scheduled_items", "fullscreen"
@@ -72,3 +73,4 @@ class RestaurantSalesController < ApplicationController
     super
   end
 end
+

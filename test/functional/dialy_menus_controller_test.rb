@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 require 'test_helper'
 
 class DialyMenusControllerTest < ActionController::TestCase
@@ -6,3 +7,4 @@ class DialyMenusControllerTest < ActionController::TestCase
     assert true
   end
 end
+

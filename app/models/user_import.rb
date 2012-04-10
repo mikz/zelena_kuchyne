@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class UserImport < ActiveRecord::Base
   set_table_name "user_import"
   set_primary_key "iduziv"
@@ -110,3 +111,4 @@ class UserImport < ActiveRecord::Base
     
   end
 end
+

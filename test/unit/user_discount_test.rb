@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 require File.dirname(__FILE__) + '/../test_helper'
 
 class UserDiscountTest < ActiveSupport::TestCase
@@ -30,3 +31,4 @@ class UserDiscountTest < ActiveSupport::TestCase
     assert_valid ud2
   end
 end
+

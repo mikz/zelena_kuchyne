@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 require File.dirname(__FILE__) + '/../test_helper'
 
 class MenuViewTest < ActiveSupport::TestCase
@@ -6,3 +7,4 @@ class MenuViewTest < ActiveSupport::TestCase
     assert true
   end
 end
+

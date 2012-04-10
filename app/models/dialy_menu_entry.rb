@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class DialyMenuEntry < ActiveRecord::Base  
   belongs_to :menu, :class_name => "DialyMenu"
   belongs_to :category, :class_name => "MealCategory"
@@ -23,3 +24,4 @@ class DialyMenuEntry < ActiveRecord::Base
     end
   end
 end
+

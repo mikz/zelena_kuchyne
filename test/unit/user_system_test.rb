@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 require File.dirname(__FILE__) + '/../test_helper'
 
 class UserSystemTest < ActiveSupport::TestCase                   
@@ -122,3 +123,4 @@ class UserSystemTest < ActiveSupport::TestCase
     assert_equal Configuration.default_language, guest.interface_language
   end
 end
+

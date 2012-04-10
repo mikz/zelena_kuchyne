@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class CreateWholesaleDiscounts < ActiveRecord::Migration
   def self.up
     sql_script 'wholesale_discounts_up'
@@ -9,3 +10,4 @@ class CreateWholesaleDiscounts < ActiveRecord::Migration
     sql_script 'wholesale_discounts_down'
   end
 end
+

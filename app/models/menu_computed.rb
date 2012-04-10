@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class MenuComputed < Menu
   set_primary_key 'id'
   set_table_name 'menus_view'
@@ -22,3 +23,4 @@ class MenuComputed < Menu
     self[:cost]
   end  
 end
+

@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class CreateScheduledMenus < ActiveRecord::Migration
   def self.up
     sql_script 'scheduled_menus_up'
@@ -9,3 +10,4 @@ class CreateScheduledMenus < ActiveRecord::Migration
     sql_script 'scheduled_menus_down'
   end
 end
+

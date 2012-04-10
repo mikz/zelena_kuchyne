@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 require 'test_helper'
 
 class PageHistoriesControllerTest < ActionController::TestCase
@@ -6,3 +7,4 @@ class PageHistoriesControllerTest < ActionController::TestCase
     assert true
   end
 end
+

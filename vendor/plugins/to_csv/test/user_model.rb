@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class User
   COLUMNS = %w(id name age)
   
@@ -19,3 +20,4 @@ class User
     age > 40
   end
 end
+

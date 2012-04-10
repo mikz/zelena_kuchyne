@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 module ActiveRecord
   module Associations
     def self.included(base)
@@ -48,3 +49,4 @@ module ActiveRecord
     end
   end
 end
+

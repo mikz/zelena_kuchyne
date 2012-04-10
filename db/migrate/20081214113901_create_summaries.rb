@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class CreateSummaries < ActiveRecord::Migration
   def self.up
     sql_script 'summaries_functions_up'
@@ -10,3 +11,4 @@ class CreateSummaries < ActiveRecord::Migration
     sql_script 'summaries_functions_down'
   end
 end
+

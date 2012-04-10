@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class CreateOrders < ActiveRecord::Migration
   def self.up
     sql_script 'orders_up'
@@ -7,3 +8,4 @@ class CreateOrders < ActiveRecord::Migration
     sql_script 'orders_down'
   end
 end
+

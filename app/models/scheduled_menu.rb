@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class ScheduledMenu < ActiveRecord::Base
   belongs_to :menu
   belongs_to :day, :foreign_key => 'scheduled_for', :primary_key => "scheduled_for"
@@ -28,3 +29,4 @@ class ScheduledMenu < ActiveRecord::Base
     self.save!
   end
 end
+

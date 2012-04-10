@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 # Taken from Rails 2.1
 module CollectiveIdea
   module NamedScope
@@ -138,3 +139,4 @@ module CollectiveIdea
     end
   end
 end
+

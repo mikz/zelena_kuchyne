@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class OrdersController < ApplicationController
   before_filter(:except => [:mine, :show]) { |c| c.must_belong_to_one_of(:admins)}
   before_filter :login_required, :only => :mine
@@ -356,3 +357,4 @@ class OrdersController < ApplicationController
     @zones = Zone.find :all, :order => "name ASC", :include => [:delivery_methods]
   end
 end
+

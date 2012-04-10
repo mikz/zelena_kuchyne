@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class CreateIngredientConsumptions < ActiveRecord::Migration
   def self.up
     sql_script 'ingredient_consumptions_up'
@@ -7,3 +8,4 @@ class CreateIngredientConsumptions < ActiveRecord::Migration
     sql_script 'ingredient_consumptions_down'
   end
 end
+

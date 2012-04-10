@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class PremisesController < ApplicationController
   before_filter { |c| c.must_belong_to_one_of(:admins)}
   include_javascripts 'fckeditor/fckeditor'
@@ -12,3 +13,4 @@ class PremisesController < ApplicationController
     ]
   })
 end
+

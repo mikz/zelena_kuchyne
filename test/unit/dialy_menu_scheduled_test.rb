@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 require 'test_helper'
 
 class DialyMenuScheduledTest < ActiveSupport::TestCase
@@ -6,3 +7,4 @@ class DialyMenuScheduledTest < ActiveSupport::TestCase
     assert true
   end
 end
+

@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class OrderedItemView < OrderedItem
   belongs_to :order_view
   set_table_name 'ordered_items_view'
@@ -8,3 +9,4 @@ class OrderedItemView < OrderedItem
     self.price * (1 - self.discount)
   end
 end
+

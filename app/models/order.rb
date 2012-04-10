@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class Order < ActiveRecord::Base
   belongs_to :user
   belongs_to :delivery_man, :class_name => 'User', :foreign_key => 'delivery_man_id'
@@ -475,3 +476,4 @@ class Order < ActiveRecord::Base
   end
   alias_method_chain :delivery_method, :autoload
 end
+

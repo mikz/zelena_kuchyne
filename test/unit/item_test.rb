@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 require File.dirname(__FILE__) + '/../test_helper'
 
 class ItemTest < ActiveSupport::TestCase
@@ -97,3 +98,4 @@ class ItemTest < ActiveSupport::TestCase
     assert_equal price, soup.discount_price(:date => date, :user => peter)
   end
 end
+

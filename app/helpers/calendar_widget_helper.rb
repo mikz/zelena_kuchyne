@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 module CalendarWidgetHelper
   
   def calendar_widget(options = {})
@@ -40,3 +41,4 @@ module CalendarWidgetHelper
     return "#{script}#{calendar}"
   end
 end
+

@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class UsersView < ActiveRecord::Base
   has_many :orders, :foreign_key => :user_id
   has_many :groups, :through => :memberships, :foreign_key => "user_id" #, :order => "groups.title ASC"
@@ -51,3 +52,4 @@ class UsersView < ActiveRecord::Base
     return nil
   end
 end
+

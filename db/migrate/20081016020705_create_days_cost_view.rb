@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class CreateDaysCostView < ActiveRecord::Migration
   def self.up
     sql_script 'days_cost_view_up'
@@ -7,3 +8,4 @@ class CreateDaysCostView < ActiveRecord::Migration
     sql_script 'days_cost_view_down'
   end
 end
+

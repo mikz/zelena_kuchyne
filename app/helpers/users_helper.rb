@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 module UsersHelper
   def translate_group group_name
     group_name = group_name.strip.gsub(" ","_")
@@ -34,3 +35,4 @@ module UsersHelper
     %{<td class="#{'zone-error' unless address.zone and address.zone_reviewed?}">#{address.output}</td>}
   end
 end
+

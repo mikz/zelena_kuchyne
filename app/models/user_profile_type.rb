@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class UserProfileType < ActiveRecord::Base
   after_save :clean_cache
   after_destroy :clean_cache
@@ -22,3 +23,4 @@ class UserProfileType < ActiveRecord::Base
     @cached_list = cached_list
   end
 end
+

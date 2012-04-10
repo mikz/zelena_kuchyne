@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class ScheduledItem < ActiveRecord::Base
   belongs_to :item
   set_primary_key 'item_id'
@@ -11,3 +12,4 @@ class ScheduledItem < ActiveRecord::Base
     self.find(args[0],args[1])
   end
 end
+

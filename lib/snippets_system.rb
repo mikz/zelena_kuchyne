@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 module SnippetsSystem
   
   def self.included(base)
@@ -29,3 +30,4 @@ module SnippetsSystem
     end
   end
 end
+

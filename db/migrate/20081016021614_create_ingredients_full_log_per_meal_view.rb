@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class CreateIngredientsFullLogPerMealView < ActiveRecord::Migration
   def self.up
     sql_script 'ingredients_full_log_per_meal_view_up'
@@ -7,3 +8,4 @@ class CreateIngredientsFullLogPerMealView < ActiveRecord::Migration
     sql_script 'ingredients_full_log_per_meal_view_down'
   end
 end
+

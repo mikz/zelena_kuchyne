@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 module MenuHelper
   def draw_calendar_switch(options = {})
     today = Date.today
@@ -73,3 +74,4 @@ module MenuHelper
     return "#{calendar}</tr></tbody></table>"
     end
 end
+

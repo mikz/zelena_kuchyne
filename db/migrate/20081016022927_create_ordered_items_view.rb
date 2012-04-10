@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class CreateOrderedItemsView < ActiveRecord::Migration
   def self.up
     sql_script 'ordered_items_view_up'
@@ -7,3 +8,4 @@ class CreateOrderedItemsView < ActiveRecord::Migration
     sql_script 'ordered_items_view_down'
   end
 end
+

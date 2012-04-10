@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class MealCategoryOrdersController < ApplicationController
   include_javascripts 'jquery.tablesort'
   before_filter { |c| c.must_belong_to_one_of(:admins)}
@@ -19,3 +20,4 @@ class MealCategoryOrdersController < ApplicationController
     
   end
 end
+

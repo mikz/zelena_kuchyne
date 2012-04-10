@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class SoldItem < ActiveRecord::Base
   set_primary_key 'oid'
   belongs_to :item
@@ -10,3 +11,4 @@ class SoldItem < ActiveRecord::Base
     end
   end
 end
+

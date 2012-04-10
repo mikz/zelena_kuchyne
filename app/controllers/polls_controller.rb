@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class PollsController < ApplicationController
   before_filter(:except => [:vote]) { |c| c.must_belong_to_one_of(:admins)}
   include_javascripts 'fullscreen'
@@ -121,3 +122,4 @@ class PollsController < ApplicationController
     end
   end
 end
+

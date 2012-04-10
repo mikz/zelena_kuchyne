@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class CreateItemsToLoad < ActiveRecord::Migration
   def self.up
     sql_script 'assigned_ordered_meals_up'
@@ -11,3 +12,4 @@ class CreateItemsToLoad < ActiveRecord::Migration
     sql_script 'assigned_ordered_meals_down'
   end
 end
+

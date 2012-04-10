@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class DeliveryMan < User
   has_many :orders_to_deliver, :class_name => "Order", :conditions => "delivery_man_id = \#{self.id}"
   has_many :items_to_load, :class_name => "ItemToLoad"
@@ -42,3 +43,4 @@ class DeliveryMan < User
     end
   end
 end
+

@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class CreateZones < ActiveRecord::Migration
   def self.up
     sql_script 'zones_up'
@@ -7,3 +8,4 @@ class CreateZones < ActiveRecord::Migration
     sql_script 'zones_down'
   end
 end
+

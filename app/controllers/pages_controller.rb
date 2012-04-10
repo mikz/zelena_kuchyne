@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class PagesController < ApplicationController
   before_filter(:except => [:show]) {|c| c.must_belong_to_one_of(:admins)}
   exposure :title => 'title', :columns => [:url], :form_fields => {:title => :text_field, :url => :text_field, :body => :text_area}, :content_column => :body
@@ -46,3 +47,4 @@ class PagesController < ApplicationController
   
 
 end
+

@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 require 'test/unit'
 require 'rubygems'
 require 'fastercsv'
@@ -49,3 +50,4 @@ class ToCsvTest < Test::Unit::TestCase
   end
   
 end
+

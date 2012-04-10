@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class CreatePages < ActiveRecord::Migration
   def self.up
     sql_script 'pages_up'
@@ -7,3 +8,4 @@ class CreatePages < ActiveRecord::Migration
     sql_script 'pages_down'
   end
 end
+

@@ -1,4 +1,4 @@
-# coding: utf-8
+# -*- encoding : utf-8 -*-
 
 # Methods added to this helper will be available to all templates in the application.
 module ApplicationHelper
@@ -163,3 +163,4 @@ module ApplicationHelper
     return "#{format(value)} #{unit}"
   end
 end
+

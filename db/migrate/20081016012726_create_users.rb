@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class CreateUsers < ActiveRecord::Migration
   def self.up
     sql_script 'users_up'
@@ -7,3 +8,4 @@ class CreateUsers < ActiveRecord::Migration
     sql_script 'users_down'
   end
 end
+

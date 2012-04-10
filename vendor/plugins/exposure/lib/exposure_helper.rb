@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 module ExposureHelper
   def validation_error_for record
     "<div id='validation_error_#{record.new_record? ?  'new' : record.id}' style='display: none;'/>"
@@ -13,3 +14,4 @@ module ExposureHelper
     html
   end
 end
+

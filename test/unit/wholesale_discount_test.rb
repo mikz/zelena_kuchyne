@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 require File.dirname(__FILE__) + '/../test_helper'
 
 class WholesaleDiscountTest < ActiveSupport::TestCase
@@ -6,3 +7,4 @@ class WholesaleDiscountTest < ActiveSupport::TestCase
     assert true
   end
 end
+

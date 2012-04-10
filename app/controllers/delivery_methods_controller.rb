@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class DeliveryMethodsController < ApplicationController
     before_filter { |c| c.must_belong_to_one_of(:admins)}
     before_filter :load_zones, :only => [:create, :update, :edit, :new]
@@ -23,3 +24,4 @@ class DeliveryMethodsController < ApplicationController
       @zones = Zone.find :all, :order => "name ASC" #, :conditions => "hidden = false",
     end
 end
+

@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class CreatePollVotes < ActiveRecord::Migration
   def self.up
     sql_script 'poll_votes_up'
@@ -7,3 +8,4 @@ class CreatePollVotes < ActiveRecord::Migration
     sql_script 'poll_votes_down'
   end
 end
+

@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 ENV["RAILS_ENV"] = "test"
 require File.expand_path(File.dirname(__FILE__) + "/../config/environment")
 require 'test_help'
@@ -55,3 +56,4 @@ def render_fixtures fixtures, options = {}
   end
   out
 end
+

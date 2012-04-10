@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class CreateLostItems < ActiveRecord::Migration
   def self.up
     sql_script 'lost_items_up'
@@ -7,3 +8,4 @@ class CreateLostItems < ActiveRecord::Migration
     sql_script 'lost_items_down'
   end
 end
+

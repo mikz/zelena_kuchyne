@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 require File.dirname(__FILE__) + '/../test_helper'
 
 class UserProfileTypeTest < ActiveSupport::TestCase
@@ -6,3 +7,4 @@ class UserProfileTypeTest < ActiveSupport::TestCase
     assert true
   end
 end
+

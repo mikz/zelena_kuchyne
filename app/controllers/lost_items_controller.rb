@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class LostItemsController < ApplicationController
   before_filter { |c| c.must_belong_to_one_of(:admins, :deliverymen)}
   include_javascripts 'calendar_widget', 'jquery.autocomplete', 'lost_items', 'scheduled_items'
@@ -62,3 +63,4 @@ class LostItemsController < ApplicationController
     super
   end
 end
+

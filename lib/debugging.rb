@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 module Debugging
   COLORS = {:name => :green, :value => :yellow, :title => :blue}
   def DEBUG *args, &block
@@ -37,3 +38,4 @@ module Debugging
 end
 
 include Debugging
+

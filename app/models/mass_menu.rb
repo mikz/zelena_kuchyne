@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 require "ostruct"
 
 class MassMenu < OpenStruct
@@ -21,3 +22,4 @@ class MassMenu < OpenStruct
   end
   
 end
+

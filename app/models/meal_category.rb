@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class MealCategory < ActiveRecord::Base
   has_many :meals, :order => "meals.name ASC"
   has_many :bundles, :through => :meals
@@ -6,3 +7,4 @@ class MealCategory < ActiveRecord::Base
   after_create :create_order
   
 end
+

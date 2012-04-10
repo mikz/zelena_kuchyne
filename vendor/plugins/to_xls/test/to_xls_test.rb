@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 require File.dirname(__FILE__) + '/test_helper'
 
 class ToXlsTest < Test::Unit::TestCase
@@ -91,3 +92,4 @@ private
     "<Cell><Data ss:Type=\"#{type}\">#{content}</Data></Cell>"
   end
 end
+

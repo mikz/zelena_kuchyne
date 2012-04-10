@@ -570,9 +570,9 @@ cs:
   #time: '{24hour}:{minute}'
   phone_number_template: '%n%n%n %n%n%n %n%n%n'
   country_code_template: '+(%cc)'
-  1_day: 1 den
-  2to4_days: %n dny
-  x_days: %n dní
+  1_day: '1 den'
+  2to4_days: '%n dny'
+  x_days: '%n dní'
   unknown_f: neznámá
   immediately: ihned
   month_1: leden

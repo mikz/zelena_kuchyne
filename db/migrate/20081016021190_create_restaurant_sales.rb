@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class CreateRestaurantSales < ActiveRecord::Migration
   def self.up
     sql_script 'restaurant_sales_up'
@@ -9,3 +10,4 @@ class CreateRestaurantSales < ActiveRecord::Migration
     sql_script 'restaurant_sales_down'
   end
 end
+

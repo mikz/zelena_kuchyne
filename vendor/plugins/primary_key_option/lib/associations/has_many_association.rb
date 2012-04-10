@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 module ActiveRecord
   module Associations
     class HasManyAssociation < AssociationCollection  
@@ -58,3 +59,4 @@ module ActiveRecord
     end
   end
 end
+

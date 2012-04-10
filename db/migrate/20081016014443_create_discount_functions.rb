@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class CreateDiscountFunctions < ActiveRecord::Migration
   def self.up
     sql_script 'discount_functions_up'
@@ -7,3 +8,4 @@ class CreateDiscountFunctions < ActiveRecord::Migration
     sql_script 'discount_functions_down'
   end
 end
+

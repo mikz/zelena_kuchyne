@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 module FilterWidget
   
   def self.included(base)
@@ -94,3 +95,4 @@ module FilterWidget
     end
   end
 end
+

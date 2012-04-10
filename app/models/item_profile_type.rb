@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class ItemProfileType < ActiveRecord::Base
   after_save :clean_cache
   after_destroy :clean_cache
@@ -26,3 +27,4 @@ class ItemProfileType < ActiveRecord::Base
     @cached_list = cached_list
   end
 end
+

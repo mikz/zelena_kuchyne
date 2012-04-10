@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 require File.dirname(__FILE__) + '/../test_helper'
 
 class ConfigurationTest < ActiveSupport::TestCase
@@ -41,3 +42,4 @@ class ConfigurationTest < ActiveSupport::TestCase
     assert_equal delivery, Configuration.delivery
   end
 end
+

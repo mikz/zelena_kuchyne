@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class CreateConfiguration < ActiveRecord::Migration
   def self.up
     sql_script 'configuration_up'
@@ -7,3 +8,4 @@ class CreateConfiguration < ActiveRecord::Migration
     sql_script 'configuration_down'
   end
 end
+

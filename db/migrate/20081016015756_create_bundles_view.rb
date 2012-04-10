@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class CreateBundlesView < ActiveRecord::Migration
   def self.up
     sql_script 'bundles_view_up'
@@ -7,3 +8,4 @@ class CreateBundlesView < ActiveRecord::Migration
     sql_script 'bundles_view_down'
   end
 end
+

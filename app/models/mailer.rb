@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class Mailer < ActionMailer::Base
   helper :application
   helper {def locales; I18n.locales; end}
@@ -61,3 +62,4 @@ class Mailer < ActionMailer::Base
     @content_type = "text/html"
   end  
 end
+

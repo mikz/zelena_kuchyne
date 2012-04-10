@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class CreateStocktakings < ActiveRecord::Migration
   def self.up
     sql_script 'stocktakings_up'
@@ -9,3 +10,4 @@ class CreateStocktakings < ActiveRecord::Migration
     sql_script 'stocktakings_down'
   end
 end
+

@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class Bundle < Meal
   set_table_name 'bundles'
   belongs_to :meal
@@ -16,3 +17,4 @@ class Bundle < Meal
     (v=@attributes[self.class.primary_key]) && (v.to_i rescue v ? 1 : 0)
   end
 end
+

@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 # This module provides a simple way to include javascripts and stylesheets from controllers
 # 
 # Usage:
@@ -33,3 +34,4 @@ module Includers
     @stylesheets = @stylesheets | stylesheets
   end
 end
+

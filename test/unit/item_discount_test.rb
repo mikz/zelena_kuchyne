@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 require File.dirname(__FILE__) + '/../test_helper'
 
 class ItemDiscountTest < ActiveSupport::TestCase
@@ -15,3 +16,4 @@ class ItemDiscountTest < ActiveSupport::TestCase
   end
   
 end
+

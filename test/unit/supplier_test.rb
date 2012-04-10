@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 require File.dirname(__FILE__) + '/../test_helper'
 
 class SupplierTest < ActiveSupport::TestCase
@@ -6,3 +7,4 @@ class SupplierTest < ActiveSupport::TestCase
     assert true
   end
 end
+

@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 module EshopHelper
   def seo_url(item)
     name = item.name
@@ -9,3 +10,4 @@ module EshopHelper
     url + "-" + name
   end
 end
+

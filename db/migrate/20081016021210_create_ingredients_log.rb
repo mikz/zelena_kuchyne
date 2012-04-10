@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class CreateIngredientsLog < ActiveRecord::Migration
   def self.up
     sql_script 'ingredients_log_up'
@@ -13,3 +14,4 @@ class CreateIngredientsLog < ActiveRecord::Migration
     sql_script 'ingredients_log_down'
   end
 end
+

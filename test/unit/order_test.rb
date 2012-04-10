@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 require File.dirname(__FILE__) + '/../test_helper'
 
 class OrderTest < ActiveSupport::TestCase
@@ -146,3 +147,4 @@ class OrderTest < ActiveSupport::TestCase
     assert order.errors.on(:deliver_at)
   end
 end
+

@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class CreateSnippets < ActiveRecord::Migration
   def self.up
     sql_script 'snippets_up'
@@ -7,3 +8,4 @@ class CreateSnippets < ActiveRecord::Migration
     sql_script 'snippets_down'
   end
 end
+

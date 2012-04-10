@@ -1,3 +1,5 @@
+# -*- encoding : utf-8 -*-
+
 class Address < ActiveRecord::Base
   include MapyCz
   belongs_to :user
@@ -168,3 +170,4 @@ class Address < ActiveRecord::Base
     end
   end
 end
+

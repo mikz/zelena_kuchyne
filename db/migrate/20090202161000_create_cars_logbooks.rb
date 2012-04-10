@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class CreateCarsLogbooks < ActiveRecord::Migration
   def self.up
     sql_script 'cars_logbooks_up'
@@ -7,3 +8,4 @@ class CreateCarsLogbooks < ActiveRecord::Migration
     sql_script 'cars_logbooks_down'
   end
 end
+

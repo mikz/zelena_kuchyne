@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class ShoppingList < ActiveRecord::Base
   set_table_name 'ingredients_per_day_view'
   
@@ -14,3 +15,4 @@ class ShoppingList < ActiveRecord::Base
     self.find :first, params    
   end
 end
+

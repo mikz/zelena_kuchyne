@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class CreateDeliveryMethods < ActiveRecord::Migration
   def self.up
     sql_script 'delivery_methods_up'
@@ -7,3 +8,4 @@ class CreateDeliveryMethods < ActiveRecord::Migration
     sql_script 'delivery_methods_down'
   end
 end
+

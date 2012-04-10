@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class CreateUserFunctions < ActiveRecord::Migration
   def self.up
     sql_script 'user_functions_up'
@@ -7,3 +8,4 @@ class CreateUserFunctions < ActiveRecord::Migration
     sql_script 'user_functions_down'
   end
 end
+

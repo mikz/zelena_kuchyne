@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class Meal < Item
   set_table_name 'meals'
   has_many :menus, :through => :courses
@@ -53,3 +54,4 @@ class Meal < Item
   end
   
 end
+

@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class CreateDialyMenuEntries < ActiveRecord::Migration
   def self.up
     sql_script 'dialy_menu_entries_up'
@@ -7,3 +8,4 @@ class CreateDialyMenuEntries < ActiveRecord::Migration
     sql_script 'dialy_menu_entries_down'
   end
 end
+

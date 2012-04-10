@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class CreateLogbookCategories < ActiveRecord::Migration
   def self.up
     sql_script 'logbook_categories_up'
@@ -7,3 +8,4 @@ class CreateLogbookCategories < ActiveRecord::Migration
     sql_script 'logbook_categories_down'
   end
 end
+

@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 begin
   require 'rubygems'
   require 'test/unit'
@@ -29,3 +30,4 @@ class User
     age > 40
   end
 end
+

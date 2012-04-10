@@ -1,3 +1,5 @@
+# -*- encoding : utf-8 -*-
+
 require 'digest/sha2' 
 
 class User < ActiveRecord::Base
@@ -390,3 +392,4 @@ class User < ActiveRecord::Base
   end
   
 end
+

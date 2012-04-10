@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class CreateBundles < ActiveRecord::Migration
   def self.up
     sql_script 'bundles_up'
@@ -7,3 +8,4 @@ class CreateBundles < ActiveRecord::Migration
     sql_script 'bundles_down'
   end
 end
+

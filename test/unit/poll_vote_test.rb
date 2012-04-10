@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 require 'test_helper'
 
 class PollVoteTest < ActiveSupport::TestCase
@@ -6,3 +7,4 @@ class PollVoteTest < ActiveSupport::TestCase
     assert true
   end
 end
+

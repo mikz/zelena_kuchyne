@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class CreateTotalScheduledMealsView < ActiveRecord::Migration
   def self.up
     sql_script 'total_scheduled_meals_view_up'
@@ -7,3 +8,4 @@ class CreateTotalScheduledMealsView < ActiveRecord::Migration
     sql_script 'total_scheduled_meals_view_down'
   end
 end
+

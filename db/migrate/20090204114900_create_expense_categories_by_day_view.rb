@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class CreateExpenseCategoriesByDayView < ActiveRecord::Migration
   def self.up
     sql_script 'expense_categories_by_day_view_up'
@@ -7,3 +8,4 @@ class CreateExpenseCategoriesByDayView < ActiveRecord::Migration
     sql_script 'expense_categories_by_day_view_down'
   end
 end
+

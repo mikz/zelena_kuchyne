@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class PollVote < ActiveRecord::Base
   validates_presence_of :user
   
@@ -15,3 +16,4 @@ class PollVote < ActiveRecord::Base
     self.poll_answer.poll
   end
 end
+

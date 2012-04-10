@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class ScheduledMeal < ActiveRecord::Base
   belongs_to :meal
   belongs_to :day, :foreign_key => 'scheduled_for', :primary_key => "scheduled_for"
@@ -6,3 +7,4 @@ class ScheduledMeal < ActiveRecord::Base
   # but it succeeds at fooling active record long enough for us to pull data through association
   set_primary_key "oid"
 end
+

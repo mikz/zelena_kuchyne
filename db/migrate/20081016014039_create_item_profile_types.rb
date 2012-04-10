@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class CreateItemProfileTypes < ActiveRecord::Migration
   def self.up
     sql_script 'item_profile_types_up'
@@ -7,3 +8,4 @@ class CreateItemProfileTypes < ActiveRecord::Migration
     sql_script 'item_profile_types_down'
   end
 end
+

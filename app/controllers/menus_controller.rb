@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class MenusController < ApplicationController
   before_filter(:only => [:index, :show, :edit]) { |c| c.must_belong_to_one_of(:admins, :operating_officers, :chefs)}
   before_filter(:except => [:index, :show, :edit]) { |c| c.must_belong_to_one_of(:admins, :operating_officers)}
@@ -46,3 +47,4 @@ class MenusController < ApplicationController
     super
   end
 end
+

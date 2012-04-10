@@ -1,3 +1,5 @@
+# -*- encoding : utf-8 -*-
+
 class News < ActiveRecord::Base
   validates_presence_of :publish_at
   
@@ -14,3 +16,4 @@ class News < ActiveRecord::Base
     end
   end
 end
+

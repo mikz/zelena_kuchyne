@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class CreateUserProfileTypes < ActiveRecord::Migration
   def self.up
     sql_script 'user_profile_types_up'
@@ -7,3 +8,4 @@ class CreateUserProfileTypes < ActiveRecord::Migration
     sql_script 'user_profile_types_down'
   end
 end
+

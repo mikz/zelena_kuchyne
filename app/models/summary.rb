@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class Summary < ActiveRecord::Base
   set_table_name "summary_view"
   
@@ -24,3 +25,4 @@ class Summary < ActiveRecord::Base
     @average_day
   end
 end
+

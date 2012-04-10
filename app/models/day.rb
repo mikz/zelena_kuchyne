@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class Day < ActiveRecord::Base
   set_table_name 'days_view'
   set_primary_key 'scheduled_for'
@@ -30,3 +31,4 @@ class Day < ActiveRecord::Base
     end
   end
 end
+

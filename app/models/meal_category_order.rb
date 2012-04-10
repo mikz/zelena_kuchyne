@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class MealCategoryOrder < ActiveRecord::Base
   set_table_name "meal_category_order"
   set_primary_key "category_id"
@@ -14,3 +15,4 @@ class MealCategoryOrder < ActiveRecord::Base
     self.order ||= self.connection.select_value(%{SELECT MAX(order_id)+1 FROM #{self.class.table_name};}).to_i
   end
 end
+

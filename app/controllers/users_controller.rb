@@ -1,3 +1,5 @@
+# -*- encoding : utf-8 -*-
+
 class UsersController < ApplicationController
   before_filter(:except => [:signin, :signup, :signout, :new, :create, :edit, :find, :update, :set_interface_language, :show, :validate_user, :forgotten_password, :new_password, :generate_password]) {|c| c.must_belong_to_one_of([:admins])}
   before_filter(:only => :find) {|c| c.must_belong_to_one_of(:admins, :deliverymen, :heads_of_car_pool, :warehousers)}
@@ -407,3 +409,4 @@ class UsersController < ApplicationController
     @zones = Zone.all :conditions => ["hidden = ?", false], :order => "name ASC"
   end
 end
+

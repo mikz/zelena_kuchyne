@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class AddIndexes < ActiveRecord::Migration
   def self.up
     add_index(:items, :item_id)
@@ -30,3 +31,4 @@ class AddIndexes < ActiveRecord::Migration
     execute 'DROP INDEX "index_orders_on_deliver_at_date"'
  end
 end
+

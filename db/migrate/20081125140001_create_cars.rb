@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class CreateCars < ActiveRecord::Migration
   def self.up
     sql_script 'cars_up'
@@ -7,3 +8,4 @@ class CreateCars < ActiveRecord::Migration
     sql_script 'cars_down'
   end
 end
+

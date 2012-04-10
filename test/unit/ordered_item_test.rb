@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 require File.dirname(__FILE__) + '/../test_helper'
 
 class OrderedItemTest < ActiveSupport::TestCase
@@ -22,3 +23,4 @@ class OrderedItemTest < ActiveSupport::TestCase
     assert_equal 1, order.ordered_items.reload.size
   end
 end
+

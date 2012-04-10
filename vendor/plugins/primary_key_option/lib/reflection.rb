@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 module ActiveRecord
   module Reflection
     class AssociationReflection < MacroReflection
@@ -13,3 +14,4 @@ module ActiveRecord
     end
   end
 end
+

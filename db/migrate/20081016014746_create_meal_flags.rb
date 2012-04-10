@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class CreateMealFlags < ActiveRecord::Migration
   def self.up
     sql_script 'meal_flags_up'
@@ -7,3 +8,4 @@ class CreateMealFlags < ActiveRecord::Migration
     sql_script 'meal_flags_down'
   end
 end
+

@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 require File.dirname(__FILE__) + '/../test_helper'
 
 class BundleComputedTest < ActiveSupport::TestCase
@@ -27,3 +28,4 @@ class BundleComputedTest < ActiveSupport::TestCase
     assert_equal 3, computed_bundle.amount
   end
 end
+

@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class MealFlag < ActiveRecord::Base
   has_many :flagged_meals
   has_many :meals, :through => :flagged_meals
@@ -22,3 +23,4 @@ class MealFlag < ActiveRecord::Base
     end
   end
 end
+

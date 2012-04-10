@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 module PaginateHelper
   def paginate(collection, *args)
     if collection.is_a? WillPaginate::Collection
@@ -7,3 +8,4 @@ module PaginateHelper
     end
   end
 end
+

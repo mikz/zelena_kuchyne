@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class OrderedItem < ActiveRecord::Base
   belongs_to :item
   belongs_to :order
@@ -64,3 +65,4 @@ class OrderedItem < ActiveRecord::Base
     return user
   end
 end
+

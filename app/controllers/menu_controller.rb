@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class MenuController < ApplicationController
   active_section 'menu'
   include_javascripts "menu"
@@ -169,3 +170,4 @@ class MenuController < ApplicationController
     end
   end
 end
+

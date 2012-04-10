@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class ScheduleController < ApplicationController
   before_filter(:only => [:index, :agenda]) { |c| c.must_belong_to_one_of(:admins, :warehousers, :operating_officers, :deliverymen, :chefs)}
   before_filter(:except => [:index, :agenda]) { |c| c.must_belong_to_one_of(:admins)}
@@ -215,3 +216,4 @@ class ScheduleController < ApplicationController
     end
   end
 end
+

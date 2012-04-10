@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class AddOrderState < ActiveRecord::Migration
   def self.up
     execute %{
@@ -12,3 +13,4 @@ class AddOrderState < ActiveRecord::Migration
     
   end
 end
+

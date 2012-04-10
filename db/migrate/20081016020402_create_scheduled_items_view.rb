@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class CreateScheduledItemsView < ActiveRecord::Migration
   def self.up
     sql_script 'scheduled_items_view_up'
@@ -7,3 +8,4 @@ class CreateScheduledItemsView < ActiveRecord::Migration
     sql_script 'scheduled_items_view_down'
   end
 end
+

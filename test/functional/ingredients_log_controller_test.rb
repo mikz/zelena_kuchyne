@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 require File.dirname(__FILE__) + '/../test_helper'
 
 class IngredientsLogControllerTest < ActionController::TestCase
@@ -6,3 +7,4 @@ class IngredientsLogControllerTest < ActionController::TestCase
     assert true
   end
 end
+

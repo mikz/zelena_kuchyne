@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class ItemDiscountsController < ApplicationController
   before_filter { |c| c.must_belong_to_one_of(:admins)}
   exposure :columns => [:amount,:start_at,:expire_at,:note]
@@ -19,3 +20,4 @@ class ItemDiscountsController < ApplicationController
     super
   end
 end
+

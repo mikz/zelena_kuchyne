@@ -1,3 +1,5 @@
+# -*- encoding : utf-8 -*-
+
 # Filters added to this controller apply to all controllers in the application.
 # Likewise, all the methods added will be available for all controllers.
 class ApplicationController < ActionController::Base
@@ -91,6 +93,7 @@ protected
     reset_variables_added_to_assigns
     
     @error = e
+    debugger
     @error_name = e.class.to_s.demodulize.underscore
     if(@error.backtrace.length == 1)
       # sometimes, Rails likes to screw with the exception just to piss off unsuspecting programmers
@@ -169,3 +172,4 @@ protected
     [menu, entries, categories]
   end
 end
+

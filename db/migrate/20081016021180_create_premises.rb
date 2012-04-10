@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class CreatePremises < ActiveRecord::Migration
   def self.up
     sql_script 'premises_up'
@@ -7,3 +8,4 @@ class CreatePremises < ActiveRecord::Migration
     sql_script 'premises_down'
   end
 end
+

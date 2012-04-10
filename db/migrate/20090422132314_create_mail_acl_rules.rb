@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class CreateMailAclRules < ActiveRecord::Migration
   def self.up
     sql_script 'mail_acl_rules_up'
@@ -7,3 +8,4 @@ class CreateMailAclRules < ActiveRecord::Migration
     sql_script 'mail_acl_rules_down'
   end
 end
+

@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 require File.dirname(__FILE__) + '/../test_helper'
 
 class CalendarWidgetTest < ActiveSupport::TestCase
@@ -10,3 +11,4 @@ class CalendarWidgetTest < ActiveSupport::TestCase
     assert_equal [Date.today, Date.today], CalendarWidget.parse("")
   end
 end
+

@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 ActiveRecord::Schema.define(:version => 0) do
 
   create_table :categories, :force => true do |t|
@@ -24,3 +25,4 @@ ActiveRecord::Schema.define(:version => 0) do
     t.column :notable_type, :string
   end
 end
+

@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class Category < ActiveRecord::Base
   acts_as_nested_set
   
@@ -13,3 +14,4 @@ class Category < ActiveRecord::Base
     }
   end
 end
+

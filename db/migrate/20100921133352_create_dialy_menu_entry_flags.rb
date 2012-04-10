@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class CreateDialyMenuEntryFlags < ActiveRecord::Migration
   def self.up
     create_table DialyMenuEntryFlag.table_name do |t|
@@ -11,3 +12,4 @@ class CreateDialyMenuEntryFlags < ActiveRecord::Migration
     drop_table DialyMenuEntryFlag.table_name
   end
 end
+

@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class PollAnswerView < PollAnswer
   belongs_to :poll_answer, :foreign_key => 'id'
   set_table_name 'poll_answers_view'
@@ -6,3 +7,4 @@ class PollAnswerView < PollAnswer
     ((self.percent||0) / self.poll.max_percent)*100
   end
 end
+

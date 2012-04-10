@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class ItemInTrunk < ActiveRecord::Base
   set_table_name "items_in_trunk"
   set_primary_key "oid"
@@ -24,3 +25,4 @@ class ItemInTrunk < ActiveRecord::Base
     self.connection.execute query
   end
 end
+

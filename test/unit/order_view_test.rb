@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 require File.dirname(__FILE__) + '/../test_helper'
 
 class OrderViewTest < ActiveSupport::TestCase
@@ -43,3 +44,4 @@ class OrderViewTest < ActiveSupport::TestCase
     assert_equal old_price + ordered_item.amount*50.25, order_view.price
   end
 end
+

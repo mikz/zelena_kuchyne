@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class ItemDiscount < ActiveRecord::Base
     set_table_name 'item_discounts'
     belongs_to :item
@@ -16,3 +17,4 @@ class ItemDiscount < ActiveRecord::Base
     end
       
 end
+

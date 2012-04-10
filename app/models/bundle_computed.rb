@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class BundleComputed < Bundle
   set_primary_key 'id'
   set_table_name 'bundles_view'
@@ -21,3 +22,4 @@ class BundleComputed < Bundle
     self[:cost]
   end  
 end
+

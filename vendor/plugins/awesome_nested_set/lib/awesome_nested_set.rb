@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 module CollectiveIdea
   module Acts #:nodoc:
     module NestedSet #:nodoc:
@@ -590,3 +591,4 @@ module CollectiveIdea
     end
   end
 end
+

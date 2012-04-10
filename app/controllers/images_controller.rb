@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class ImagesController < ApplicationController
   skip_before_filter :verify_authenticity_token
   def create
@@ -63,3 +64,4 @@ class ImagesController < ApplicationController
     return sess
   end
 end
+

@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 require File.dirname(__FILE__) + '/../test_helper'
 
 class AddressTest < ActiveSupport::TestCase
@@ -205,3 +206,4 @@ class AddressTest < ActiveSupport::TestCase
       assert !address.first_name?
     end                                 
   end
+

@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 module SuppressNilAttributes
   def self.included(base) #:nodoc:
     base.class_eval "alias_method_chain :attributes_with_quotes, :suppress"
@@ -20,3 +21,4 @@ module SuppressNilAttributes
     attributes_with_quotes_without_suppress(include_primary_key, include_readonly_attributes, attribute_names)
   end
 end
+

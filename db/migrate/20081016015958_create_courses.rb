@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class CreateCourses < ActiveRecord::Migration
   def self.up
     sql_script 'courses_up'
@@ -7,3 +8,4 @@ class CreateCourses < ActiveRecord::Migration
     sql_script 'courses_down'
   end
 end
+

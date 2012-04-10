@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 module Importers
   class Base
     def initialize(file)
@@ -465,3 +466,4 @@ module Importers
     end
   end
 end
+

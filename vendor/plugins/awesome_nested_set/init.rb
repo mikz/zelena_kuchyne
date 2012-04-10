@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 unless defined? ActiveRecord::NamedScope
   require 'awesome_nested_set/named_scope'
   ActiveRecord::Base.class_eval do
@@ -17,3 +18,4 @@ if defined?(ActionView)
     include CollectiveIdea::Acts::NestedSet::Helper
   end
 end
+

@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class ViewsController < ApplicationController
   before_filter(:only => [:cooking]) { |c| c.must_belong_to_one_of(:admins, :operating_officers, :warehousers, :chefs)}
   before_filter(:only => [:items_to_load, :shopping_list]) { |c| c.must_belong_to_one_of(:admins, :warehousers, :chefs)}
@@ -160,3 +161,4 @@ class ViewsController < ApplicationController
     end    
   end
 end
+

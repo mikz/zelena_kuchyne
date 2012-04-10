@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 module Mail::AccessControl
 
   def self.included(base)
@@ -18,3 +19,4 @@ module Mail::AccessControl
     true
   end
 end
+

@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 require File.dirname(__FILE__) + '/../test_helper'
 
 class StockTest < ActiveSupport::TestCase
@@ -75,3 +76,4 @@ class StockTest < ActiveSupport::TestCase
     assert_equal 12, stock[meals(:zelnacka).item_id].sold_amount
   end
 end
+

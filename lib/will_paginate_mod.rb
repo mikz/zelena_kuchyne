@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 module WillPaginateMod
   def self.included(base)
     ActionView::Base.send :include, WillPaginateDefaults
@@ -11,3 +12,4 @@ module WillPaginateMod
     end    
   end
 end
+

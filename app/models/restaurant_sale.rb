@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class RestaurantSale < ActiveRecord::Base
   belongs_to :item
   belongs_to :premise
@@ -118,3 +119,4 @@ class RestaurantSale < ActiveRecord::Base
   end
     
 end
+

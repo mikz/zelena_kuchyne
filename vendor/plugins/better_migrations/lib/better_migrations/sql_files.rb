@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 module BetterMigrations
   module SQLFiles
     def self.included(base)
@@ -30,3 +31,4 @@ module BetterMigrations
     end
   end
 end
+

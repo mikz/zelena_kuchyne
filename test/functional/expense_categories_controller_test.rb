@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 require 'test_helper'
 
 class ExpenseCategoriesControllerTest < ActionController::TestCase
@@ -6,3 +7,4 @@ class ExpenseCategoriesControllerTest < ActionController::TestCase
     assert true
   end
 end
+

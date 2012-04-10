@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 # Don't change this file!
 # Configure your app in config/environment.rb and config/environments/*.rb
 
@@ -125,3 +126,4 @@ class Rails::Boot
 end
 # All that for this:
 Rails.boot!
+

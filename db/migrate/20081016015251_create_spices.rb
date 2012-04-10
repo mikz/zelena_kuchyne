@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class CreateSpices < ActiveRecord::Migration
   def self.up
     sql_script 'spices_up'
@@ -7,3 +8,4 @@ class CreateSpices < ActiveRecord::Migration
     sql_script 'spices_down'
   end
 end
+

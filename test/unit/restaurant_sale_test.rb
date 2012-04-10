@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 require File.dirname(__FILE__) + '/../test_helper'
 
 class RestaurantSaleTest < ActiveSupport::TestCase
@@ -103,3 +104,4 @@ class RestaurantSaleTest < ActiveSupport::TestCase
     assert_equal 10 * scheduled_bundle.bundle.amount, scheduled_meal.reload.amount
   end
 end
+

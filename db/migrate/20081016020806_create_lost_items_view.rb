@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class CreateLostItemsView < ActiveRecord::Migration
   def self.up
     sql_script 'lost_items_view_up'
@@ -7,3 +8,4 @@ class CreateLostItemsView < ActiveRecord::Migration
     sql_script 'lost_items_view_down'
   end
 end
+

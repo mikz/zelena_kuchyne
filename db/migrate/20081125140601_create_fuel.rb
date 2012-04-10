@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class CreateFuel < ActiveRecord::Migration
   def self.up
     sql_script 'fuel_up'
@@ -7,3 +8,4 @@ class CreateFuel < ActiveRecord::Migration
     sql_script 'fuel_down'
   end
 end
+

@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class CreateCountryCodes < ActiveRecord::Migration
   def self.up
     sql_script 'country_codes_up'
@@ -7,3 +8,4 @@ class CreateCountryCodes < ActiveRecord::Migration
     sql_script 'country_codes_down'
   end
 end
+

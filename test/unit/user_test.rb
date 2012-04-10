@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 require File.dirname(__FILE__) + '/../test_helper'
 
 class UserTest < ActiveSupport::TestCase
@@ -343,4 +344,5 @@ class UserTest < ActiveSupport::TestCase
     assert_equal total, peter.total_orders_price
   end
 end
+
 

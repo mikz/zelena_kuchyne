@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class LostItem < ActiveRecord::Base
   set_primary_key 'oid'
   belongs_to :user
@@ -14,3 +15,4 @@ class LostItem < ActiveRecord::Base
   end
   
 end
+

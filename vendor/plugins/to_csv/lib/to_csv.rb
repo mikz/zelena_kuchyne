@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class Array
   
   def to_csv(options = {})
@@ -26,3 +27,4 @@ class Array
   end
   
 end
+

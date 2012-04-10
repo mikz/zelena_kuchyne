@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class CreateCategorizedProducts < ActiveRecord::Migration
   def self.up
     sql_script 'categorized_products_up'
@@ -7,3 +8,4 @@ class CreateCategorizedProducts < ActiveRecord::Migration
     sql_script 'categorized_products_down'
   end
 end
+

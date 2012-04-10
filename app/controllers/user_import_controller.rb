@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class UserImportController < ApplicationController
   before_filter { |c| c.must_belong_to_one_of(:admins)}
   include_stylesheets 'user_import', 'jquery.colorpicker', 'jquery.autocomplete'
@@ -205,3 +206,4 @@ class UserImportController < ApplicationController
     end
   end
 end
+

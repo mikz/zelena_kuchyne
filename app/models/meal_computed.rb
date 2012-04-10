@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class MealComputed < Meal
   set_primary_key 'id'
   set_table_name 'meals_view'
@@ -22,3 +23,4 @@ class MealComputed < Meal
     self[:cost]
   end
 end
+

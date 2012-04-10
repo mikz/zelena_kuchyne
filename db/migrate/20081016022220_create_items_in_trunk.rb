@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class CreateItemsInTrunk < ActiveRecord::Migration
   def self.up
     sql_script 'items_in_trunk_up'
@@ -7,3 +8,4 @@ class CreateItemsInTrunk < ActiveRecord::Migration
     sql_script 'items_in_trunk_down'
   end
 end
+

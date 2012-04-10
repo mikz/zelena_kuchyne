@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 module ToXlsMethods
   def to_xls(options = {})
     options.symbolize_keys!
@@ -75,3 +76,4 @@ module ToXlsMethods
     output << '</Table></Worksheet></Workbook>'
   end
 end
+

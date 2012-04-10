@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class CreateProductsLogViews < ActiveRecord::Migration
   def self.up
     sql_script 'products_log_view_up'
@@ -7,3 +8,4 @@ class CreateProductsLogViews < ActiveRecord::Migration
     sql_script 'products_log_view_down'
   end
 end
+

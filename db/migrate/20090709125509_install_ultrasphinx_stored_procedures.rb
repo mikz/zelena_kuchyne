@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 
 class InstallUltrasphinxStoredProcedures < ActiveRecord::Migration
   def self.up
@@ -20,3 +21,4 @@ class InstallUltrasphinxStoredProcedures < ActiveRecord::Migration
     execute "DROP FUNCTION unix_timestamp(timestamp without time zone);"
   end
 end
+

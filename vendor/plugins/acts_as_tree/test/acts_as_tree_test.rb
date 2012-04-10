@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 require 'test/unit'
 
 require 'rubygems'
@@ -217,3 +218,4 @@ class TreeTestWithoutOrder < Test::Unit::TestCase
     assert_equal [], [@root1, @root2] - TreeMixinWithoutOrder.roots
   end
 end 
+

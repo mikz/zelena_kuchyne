@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 require File.dirname(__FILE__) + '/../test_helper'
 
 class DeliveryManTest < ActiveSupport::TestCase
@@ -46,3 +47,4 @@ class DeliveryManTest < ActiveSupport::TestCase
     assert_equal price, dm.sum_price(date)
   end
 end
+

@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 require File.dirname(__FILE__) + '/../test_helper'
 require "bigdecimal"
 
@@ -75,3 +76,4 @@ class MenuComputedTest < ActiveSupport::TestCase
     assert_equal menu.price, 1337
   end
 end
+

@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 require File.dirname(__FILE__) + '/../test_helper'
 
 class MenusControllerTest < ActionController::TestCase
@@ -6,3 +7,4 @@ class MenusControllerTest < ActionController::TestCase
     assert true
   end
 end
+

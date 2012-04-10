@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class CreateMenus < ActiveRecord::Migration
   def self.up
     sql_script 'menus_up'
@@ -7,3 +8,4 @@ class CreateMenus < ActiveRecord::Migration
     sql_script 'menus_down'
   end
 end
+

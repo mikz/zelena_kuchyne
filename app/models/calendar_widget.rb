@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class CalendarWidget
   def self.parse param
     dates = [Date.today, Date.today]
@@ -16,3 +17,4 @@ class CalendarWidget
     dates
   end
 end
+

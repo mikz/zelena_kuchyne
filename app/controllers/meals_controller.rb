@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class MealsController < ApplicationController
   before_filter(:only => [:edit, :index]) { |c| c.must_belong_to_one_of(:admins, :warehousers, :operating_officers, :chefs)}
   before_filter(:except => [:edit, :index, :show]) { |c| c.must_belong_to_one_of(:admins)}
@@ -119,3 +120,4 @@ class MealsController < ApplicationController
     super
   end
 end
+

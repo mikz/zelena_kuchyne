@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class BundlesController < ApplicationController
   before_filter(:only => [:edit, :index, :show]) { |c| c.must_belong_to_one_of(:admins, :chefs)}
   before_filter(:except => [:edit, :index, :show]) { |c| c.must_belong_to_one_of(:admins)}
@@ -35,3 +36,4 @@ class BundlesController < ApplicationController
     super
   end
 end
+

@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class SnippetsController < ApplicationController
   before_filter {|c| c.must_belong_to_one_of(:admins)}
   exposure :form_fields => {:name => :text_field, :content => :text_area}
@@ -34,3 +35,4 @@ class SnippetsController < ApplicationController
     redirect_to :back
   end
 end
+

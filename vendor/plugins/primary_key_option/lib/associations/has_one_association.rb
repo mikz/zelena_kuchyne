@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 module ActiveRecord
   module Associations
     class HasOneAssociation < BelongsToAssociation #:nodoc:
@@ -26,3 +27,4 @@ module ActiveRecord
     end
   end
 end
+

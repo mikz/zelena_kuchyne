@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class Menu < Item
   set_table_name 'menus'
   has_many :courses, :include => :meal
@@ -25,3 +26,4 @@ class Menu < Item
     (v=@attributes[self.class.primary_key]) && (v.to_i rescue v ? 1 : 0)
   end
 end
+

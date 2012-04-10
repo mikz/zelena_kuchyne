@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class CreateIngredientsLogWatchdogs < ActiveRecord::Migration
   def self.up
     sql_script 'ingredients_log_watchdogs_up'
@@ -11,3 +12,4 @@ class CreateIngredientsLogWatchdogs < ActiveRecord::Migration
     sql_script 'ingredients_log_watchdogs_down'
   end
 end
+

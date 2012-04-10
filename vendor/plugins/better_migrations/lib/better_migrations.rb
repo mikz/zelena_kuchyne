@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 require 'better_migrations/sql_files'
 
 module BetterMigrations
@@ -12,3 +13,4 @@ module BetterMigrations
     end
   end
 end
+

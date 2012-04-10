@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class Item < ActiveRecord::Base
   has_many :item_profiles, :primary_key => :item_id
   has_many :ordered_items, :primary_key => :item_id
@@ -176,3 +177,4 @@ class Item < ActiveRecord::Base
 
 
 end
+

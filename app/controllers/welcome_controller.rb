@@ -1,3 +1,5 @@
+# -*- encoding : utf-8 -*-
+
 class WelcomeController < ApplicationController
   include_javascripts 'jquery.lightbox', :only => ['index']
   include_stylesheets 'jquery.lightbox', :only => ['index']
@@ -17,3 +19,4 @@ class WelcomeController < ApplicationController
     
   end
 end
+

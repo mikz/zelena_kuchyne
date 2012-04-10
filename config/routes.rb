@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 ActionController::Routing::Routes.draw do |map|
   map.resources :menu, :only => [:show], :collection => [:feed, :print]
   map.resource :mass_menu, :only => [:show, :create, :update], :controller => :mass_menu
@@ -27,3 +28,4 @@ ActionController::Routing::Routes.draw do |map|
   
   map.page ':id', :controller => 'pages', :action => 'show'
 end
+

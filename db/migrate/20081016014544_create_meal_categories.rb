@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class CreateMealCategories < ActiveRecord::Migration
   def self.up
     sql_script 'meal_categories_up'
@@ -7,3 +8,4 @@ class CreateMealCategories < ActiveRecord::Migration
     sql_script 'meal_categories_down'
   end
 end
+

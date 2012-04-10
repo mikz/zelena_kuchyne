@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class Configuration
   def self.method_missing(method, *args)
     if method.to_s.last == "="
@@ -47,3 +48,4 @@ class Configuration
     self.update_values
   end
 end
+

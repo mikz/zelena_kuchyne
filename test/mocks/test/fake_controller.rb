@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 # fakes the controller's behavior for the UserSystem
 class FakeController
   def session
@@ -20,3 +21,4 @@ class FakeController
     self
   end
 end
+

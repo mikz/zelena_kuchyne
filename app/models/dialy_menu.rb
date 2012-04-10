@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class DialyMenu < ActiveRecord::Base
   validates_uniqueness_of :date
   has_many :entries, :class_name => "DialyMenuEntry", :dependent => :delete_all, :include => {:category => :order}, :order => "#{MealCategoryOrder.table_name}.order_id, in_menu DESC"
@@ -39,3 +40,4 @@ class DialyMenu < ActiveRecord::Base
     end
   end
 end
+

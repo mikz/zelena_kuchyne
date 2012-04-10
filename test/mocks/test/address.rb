@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 require "#{RAILS_ROOT}/app/models/address.rb"
 
 class Address
@@ -21,3 +22,4 @@ class Address
   
   alias_method_chain :validate, :mock
 end
+

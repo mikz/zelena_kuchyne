@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 # The X makes it sound cool
 module Exposure
   def self.included(base)
@@ -295,3 +296,4 @@ module Exposure
     end
   end
 end
+

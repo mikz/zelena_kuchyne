@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class ScheduledBundle < ActiveRecord::Base
   belongs_to :bundle
   belongs_to :day, :foreign_key => 'scheduled_for', :primary_key => "scheduled_for"
@@ -34,3 +35,4 @@ class ScheduledBundle < ActiveRecord::Base
     end
   end
 end
+

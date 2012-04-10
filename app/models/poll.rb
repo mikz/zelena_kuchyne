@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class Poll < ActiveRecord::Base
   has_many :poll_answers, :order => "id"
   has_many :poll_answers_results, :class_name => "PollAnswerView", :order => "id"
@@ -40,3 +41,4 @@ class Poll < ActiveRecord::Base
     }
   end
 end
+

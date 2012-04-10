@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 module BasketHelper
   
   def time_of_delivery_options(steps = @delivery[:steps], selected = nil, order = @basket )
@@ -9,3 +10,4 @@ module BasketHelper
     }.join
   end
 end
+

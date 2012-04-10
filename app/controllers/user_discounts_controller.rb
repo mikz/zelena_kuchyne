@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class UserDiscountsController < ApplicationController
   before_filter { |c| c.must_belong_to_one_of(:admins)}
   exposure :title => "user" ,:columns => [:name,:note,:amount,:start_at,:expire_at,:cancelled_at,:discount_class]
@@ -49,3 +50,4 @@ class UserDiscountsController < ApplicationController
     end
   end
 end
+

@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class DialyMenusController < ApplicationController
     include_stylesheets 'jquery-ui'
     include_javascripts 'dialy_menu'
@@ -92,3 +93,4 @@ class DialyMenusController < ApplicationController
     end
 
 end
+

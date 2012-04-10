@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #!/usr/bin/env ruby
 require 'rubygems'
 require 'postgres-pr/connection'
@@ -112,3 +113,4 @@ if $options[:sample_content]
     break;
   end
 end
+
