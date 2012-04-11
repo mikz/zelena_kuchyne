@@ -1,6 +1,9 @@
 # -*- encoding : utf-8 -*-
-Encoding.default_external = 'UTF-8'
-Encoding.default_internal = 'UTF-8'
+
+if defined?(Encoding)
+  Encoding.default_external = 'UTF-8'
+  Encoding.default_internal = 'UTF-8'
+end
 
 # Be sure to restart your server when you modify this file
 
