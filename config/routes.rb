@@ -19,6 +19,7 @@ ActionController::Routing::Routes.draw do |map|
     map.connect ':controller/:action/:id.:format'
   end
   
+  map.connect 'javascripts/fckeditor/editor/dialog/fck_image.html', :controller => :images, :action => :image_upload, :method => :post
   map.connect ':controller.:format'
   map.connect ':controller/:action.:format'
   map.connect ':controller/:action/:id'
