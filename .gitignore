@@ -10,3 +10,4 @@ log/
 backup*.sql
 .bundle
 vendor/bundle/
+/public/system
