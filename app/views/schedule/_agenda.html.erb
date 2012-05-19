@@ -1,3 +1,11 @@
+<% content_for :javascript do %>
+  $(function(){
+    $("form .auto-update").change(function(){
+      this.form.onsubmit();
+    });
+  });
+<%end %>
+
 <div id="agenda">
   <table class="admin">
     <thead>

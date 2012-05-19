@@ -4,7 +4,11 @@
 module ApplicationHelper
   
   def invisible?(meal)
-    meal.invisible? ? '✘' : '✔'
+    # meal.invisible? ? '✘' : '✔'
+    remote_form_for meal, :url => {:action => 'toggle_visibility', :id => meal.id, :what => meal.kind}, :remote => true do |form|
+      concat form.check_box(:visible, :class => 'auto-update')
+    end
+    nil
   end
 
   def button_tag content = nil, options = {}, submit = true, &block

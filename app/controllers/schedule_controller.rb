@@ -151,6 +151,31 @@ class ScheduleController < ApplicationController
     end
   end
 
+  def toggle_visibility
+
+    @scheduled = case params[:what].to_sym
+
+    when :meal
+      ScheduledMeal.find(params[:id])
+
+    when :menu
+      ScheduledMenu.find(params[:id])
+
+    when :bundle
+      ScheduledBundle.find(params[:id])
+    end
+
+    @scheduled.toggle!(:invisible)
+
+    respond_to do |format|
+      format.js do
+        render :update do |page|
+          # TODO: do something?
+        end
+      end
+    end
+  end
+
   def schedule_item
     item = (params[:schedule]['item_id'] || params[:what]).split(':')
     date = Date.parse params[:schedule]['date']

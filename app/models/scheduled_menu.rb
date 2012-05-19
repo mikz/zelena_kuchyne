@@ -1,5 +1,7 @@
 # -*- encoding : utf-8 -*-
 class ScheduledMenu < ActiveRecord::Base
+  include Invisibility
+
   belongs_to :menu
   belongs_to :day, :foreign_key => 'scheduled_for', :primary_key => "scheduled_for"
   
@@ -27,6 +29,10 @@ class ScheduledMenu < ActiveRecord::Base
     end
     self.amount = amount
     self.save!
+  end
+
+  def kind
+    :menu
   end
 end
 

@@ -1,5 +1,7 @@
 # -*- encoding : utf-8 -*-
 class ScheduledBundle < ActiveRecord::Base
+  include Invisibility
+
   belongs_to :bundle
   belongs_to :day, :foreign_key => 'scheduled_for', :primary_key => "scheduled_for"
   
@@ -23,7 +25,11 @@ class ScheduledBundle < ActiveRecord::Base
     reload_without_amount
   end
   alias_method_chain :reload, :amount
-  
+
+  def kind
+    :bundle
+  end
+
   private
   
   def check_meal
