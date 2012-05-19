@@ -91,17 +91,47 @@ td.price {
 }
 
 /* bigger font in orders */
-div#order {
+#order {
   font-size: 20px;
 }
-div#order table {
+#order table {
   width: 100%;
 }
-div#order thead {
+#order thead {
   text-align: center;
 }
-div#order td {
+#order td {
   padding-top: 8pt;
   padding-bottom: 8pt;
+}
+
+#order h1 {
+  background-color: black;
+  color: transparent;
+  height: 1px;
+  clear: left;
+}
+
+#order .deliver-on, #order .user {
+  float: left;
+  margin-top: 0;
+}
+
+#order .delivery-time, #order .state {
+  text-align: right;
+  line-height: 1em;
+}
+
+#order .notice {
+  clear: both;
+}
+
+#order h1 ~ p:nth-of-type(odd) {
+ /*  float: left;
+  clear: left;
+  margin-top: 0; */
+}
+#order h1 ~ p:nth-of-type(even) {
+  /* text-align: right; */
 }
 /* dialy menu */
