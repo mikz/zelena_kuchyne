@@ -103,13 +103,6 @@
         <% if flash[:notice] %>
         <%= render :partial => '/shared/notice', :locals => {:message => flash[:notice]} %>
         <% end %>
-        <!--[if IE]>
-        <div id="ie_notice" style="display:none;">
-          <h3><%= t(:notice)%></h3>
-          <p></p>
-          <p><a id="ie_go_away" href="#"><%=t(:hide_notice)%></a></p>
-        </div>
-        <![endif]-->
         <%= yield %>
       </div>
       <div id="sidebar">
