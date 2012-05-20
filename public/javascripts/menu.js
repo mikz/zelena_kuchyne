@@ -19,8 +19,11 @@ jQuery.fn.extend({
 
     links.click(function handleClick(){
       var link = $(this);
-      menus.hide();
-      $(link.attr('href')).show();
+      var positionX = window.scrollX, positionY = window.scrollY;
+      menus.filter(':visible').fadeOut();
+      $(link.attr('href')).fadeIn(function(){
+        window.scrollTo(positionX, positionY);
+      });
       links.removeClass('active');
       link.addClass('active');
       return false;
