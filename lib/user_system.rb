@@ -52,7 +52,7 @@ module UserSystem
       @current_user = false unless @current_user.id == session[:user]
     else
       # if there is no one logged in, try to log in a user from session
-      @current_user ||= session[:user] ? User.find_by_id(session[:user], :include => [:groups, :user_profiles]) : false
+      @current_user ||= session[:user] ? User.find_by_id(session[:user], :include => [:groups, :user_profiles, :user_discounts]) : false
     end             
     @current_user.is_a?(User)
   end

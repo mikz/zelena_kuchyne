@@ -41,20 +41,19 @@
   <% for category in @categories %>
     <h2><%= category.name.mb_chars.capitalize %></h2>
     <% for meal in category.meals %>
-      <%= render :partial => 'meal', :locals => {:meal => meal, :sold_out => @sold_out.has_key?(meal.id)} %>
+      <%= render :partial => 'meal', :object => meal, :locals => { :category => category, :sold_out => @sold_out.has_key?(meal.id)} %>
     <% end %>
     <% for sb in @scheduled_bundles %>
-      <%= render :partial => 'meal', :locals => {:meal => sb.bundle, :sold_out => @sold_out.has_key?(sb.bundle.meal.id)} if category == sb.bundle.meal.meal_category %>
+      <%= render :partial => 'meal', :object => sb.bundle, :locals => { :category => category, :sold_out => @sold_out.has_key?(sb.bundle.meal.id)} if category == sb.bundle.meal.meal_category %>
     <% end%>
   <% end %>
 </div>
 
 <div id="stable-menu" class="menus<%=" disabled" if @delivery[:disabled]%>">
-  <h2><%= category.name.mb_chars.capitalize %></h2>
-
   <% for category in @always_available %>
+    <h2><%= category.name.mb_chars.capitalize %></h2>
     <% for meal in category.meals %>
-      <%= render :partial => 'meal', :locals => {:meal => meal, :sold_out => @sold_out.has_key?(meal.id)} %>
+      <%= render :partial => 'meal', :object => meal, :locals => { :category => category, :sold_out => @sold_out.has_key?(meal.id)} %>
     <% end %>
   <% end %>
 </div>

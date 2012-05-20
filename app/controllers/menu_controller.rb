@@ -41,7 +41,7 @@ class MenuController < ApplicationController
     
     @date = params[:id] ? Date.parse(params[:id]) : Date.today
     
-    @menus = Menu.find :all, :include => [:scheduled_menus, {:meals => {:meal_category => :order}}], :conditions => ["scheduled_menus.scheduled_for = ? AND scheduled_menus.invisible = false", @date], :order => "meal_category_order.order_id ASC"
+    @menus = Menu.find :all, :include => [:scheduled_menus, {:meals => [:item_discounts, :item_profiles, :meal_flags, {:meal_category => :order}]}], :conditions => ["scheduled_menus.scheduled_for = ? AND scheduled_menus.invisible = false", @date], :order => "meal_category_order.order_id ASC"
     
     without_menus = MealCategory.scoped(:conditions => ["meals.id NOT IN (?)", @menus.map{|m| m.meals.map(&:id)}.flatten.uniq], :order => "meal_category_order.order_id ASC", :include => [{:meals => [:scheduled_meals, :item_profiles, :item_discounts, :meal_flags]}, :order])
     @categories = without_menus.find(:all, :conditions => ["scheduled_meals.scheduled_for = ? AND scheduled_meals.invisible = false", @date])
@@ -54,13 +54,19 @@ class MenuController < ApplicationController
     
     @menus.each do |menu|
       scheduled[:menus] << menu
+      DEBUG {%w{menu}}
       menu.meals.each do |meal|
         ids << meal.id
       end
     end
+
     @categories.each do |category|
+
+      DEBUG {%w{category category.meals.size}}
       category.meals.each do |meal|
-        scheduled[:meals] << meal unless meal.always_available?
+        next if meal.always_available?
+        DEBUG {%w{meal}}
+        scheduled[:meals] << meal
         ids << meal.id
       end
     end
