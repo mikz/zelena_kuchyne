@@ -11,6 +11,22 @@ jQuery.fn.extend({
         form.append('<input type="hidden" name=item[amounts]['+item_id+'] value="'+amount+'"/>');
       }
     });
+  },
+  'switch': function () {
+    var links = $(this).find('a');
+    var ids = $.map(links, function(item){ return $(item).attr('href') });
+    var menus = $(ids.join(','));
+
+    links.click(function handleClick(){
+      var link = $(this);
+      menus.hide();
+      $(link.attr('href')).show();
+      links.removeClass('active');
+      link.addClass('active');
+      return false;
+    });
+
+    $(links[0]).triggerHandler('click');
   }
 });
 

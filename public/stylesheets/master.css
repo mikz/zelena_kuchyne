@@ -1321,3 +1321,48 @@ table.order.menu {
   margin: 1.5em 0;
   text-align: right;
 }
+
+
+p#menu-switch {
+  background: #638C33;
+  font-size: 20px;
+  color: white;
+  padding: 0;
+}
+
+#menu-switch a {
+  color: inherit;
+  text-decoration: none;
+
+  display: inline-block;
+  display: block;
+  float: left;
+
+  padding: 1em 0;
+  width: 303px;
+  text-align: center;
+}
+
+#menu-switch a.active {
+  background-color: #4F7028;
+}
+
+#menu-switch a:first-child {
+  border-right: 1px solid white;
+}
+
+/* For modern browsers */
+.cf:before,
+.cf:after {
+    content:"";
+    display:table;
+}
+
+.cf:after {
+    clear:both;
+}
+
+/* For IE 6/7 (trigger hasLayout) */
+.cf {
+    *zoom:1;
+}

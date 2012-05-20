@@ -3,53 +3,49 @@ class MenuController < ApplicationController
   active_section 'menu'
   include_javascripts "menu"
   before_filter :load_sidebar_content, :except => [:feed, :index], :if => :valid_date?
-  
+
   def index
-    begin
     @date = params[:id] ? Date.parse(params[:id]) : Date.today
-    
+
     redirect_to  menu_path(@date), :status => :temporary_redirect
-    rescue ArgumentError
-      
-    end
+  rescue ArgumentError
+    render 'unavailable', :status => :unprocessable_entity
   end
-  
-  
+
+
   def print
     @days = Day.find(:all, :conditions => ["scheduled_for >= ?", Date.today]).collect &:scheduled_for
-    
+
     @selected = []
 
     if params[:selected] && params[:selected][:days]
       @selected = params[:selected][:days].collect{|d| Date.parse(d) }
     end
-    
-    respond_to do |format|
-      format.html {
 
-      }
-      format.print {
+    respond_to do |format|
+      format.html
+      format.print do
         load_all_scheduled_for ["scheduled_for IN (?)", @selected]
-      }
-      
+      end
     end
   end
   
   def show
     @days = Day.find :all, :conditions => ["scheduled_for >= ?", Date.today]
+
     unless valid_date?
-      respond_to do |format|
-        format.html { render 'unavailable', :status => :unprocessable_entity }
-      end
       @delivery = Order.delivery_times(Date.today, Time.now)
-      return
+
+      return render 'unavailable', :status => :unprocessable_entity
     end
     
     @date = params[:id] ? Date.parse(params[:id]) : Date.today
     
     @menus = Menu.find :all, :include => [:scheduled_menus, {:meals => {:meal_category => :order}}], :conditions => ["scheduled_menus.scheduled_for = ? AND scheduled_menus.invisible = false", @date], :order => "meal_category_order.order_id ASC"
     
-    @categories = MealCategory.find :all, :include => [{:meals => [:scheduled_meals, :item_profiles, :item_discounts, :meal_flags]}, :order], :conditions => ["meals.always_available = true OR scheduled_meals.scheduled_for = ? AND scheduled_meals.invisible = false AND meals.id NOT IN (?)", @date, @menus.map{|m| m.meals.map(&:id)}.flatten.uniq], :order => "meal_category_order.order_id ASC"
+    without_menus = MealCategory.scoped(:conditions => ["meals.id NOT IN (?)", @menus.map{|m| m.meals.map(&:id)}.flatten.uniq], :order => "meal_category_order.order_id ASC", :include => [{:meals => [:scheduled_meals, :item_profiles, :item_discounts, :meal_flags]}, :order])
+    @categories = without_menus.find(:all, :conditions => ["scheduled_meals.scheduled_for = ? AND scheduled_meals.invisible = false", @date])
+    @always_available = without_menus.find(:all, :conditions => ["meals.always_available = true"])
     @scheduled_bundles = ScheduledBundle.find :all, :conditions => ["scheduled_bundles.scheduled_for = ? AND scheduled_bundles.invisible = false", @date], :include => [{:bundle => {:meal => :meal_category}}]
     
     
