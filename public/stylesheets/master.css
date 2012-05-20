@@ -424,8 +424,8 @@ h2 {
 }
 .menus .meal {
   border-top: 1px #000 dotted;
-  padding-left: 124px;
-  padding-top: 6px;
+  padding-left: 43px;
+  padding-top: 10px;
   min-height: 84px;
   height: auto;
   background: url('/images/meal_bg.gif') repeat-x;
@@ -488,14 +488,21 @@ h2 {
 }
 
 .menus .meal .meal_flags {
-  width: 124px;
-  margin-left: -124px;
+  width: 22px;
   float: left;
+  margin-left: -32px;
 }
 .menus .meal .meal_flag {
   float: right;
-  padding-left: 0.25em;
   position: relative;
+  margin-bottom: 0.25em
+}
+
+#text .meal p, #text .meal h3 {
+  padding-left: 0;
+}
+#text .menus h2 {
+  padding-left: 43px;
 }
 
 .menus .meal .meal_text .soldout {
@@ -1166,7 +1173,9 @@ table.sortable tbody tr td:first-child:before {
 }
 
 .meal .fb_like {
-  padding-left: 24px;
+  margin-top: -5px;
+  padding-bottom: 5px;
+  height: 24px;
 }
 dl.show {
   margin-top: 1em;
