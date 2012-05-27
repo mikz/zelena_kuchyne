@@ -1,5 +1,6 @@
 <%= error_messages_for :record %>
 <% remote_form_for :record, :url => url do |f| %>
+  <%= validation_error_for @record %>
   <% row_id = "record_#{@record.id ? @record.id : 'new'}" %>
   <p><label for="<%=row_id%>_name"><%= t(:attr_name) %></label><br />
   <%= f.text_field :name, :class => '{required: true, minlength: 2}', :id=>"#{row_id}_name" %></p>
