@@ -95,14 +95,9 @@ protected
     @error = e
     @error_name = e.class.to_s.demodulize.underscore
 
-    if(@error.backtrace.length == 1)
-      # sometimes, Rails likes to screw with the exception just to piss off unsuspecting programmers
-      @error_trace = @error.backtrace.first.gsub('<', '&lt;').gsub('>', '&gt;').gsub(/([ \n\r\t]+[0-9]+\:)/, '<br />\0')
-      @error_message = "#{@error.class.to_s} #{@error.clean_message.gsub('<', '&lt;').gsub('>', '&gt;')}<br />"
-    else
-      @error_trace = @error.backtrace
-      @error_message = @error.to_s.gsub('<', '&lt;').gsub('>', '&gt;')
-    end
+    @error_trace = @error.backtrace
+    @error_message = @error.to_s.gsub('<', '&lt;').gsub('>', '&gt;')
+
     if(@error.respond_to? :status_code)
       @status = @error.status_code
     elsif(DEFAULT_RESCUE_RESPONSES.has_key? @error.class.to_s)
