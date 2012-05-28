@@ -138,10 +138,13 @@ class MenuController < ApplicationController
     menu_meals_filter = days.times.collect {
       "(scheduled_meals.scheduled_for = ? AND meals.id NOT IN (?))"
     }.join(" OR ")
-    categories_conditions = ["scheduled_meals.scheduled_for IN (?) AND scheduled_meals.invisible = false AND (#{menu_meals_filter})", dates]
-    filter_meals.each_pair{ |date, days|
+    categories_conditions = ["scheduled_meals.scheduled_for IN (?) AND scheduled_meals.invisible = false", dates]
+    if menu_meals_filter.present?
+      categories_conditions.first << " AND (#{menu_meals_filter})"
+      filter_meals.each_pair{ |date, days|
        categories_conditions.push date, days
     }
+    end
     @categories = MealCategory.find :all, :include => [{:meals => :scheduled_meals}, :order], :conditions => categories_conditions, :order => "meal_category_order.order_id ASC"
     @scheduled_bundles = ScheduledBundle.find :all, :conditions => ["scheduled_bundles.scheduled_for IN (?) AND scheduled_bundles.invisible = false", dates], :include => [{:bundle => {:meal => :meal_category}}]
 
