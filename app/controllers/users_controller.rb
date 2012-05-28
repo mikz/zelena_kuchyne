@@ -370,7 +370,9 @@ class UsersController < ApplicationController
   def new_password
     @user = User.find_by_id params[:id]
     @token = params[:auth]
-    if @user.user_token.token == @token && @token.length == 32
+    user_token = @user.user_token
+
+    if user_token && user_token.token == @token && @token.length == 32
       render
     else
       render :action => "token_dont_match"
