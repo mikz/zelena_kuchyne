@@ -10,9 +10,11 @@ class UsersController < ApplicationController
   include_javascripts 'fullscreen', :only => [:index]
   include_stylesheets 'jquery.colorpicker'
   include FilterWidget
-  
+
   def signin
     basket = current_user.basket
+    return head(:bad_request) unless params.has_key(:user)
+
     if(self.current_user = User.authenticate(params['user']['login'], params['user']['password']))
       if basket
         current_user.basket.destroy if current_user.basket
