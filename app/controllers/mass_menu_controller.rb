@@ -2,7 +2,9 @@
 class MassMenuController < ApplicationController
   active_section 'menu'
   include_javascripts "menu"
-  
+
+  before_filter :login_required
+
   def show
     @days = Day.find(:all, :conditions => ["scheduled_for >= ?", Date.today]).collect &:scheduled_for
     return render('menu/no_scheduled_meals') unless @days.present?
