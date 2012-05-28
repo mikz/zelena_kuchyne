@@ -13,7 +13,7 @@ class UsersController < ApplicationController
 
   def signin
     basket = current_user.basket
-    return head(:bad_request) unless params.has_key(:user)
+    return head(:bad_request) unless params.has_key?(:user)
 
     if(self.current_user = User.authenticate(params['user']['login'], params['user']['password']))
       if basket
@@ -58,11 +58,11 @@ class UsersController < ApplicationController
     respond_to do |format|
       format.html do
         flash[:notice] = t(:signed_out)
-        redirect_to :back
+        redirect_to '/'
       end
       format.js do
         render :update do |page|
-          page << 'window.location.reload();'
+          page << 'window.location = "/";'
         end
       end
       format.xml do
