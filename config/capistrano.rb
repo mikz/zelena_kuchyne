@@ -1,7 +1,7 @@
-# -*- encoding : utf-8 -*-
-set :rvm_ruby_string, 'ree@zk'
+set :gateway, 'mikz@de.o2h.cz'
 set :domain, "zelenakuchyne.cz"
 set :application, 'zelena_kuchyne'
 
-server fetch(:domain), :app, :db, :web, :primary => true
+set :user, 'hosting'
 
+server 'hosting', :app, :db, :web, :primary => true

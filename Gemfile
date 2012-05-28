@@ -18,7 +18,7 @@ group :development do
   gem 'o2h'
 end
 
-gem 'airbrake'
+gem 'airbrake', :git => 'https://github.com/airbrake/airbrake.git'
 
 group :test do
 
