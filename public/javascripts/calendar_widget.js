@@ -112,7 +112,6 @@ function draw_month(week_starts_on) {
     html += '</td>';
     day.setDate(day.getDate() + 1);
     day.str = datestr(day);
-    console.log(day, day <= last_date, day >= today);
   } 
   
   // after the month
