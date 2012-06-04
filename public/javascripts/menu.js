@@ -1,5 +1,5 @@
 jQuery.fn.extend({
-  add_all_items: function(){
+  "add_all_items": function(){
     var meal_form;
     form = this;
     this.children("input:hidden").remove();
@@ -12,9 +12,9 @@ jQuery.fn.extend({
       }
     });
   },
-  'switch': function () {
+  "switch": function () {
     var links = $(this).find('a');
-    var ids = $.map(links, function(item){ return $(item).attr('href') });
+    var ids = $.map(links, function(item){ return $(item).attr('href'); });
     var menus = $(ids.join(','));
 
     links.click(function handleClick(){
