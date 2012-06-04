@@ -65,7 +65,7 @@
 </div>
 
 <% content_for :javascript do %>
-  $(function(){ $('#menu-switch').switch() });
+  $(function(){ $('#menu-switch')['switch']() });
 <% end %>
 
 <%- if @delivery[:disabled] -%>
