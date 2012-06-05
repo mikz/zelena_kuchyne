@@ -213,10 +213,7 @@ class User < ActiveRecord::Base
   end
   
   def belongs_to_one_of?(*groups)
-    groups.each do |g|
-      return true if belongs_to? g
-    end
-    return false
+    groups.flatten.any?{ |group| belongs_to? group }
   end
   
   def address    

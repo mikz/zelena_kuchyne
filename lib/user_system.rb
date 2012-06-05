@@ -82,10 +82,7 @@ module UserSystem
   # Usage:
   #   before_filter { |c| c.must_belong_to_one_of([:admin], [:chefs])}
   def must_belong_to_one_of(*groups)
-    for group in groups
-      return true if current_user.belongs_to? group.to_s
-    end
-    raise AccessDenied
+    current_user.belongs_to_one_of?(*groups) or raise AccessDenied
   end
 
   class Guest
