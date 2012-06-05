@@ -350,7 +350,7 @@ class Order < ActiveRecord::Base
     
     stock_levels = ordered_items_stock_levels
     # deconstruct menu and add its meals
-    sql.each_pair {|item_id, new_amount|
+    sql.dup.each_pair {|item_id, new_amount|
       ordered_item = ordered_items_buff[item_id] || ordered[item_id]
       if ordered_item
         if ordered_item.amount > new_amount
