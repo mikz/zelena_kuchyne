@@ -372,7 +372,7 @@ class Order < ActiveRecord::Base
       end
     }
     
-    sql.delete_if { |item_id,amount|
+    sql = sql.delete_if { |item_id,amount|
       ordered[item_id].nil? and amount == 0
     }
     self.update_or_insert_items sql
