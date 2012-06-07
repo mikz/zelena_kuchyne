@@ -401,6 +401,10 @@ h2 {
   background: #767676;
 }
 
+.menus .description {
+  margin: 1em 19px;
+}
+
 .fleft {
   float: left;
 }

@@ -10,6 +10,8 @@ gem "sanitize"
 gem 'haml'
 gem 'chronic'
 
+gem 'redcarpet'
+
 group :development do
   gem 'awesome_print'
   gem 'debugger'

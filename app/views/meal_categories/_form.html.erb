@@ -3,8 +3,10 @@
   <%= validation_error_for @record %>
   <% row_id = "record_#{@record.id ? @record.id : 'new'}" %>
   <p><label for="<%=row_id%>_name"><%= t(:attr_name) %></label><br />
-  <%= f.text_field :name, :class => '{required: true, minlength: 2}', :id=>"#{row_id}_name" %></p>
-  <p><label for="<%=row_id%>_name"><%= t(:attr_facebook)%></label><br/>
+  <%= f.text_field :name, :class => '{required: true, minlength: 2, maxlength: 70}', :id=>"#{row_id}_name" %></p>
+  <p><label for="<%=row_id%>_description"><%= t(:attr_description) %></label><br />
+  <%= f.text_area :description, :class => :small_area, :id=>"#{row_id}_description" %></p>
+  <p><label for="<%=row_id%>_facebook"><%= t(:attr_facebook)%></label><br/>
   <%= f.check_box :facebook, :id=>"#{row_id}_facebook" %></p>
 <p><%= yield(:submit_button) || '<input type="submit" value="' + t(:submit) + '" />' %></p>
 <% end %>

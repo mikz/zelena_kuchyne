@@ -52,6 +52,9 @@
 <div id="stable-menu" class="menus<%=" disabled" if @delivery[:disabled]%>">
   <% for category in @always_available %>
     <h2><%= category.name.mb_chars.capitalize %></h2>
+    <% if category.description.present? %>
+      <div class="description"><%= markdown(category.description) %></div>
+    <% end %>
     <% for meal in category.meals %>
       <%= render :partial => 'meal', :object => meal, :locals => { :category => category, :sold_out => @sold_out.has_key?(meal.id)} %>
     <% end %>
