@@ -245,6 +245,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id], :include => [:user_profiles, :addresses])
     @groups = Group.find :all
     @country_codes = CountryCode.find :all, :select => "code", :group => "code", :order => "code"
+
     unless @user.id == current_user.id
       must_belong_to_one_of :admins
     end
@@ -252,8 +253,16 @@ class UsersController < ApplicationController
       @user.imported_orders_price = params[:user]["imported_orders_price"]
       @user.admin_note = params[:user]["admin_note"]
     end
-    
-    if(@user.update_attributes(params[:user]) && @user.errors.empty?)
+
+    @user.guest = false
+    @signin = @user.guest_was
+
+    @user.attributes = params[:user]
+
+    if(@user.save)
+
+      self.current_user = @user if @signin
+
       respond_to do |format|
         format.html do
           redirect_to :action => 'show', :id => @user

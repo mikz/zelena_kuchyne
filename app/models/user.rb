@@ -373,7 +373,7 @@ class User < ActiveRecord::Base
   # Encrypts password and generates salt.
   def encrypt_password
     return if password.blank?
-    self.salt = Digest::SHA256.hexdigest("--#{Time.now.to_s}--#{login}--") if new_record?
+    self.salt ||= Digest::SHA256.hexdigest("--#{Time.now.to_s}--#{login}--")
     self.password_hash = encrypt(password)
   end
   
