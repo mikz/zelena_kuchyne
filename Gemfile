@@ -20,7 +20,7 @@ group :development do
   gem 'o2h'
 end
 
-gem 'airbrake', :git => 'https://github.com/airbrake/airbrake.git'
+gem 'airbrake'
 
 group :test do
 
@@ -31,5 +31,5 @@ group :production do
 end
 
 group :proxy do
-  gem 'em-proxy'
+  # gem 'em-proxy'
 end
