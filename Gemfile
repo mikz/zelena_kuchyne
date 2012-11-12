@@ -22,6 +22,9 @@ end
 
 gem 'airbrake'
 
+gem 'newrelic_rpm'
+gem 'rpm_contrib'
+
 group :test do
 
 end
