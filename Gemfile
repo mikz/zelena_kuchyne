@@ -1,6 +1,6 @@
 source :rubygems
 
-gem "rails", "2.3.14"
+gem "rails", '2.3.15'
 gem "pg"
 
 gem 'will_paginate', '~> 2.2'
