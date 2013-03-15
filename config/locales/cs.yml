@@ -813,3 +813,6 @@ cs:
   attr_facebook: facebook tlačítko
 
   mass_menu: Hromadná objednávka
+
+  impersonated: "Přihlášen jako %{user}"
+  impersonate: 'přihlásit'

@@ -3,6 +3,8 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :menu, :only => [:show], :collection => [:feed, :print]
   map.resource :mass_menu, :only => [:show, :create, :update], :controller => :mass_menu
 
+  map.impersonate 'impersonate/:id', controller: :impersonate, action: :create
+
   map.root :controller => 'welcome'
   
   map.signin 'signin', :controller => 'users', :action => 'signin'

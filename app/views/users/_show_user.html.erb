@@ -1,5 +1,6 @@
 <h1>Uživatel: <%= h user.name %><%- if current_user.belongs_to?("admins")%>
-  <%= link_to "upravit", :action => :edit, :id => user.id%>
+  <%= link_to "upravit", :action => :edit, :id => user.id%> |
+  <%= link_to(t(:impersonate), impersonate_path(user)) %>
   <%-end-%>
 </h1>
 
