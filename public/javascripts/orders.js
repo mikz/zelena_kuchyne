@@ -1,4 +1,4 @@
-function init_draggable_orders(selector){ 
+function init_draggable_orders(selector){
   jQuery(selector || "#orders .order").draggable({
     helper: function(event){
       return $('<div class="drag-orders-item"><table class="order"></table></div>').find('table').append(jQuery(event.target).closest('tr').clone()).end();
@@ -54,7 +54,7 @@ function init_address_helpers(selector) {
   } else {
     helper = window.address_helper;
   }
-  
+
   jQuery(selector || "#orders .address").mouseenter(function (){
     var $this = $(this);
     var text = $this.text();
@@ -62,21 +62,21 @@ function init_address_helpers(selector) {
 
     helper.find("a").remove();
     helper.append(
-      $("<a/>").attr('href','http://mapy.cz/?query='+addr).append($("<img>").attr('src', 'http://mapy.cz/favicon.ico')).attr('target', "_blank"),
-      $("<a/>").attr('href','http://maps.google.cz/maps?q=' + addr).append($("<img>").attr('src', 'http://maps.google.cz/favicon.ico')).attr('target', "_blank")
+      $("<a/>").attr('href','http://mapy.cz/?query='+addr).append($("<img>").attr('src', 'http://mapy.cz/favicon.ico').attr('width', 16)).attr('target', "_blank"),
+      $("<a/>").attr('href','http://maps.google.cz/maps?q=' + addr).append($("<img>").attr('src', '//maps.gstatic.com/favicon3.ico').attr('width', 16)).attr('target', "_blank")
     );
     var offset = $this.offset();
-    
+
     helper.css({
       top: offset.top,
       left: offset.left - helper.width(),
       marginTop: ($this.height()-helper.height())/2
     }).show();
-    
+
   }).mouseleave(function(){
     helper.mouseleave();
   });
-  
+
 
 }
 $(function() {
