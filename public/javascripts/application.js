@@ -1,7 +1,7 @@
 
 jQuery(function() {
   $("#notice").addClass("js");
-  
+
   init_externalLinks();
   init_locks();
 });
@@ -29,10 +29,10 @@ function init_locks(){
         element.attr('disabled', true);
       }
       setTimeout(disable, 100, input);
-      
+
       form.unbind("submit.lock");
     });
-    
+
   });
 }
 function ajax_message(text) {
@@ -55,9 +55,9 @@ function init_externalLinks() {
   jQuery("a[rel=external]").externalLinks();
 }
 function print_and_close() {
-  jQuery(function() {
+  jQuery(window).bind('load', function(){
     window.print();
-    window.close();
+    setTimeout(window.close, 1);
   });
 }
 function hide_notice() {
@@ -338,7 +338,7 @@ jQuery.fn.extend({
             } catch (e) {
               throw "Bad JSON - " + e.toString();
             }
-            
+
           }
           var element, form, done;
           done = [];
@@ -364,7 +364,7 @@ jQuery.fn.extend({
               element.each(function() {
                 done[done.length] = this;
               });
-              
+
             } else {
               element = $("#"+JSON[i][0].replace("=_address", ""));
               if(element.length == 1 && element.is("tr")) {
@@ -397,7 +397,7 @@ function toggle_rule(rule) {
 function init_user_autocompleter(key) {
   if(!$.Autocompleter) { return; }
   var key = key || "login";
-  
+
   $.extend($.Autocompleter.defaults, {
     formatItem: function(row, i, max, term) {
        if(row.first_name && row.family_name) {
