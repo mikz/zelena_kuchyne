@@ -1,0 +1,8 @@
+production:
+  adapter: postgresql
+  host: <%= ENV.fetch('DB_PORT_5432_TCP_ADDR') %>
+  port: <%= ENV.fetch('DB_PORT_5432_TCP_PORT') %>
+  database: <%= ENV.fetch('DB_NAME').slice(/[\w-]+/) %>
+  username: <%= ENV.fetch('DB_NAME').slice(/[\w-]+/) %>
+  password: <%= ENV.fetch('DB_PASSWORD') %>
+  reconnect: true
