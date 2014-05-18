@@ -10,7 +10,9 @@ module FilterWidget
   def filter_widget_conditions(filters)
     conditions = []
     filters.each do |filter|
+      next if filter['value'].empty?
       raise ActiveRecord::StatementInvalid, 'column name cannot include spaces' if filter['attr'].include?(' ')
+
       if filter['value'] == "null"
         conditions.push("#{filter['attr']} IS NULL")
       else

@@ -85,19 +85,9 @@ filterWidget.prototype = {
             url: this.options.url});
   },
   download: function(format) {
-    var inputs = '';
     var data = $(this.form).serializeArray();
-    data.push({name: "format", value: format});
-    data.push({name: "authenticity_token", value: window.authenticity_token});
-//    console.log(data);
-    var params = $.param(data);
-    jQuery.each(params.split('&'), function(){ 
-      var pair = this.split('=');
-      inputs+='<input type="hidden" name="'+ pair[0] +'" value="'+ pair[1] +'" />'; 
-    });
-    //send request
-    var form = jQuery('<form action="'+ this.options.url +'" method="post">'+inputs+'</form>');
-    form.appendTo('body').submit().remove();
+    data.push({name: 'format', value: format});
+    window.location = this.options.url + '&' + $.param(data) ;
     return false;
   },
   addRule: function(ruleName, label, type, values) {

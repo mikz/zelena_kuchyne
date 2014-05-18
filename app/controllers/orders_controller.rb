@@ -14,7 +14,7 @@ class OrdersController < ApplicationController
   def index
     conditions = "state != 'basket'"
     dates = CalendarWidget.parse params[:date]
-    conditions << " AND CAST(deliver_at AS date) BETWEEN '#{dates.first.to_s}' AND '#{dates.last.to_s}'"
+    conditions << " AND CAST(deliver_at AS date) BETWEEN #{Order.quote_value(dates.first)} AND #{Order.quote_value(dates.last)}"
     
     cancelled = params[:state] == 'cancelled'
     state = ((params[:state].nil? or params[:state].empty?) ? "order" : params[:state])
@@ -29,8 +29,9 @@ class OrdersController < ApplicationController
         conditions << " AND cancelled = '#{cancelled}'"
       end
     end
-    
-    conditions << " AND #{filter_widget_conditions(params[:filter])}" if params[:filter].is_a?(Array)
+
+    filter = filter_widget_conditions(params[:filter]) if params[:filter].is_a?(Array)
+    conditions << " AND #{filter}" if filter.present?
     
     # Now we have all the conditions, let's actually do something useful
     @orders = OrderView.find :all, :conditions => conditions, :order => 'orders_view.deliver_at ASC, orders_view.updated_at ASC', :include => [{:user => [:addresses, :user_discounts, :user_profiles ]},  :delivery_man]
